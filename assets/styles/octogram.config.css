@@ -2,7 +2,7 @@
   --appnamecolor: #6a7ed6;
   --background: #151e27;
 
-  --header-bg: #252d3a;
+  --header-bg: #283157;
   --header-appicon-size: 30px;
   --header-actions-gap: 10px;
   --header-width-limit: 900px;
@@ -44,6 +44,7 @@
   --features-item-text-color: #FFFFFF;
   --features-item-text-size: 26px;
   --features-item-extra-bg: #252d3a;
+  --features-item-extra-text: #FFFFFF;
   --features-item-extra-radius: 10px;
   --features-item-extra-padding: 15px;
 
