@@ -11,6 +11,7 @@
   --introduction-height: 75vh;
   --introduction-bottommargin: 40px;
   --introduction-shadow-height: 30px;
+  --introduction-height-min: 700px;
   --introduction-width-limit: 1000px;
   --introduction-gap: 300px;
   --introduction-message-width-limit: 700px;

@@ -3,6 +3,7 @@ body .introduction {
   background: var(--introduction-bg);
   padding-bottom: var(--introduction-shadow-height);
   margin-bottom: var(--introduction-bottommargin);
+  min-height: var(--introduction-height-min);
   box-sizing: border-box;
   width: 100%;
   display: flex;
