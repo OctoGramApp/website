@@ -49,7 +49,7 @@ body .features .list .placeholder {
 
 body .features .list .placeholder img {
   filter: var(--icons-transform);
-  opacity: 50%;
+  opacity: 10%;
 }
 
 body .features .list .item {
