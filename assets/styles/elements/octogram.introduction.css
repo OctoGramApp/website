@@ -42,6 +42,10 @@ body .introduction .content .message .title {
   font-weight: 800;
 }
 
+body .introduction .content .message .title .appname {
+  color: var(--appnamecolor);
+}
+
 body .introduction .content .message .description {
   color: var(--introduction-message-description);
   font-size: 2em;
