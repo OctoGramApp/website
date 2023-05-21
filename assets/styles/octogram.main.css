@@ -6,6 +6,10 @@
 @import url('elements/octogram.header.css');
 @import url('elements/octogram.introduction.css');
 
+:root {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   box-sizing: border-box;
@@ -22,4 +26,23 @@ body {
   body {
     overflow-y: overlay;
   }
+}
+
+
+body::-webkit-scrollbar {
+	width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+	background: transparent;
+	transition: var(--animations-timing) background;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+	background: #666666a1;
+	border-radius: 10px;
 }
