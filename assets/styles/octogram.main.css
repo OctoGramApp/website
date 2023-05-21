@@ -1,0 +1,25 @@
+@import url('octogram.config.css');
+@import url('elements/octogram.buttons.css');
+@import url('elements/octogram.download.css');
+@import url('elements/octogram.features.css');
+@import url('elements/octogram.footer.css');
+@import url('elements/octogram.header.css');
+@import url('elements/octogram.introduction.css');
+
+body {
+  background: var(--background);
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+@supports (overflow-y: overlay) {
+  body {
+    overflow-y: overlay;
+  }
+}

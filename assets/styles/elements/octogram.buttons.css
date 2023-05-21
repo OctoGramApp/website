@@ -1,0 +1,66 @@
+body .button {
+  position: relative;
+  color: var(--buttons-textcolor);
+  font-size: 1.3em;
+  border-radius: var(--buttons-radius);
+  padding: var(--buttons-padding);
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+body .button.big {
+  font-size: 1.5em;
+  padding-block: var(--buttons-big-paddingblock);
+  width: 100%;
+}
+
+body .button.accent {
+  background: var(--buttons-accent-bg);
+  color: var(--buttons-accent-text);
+}
+
+body a.button {
+  text-decoration: none;
+}
+
+body .button::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--buttons-hoverbg);
+  z-index: 0;
+  transition: var(--animations-duration) top;
+}
+
+body .button:hover::before {
+  top: 0;
+}
+
+body .button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  height: 100%;
+  background: var(--buttons-activebg);
+  clip-path: circle(0%);
+}
+
+body .button:active::after {
+  animation: var(--animations-duration) applyRipple forwards;
+}
+
+@keyframes applyRipple {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(100%);
+  }
+}

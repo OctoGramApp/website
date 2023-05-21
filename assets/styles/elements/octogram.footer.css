@@ -1,0 +1,32 @@
+body .footer {
+  width: 100%;
+  height: var(--footer-height);
+  padding-top: var(--footer-shadow-height);
+  background: var(--footer-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+body .footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--footer-shadow-height);
+  background: linear-gradient(
+    var(--background),
+    var(--footer-bg)
+  );
+}
+
+body .footer .text {
+  color: var(--footer-text);
+}
+
+body .footer .text a {
+  text-decoration: none;
+  color: var(--footer-text-link);
+}

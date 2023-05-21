@@ -1,0 +1,31 @@
+body .header {
+  width: 100%;
+  height: 3.5em;
+  background: var(--header-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+}
+
+body .header .container {
+  height: 100%;
+  width: 100%;
+  max-width: var(--header-width-limit);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body .header .container .applogo img {
+  height: var(--header-appicon-size);
+  width: var(--header-appicon-size);
+  filter: var(--icons-transform);
+}
+
+body .header .container .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--header-actions-gap);
+}
