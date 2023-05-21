@@ -40,3 +40,7 @@ body .download .content .files select {
   padding-block: var(--downloads-select-paddingblock);
   text-align: center;
 }
+
+body .download .content .files .button {
+  cursor: pointer;
+}
