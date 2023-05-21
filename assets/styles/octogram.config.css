@@ -1,0 +1,75 @@
+:root {
+  --appnamecolor: #6a7ed6;
+  --background: #151e27;
+
+  --header-bg: #252d3a;
+  --header-appicon-size: 30px;
+  --header-actions-gap: 10px;
+  --header-width-limit: 900px;
+
+  --introduction-bg: #1d2733;
+  --introduction-height: 75vh;
+  --introduction-bottommargin: 40px;
+  --introduction-shadow-height: 30px;
+  --introduction-width-limit: 1000px;
+  --introduction-gap: 300px;
+  --introduction-message-width-limit: 700px;
+  --introduction-message-title: #FFFFFF;
+  --introduction-message-description: #FFFFFF;
+  --introduction-image-gap: 5px;
+  --introduction-image-radius: 10px;
+  --introduction-image-maxheight: 250px;
+  --introduction-image-maxwidth: 150px;
+  --introduction-image-active-maxheight: 600px;
+  --introduction-image-active-maxwidth: 1000px;
+  --introduction-imageplaceholder-full-bg: rgba(21, 30, 39, 0.7);
+  --introduction-imageplaceholder-full-text: #FFFFFF;
+  --introduction-imageplaceholder-full-icon: 40px;
+  --introduction-imageplaceholder-full-gap: 10px;
+  --introduction-imageplaceholder-full-blur: 10px;
+  --introduction-imageplaceholder-bottom-height: 80px;
+  --introduction-imageplaceholder-bottom-gradient-start: transparent;
+  --introduction-imageplaceholder-bottom-gradient-end: #000000;
+  --introduction-imageplaceholder-bottom-text: #FFFFFF;
+  --introduction-imageplaceholder-bottom-text-padding: 15px;
+
+  --features-title: #FFFFFF;
+  --features-title-gap: 20px;
+  --features-bottommargin: 60px;
+  --features-list-width-limit: 1000px;
+  --features-list-gap: 40px;
+  --features-item-gap: 15px;
+  --features-item-image-size: 300px;
+  --features-item-image-radius: 20px;
+  --features-item-text-color: #FFFFFF;
+  --features-item-text-size: 26px;
+  --features-item-extra-bg: #252d3a;
+  --features-item-extra-radius: 10px;
+  --features-item-extra-padding: 15px;
+
+  --buttons-textcolor: #FFFFFF;
+  --buttons-hoverbg: rgba(255, 255, 255, 0.1);
+  --buttons-activebg: rgba(255, 255, 255, 0.05);
+  --buttons-accent-bg: #6a7ed6;
+  --buttons-accent-text: #FFFFFF;
+  --buttons-padding: 8px;
+  --buttons-big-paddingblock: 10px;
+  --buttons-radius: 5px;
+
+  --downloads-bg: #6a7ed63d;
+  --downloads-bottommargin: 50px;
+  --downloads-width-limit: 1100px;
+  --downloads-padding: 30px;
+  --downloads-files-width: 265px;
+  --downloads-select-paddingblock: 10px;
+  --downloads-select-bottommargin: 6px;
+
+  --footer-bg: #252d3a;
+  --footer-text: #FFFFFF;
+  --footer-text-link: #6a7ed6;
+  --footer-height: 60px;
+  --footer-shadow-height: 30px;
+
+  --animations-duration: 0.8s;
+  --icons-transform: invert(1);
+}

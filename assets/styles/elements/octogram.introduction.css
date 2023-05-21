@@ -1,0 +1,134 @@
+body .introduction {
+  height: var(--introduction-height);
+  background: var(--introduction-bg);
+  padding-bottom: var(--introduction-shadow-height);
+  margin-bottom: var(--introduction-bottommargin);
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+body .introduction::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--introduction-shadow-height);
+  background: linear-gradient(
+    var(--introduction-bg),
+    var(--background)
+  );
+}
+
+body .introduction .content {
+  max-width: var(--introduction-width-limit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--introduction-gap);
+}
+
+body .introduction .content .message {
+  max-width: var(--introduction-message-width-limit);
+}
+
+body .introduction .content .message .title {
+  color: var(--introduction-message-title);
+  font-size: 4em;
+  font-weight: 800;
+}
+
+body .introduction .content .message .description {
+  color: var(--introduction-message-description);
+  font-size: 2em;
+}
+
+body .introduction .content .illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--introduction-image-gap);
+}
+
+body .introduction .content .illustration .image {
+  position: relative;
+  border-radius: var(--introduction-image-radius);
+  overflow: hidden;
+  transition: var(--animations-duration) box-shadow;
+}
+
+body .introduction .content .illustration .image.active {
+  box-shadow: 0 0 15px -1px #000000;
+}
+
+body .introduction .content .illustration .image > img {
+  max-height: var(--introduction-image-active-maxheight);
+  max-width: var(--introduction-image-active-maxwidth);
+  transition: var(--animations-duration) max-height, var(--animations-duration) max-width;
+}
+
+body .introduction .content .illustration .image:not(.active) > img {
+  max-height: var(--introduction-image-maxheight);
+  max-width: var(--introduction-image-maxwidth);
+}
+
+body .introduction .content .illustration .image .full-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--introduction-imageplaceholder-full-bg);
+  gap: var(--introduction-imageplaceholder-full-gap);
+  backdrop-filter: blur(var(--introduction-imageplaceholder-full-blur));
+  transition: var(--animations-duration) opacity;
+}
+
+body .introduction .content .illustration .image .full-placeholder .text {
+  color: var(--introduction-imageplaceholder-full-text);
+}
+
+body .introduction .content .illustration .image.active .full-placeholder {
+  opacity: 0%;
+}
+
+body .introduction .content .illustration .image .full-placeholder .icon img {
+  height: var(--introduction-imageplaceholder-full-icon);
+  width: var(--introduction-imageplaceholder-full-icon);
+  filter: var(--icons-transform);
+}
+
+body .introduction .content .illustration .image .bottom-placeholder {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--introduction-imageplaceholder-bottom-height) * -1);
+  width: 100%;
+  height: var(--introduction-imageplaceholder-bottom-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(
+    var(--introduction-imageplaceholder-bottom-gradient-start),
+    var(--introduction-imageplaceholder-bottom-gradient-end)
+  );
+  transition: var(--animations-duration) bottom;
+}
+
+body .introduction .content .illustration .image.active .bottom-placeholder {
+  bottom: 0;
+}
+
+body .introduction .content .illustration .image .bottom-placeholder .text {
+  color: var(--introduction-imageplaceholder-bottom-text);
+  padding-inline: var(--introduction-imageplaceholder-bottom-text-padding);
+  text-align: center;
+}

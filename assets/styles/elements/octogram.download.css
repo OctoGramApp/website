@@ -1,0 +1,42 @@
+body .download {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--downloads-bottommargin);
+}
+
+body .download .content {
+  background: var(--downloads-bg);
+  max-width: var(--downloads-width-limit);
+  padding: var(--downloads-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 5px;
+}
+
+body .download .content .message .title {
+  color: white;
+  font-size: 4em;
+  font-weight: 800;
+}
+
+body .download .content .message .description {
+  color: white;
+  font-size: 2em;
+}
+
+body .download .content .files {
+  width: 100%;
+  max-width: var(--downloads-files-width);
+}
+
+body .download .content .files select {
+  font-size: 1.5em;
+  width: 100%;
+  margin-bottom: var(--downloads-select-bottommargin);
+  padding-block: var(--downloads-select-paddingblock);
+  text-align: center;
+}
