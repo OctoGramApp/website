@@ -5,6 +5,7 @@ OctoGram is an **unofficial** messaging app that uses **Telegram's API**. This s
 * [Main website](https://octogram.site/)
 * [Main website (features)](https://octogram.site/#features)
 * [Main website (download)](https://octogram.site/#download)
+* [404 page](https://octogram.site/404.html)
 
 # 🖼️ Screenshots
 ![Introduction](assets/readme.images/introduction.png)
@@ -21,6 +22,17 @@ The colours of the site are all obtained through the client's default 'dark' the
 * X86_64 APK: https://github.com/OctoGramApp/OctoGram/releases/download/%23stable/x86_64.apk
 * X86 APK: https://github.com/OctoGramApp/OctoGram/releases/download/%23stable/x86.apk
 ## 🦋 Icons
-* Settings icon: https://fontawesome.com/icons/gear?f=classic&s=solid
 * Chat icon: https://fontawesome.com/icons/comments?f=classic&s=solid
+* Settings icon: https://fontawesome.com/icons/gear?f=classic&s=solid
 * Appearance icon: https://fontawesome.com/icons/brush?f=classic&s=solid
+* Left arrow (404 page): https://fontawesome.com/icons/arrow-left?f=classic&s=solid
+## ✨ Stickers
+The site uses some animated stickers in the "Always in step" category.
+
+<div style="display: flex; gap: 50px; justify-content: center;margin-bottom: 10px;">
+  <img src="assets/animations/wallpaperAnimation.gif" style="height: 130px">
+  <img src="assets/animations/tosCompliantAnimation.gif" style="height: 130px">
+  <img src="assets/animations/premiumAnimation.gif" style="height: 130px">
+</div>
+
+Gli sticker animati che vengono utilizzati nel sito sono tutti provenienti dallo stesso pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
