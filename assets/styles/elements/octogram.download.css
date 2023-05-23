@@ -10,27 +10,47 @@ body .download .content {
   background: var(--downloads-bg);
   max-width: var(--downloads-width-limit);
   padding: var(--downloads-padding);
+  border-radius: var(--downloads-radius);
+  gap: var(--downloads-gap);
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 700px) {
+  body .download .content {
+    flex-direction: column;
+  }
 }
 
 body .download .content .message .title {
   color: white;
-  font-size: 4em;
+  font-size: 3em;
   font-weight: 800;
+}
+
+@media screen and (max-width: 700px) {
+  body .download .content .message .title {
+    display: none;
+  }
 }
 
 body .download .content .message .description {
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 body .download .content .files {
   width: 100%;
   max-width: var(--downloads-files-width);
+}
+
+@media screen and (max-width: 700px) {
+  body .download .content .files {
+    max-width: none;
+  }
 }
 
 body .download .content .files select {

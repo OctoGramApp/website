@@ -27,13 +27,13 @@ body a.button {
 body .button::before {
   content: "";
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: var(--buttons-hoverbg);
   z-index: 0;
-  opacity: 0%;
+  opacity: 0;
   transition: var(--animations-duration) opacity;
 }
 
@@ -64,4 +64,10 @@ body .button:active::after {
   to {
     clip-path: circle(100%);
   }
+}
+
+body .button .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
