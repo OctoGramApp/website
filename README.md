@@ -29,10 +29,10 @@ The colours of the site are all obtained through the client's default 'dark' the
 ## ✨ Stickers
 The site uses some animated stickers in the "Always in step" category.
 
-<div style="display: flex; gap: 50px; justify-content: center;margin-bottom: 10px;">
-  <img src="assets/animations/wallpaperAnimation.gif" style="height: 130px">
-  <img src="assets/animations/tosCompliantAnimation.gif" style="height: 130px">
-  <img src="assets/animations/premiumAnimation.gif" style="height: 130px">
+<div style="display: flex; gap: 50px;">
+  <img src="assets/animations/wallpaperAnimation.gif" style="height: 90px">
+  <img src="assets/animations/tosCompliantAnimation.gif" style="height: 90px">
+  <img src="assets/animations/premiumAnimation.gif" style="height: 90px">
 </div>
 
 Gli sticker animati che vengono utilizzati nel sito sono tutti provenienti dallo stesso pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
