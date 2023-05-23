@@ -3,25 +3,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/styles/octogram.main.css">
+    <noscript>
+      <link rel="stylesheet" href="assets/styles/octogram.noscript.css">
+    </noscript>
     <link rel="icon" href="assets/icons/applogo.svg">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>OctoGram</title>
   </head>
   <body>
     <div class="header">
-      <div class="container">
+      <div class="content">
         <div class="applogo">
           <img src="assets/icons/applogo.svg">
         </div>
         <div class="actions">
-          <a href="#features" class="button">
+          <a href="#features" class="button secondary">
             <div class="text">
               Features
             </div>
           </a>
-          <a href="#download" class="button">
+          <a href="#download" class="button need-js">
             <div class="text">
               Download
+            </div>
+          </a>
+          <a href="https://github.com/OctoGramApp/OctoGram" target="_blank" class="button secondary">
+            <div class="text">
+              Source
             </div>
           </a>
         </div>
@@ -34,7 +42,7 @@
             Discover <span class="appname">OctoGram</span>
           </div>
           <div class="description">
-            The client for everyone with all the features you need
+            The Telegram alternative client with all the features you need
           </div>
         </div>
         <div class="illustration">
@@ -106,7 +114,7 @@
               <img src="assets/images/features.creationdate.jpg">
             </div>
             <div class="text">
-              Creation date
+              Registration date
             </div>
           </div>
           <div class="item">
@@ -114,7 +122,15 @@
               <img src="assets/images/features.dc.jpg">
             </div>
             <div class="text">
-              DC Indicator
+              DC & ID indicator
+            </div>
+          </div>
+          <div class="item">
+            <div class="image">
+              <img src="assets/images/features.dcstatus.jpg">
+            </div>
+            <div class="text">
+              Datacenter status
             </div>
           </div>
           <div class="item">
@@ -130,7 +146,7 @@
               <img src="assets/images/features.menuitems.jpg">
             </div>
             <div class="text">
-              Customize menu items
+              Customizable menu
             </div>
           </div>
           <div class="item">
@@ -138,18 +154,10 @@
               <img src="assets/images/features.experimental.jpg">
             </div>
             <div class="text">
-              Experimental features
+              Experimental settings
             </div>
           </div>
-          <div class="item">
-            <div class="image">
-              <img src="assets/images/features.dcstatus.jpg">
-            </div>
-            <div class="text">
-              Datacenter status
-            </div>
-          </div>
-          <div class="item extra">
+          <div class="item extra need-js">
             <div class="text">
               There are also other options.
               <br/>Discover them by downloading the app.
@@ -161,8 +169,42 @@
         </div>
       </div>
     </section>
+    <section id="advantages">
+      <div class="advantages">
+        <div class="message">
+          <div class="title">
+            Always in step
+          </div>
+          <div class="description">
+            A continuously updated client
+          </div>
+        </div>
+        <div class="items">
+          <div class="item">
+            <img src="assets/animations/wallpaperAnimation.gif" loading="lazy">
+            <div class="title">
+              Always up-to-date with official client functions.
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="item">
+            <img src="assets/animations/tosCompliantAnimation.gif" loading="lazy">
+            <div class="title">
+              Always in line with Telegram's Terms of Service
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="item">
+            <img src="assets/animations/premiumAnimation.gif" loading="lazy">
+            <div class="title">
+              With support for all Telegram Premium features
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="download">
-      <div class="download">
+      <div class="download need-js">
         <div class="content">
           <div class="message">
             <div class="title">
