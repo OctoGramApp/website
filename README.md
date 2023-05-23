@@ -35,4 +35,4 @@ The site uses some animated stickers in the "Always in step" category.
   <img src="assets/animations/premiumAnimation.gif" style="height: 90px">
 </div>
 
-Gli sticker animati che vengono utilizzati nel sito sono tutti provenienti dallo stesso pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
+The animated stickers used on the site are all from the same pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
