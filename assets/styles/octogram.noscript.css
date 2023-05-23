@@ -1,0 +1,19 @@
+body .need-js {
+  display: none !important;
+}
+
+body .advantages {
+  margin-bottom: 0 !important;
+}
+
+body .advantages::after {
+  content: none;
+}
+
+body .footer {
+  padding-top: 0 !important;
+}
+
+body .footer::before {
+  content: none;
+}

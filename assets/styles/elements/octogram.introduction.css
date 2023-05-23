@@ -33,6 +33,13 @@ body .introduction .content {
   gap: var(--introduction-gap);
 }
 
+@media screen and (max-width: 1400px) {
+  body .introduction .content {
+    flex-direction: column;
+    gap: var(--introduction-gap-mobile);
+  }
+}
+
 body .introduction .content .message {
   max-width: var(--introduction-message-width-limit);
 }
@@ -52,11 +59,39 @@ body .introduction .content .message .description {
   font-size: 2em;
 }
 
+@media screen and (max-width: 700px) {
+  body .introduction .content .message .title {
+    font-size: 3em;
+    text-align: center;
+  }
+  
+  body .introduction .content .message .description {
+    font-size: 1.5em;
+    text-align: center;
+  }
+}
+
 body .introduction .content .illustration {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--introduction-image-gap);
+}
+
+@media screen and (max-width: 700px) {
+  body .introduction .content .illustration {
+    --introduction-image-active-maxheight: 250px;
+    --introduction-image-maxheight: 150px;
+    height: var(--introduction-image-active-maxheight);
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1400px) {
+  body .introduction .content .illustration {
+    --introduction-image-active-maxheight: 350px;
+    --introduction-image-maxheight: 250px;
+    height: var(--introduction-image-active-maxheight);
+  }
 }
 
 body .introduction .content .illustration .image {
@@ -93,7 +128,6 @@ body .introduction .content .illustration .image .full-placeholder {
   flex-direction: column;
   background: var(--introduction-imageplaceholder-full-bg);
   gap: var(--introduction-imageplaceholder-full-gap);
-  backdrop-filter: blur(var(--introduction-imageplaceholder-full-blur));
   transition: var(--animations-duration) opacity;
 }
 
@@ -101,8 +135,14 @@ body .introduction .content .illustration .image .full-placeholder .text {
   color: var(--introduction-imageplaceholder-full-text);
 }
 
+@media screen and (max-width: 1400px) {
+  body .introduction .content .illustration .image .full-placeholder .text {
+    display: none;
+  }
+}
+
 body .introduction .content .illustration .image.active .full-placeholder {
-  opacity: 0%;
+  opacity: 0;
 }
 
 body .introduction .content .illustration .image .full-placeholder .icon img {
