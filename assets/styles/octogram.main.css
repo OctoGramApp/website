@@ -1,6 +1,8 @@
 @import url('octogram.config.css');
+@import url('elements/octogram.advantages.css');
 @import url('elements/octogram.buttons.css');
 @import url('elements/octogram.download.css');
+@import url('elements/octogram.error.css');
 @import url('elements/octogram.features.css');
 @import url('elements/octogram.footer.css');
 @import url('elements/octogram.header.css');
@@ -42,7 +44,7 @@ body::-webkit-scrollbar-thumb {
 	transition: var(--animations-timing) background;
 }
 
-body:hover::-webkit-scrollbar-thumb {
+:root:hover body::-webkit-scrollbar-thumb {
 	background: #666666a1;
 	border-radius: 10px;
 }
