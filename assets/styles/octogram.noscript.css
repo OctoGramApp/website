@@ -1,19 +1,19 @@
-body .need-js {
+body .page .need-js {
   display: none !important;
 }
 
-body .advantages {
+body .page .advantages {
   margin-bottom: 0 !important;
 }
 
-body .advantages::after {
+body .page .advantages::after {
   content: none;
 }
 
-body .footer {
+body .page .footer {
   padding-top: 0 !important;
 }
 
-body .footer::before {
+body .page .footer::before {
   content: none;
 }

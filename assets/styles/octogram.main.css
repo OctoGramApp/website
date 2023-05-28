@@ -1,4 +1,5 @@
 @import url('octogram.config.css');
+@import url('octogram.splash.css');
 @import url('elements/octogram.advantages.css');
 @import url('elements/octogram.buttons.css');
 @import url('elements/octogram.download.css');
@@ -22,6 +23,7 @@ body {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; 
 }
 
 @supports (overflow-y: overlay) {

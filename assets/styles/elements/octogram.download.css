@@ -1,4 +1,4 @@
-body .download {
+body .page .download {
   width: 100%;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@ body .download {
   margin-bottom: var(--downloads-bottommargin);
 }
 
-body .download .content {
+body .page .download .content {
   background: var(--downloads-bg);
   max-width: var(--downloads-width-limit);
   padding: var(--downloads-padding);
@@ -17,43 +17,45 @@ body .download .content {
   justify-content: space-around;
   width: 100%;
   box-sizing: border-box;
+  transform: translateX(calc(10% * calc(1 - var(--parallax-state))));
+  opacity: var(--parallax-state);
 }
 
 @media screen and (max-width: 700px) {
-  body .download .content {
+  body .page .download .content {
     flex-direction: column;
   }
 }
 
-body .download .content .message .title {
+body .page .download .content .message .title {
   color: white;
   font-size: 3em;
   font-weight: 800;
 }
 
 @media screen and (max-width: 700px) {
-  body .download .content .message .title {
+  body .page .download .content .message .title {
     display: none;
   }
 }
 
-body .download .content .message .description {
+body .page .download .content .message .description {
   color: white;
   font-size: 1.5em;
 }
 
-body .download .content .files {
+body .page .download .content .files {
   width: 100%;
   max-width: var(--downloads-files-width);
 }
 
 @media screen and (max-width: 700px) {
-  body .download .content .files {
+  body .page .download .content .files {
     max-width: none;
   }
 }
 
-body .download .content .files select {
+body .page .download .content .files select {
   font-size: 1.5em;
   width: 100%;
   margin-bottom: var(--downloads-select-bottommargin);
@@ -61,6 +63,6 @@ body .download .content .files select {
   text-align: center;
 }
 
-body .download .content .files .button {
+body .page .download .content .files .button {
   cursor: pointer;
 }

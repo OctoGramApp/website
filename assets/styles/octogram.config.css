@@ -14,7 +14,7 @@
   --introduction-height: 75vh;
   --introduction-bottommargin: 40px;
   --introduction-shadow-height: 30px;
-  --introduction-height-min: 700px;
+  --introduction-height-min: 800px;
   --introduction-width-limit: 1000px;
   --introduction-gap: 300px;
   --introduction-gap-mobile: 35px;
@@ -27,6 +27,8 @@
   --introduction-image-maxwidth: 150px;
   --introduction-image-active-maxheight: 600px;
   --introduction-image-active-maxwidth: 1000px;
+  --introduction-image-active-mobile-maxheight: 500px;
+  --introduction-image-pause: rgba(0, 0, 0, 0.5);
   --introduction-imageplaceholder-full-bg: rgba(21, 30, 39, 0.8);
   --introduction-imageplaceholder-full-text: #FFFFFF;
   --introduction-imageplaceholder-full-icon: 40px;
@@ -44,7 +46,6 @@
   --features-list-gap: 40px;
   --features-item-gap: 15px;
   --features-item-image-size: 300px;
-  --features-item-image-radius: 20px;
   --features-item-text-color: #FFFFFF;
   --features-item-extra-bg: #252d3a;
   --features-item-extra-text: #FFFFFF;

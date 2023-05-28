@@ -1,4 +1,4 @@
-body .features {
+body .page .features {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,18 +7,18 @@ body .features {
   margin-bottom: var(--features-bottommargin);
 }
 
-body .features .title {
+body .page .features .title {
   color: var(--features-title);
   font-size: 3em;
   font-weight: 600;
   text-align: center;
 }
 
-body .features .title .appname {
+body .page .features .title .appname {
   color: var(--appnamecolor);
 }
 
-body .features .list {
+body .page .features .list {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -31,32 +31,32 @@ body .features .list {
 }
 
 @supports (overflow-x: overlay) {
-  body .features .list {  
+  body .page .features .list {  
     overflow-x: overlay;
   }
 }
 
 @media screen and (max-width: 450px) {
-  body .features .list {
+  body .page .features .list {
     gap: var(--features-list-gap) 0;
   }
 }
 
 @media screen and (max-width: 700px) {
-  body .features .list {
+  body .page .features .list {
     grid-template-columns: 1fr 1fr;
     --features-item-image-size: calc(100vw / 2.8);
   }
 }
 
 @media screen and (min-width: 700px) and (max-width: 1410px) {
-  body .features .list {
+  body .page .features .list {
     grid-template-columns: 1fr 1fr 1fr;
     --features-item-image-size: calc(100vw / 3.8);
   }
 }
 
-body .features .list .placeholder {
+body .page .features .list .placeholder {
   position: absolute;
   top: 0;
   left: 0;
@@ -68,12 +68,12 @@ body .features .list .placeholder {
   justify-content: center;
 }
 
-body .features .list .placeholder img {
+body .page .features .list .placeholder img {
   filter: var(--icons-transform);
   opacity: 10%;
 }
 
-body .features .list .item {
+body .page .features .list .item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +81,7 @@ body .features .list .item {
   gap: var(--features-item-gap);
 }
 
-body .features .list .item.extra {
+body .page .features .list .item.extra {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -91,29 +91,39 @@ body .features .list .item.extra {
   box-shadow: 0 0 30px 0 #000000;
 }
 
-body .features .list .item.extra .text {
+body .page .features .list .item.extra .text {
   color: var(--features-item-extra-text);
 }
 
-body .features .list .item .image {
-  border-radius: var(--features-item-image-radius);
-  overflow: hidden;
-  box-shadow: 0 0 30px 0 #000000;
+body .page .features .list .item.extra .button {
+  clip-path: circle(calc(var(--parallax-state) * 100%));
 }
 
-body .features .list .item .image img {
+body .page .features .list .item .image {
+  border-radius: calc(50% * calc(1.1 - var(--parallax-state)));
+  overflow: hidden;
+  box-shadow: 0 0 30px 0 #000000;
+  transform: scale(max(0.6, var(--parallax-state)));
+  opacity: var(--parallax-state);
+}
+
+body .page .features .list .item .image img {
   height: var(--features-item-image-size);
   width: var(--features-item-image-size);
 }
 
-body .features .list .item > .text {
+body .page .features .list .item > .text {
   font-size: 1.5em;
   text-align: center;
   color: var(--features-item-text-color);
 }
 
+body .page .features .list .item:not(.extra) > .text {
+  transform: translateY(calc(-100% * calc(1 - var(--parallax-state))));
+}
+
 @media screen and (max-width: 1000px) {
-  body .features .list .item > .text {
+  body .page .features .list .item > .text {
     font-size: 0.9em;
   }
 }
