@@ -13,7 +13,7 @@
   --introduction-bg: #1d2733;
   --introduction-height: 75vh;
   --introduction-bottommargin: 40px;
-  --introduction-shadow-height: 30px;
+  --introduction-shadow-height: 150px;
   --introduction-height-min: 800px;
   --introduction-width-limit: 1000px;
   --introduction-gap: 300px;
@@ -29,6 +29,7 @@
   --introduction-image-active-maxwidth: 1000px;
   --introduction-image-active-mobile-maxheight: 500px;
   --introduction-image-pause: rgba(0, 0, 0, 0.5);
+  --introduction-image-pause-size: 20px;
   --introduction-imageplaceholder-full-bg: rgba(21, 30, 39, 0.8);
   --introduction-imageplaceholder-full-text: #FFFFFF;
   --introduction-imageplaceholder-full-icon: 40px;
@@ -75,7 +76,7 @@
   --footer-text: #FFFFFF;
   --footer-text-link: #6a7ed6;
   --footer-height: 50px;
-  --footer-shadow-height: 20px;
+  --footer-shadow-height: 40px;
 
   --advantages-bg: #252d3a;
   --advantages-bottommargin: 50px;
