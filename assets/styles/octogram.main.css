@@ -11,13 +11,14 @@
 
 :root {
   scroll-behavior: smooth;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body {
   background: var(--background);
   box-sizing: border-box;
   margin: 0;
-  font-family: 'Work Sans', sans-serif;
+  width: 100vw;
   overflow-y: auto;
   overflow-x: hidden;
   user-select: none;

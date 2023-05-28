@@ -5,6 +5,7 @@ body .page .introduction {
   margin-bottom: var(--introduction-bottommargin);
   min-height: var(--introduction-height-min);
   box-sizing: border-box;
+  overflow: hidden;
   width: 100%;
   display: flex;
   align-items: center;
@@ -33,10 +34,17 @@ body .page .introduction .content {
   gap: var(--introduction-gap);
 }
 
+@media screen and (max-width: 700px) {
+  body .page .introduction .content {
+    max-width: none;
+    gap: 0;
+  }
+}
+
 @media screen and (max-width: 1400px) {
   body .page .introduction .content {
     flex-direction: column;
-    gap: 0;
+    gap: var(--introduction-gap-mobile);
   }
 }
 
@@ -61,6 +69,12 @@ body .page .introduction .content .message {
   transform: translateY(2em);
   opacity: 0;
   animation: var(--animations-duration) showMessage var(--splash-delay) forwards;
+}
+
+@media screen and (max-width: 700px) {
+  body .page .introduction .content .message {
+    max-width: min(97vw, var(--introduction-message-width-limit));
+  }
 }
 
 @keyframes showMessage {
@@ -116,16 +130,15 @@ body .page .introduction .content .illustration {
 
 @media screen and (max-width: 700px) {
   body .page .introduction {
-    margin-bottom: calc(var(--introduction-image-active-maxheight) / 1.5);
+    margin-bottom: calc(var(--introduction-image-active-maxheight) / 3);
   }
 
   body .page .introduction .content .illustration {
-    position: absolute;
-    bottom: -25%;
-    z-index: 1;
     --introduction-image-active-maxheight: 300px;
     --introduction-image-maxheight: 200px;
-    height: var(--introduction-image-active-maxheight);
+    height: calc(var(--introduction-image-active-mobile-maxheight) + 15px);
+    margin-bottom: calc(-0.2 * var(--introduction-image-active-mobile-maxheight) - 15px);
+    z-index: 1;
   }
 }
 
@@ -251,8 +264,6 @@ body .page .introduction .content .illustration .image .pause {
   left: 50%;
   transform: translateX(-50%) translateY(-50%) scale(0.7);
   opacity: 0;
-  width: 3em;
-  height: 3em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,6 +276,8 @@ body .page .introduction .content .illustration .image .pause {
 
 body .page .introduction .content .illustration .image .pause img {
   filter: var(--icons-transform);
+  width: var(--introduction-image-pause-size);
+  height: var(--introduction-image-pause-size);
 }
 
 body .page .introduction .content .illustration.is-paused .image.active .pause {
