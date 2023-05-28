@@ -4,14 +4,14 @@ window.addEventListener('load', () => {
     case '/appcenter-beta':
     case '/acbeta':
     case '/beta':
-      window.location.href = tryToGetVersion('Octogram-Beta');
+      window.location.href = composeUrl('Octogram-Beta');
     break;
     case '/appcenter_stable':
     case '/appcenter-stable':
     case '/ac':
     case '/acstable':
     case '/stable':
-      window.location.href = tryToGetVersion('Octogram');
+      window.location.href = composeUrl('Octogram');
     break;
   }
 });
