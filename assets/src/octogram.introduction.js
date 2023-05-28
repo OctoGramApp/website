@@ -1,10 +1,21 @@
-let isPaused = false;
+let isPausedByScroll = false;
+let isPausedByUser = false;
 
 window.addEventListener('load', () => {
-  const introductionItem = document.querySelector('body .introduction .illustration');
+  const introductionItem = document.querySelector('body .page .introduction .illustration');
   if (introductionItem != null) {
+    const imageList = introductionItem.querySelectorAll('.image');
+    for (const child of imageList) {
+      child.addEventListener('click', () => {
+        if (child.classList.contains('active')) {
+          isPausedByUser = !isPausedByUser;
+          introductionItem.classList.toggle('is-paused', isPausedByUser);
+        }
+      });
+    }
+
     setInterval(() => {
-      if (isPaused) {
+      if (isPausedByScroll || isPausedByUser) {
         return;
       }
       
@@ -32,9 +43,9 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('scroll', () => {
-  const introductionItem = document.querySelector('body .introduction .illustration');
+  const introductionItem = document.querySelector('body .page .introduction .illustration');
   if (introductionItem != null) {
     const currentItemPosition = introductionItem.getBoundingClientRect().top;
-    isPaused = currentItemPosition < 0;
+    isPausedByScroll = currentItemPosition < 0;
   }
 });

@@ -25,6 +25,7 @@ The colours of the site are all obtained through the client's default 'dark' the
 * Chat icon: https://fontawesome.com/icons/comments?f=classic&s=solid
 * Settings icon: https://fontawesome.com/icons/gear?f=classic&s=solid
 * Appearance icon: https://fontawesome.com/icons/brush?f=classic&s=solid
+* Pause: https://fontawesome.com/icons/pause?f=classic&s=solid
 * Left arrow (404 page): https://fontawesome.com/icons/arrow-left?f=classic&s=solid
 ## ✨ Stickers
 The site uses some animated stickers in the "Always in step" category.

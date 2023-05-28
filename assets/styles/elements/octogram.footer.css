@@ -1,4 +1,4 @@
-body .footer {
+body .page .footer {
   width: 100%;
   height: var(--footer-height);
   padding-top: var(--footer-shadow-height);
@@ -10,7 +10,7 @@ body .footer {
   box-sizing: border-box;
 }
 
-body .footer::before {
+body .page .footer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -23,11 +23,11 @@ body .footer::before {
   );
 }
 
-body .footer .text {
+body .page .footer .text {
   color: var(--footer-text);
 }
 
-body .footer .text a {
+body .page .footer .text a {
   text-decoration: none;
   color: var(--footer-text-link);
 }

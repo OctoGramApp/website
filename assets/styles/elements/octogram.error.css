@@ -1,11 +1,11 @@
-body .error {
+body .page .error {
   height: calc(100vh - var(--header-height) - var(--footer-height));
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-body .error .message {
+body .page .error .message {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,24 +13,24 @@ body .error .message {
   max-width: 95vw;
 }
 
-body .error .message .title {
+body .page .error .message .title {
   color: var(--error-message-title);
   font-size: 2.5em;
   font-weight: 800;
   text-align: center;
 }
 
-body .error .message .description {
+body .page .error .message .description {
   color: var(--error-message-description);
   font-size: 1.5em;
   text-align: center;
 }
 
-body .error .message .button {
+body .page .error .message .button {
   margin-top: var(--error-message-gap);
 }
 
-body .error .message .button img {
+body .page .error .message .button img {
   margin-left: var(--error-message-octo-gap);
   height: var(--error-message-octo-size);
   width: var(--error-message-octo-size);

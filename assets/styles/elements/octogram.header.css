@@ -1,4 +1,4 @@
-body .header {
+body .page .header {
   width: 100%;
   height: var(--header-height);
   background: linear-gradient(
@@ -17,7 +17,7 @@ body.as-error .header {
   );
 }
 
-body .header .content {
+body .page .header .content {
   height: 100%;
   width: 100%;
   max-width: var(--header-width-limit);
@@ -26,32 +26,32 @@ body .header .content {
   justify-content: space-between;
 }
 
-body .header .content .applogo {
+body .page .header .content .applogo {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-body .header .content .applogo img {
+body .page .header .content .applogo img {
   height: var(--header-appicon-size);
   width: var(--header-appicon-size);
   filter: var(--icons-transform);
 }
 
-body .header .content a.applogo img.arrow {
+body .page .header .content a.applogo img.arrow {
   height: var(--header-back-size);
   width: var(--header-back-size);
   margin-right: var(--header-back-gap);
   transition: var(--animations-duration) transform, var(--animations-duration) margin-right, var(--animations-duration) opacity;
 }
 
-body .header:not(:hover) .content a.applogo img.arrow {
+body .page .header:not(:hover) .content a.applogo img.arrow {
   transform: scale(0.8);
   margin-right: calc(var(--header-appicon-size) * -1);
   opacity: 0;
 }
 
-body .header .content .actions {
+body .page .header .content .actions {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,7 @@ body .header .content .actions {
 }
 
 @media screen and (max-width: 500px) {
-  body .header .content .actions .button.secondary {
+  body .page .header .content .actions .button.secondary {
     display: none;
   }
 }
