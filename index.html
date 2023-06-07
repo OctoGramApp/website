@@ -45,7 +45,7 @@
                 Features
               </div>
             </a>
-            <a href="#download" class="button need-js">
+            <a href="#download" class="button">
               <div class="text">
                 Download
               </div>
@@ -190,7 +190,7 @@
                 Experimental settings
               </div>
             </div>
-            <div class="item extra need-js">
+            <div class="item extra">
               <div class="text">
                 There are also other options.
                 <br/>Discover them by downloading the app.
@@ -237,27 +237,82 @@
         </div>
       </section>
       <section id="download">
-        <div class="download need-js">
+        <div class="download">
           <div class="content">
-            <div class="message">
-              <div class="title">
-                Are you ready?
+            <div class="from-apk need-js">
+              <div class="message">
+                <div class="title">
+                  Are you ready?
+                </div>
+                <div class="description">
+                  Choose the right version for your device.
+                </div>
               </div>
+              <div class="files">
+                <select class="filetype">
+                  <option value="Universal.apk">Universal</option>
+                  <option value="arm64.apk">For ARM64 devices</option>
+                  <option value="arm32.apk">For ARM32 devices</option>
+                  <option value="x86_64.apk">For x86_64 devices</option>
+                  <option value="x86.apk">For x86 devices</option>
+                </select>
+                <div class="button big accent">
+                  Download
+                </a>
+              </div>
+            </div></div>
+            <div class="separator need-js"></div>
+            <div class="message">
               <div class="description">
-                Choose the right version for your device.
+                Check other app stores.
               </div>
             </div>
-            <div class="files">
-              <select class="filetype">
-                <option value="Universal.apk">Universal</option>
-                <option value="arm64.apk">For ARM64 devices</option>
-                <option value="arm32.apk">For ARM32 devices</option>
-                <option value="x86_64.apk">For x86_64 devices</option>
-                <option value="x86.apk">For x86 devices</option>
-              </select>
-              <div class="button big accent">
-                Download
+            <div class="stores">
+              <a class="store" data-id="appcenter" href="/ac" target="_blank">
+                <div class="icon need-border">
+                  <img src="assets/stores/appcenter.png">
+                </div>
+                <div class="text">AppCenter</div>
+                <div class="access-icon">
+                  <div class="icon need-border">
+                    <img src="assets/stores/appcenter.png">
+                  </div>
+                </div>
+                <div class="continue">Press to open</div>
               </a>
+              <a class="store" data-id="apkpure" href="/apkpure" target="_blank">
+                <div class="icon need-border">
+                  <img src="assets/stores/apkpure.png">
+                </div>
+                <div class="text">ApkPure</div>
+                <div class="access-icon">
+                  <div class="icon need-border">
+                    <img src="assets/stores/apkpure.png">
+                  </div>
+                </div>
+                <div class="continue">Press to open</div>
+              </a>
+              <div class="store unavailable" data-id="apkmirror">
+                <div class="icon need-border">
+                  <img src="assets/stores/apkmirror.png">
+                </div>
+                <div class="container">
+                  <div class="description">Currently unavailable</div>
+                  <div class="text">Apkmirror</div>
+                </div>
+              </div>
+              <div class="store unavailable" data-id="playstore">
+                <div class="icon need-border">
+                  <img src="assets/stores/playstore.png">
+                </div>
+                <div class="container">
+                  <div class="description">Currently unavailable</div>
+                  <div class="text">PlayStore</div>
+                </div>
+              </div>
+            </div>
+            <div class="placeholder">
+              <img src="assets/animations/wavesAnimation.svg">
             </div>
           </div>
         </div>

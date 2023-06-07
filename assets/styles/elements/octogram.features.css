@@ -20,8 +20,8 @@ body .page .features .title .appname {
 
 body .page .features .list {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100vw;
   max-width: calc(var(--features-item-image-size) * 4 + var(--features-list-gap) * 4 + 40px);
   padding: 40px;
@@ -44,14 +44,14 @@ body .page .features .list {
 
 @media screen and (max-width: 700px) {
   body .page .features .list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     --features-item-image-size: calc(100vw / 2.8);
   }
 }
 
 @media screen and (min-width: 700px) and (max-width: 1410px) {
   body .page .features .list {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     --features-item-image-size: calc(100vw / 3.8);
   }
 }

@@ -7,28 +7,25 @@ body .page .download {
 }
 
 body .page .download .content {
+  position: relative;
+  overflow: hidden;
   background: var(--downloads-bg);
   max-width: var(--downloads-width-limit);
   padding: var(--downloads-padding);
   border-radius: var(--downloads-radius);
   gap: var(--downloads-gap);
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
+  flex-direction: column;
   box-sizing: border-box;
   transform: translateX(calc(10% * calc(1 - var(--parallax-state))));
   opacity: var(--parallax-state);
 }
 
-@media screen and (max-width: 700px) {
-  body .page .download .content {
-    flex-direction: column;
-  }
-}
-
 body .page .download .content .message .title {
-  color: white;
+  color: var(--downloads-title);
   font-size: 3em;
   font-weight: 800;
 }
@@ -40,22 +37,35 @@ body .page .download .content .message .title {
 }
 
 body .page .download .content .message .description {
-  color: white;
+  color: var(--downloads-description);
   font-size: 1.5em;
 }
 
-body .page .download .content .files {
+body .page .download .content .from-apk {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 700px) {
+  body .page .download .content .from-apk {
+    flex-direction: column;
+  }
+}
+
+body .page .download .content .from-apk .files {
   width: 100%;
   max-width: var(--downloads-files-width);
 }
 
 @media screen and (max-width: 700px) {
-  body .page .download .content .files {
+  body .page .download .content .from-apk .files {
     max-width: none;
   }
 }
 
-body .page .download .content .files select {
+body .page .download .content .from-apk .files select {
   font-size: 1.5em;
   width: 100%;
   margin-bottom: var(--downloads-select-bottommargin);
@@ -63,6 +73,213 @@ body .page .download .content .files select {
   text-align: center;
 }
 
-body .page .download .content .files .button {
+body .page .download .content .from-apk .files .button {
   cursor: pointer;
+}
+
+body .page .download .content .separator {
+  width: 100%;
+  background: var(--downloads-separator);
+  height: 1px;
+  margin-block: 20px;
+}
+
+body .page .download .stores {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--downloads-stores-gap);
+}
+
+@media screen and (min-width: 650px) and (max-width: 1270px) {
+  body .page .download .stores {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  body .page .download .stores {
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+    gap: var(--downloads-stores-gap-mobile);
+  }
+}
+
+body .page .download .stores .store {
+  height: 4.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--downloads-stores-store-gap);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--downloads-stores-bg);
+  background: var(--downloads-stores-bg);
+  transition: var(--animations-duration) border-color;
+}
+
+@media screen and (max-width: 650px) {
+  body .page .download .stores .store {
+    justify-content: start;
+    padding-left: var(--downloads-stores-store-gap-mobile);
+    gap: var(--downloads-stores-store-gap-mobile);
+  }
+}
+
+body .page .download .stores .store:not(.unavailable):hover {
+  border-color: var(--primary);
+}
+
+body .page .download .stores .store.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+body .page .download .stores a.store {
+  text-decoration: none;
+}
+
+body .page .download .stores .store[data-id="apkmirror"] {
+  --primary: var(--downloads-stores-primary-apkmirror);
+  --text-width: var(--downloads-stores-length-apkmirror);
+}
+
+body .page .download .stores .store[data-id="apkpure"] {
+  --primary: var(--downloads-stores-primary-apkpure);
+  --text-width: var(--downloads-stores-length-apkpure);
+}
+
+body .page .download .stores .store[data-id="appcenter"] {
+  --primary: var(--downloads-stores-primary-appcenter);
+  --text-width: var(--downloads-stores-length-appcenter);
+}
+
+body .page .download .stores .store[data-id="playstore"] {
+  --primary: var(--downloads-stores-primary-playstore);
+  --text-width: var(--downloads-stores-length-playstore);
+}
+
+body .page .download .stores .store::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--primary);
+  clip-path: circle(0% at 25% 50%);
+  transition: var(--animations-duration) clip-path;
+}
+
+@media screen and (max-width: 650px) {
+  body .page .download .stores .store:not(.unavailable):not(:hover)::before {
+    clip-path: circle(0% at calc(var(--downloads-stores-store-gap-mobile) + 1.5em) 50%);
+  }
+}
+
+body .page .download .stores .store:not(.unavailable):hover::before {
+  clip-path: circle(100%);
+}
+
+body .page .download .stores .store .icon {
+  border-radius: 25%;
+  overflow: hidden;
+  transition: var(--animations-duration) transform;
+}
+
+@media screen and (min-width: 650px) {
+  body .page .download .stores .store .icon {
+    z-index: 1;
+  }
+
+  body .page .download .stores .store:not(.unavailable):hover .icon {
+    transform: scale(0.8) translateY(-25%);
+  }
+}
+
+body .page .download .stores .store .icon.need-border {
+  background: var(--primary);
+  width: 3em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .page .download .stores .store .icon img {
+  width: 3em;
+  height: 3em;
+}
+
+body .page .download .stores .store .icon.need-border img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+body .page .download .stores .store .text {
+  font-size: 2em;
+  color: var(--downloads-stores-text);
+  z-index: 0;
+  transition: var(--animations-duration) margin-right;
+}
+
+body .page .download .stores .store:not(.unavailable):hover .text {
+  margin-right: calc(var(--text-width) * -1);
+}
+
+body .page .download .stores .store .description {
+  color: var(--downloads-stores-description);
+  font-size: 0.9em;
+}
+
+body .page .download .stores .store .access-icon {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--animations-duration) top, var(--animations-duration) opacity;
+}
+
+@media screen and (max-width: 650px) {
+  body .page .download .stores .store:hover .access-icon {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+body .page .download .stores .store .continue {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--downloads-stores-text);
+  font-weight: 500;
+  z-index: 1;
+  opacity: 0;
+  transition: var(--animations-duration) bottom, var(--animations-duration) opacity;
+}
+
+body .page .download .stores .store:hover .continue {
+  bottom: 8px;
+  opacity: 1;
+}
+
+body .page .download .content .placeholder {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  pointer-events: none;
 }

@@ -63,14 +63,32 @@
   --buttons-radius: 5px;
 
   --downloads-bg: #6a7ed63d;
+  --downloads-title: #FFFFFF;
+  --downloads-description: #FFFFFF;
   --downloads-bottommargin: 50px;
-  --downloads-width-limit: min(95vw, 1100px);
+  --downloads-width-limit: min(95vw, 1400px);
   --downloads-padding: 30px;
   --downloads-radius: 5px;
   --downloads-gap: 20px;
   --downloads-files-width: 265px;
   --downloads-select-paddingblock: 10px;
   --downloads-select-bottommargin: 6px;
+  --downloads-separator: rgba(255, 255, 255, 0.6);
+  --downloads-stores-bg: rgba(106, 124, 214, 0.2);
+  --downloads-stores-gap: 20px;
+  --downloads-stores-gap-mobile: 10px;
+  --downloads-stores-primary-apkmirror: #f76912;
+  --downloads-stores-primary-apkpure: #005d52;
+  --downloads-stores-primary-appcenter: #4f1428;
+  --downloads-stores-primary-playstore: #0e0e0e;
+  --downloads-stores-length-apkmirror: 156.2px;
+  --downloads-stores-length-apkpure: 129.61px;
+  --downloads-stores-length-appcenter: 166.19px;
+  --downloads-stores-length-playstore: 147.14px;
+  --downloads-stores-text: #FFFFFF;
+  --downloads-stores-description: rgba(255, 255, 255, 0.95);
+  --downloads-stores-store-gap: 10px;
+  --downloads-stores-store-gap-mobile: 20px;
 
   --footer-bg: #252d3a;
   --footer-text: #FFFFFF;
