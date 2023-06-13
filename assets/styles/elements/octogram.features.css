@@ -70,6 +70,7 @@ body .page .features .list .placeholder {
 
 body .page .features .list .placeholder img {
   filter: var(--icons-transform);
+  width: var(--features-item-placeholder);
   opacity: 10%;
 }
 
