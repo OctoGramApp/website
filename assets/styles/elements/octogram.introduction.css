@@ -183,15 +183,15 @@ body .page .introduction .content .illustration .image:not(.active) > img {
     max-width: var(--introduction-image-active-maxwidth) !important;
   }
 
-  body .page .introduction .content .illustration:has(.image.active:first-child) {
+  body .page .introduction .content .illustration[data-state="1"] {
     transform: translateX(35%);
   }
 
-  body .page .introduction .content .illustration:has(.image.active:nth-child(2)) {
+  body .page .introduction .content .illustration[data-state="2"] {
     transform: translateX(0);
   }
 
-  body .page .introduction .content .illustration:has(.image.active:nth-child(3)) {
+  body .page .introduction .content .illustration[data-state="3"] {
     transform: translateX(-35%);
   }
 }
