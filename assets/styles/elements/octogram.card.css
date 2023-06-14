@@ -1,0 +1,309 @@
+body .page .card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--dcstatus-bottommargin);
+}
+
+body .page .card .content {
+  position: relative;
+  overflow: hidden;
+  background: var(--dcstatus-bg);
+  max-width: var(--dcstatus-width-limit);
+  padding: var(--dcstatus-padding);
+  border-radius: var(--dcstatus-radius);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body .page .card .content .descriptor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body .page .card .content .descriptor .title {
+  color: var(--dcstatus-title);
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+body .page .card .content .descriptor .title .beta {
+  padding-inline: 0.3em;
+  padding-block: 0.2em;
+  font-size: 0.8em;
+  background: var(--dcstatus-title-beta-bg);
+  color: var(--dcstatus-title-beta-color);
+  border-radius: var(--dcstatus-title-beta-radius);
+}
+
+body .page .card .content .descriptor .description {
+  color: var(--dcstatus-description);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dcstatus-description-gap);
+  --percent: 0;
+}
+
+body .page .card .content .descriptor .description svg {
+  width: var(--dcstatus-description-progress-size);
+  height: var(--dcstatus-description-progress-size);
+}
+
+body .page .card .content .descriptor .description:not(.definite) svg {
+  animation: 0.4s rotateSvg infinite linear;
+}
+
+@keyframes rotateSvg {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body .page .card .content .descriptor .description svg circle {
+  fill: none;
+  stroke: var(--dcstatus-description-progress-color);
+  stroke-width: var(--dcstatus-description-progress-width);
+  stroke-dasharray: 48;
+  stroke-dashoffset: 15;
+  transition: var(--animations-duration) stroke-dashoffset;
+}
+
+body .page .card .content .descriptor .description.definite svg circle {
+  stroke-dashoffset: calc(48 - 48 * var(--percent) / 100);
+}
+
+body .page .card .content .descriptor .description:not(.definite) svg circle {
+  stroke-dashoffset: 10;
+}
+
+body .page .card .content .descriptor .description .pending {
+  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+}
+
+body .page .card .content .descriptor .description:not(.definite) .pending {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+body .page .card .content .datacenters {
+  padding-top: var(--dcstatus-padding);
+}
+
+body .page .card .content .datacenters .datacenter {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--dcstatus-row-gap);
+}
+
+body .page .card .content .datacenters .datacenter:not(:last-child) {
+  margin-bottom: var(--dcstatus-row-gap-lines);
+}
+
+body .page .card .content .datacenters .datacenter .icon {
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+
+body .page .card .content .datacenters .datacenter[data-id="1"] .icon {
+  --primary: #329AFE;
+  --id: 1;
+}
+
+body .page .card .content .datacenters .datacenter[data-id="2"] .icon {
+  --primary: #A35BFE;
+  --id: 2;
+}
+
+body .page .card .content .datacenters .datacenter[data-id="3"] .icon {
+  --primary: #DA5653;
+  --id: 3;
+}
+
+body .page .card .content .datacenters .datacenter[data-id="4"] .icon {
+  --primary: #F7B139;
+  --id: 4;
+}
+
+body .page .card .content .datacenters .datacenter[data-id="5"] .icon {
+  --primary: #4BD199;
+  --id: 5;
+}
+
+body .page .card .content .datacenters .datacenter .icon::before,
+body .page .card .content .datacenters .datacenter .icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  opacity: 0.4;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+body .page .card .content .datacenters .datacenter .icon::before {
+  animation: 3s animateKey1 infinite ease-in;
+  animation-delay: calc(var(--id) * 0.2s);
+  transform: translate(2px, -2px);
+}
+
+@keyframes animateKey1 {
+  from, to {
+    transform: translate(2px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 4px);
+  }
+}
+
+body .page .card .content .datacenters .datacenter .icon::after {
+  animation: 4.5s animateKey2 infinite cubic-bezier(1, -0.01, 0.58, 1);
+  animation-delay: calc(var(--id) * 0.2s);
+  transform: translate(4px, 2px);
+}
+
+@keyframes animateKey2 {
+  from, to {
+    transform: translate(4px, 2px);
+  }
+  50% {
+    transform: translate(-2px, -2px);
+  }
+}
+
+body .page .card .content .datacenters .datacenter .icon .background {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--primary);
+  position: absolute;
+  z-index: 1;
+}
+
+body .page .card .content .datacenters .datacenter .icon img {
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 1;
+}
+
+body .page .card .content .datacenters .datacenter .description {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+body .page .card .content .datacenters .datacenter .description .name {
+  font-size: var(--dcstatus-row-name-size);
+  color: var(--dcstatus-row-name-color);
+}
+
+body .page .card .content .datacenters .datacenter .description .ip {
+  font-size: var(--dcstatus-row-ip-size);
+  color: var(--dcstatus-row-ip-color);
+}
+
+body .page .card .content .datacenters .datacenter .description .status {
+  font-size: var(--dcstatus-row-status-size);
+}
+
+body .page .card .content .datacenters .datacenter .description .status.online {
+  color: var(--dcstatus-row-status-color-online);
+}
+
+body .page .card .content .datacenters .datacenter .description .status.slow {
+  color: var(--dcstatus-row-status-color-slow);
+}
+
+body .page .card .content .datacenters .datacenter .description .status.offline {
+  color: var(--dcstatus-row-status-color-offline);
+}
+
+body .page .card .content .datacenters .report-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .page .card .content .datacenters .report-description .message {
+  max-width: 60vw;
+  background: var(--dcstatus-report-bg);
+  border: 2px dashed var(--dcstatus-report-border);
+  color: var(--dcstatus-report-text);
+  border-radius: var(--dcstatus-report-radius);
+  padding: 1em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+body .page .card .content .datacenters .report {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+body .page .card .content .datacenters .report .column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  --video-size: 150;
+}
+
+body .page .card .content .datacenters .report .column[data-id="1"] {
+  --primary: #329AFE;
+}
+
+body .page .card .content .datacenters .report .column[data-id="2"] {
+  --primary: #A35BFE;
+}
+
+body .page .card .content .datacenters .report .column[data-id="3"] {
+  --primary: #DA5653;
+}
+
+body .page .card .content .datacenters .report .column[data-id="4"] {
+  --primary: #F7B139;
+}
+
+body .page .card .content .datacenters .report .column[data-id="5"] {
+  --primary: #4BD199;
+}
+
+body .page .card .content .datacenters .report .column video {
+  width: calc(var(--video-size) * 1px);
+  height: calc(var(--video-size) * 1px);
+  clip-path: circle(calc(var(--video-size) * 1% / 4));
+  margin-bottom: calc(var(--video-size) * 1px / -18);
+}
+
+body .page .card .content .datacenters .report .column .status {
+  font-size: var(--dcstatus-column-status-size);
+}
+
+body .page .card .content .datacenters .report .column .status.online {
+  color: var(--dcstatus-column-status-color-online);
+}
+
+body .page .card .content .datacenters .report .column .status.offline {
+  color: var(--dcstatus-column-status-color-offline);
+}
+
+body .page .card .content .datacenters .report .column .ping {
+  color: var(--dcstatus-column-ping);
+}

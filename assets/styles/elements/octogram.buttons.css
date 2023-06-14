@@ -20,6 +20,10 @@ body .page .button.accent {
   color: var(--buttons-accent-text);
 }
 
+body div.button {
+  cursor: pointer;
+}
+
 body a.button {
   text-decoration: none;
 }
