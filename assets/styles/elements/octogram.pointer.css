@@ -1,0 +1,49 @@
+body .page .pointer {
+  background: var(--pointer-bg);
+  padding-block: var(--pointer-padding);
+  padding-bottom: calc(var(--pointer-padding) + var(--pointer-shadow-height));
+  margin-bottom: var(--pointer-bottommargin);
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+body .page .pointer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--pointer-shadow-height);
+  background: linear-gradient(
+    var(--introduction-bg),
+    var(--background)
+  );
+}
+
+body .page .pointer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body .page .pointer .message {
+  text-align: center;
+}
+
+body .page .pointer .message .sticker img {
+  height: var(--pointer-sticker-size);
+  width: var(--pointer-sticker-size);
+}
+
+body .page .pointer .message .title {
+  color: var(--pointer-title);
+}
+
+body .page .pointer .message .button {
+  margin-top: var(--pointer-button-margintop);
+}

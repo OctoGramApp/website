@@ -73,10 +73,6 @@ body .page .download .content .from-apk .files select {
   text-align: center;
 }
 
-body .page .download .content .from-apk .files .button {
-  cursor: pointer;
-}
-
 body .page .download .content .separator {
   width: 100%;
   background: var(--downloads-separator);
