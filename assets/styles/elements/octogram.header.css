@@ -58,7 +58,7 @@ body .page .header .content .actions {
   gap: var(--header-actions-gap);
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 750px) {
   body .page .header .content .actions .button.secondary {
     display: none;
   }
