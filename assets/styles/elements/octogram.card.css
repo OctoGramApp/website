@@ -250,6 +250,7 @@ body .page .card .content .datacenters .report-description {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: var(--dcstatus-report-margintop);
 }
 
 body .page .card .content .datacenters .report-description .message {
@@ -266,6 +267,12 @@ body .page .card .content .datacenters .report-description .message {
 @media screen and (max-width: 1400px) {
   body .page .card .content .datacenters .report-description .message {
     max-width: 100vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  body .page .card .content .datacenters .report-description .message {
+    font-size: 1em;
   }
 }
 
@@ -326,25 +333,70 @@ body .page .card .content .datacenters .report .column[data-id="5"] {
   --primary: #4BD199;
 }
 
-body .page .card .content .datacenters .report .column video {
+body .page .card .content .datacenters .report .column .video-container {
+  position: relative;
+}
+
+body .page .card .content .datacenters .report .column .video-container .video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: calc(var(--video-size) * 1px);
   height: calc(var(--video-size) * 1px);
-  clip-path: circle(calc(var(--video-size) * 1% / 4));
+  background: var(--primary);
+  clip-path: circle(0%);
+  opacity: 0.1;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--animations-duration) clip-path, var(--animations-duration) font-size;
+}
+
+body .page .card .content .datacenters .report .column:is(.is-loading, .offline) .video-container .video-placeholder {
+  clip-path: circle(calc(var(--video-size) * 1% / 4.5));
+}
+
+body .page .card .content .datacenters .report .column.offline .video-container .video-placeholder {
+  font-size: 3em;
+}
+
+body .page .card .content .datacenters .report .column .video-container video {
+  width: calc(var(--video-size) * 1px);
+  height: calc(var(--video-size) * 1px);
   margin-bottom: calc(var(--video-size) * 1px / -18);
+  clip-path: circle(0%);
+  transition: var(--animations-duration) clip-path;
+}
+
+body .page .card .content .datacenters .report .column:not(.is-loading):not(.offline) .video-container video {
+  clip-path: circle(calc(var(--video-size) * 1% / 4));
 }
 
 body .page .card .content .datacenters .report .column .status {
   font-size: var(--dcstatus-column-status-size);
+  transition: var(--animations-duration) color;
+}
+
+body .page .card .content .datacenters .report .column.is-loading .status {
+  color: var(--dcstatus-column-status-color);
 }
 
 body .page .card .content .datacenters .report .column .status.online {
   color: var(--dcstatus-column-status-color-online);
 }
 
-body .page .card .content .datacenters .report .column .status.offline {
+body .page .card .content .datacenters .report .column.offline .status {
   color: var(--dcstatus-column-status-color-offline);
 }
 
 body .page .card .content .datacenters .report .column .ping {
   color: var(--dcstatus-column-ping);
+  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+}
+
+body .page .card .content .datacenters .report .column:is(.is-loading, .offline) .ping {
+  transform: translateY(-100%);
+  opacity: 0;
 }

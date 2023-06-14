@@ -144,7 +144,7 @@ function executeForceReload() {
     currentTimeout = setTimeout(() => {
       clearTimeout(currentTimeout);
       reloadState();
-    }, 1400);
+    }, 800);
   }
 }
 
@@ -190,21 +190,39 @@ function reloadClientState() {
         const finalDate = new Date();
         const dateDifference = finalDate.getTime() - date.getTime();
 
+        datacenterColumn.classList.remove('is-loading');
         datacenterStatus.classList.add('online');
         datacenterStatus.textContent = 'Available';
-        datacenterPing.textContent = dateDifference+'ms';
+        datacenterPing.textContent = '~ '+dateDifference+'ms';
       }, { once: true });
+      videoElement.addEventListener('error', () => {
+        datacenterColumn.classList.remove('is-loading');
+        datacenterColumn.classList.add('offline');
+        datacenterStatus.innerHTML = 'Offline';
+      }, { once: true });
+      videoElement.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      });
       videoElement.src = video;
+      const videoPlaceholder = document.createElement('div');
+      videoPlaceholder.classList.add('video-placeholder');
+      videoPlaceholder.textContent = id + 1;
+      const videoContainer = document.createElement('div');
+      videoContainer.classList.add('video-container');
+      videoContainer.appendChild(videoElement);
+      videoContainer.appendChild(videoPlaceholder);
       
       const datacenterStatus = document.createElement('div');
       datacenterStatus.classList.add('status');
+      datacenterStatus.textContent = 'Checking...';
       const datacenterPing = document.createElement('div');
       datacenterPing.classList.add('ping');
 
       const datacenterColumn = document.createElement('div');
-      datacenterColumn.classList.add('column');
+      datacenterColumn.classList.add('column', 'is-loading');
       datacenterColumn.dataset.id = id + 1;
-      datacenterColumn.appendChild(videoElement);
+      datacenterColumn.appendChild(videoContainer);
       datacenterColumn.appendChild(datacenterStatus);
       datacenterColumn.appendChild(datacenterPing);
       fragment.append(datacenterColumn);
