@@ -46,7 +46,7 @@
   --pointer-bottommargin: 40px;
   --pointer-sticker-size: 200px;
   --pointer-title: #FFFFFF;
-  --pointer-button-margintop: 10px;
+  --pointer-gap: 10px;
 
   --dcstatus-bg: #1d2733;
   --dcstatus-descriptorgap-mobile: 5px;
@@ -73,13 +73,16 @@
   --dcstatus-row-status-color-slow: #e0bd25;
   --dcstatus-row-status-color-offline: #c26266;
   --dcstatus-row-status-size: 14px;
+  --dcstatus-column-loading: rgba(0, 0, 0, 0.3);
   --dcstatus-column-status-size: 18px;
+  --dcstatus-column-status-color: #FFFFFF;
   --dcstatus-column-status-color-online: #69b972;
   --dcstatus-column-status-color-offline: #c26266;
   --dcstatus-column-ping: rgba(255, 255, 255, 0.8);
   --dcstatus-report-bg: #151e27;
   --dcstatus-report-text: #d9d9d9;
   --dcstatus-report-border: #565656;
+  --dcstatus-report-margintop: 20px;
   --dcstatus-report-radius: 10px;
 
   --features-title: #FFFFFF;
