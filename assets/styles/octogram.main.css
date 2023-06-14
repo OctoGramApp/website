@@ -2,12 +2,14 @@
 @import url('octogram.splash.css');
 @import url('elements/octogram.advantages.css');
 @import url('elements/octogram.buttons.css');
+@import url('elements/octogram.card.css');
 @import url('elements/octogram.download.css');
 @import url('elements/octogram.error.css');
 @import url('elements/octogram.features.css');
 @import url('elements/octogram.footer.css');
 @import url('elements/octogram.header.css');
 @import url('elements/octogram.introduction.css');
+@import url('elements/octogram.pointer.css');
 
 :root {
   scroll-behavior: smooth;
