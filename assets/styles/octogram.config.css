@@ -49,6 +49,7 @@
   --pointer-button-margintop: 10px;
 
   --dcstatus-bg: #1d2733;
+  --dcstatus-descriptorgap-mobile: 5px;
   --dcstatus-title: #FFFFFF;
   --dcstatus-title-beta-bg: #FFFFFF;
   --dcstatus-title-beta-color: #000000;
@@ -56,7 +57,7 @@
   --dcstatus-description: rgba(255, 255, 255, 0.8);
   --dcstatus-description-gap: 5px;
   --dcstatus-description-progress-size: 20px;
-  --dcstatus-description-progress-color: #FFFFFF;
+  --dcstatus-description-progress-color: rgba(255, 255, 255, 0.8);
   --dcstatus-description-progress-width: 3px;
   --dcstatus-bottommargin: 50px;
   --dcstatus-width-limit: min(95vw, 1400px);
