@@ -101,7 +101,11 @@ function initReload() {
   const loadingItem = document.querySelector('body .page .card.server .content .descriptor .description');
   const leftSeconds = document.querySelector('body .page .card.server .content .descriptor .description .seconds');
   if (loadingItem != null && leftSeconds != null) {
-    loadingItem.classList.add('definite');
+    if (!loadingItem.classList.contains('definite')) {
+      loadingItem.addEventListener('animationiteration', () => {
+        loadingItem.classList.add('definite');
+      }, { once: true });
+    }
 
     let currentLeftSeconds = 30;
 
