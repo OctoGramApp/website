@@ -32,7 +32,11 @@ body .page .pointer {
 }
 
 body .page .pointer .message {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--pointer-gap);
 }
 
 body .page .pointer .message .sticker img {
@@ -45,5 +49,5 @@ body .page .pointer .message .title {
 }
 
 body .page .pointer .message .button {
-  margin-top: var(--pointer-button-margintop);
+  width: 100%;
 }
