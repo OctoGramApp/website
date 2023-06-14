@@ -89,7 +89,7 @@ body .page .card .content .descriptor .description svg circle {
 }
 
 body .page .card .content .descriptor .description.definite svg circle {
-  stroke-dashoffset: calc(48 - 48 * var(--percent) / 100);
+  stroke-dashoffset: calc(48px - 48px * var(--percent) / 100);
 }
 
 body .page .card .content .descriptor .description:not(.definite) svg circle {
