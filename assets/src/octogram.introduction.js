@@ -37,6 +37,7 @@ window.addEventListener('load', () => {
         }
       }
 
+      introductionItem.dataset.state = newImageId + 1;
       imageList[newImageId].classList.add('active');
     }, 3000);
   }
