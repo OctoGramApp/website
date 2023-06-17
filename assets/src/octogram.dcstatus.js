@@ -61,9 +61,6 @@ function reloadState() {
               datacenterName.classList.add('name');
               datacenterName.textContent = DATACENTER_NAMES[datacenter.dc_id - 1];
               const datacenterStatus = composeStatus(datacenter);
-              const datacenterIp = document.createElement('div');
-              datacenterIp.classList.add('ip');
-              datacenterIp.textContent = DATACENTER_IPS[datacenter.dc_id - 1];
               const datacenterDescription = document.createElement('div');
               datacenterDescription.classList.add('description');
               datacenterDescription.appendChild(datacenterName);
@@ -110,7 +107,6 @@ function reloadState() {
 }
 
 function initReload() {
-  return;
   const loadingItem = document.querySelector('body .page .card.server .content .descriptor .description');
   const leftSeconds = document.querySelector('body .page .card.server .content .descriptor .description .seconds');
   if (loadingItem != null && leftSeconds != null) {
