@@ -37,15 +37,6 @@ body .page .card .content .descriptor .title {
   font-weight: 500;
 }
 
-body .page .card .content .descriptor .title .beta {
-  padding-inline: 0.3em;
-  padding-block: 0.2em;
-  font-size: 0.8em;
-  background: var(--dcstatus-title-beta-bg);
-  color: var(--dcstatus-title-beta-color);
-  border-radius: var(--dcstatus-title-beta-radius);
-}
-
 body .page .card .content .descriptor .description {
   color: var(--dcstatus-description);
   display: flex;
@@ -114,6 +105,19 @@ body .page .card .content .datacenters .datacenter {
   align-items: center;
   justify-content: start;
   gap: var(--dcstatus-row-gap);
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 5px;
+  transition: var(--animations-duration) padding, var(--animations-duration) background, var(--animations-duration) border-radius;
+}
+
+body .page .card .content .datacenters .datacenter.expanded {
+  padding: var(--dcstatus-row-expanded-padding);
+  padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height));
+  background: var(--dcstatus-row-expanded-bg);
+  border-radius: var(--dcstatus-row-expanded-radius);
 }
 
 body .page .card .content .datacenters .datacenter:not(:last-child) {
@@ -218,20 +222,22 @@ body .page .card .content .datacenters .datacenter .description {
   justify-content: center;
   flex-direction: column;
   gap: 0.3em;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 body .page .card .content .datacenters .datacenter .description .name {
   font-size: var(--dcstatus-row-name-size);
   color: var(--dcstatus-row-name-color);
-}
-
-body .page .card .content .datacenters .datacenter .description .ip {
-  font-size: var(--dcstatus-row-ip-size);
-  color: var(--dcstatus-row-ip-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body .page .card .content .datacenters .datacenter .description .status {
   font-size: var(--dcstatus-row-status-size);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body .page .card .content .datacenters .datacenter .description .status.online {
@@ -246,157 +252,80 @@ body .page .card .content .datacenters .datacenter .description .status.offline 
   color: var(--dcstatus-row-status-color-offline);
 }
 
-body .page .card .content .datacenters .report-description {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: var(--dcstatus-report-margintop);
+body .page .card .content .datacenters .datacenter .expand {
+  filter: var(--icons-transform);
+  opacity: 0.8;
+  transition: var(--animations-duration) transform;
 }
 
-body .page .card .content .datacenters .report-description .message {
-  max-width: 60vw;
-  background: var(--dcstatus-report-bg);
-  border: 2px dashed var(--dcstatus-report-border);
-  color: var(--dcstatus-report-text);
-  border-radius: var(--dcstatus-report-radius);
-  padding: 1em;
-  font-size: 1.2em;
-  text-align: center;
+body .page .card .content .datacenters .datacenter.expanded .expand {
+  transform: rotateX(180deg);
 }
 
-@media screen and (max-width: 1400px) {
-  body .page .card .content .datacenters .report-description .message {
-    max-width: 100vw;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  body .page .card .content .datacenters .report-description .message {
-    font-size: 1em;
-  }
-}
-
-body .page .card .content .datacenters .report {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-@media screen and (max-width: 850px) {
-  body .page .card .content .datacenters .report {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (max-width: 680px) {
-  body .page .card .content .datacenters .report {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 490px) {
-  body .page .card .content .datacenters .report {
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-body .page .card .content .datacenters .report .column {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  --video-size: 150;
-}
-
-body .page .card .content .datacenters .report .column[data-id="1"] {
-  --primary: #329AFE;
-}
-
-body .page .card .content .datacenters .report .column[data-id="2"] {
-  --primary: #A35BFE;
-}
-
-body .page .card .content .datacenters .report .column[data-id="3"] {
-  --primary: #DA5653;
-}
-
-body .page .card .content .datacenters .report .column[data-id="4"] {
-  --primary: #F7B139;
-}
-
-body .page .card .content .datacenters .report .column[data-id="5"] {
-  --primary: #4BD199;
-}
-
-body .page .card .content .datacenters .report .column .video-container {
-  position: relative;
-}
-
-body .page .card .content .datacenters .report .column .video-container .video-placeholder {
+body .page .card .content .datacenters .datacenter .expandable {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--video-size) * 1px);
-  height: calc(var(--video-size) * 1px);
-  background: var(--primary);
-  clip-path: circle(0%);
-  opacity: 0.1;
-  font-size: 0;
+  width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
+  bottom: calc(var(--dcstatus-row-expanded-padding) / 2);
+  height: var(--dcstatus-row-expanded-expandable-height);
+  gap: var(--dcstatus-row-expanded-expandable-gap);
+  transform: translateY(120%);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--animations-duration) clip-path, var(--animations-duration) font-size;
+  cursor: default;
+  transition: var(--animations-duration) opacity, var(--animations-duration) transform;
 }
 
-body .page .card .content .datacenters .report .column:is(.is-loading, .offline) .video-container .video-placeholder {
-  clip-path: circle(calc(var(--video-size) * 1% / 4.5));
+body .page .card .content .datacenters .datacenter.expanded .expandable {
+  transform: translateY(0);
 }
 
-body .page .card .content .datacenters .report .column.offline .video-container .video-placeholder {
-  font-size: 3em;
+body .page .card .content .datacenters .datacenter .expandable .indicator {
+  height: 100%;
+  background: var(--dcstatus-row-expanded-indicator-bg);
+  color: var(--dcstatus-row-expanded-indicator-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dcstatus-row-expanded-indicator-gap);
+  padding-inline: var(--dcstatus-row-expanded-indicator-padding);
+  border-radius: var(--dcstatus-row-expanded-indicator-radius);
+  overflow: hidden;
 }
 
-body .page .card .content .datacenters .report .column .video-container video {
-  width: calc(var(--video-size) * 1px);
-  height: calc(var(--video-size) * 1px);
-  margin-bottom: calc(var(--video-size) * 1px / -18);
-  clip-path: circle(0%);
-  transition: var(--animations-duration) clip-path;
+body .page .card .content .datacenters .datacenter .expandable .indicator .title {
+  font-weight: 600;
 }
 
-body .page .card .content .datacenters .report .column:not(.is-loading):not(.offline) .video-container video {
-  clip-path: circle(calc(var(--video-size) * 1% / 4));
+body .page .card .content .datacenters .datacenter .expandable .indicator .separator {
+  background: var(--dcstatus-row-expanded-indicator-separator);
+  width: var(--dcstatus-row-expanded-indicator-separator-width);
+  height: 150%;
+  transform: rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-body .page .card .content .datacenters .report .column .status {
-  font-size: var(--dcstatus-column-status-size);
-  transition: var(--animations-duration) color;
+body .page .card .content .datacenters .datacenter .expandable .indicator .separator img {
+  filter: var(--icons-transform);
+  transform: rotate(calc(-1 * var(--dcstatus-row-expanded-indicator-separator-rotate)));
+  height: var(--dcstatus-row-expanded-indicator-separator-icon);
+  width: var(--dcstatus-row-expanded-indicator-separator-icon);
 }
 
-body .page .card .content .datacenters .report .column.is-loading .status {
-  color: var(--dcstatus-column-status-color);
-}
+@media screen and (max-width: 1100px) {
+  body .page .card .content .datacenters .datacenter.expanded {
+    padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height) * 3);
+  }
 
-body .page .card .content .datacenters .report .column .status.online {
-  color: var(--dcstatus-column-status-color-online);
-}
+  body .page .card .content .datacenters .datacenter .expandable {
+    flex-direction: column;
+    height: calc(var(--dcstatus-row-expanded-expandable-height) * 3);
+    gap: var(--dcstatus-row-expanded-expandable-gap-mobile);
+  }
 
-body .page .card .content .datacenters .report .column.offline .status {
-  color: var(--dcstatus-column-status-color-offline);
-}
-
-body .page .card .content .datacenters .report .column .ping {
-  color: var(--dcstatus-column-ping);
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
-}
-
-body .page .card .content .datacenters .report .column:is(.is-loading, .offline) .ping {
-  transform: translateY(-100%);
-  opacity: 0;
+  body .page .card .content .datacenters .datacenter .expandable .indicator {
+    width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
+  }
 }

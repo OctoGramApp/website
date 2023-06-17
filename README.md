@@ -27,6 +27,10 @@ The colours of the site are all obtained through the client's default 'dark' the
 * Appearance icon: https://fontawesome.com/icons/brush?f=classic&s=solid
 * Pause: https://fontawesome.com/icons/pause?f=classic&s=solid
 * Left arrow (404 page): https://fontawesome.com/icons/arrow-left?f=classic&s=solid
+* Chevron down (DC Status page): https://fontawesome.com/icons/chevron-down?f=classic&s=solid
+* Explosion (DC Status page): https://fontawesome.com/icons/explosion?f=classic&s=solid
+* Fan (DC Status page): https://fontawesome.com/icons/fan?f=classic&s=solid
+* Server (DC Status page): https://fontawesome.com/icons/server?f=classic&s=solid
 ## ✨ Stickers
 The site uses some animated stickers in the "Always in step" category.
 
