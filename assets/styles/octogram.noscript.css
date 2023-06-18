@@ -2,6 +2,6 @@ body {
   --parallax-state: 1;
 }
 
-body .page .need-js {
+body > .page .need-js {
   display: none !important;
 }

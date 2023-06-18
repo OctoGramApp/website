@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-  const downloadFiles = document.querySelector('body .page .download .content .files');
+  const downloadFiles = document.querySelector('body > .page > .download .content .files');
   if (downloadFiles != null) {
     const selectElement = downloadFiles.querySelector('select');
     const buttonElement = downloadFiles.querySelector('.button');

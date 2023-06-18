@@ -1,4 +1,4 @@
-body .page .button {
+body > .page .button {
   position: relative;
   color: var(--buttons-textcolor);
   font-size: 1.3em;
@@ -9,13 +9,13 @@ body .page .button {
   box-sizing: border-box;
 }
 
-body .page .button.big {
+body > .page .button.big {
   font-size: 1.5em;
   padding-block: var(--buttons-big-paddingblock);
   width: 100%;
 }
 
-body .page .button.accent {
+body > .page .button.accent {
   background: var(--buttons-accent-bg);
   color: var(--buttons-accent-text);
 }
@@ -28,7 +28,7 @@ body a.button {
   text-decoration: none;
 }
 
-body .page .button::before {
+body > .page .button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -41,11 +41,11 @@ body .page .button::before {
   transition: var(--animations-duration) opacity;
 }
 
-body .page .button:hover::before {
+body > .page .button:hover::before {
   opacity: 100%;
 }
 
-body .page .button::after {
+body > .page .button::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -57,7 +57,7 @@ body .page .button::after {
   clip-path: circle(0%);
 }
 
-body .page .button:active::after {
+body > .page .button:active::after {
   animation: var(--animations-duration) applyRipple forwards;
 }
 
@@ -70,7 +70,7 @@ body .page .button:active::after {
   }
 }
 
-body .page .button .text {
+body > .page .button .text {
   display: flex;
   align-items: center;
   justify-content: center;
