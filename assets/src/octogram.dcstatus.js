@@ -36,7 +36,7 @@ function reloadState() {
   if (bodyItem != null && !isLoading) {
     isLoading = true;
     const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://raw.githubusercontent.com/null-nick/SomeExperiments/main/DcStatus/dc_status.json?2', true);
+    XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/main/DcStatus/dc_status.json?'+Math.random().toString(), true);
     XML.send();
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState == 4 && e.target.status == 200) {
@@ -101,6 +101,11 @@ function reloadState() {
           isLoading = false;
           initReload();
         }
+      } else if(e.target.readyState == 4) {
+        bodyItem.innerHTML = '';
+        bodyItem.appendChild(composeErrorContainer());
+        isLoading = false;
+        initReload();
       }
     });
   }
@@ -157,10 +162,33 @@ function executeForceReload() {
   }
 }
 
+function composeErrorContainer(){
+  const sticker = document.createElement('img');
+  sticker.src = 'assets/animations/dcstatusFailAnimation.gif';
+
+  const title = document.createElement('div');
+  title.classList.add('title');
+  title.textContent = 'Something went wrong.';
+  const description = document.createElement('div');
+  description.classList.add('description');
+  description.textContent = 'Please retry later.';
+  const message = document.createElement('div');
+  message.classList.add('message');
+  message.appendChild(title);
+  message.appendChild(description);
+
+  const container = document.createElement('div');
+  container.classList.add('error');
+  container.appendChild(sticker);
+  container.appendChild(message);
+
+  return container;
+}
+
 function createExpandableContainer(datacenter) {
   const ipContainerTitle = document.createElement('div');
   ipContainerTitle.classList.add('title');
-  ipContainerTitle.textContent = 'IP';
+  ipContainerTitle.textContent = 'IP Address';
   const ipContainerContent = document.createElement('div');
   ipContainerContent.classList.add('text');
   ipContainerContent.textContent = DATACENTER_IPS[datacenter.dc_id - 1];
