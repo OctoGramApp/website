@@ -2,7 +2,7 @@ let isPausedByScroll = false;
 let isPausedByUser = false;
 
 window.addEventListener('load', () => {
-  const introductionItem = document.querySelector('body .page .introduction .illustration');
+  const introductionItem = document.querySelector('body > .page > .introduction .illustration');
   if (introductionItem != null) {
     const imageList = introductionItem.querySelectorAll('.image');
     for (const child of imageList) {
@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('scroll', () => {
-  const introductionItem = document.querySelector('body .page .introduction .illustration');
+  const introductionItem = document.querySelector('body > .page > .introduction .illustration');
   if (introductionItem != null) {
     const currentItemPosition = introductionItem.getBoundingClientRect().top;
     isPausedByScroll = currentItemPosition < 0;

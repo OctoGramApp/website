@@ -1,4 +1,4 @@
-body .page .pointer {
+body > .page > .pointer {
   background: var(--pointer-bg);
   padding-block: var(--pointer-padding);
   padding-bottom: calc(var(--pointer-padding) + var(--pointer-shadow-height));
@@ -12,7 +12,7 @@ body .page .pointer {
   position: relative;
 }
 
-body .page .pointer::after {
+body > .page > .pointer::after {
   content: "";
   position: absolute;
   left: 0;
@@ -25,13 +25,13 @@ body .page .pointer::after {
   );
 }
 
-body .page .pointer {
+body > .page > .pointer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-body .page .pointer .message {
+body > .page > .pointer .message {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,15 +39,15 @@ body .page .pointer .message {
   gap: var(--pointer-gap);
 }
 
-body .page .pointer .message .sticker img {
+body > .page > .pointer .message .sticker img {
   height: var(--pointer-sticker-size);
   width: var(--pointer-sticker-size);
 }
 
-body .page .pointer .message .title {
+body > .page > .pointer .message .title {
   color: var(--pointer-title);
 }
 
-body .page .pointer .message .button {
+body > .page > .pointer .message .button {
   width: 100%;
 }

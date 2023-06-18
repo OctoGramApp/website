@@ -1,4 +1,4 @@
-body .page .footer {
+body > .page > .footer {
   width: 100%;
   height: var(--footer-height);
   padding-top: var(--footer-shadow-height);
@@ -10,7 +10,7 @@ body .page .footer {
   box-sizing: border-box;
 }
 
-body .page .footer::before {
+body > .page > .footer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -23,11 +23,11 @@ body .page .footer::before {
   );
 }
 
-body .page .footer .text {
+body > .page > .footer .text {
   color: var(--footer-text);
 }
 
-body .page .footer .text a {
+body > .page > .footer .text a {
   text-decoration: none;
   color: var(--footer-text-link);
 }

@@ -1,10 +1,10 @@
-body .page {
+body > .page {
   --splash-delay: calc(0.5s + var(--animations-duration));
   opacity: 0;
   animation: var(--animations-duration) animateFromSplash var(--splash-delay) forwards;
 }
 
-body .splash {
+body > .splash {
   position: fixed;
   top: calc(50% - 4em);
   left: calc(50% - 4em);
@@ -12,7 +12,7 @@ body .splash {
   z-index: 2;
 }
 
-body .splash img {
+body > .splash img {
   filter: var(--icons-transform);
   height: 8em;
   width: 8em;

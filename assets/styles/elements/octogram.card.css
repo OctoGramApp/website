@@ -1,4 +1,4 @@
-body .page .card {
+body > .page > .card {
   width: 100%;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@ body .page .card {
   margin-bottom: var(--dcstatus-bottommargin);
 }
 
-body .page .card .content {
+body > .page > .card .content {
   position: relative;
   overflow: hidden;
   background: var(--dcstatus-bg);
@@ -17,27 +17,27 @@ body .page .card .content {
   box-sizing: border-box;
 }
 
-body .page .card .content .descriptor {
+body > .page > .card .content .descriptor {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 @media screen and (max-width: 650px) {
-  body .page .card .content .descriptor {
+  body > .page > .card .content .descriptor {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--dcstatus-descriptorgap-mobile);
   }
 }
 
-body .page .card .content .descriptor .title {
+body > .page > .card .content .descriptor .title {
   color: var(--dcstatus-title);
   font-size: 1.3em;
   font-weight: 500;
 }
 
-body .page .card .content .descriptor .description {
+body > .page > .card .content .descriptor .description {
   color: var(--dcstatus-description);
   display: flex;
   align-items: center;
@@ -47,17 +47,17 @@ body .page .card .content .descriptor .description {
 }
 
 @media screen and (max-width: 650px) {
-  body .page .card .content .descriptor .description {
+  body > .page > .card .content .descriptor .description {
     flex-flow: row-reverse;
   }
 }
 
-body .page .card .content .descriptor .description svg {
+body > .page > .card .content .descriptor .description svg {
   width: var(--dcstatus-description-progress-size);
   height: var(--dcstatus-description-progress-size);
 }
 
-body .page .card .content .descriptor .description:not(.definite) svg {
+body > .page > .card .content .descriptor .description:not(.definite) svg {
   animation: 1s rotateSvg infinite linear;
 }
 
@@ -70,7 +70,7 @@ body .page .card .content .descriptor .description:not(.definite) svg {
   }
 }
 
-body .page .card .content .descriptor .description svg circle {
+body > .page > .card .content .descriptor .description svg circle {
   fill: none;
   stroke: var(--dcstatus-description-progress-color);
   stroke-width: var(--dcstatus-description-progress-width);
@@ -79,28 +79,28 @@ body .page .card .content .descriptor .description svg circle {
   transition: var(--animations-duration) stroke-dashoffset;
 }
 
-body .page .card .content .descriptor .description.definite svg circle {
+body > .page > .card .content .descriptor .description.definite svg circle {
   stroke-dashoffset: calc(48px - 48px * var(--percent) / 100);
 }
 
-body .page .card .content .descriptor .description:not(.definite) svg circle {
+body > .page > .card .content .descriptor .description:not(.definite) svg circle {
   stroke-dashoffset: 44;
 }
 
-body .page .card .content .descriptor .description .pending {
+body > .page > .card .content .descriptor .description .pending {
   transition: var(--animations-duration) transform, var(--animations-duration) opacity;
 }
 
-body .page .card .content .descriptor .description:not(.definite) .pending {
+body > .page > .card .content .descriptor .description:not(.definite) .pending {
   transform: scale(0.9);
   opacity: 0;
 }
 
-body .page .card .content .datacenters {
+body > .page > .card .content .datacenters {
   padding-top: var(--dcstatus-padding);
 }
 
-body .page .card .content .datacenters .datacenter {
+body > .page > .card .content .datacenters .datacenter {
   display: flex;
   align-items: center;
   justify-content: start;
@@ -113,50 +113,50 @@ body .page .card .content .datacenters .datacenter {
   transition: var(--animations-duration) padding, var(--animations-duration) background, var(--animations-duration) border-radius;
 }
 
-body .page .card .content .datacenters .datacenter.expanded {
+body > .page > .card .content .datacenters .datacenter.expanded {
   padding: var(--dcstatus-row-expanded-padding);
   padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height));
   background: var(--dcstatus-row-expanded-bg);
   border-radius: var(--dcstatus-row-expanded-radius);
 }
 
-body .page .card .content .datacenters .datacenter:not(:last-child) {
+body > .page > .card .content .datacenters .datacenter:not(:last-child) {
   margin-bottom: var(--dcstatus-row-gap-lines);
 }
 
-body .page .card .content .datacenters .datacenter .icon {
+body > .page > .card .content .datacenters .datacenter .icon {
   height: 50px;
   width: 50px;
   position: relative;
 }
 
-body .page .card .content .datacenters .datacenter[data-id="1"] .icon {
+body > .page > .card .content .datacenters .datacenter[data-id="1"] .icon {
   --primary: #329AFE;
   --id: 1;
 }
 
-body .page .card .content .datacenters .datacenter[data-id="2"] .icon {
+body > .page > .card .content .datacenters .datacenter[data-id="2"] .icon {
   --primary: #A35BFE;
   --id: 2;
 }
 
-body .page .card .content .datacenters .datacenter[data-id="3"] .icon {
+body > .page > .card .content .datacenters .datacenter[data-id="3"] .icon {
   --primary: #DA5653;
   --id: 3;
 }
 
-body .page .card .content .datacenters .datacenter[data-id="4"] .icon {
+body > .page > .card .content .datacenters .datacenter[data-id="4"] .icon {
   --primary: #F7B139;
   --id: 4;
 }
 
-body .page .card .content .datacenters .datacenter[data-id="5"] .icon {
+body > .page > .card .content .datacenters .datacenter[data-id="5"] .icon {
   --primary: #4BD199;
   --id: 5;
 }
 
-body .page .card .content .datacenters .datacenter .icon::before,
-body .page .card .content .datacenters .datacenter .icon::after {
+body > .page > .card .content .datacenters .datacenter .icon::before,
+body > .page > .card .content .datacenters .datacenter .icon::after {
   content: "";
   position: absolute;
   top: 0;
@@ -169,7 +169,7 @@ body .page .card .content .datacenters .datacenter .icon::after {
   border-radius: 50%;
 }
 
-body .page .card .content .datacenters .datacenter .icon::before {
+body > .page > .card .content .datacenters .datacenter .icon::before {
   animation: 3s animateKey1 infinite ease-in;
   animation-delay: calc(var(--id) * 0.2s);
   transform: translate(2px, -2px);
@@ -184,7 +184,7 @@ body .page .card .content .datacenters .datacenter .icon::before {
   }
 }
 
-body .page .card .content .datacenters .datacenter .icon::after {
+body > .page > .card .content .datacenters .datacenter .icon::after {
   animation: 4.5s animateKey2 infinite cubic-bezier(1, -0.01, 0.58, 1);
   animation-delay: calc(var(--id) * 0.2s);
   transform: translate(4px, 2px);
@@ -199,7 +199,7 @@ body .page .card .content .datacenters .datacenter .icon::after {
   }
 }
 
-body .page .card .content .datacenters .datacenter .icon .background {
+body > .page > .card .content .datacenters .datacenter .icon .background {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -208,7 +208,7 @@ body .page .card .content .datacenters .datacenter .icon .background {
   z-index: 1;
 }
 
-body .page .card .content .datacenters .datacenter .icon img {
+body > .page > .card .content .datacenters .datacenter .icon img {
   height: 30px;
   position: absolute;
   top: 50%;
@@ -217,7 +217,7 @@ body .page .card .content .datacenters .datacenter .icon img {
   z-index: 1;
 }
 
-body .page .card .content .datacenters .datacenter .description {
+body > .page > .card .content .datacenters .datacenter .description {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -227,42 +227,42 @@ body .page .card .content .datacenters .datacenter .description {
   white-space: nowrap;
 }
 
-body .page .card .content .datacenters .datacenter .description .name {
+body > .page > .card .content .datacenters .datacenter .description .name {
   font-size: var(--dcstatus-row-name-size);
   color: var(--dcstatus-row-name-color);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-body .page .card .content .datacenters .datacenter .description .status {
+body > .page > .card .content .datacenters .datacenter .description .status {
   font-size: var(--dcstatus-row-status-size);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-body .page .card .content .datacenters .datacenter .description .status.online {
+body > .page > .card .content .datacenters .datacenter .description .status.online {
   color: var(--dcstatus-row-status-color-online);
 }
 
-body .page .card .content .datacenters .datacenter .description .status.slow {
+body > .page > .card .content .datacenters .datacenter .description .status.slow {
   color: var(--dcstatus-row-status-color-slow);
 }
 
-body .page .card .content .datacenters .datacenter .description .status.offline {
+body > .page > .card .content .datacenters .datacenter .description .status.offline {
   color: var(--dcstatus-row-status-color-offline);
 }
 
-body .page .card .content .datacenters .datacenter .expand {
+body > .page > .card .content .datacenters .datacenter .expand {
   filter: var(--icons-transform);
   opacity: 0.8;
   transition: var(--animations-duration) transform;
 }
 
-body .page .card .content .datacenters .datacenter.expanded .expand {
+body > .page > .card .content .datacenters .datacenter.expanded .expand {
   transform: rotateX(180deg);
 }
 
-body .page .card .content .datacenters .datacenter .expandable {
+body > .page > .card .content .datacenters .datacenter .expandable {
   position: absolute;
   width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
   bottom: calc(var(--dcstatus-row-expanded-padding) / 2);
@@ -276,11 +276,11 @@ body .page .card .content .datacenters .datacenter .expandable {
   transition: var(--animations-duration) opacity, var(--animations-duration) transform;
 }
 
-body .page .card .content .datacenters .datacenter.expanded .expandable {
+body > .page > .card .content .datacenters .datacenter.expanded .expandable {
   transform: translateY(0);
 }
 
-body .page .card .content .datacenters .datacenter .expandable .indicator {
+body > .page > .card .content .datacenters .datacenter .expandable .indicator {
   height: 100%;
   background: var(--dcstatus-row-expanded-indicator-bg);
   color: var(--dcstatus-row-expanded-indicator-text);
@@ -293,11 +293,11 @@ body .page .card .content .datacenters .datacenter .expandable .indicator {
   overflow: hidden;
 }
 
-body .page .card .content .datacenters .datacenter .expandable .indicator .title {
+body > .page > .card .content .datacenters .datacenter .expandable .indicator .title {
   font-weight: 600;
 }
 
-body .page .card .content .datacenters .datacenter .expandable .indicator .separator {
+body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator {
   background: var(--dcstatus-row-expanded-indicator-separator);
   width: var(--dcstatus-row-expanded-indicator-separator-width);
   height: 150%;
@@ -307,7 +307,7 @@ body .page .card .content .datacenters .datacenter .expandable .indicator .separ
   justify-content: center;
 }
 
-body .page .card .content .datacenters .datacenter .expandable .indicator .separator img {
+body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator img {
   filter: var(--icons-transform);
   transform: rotate(calc(-1 * var(--dcstatus-row-expanded-indicator-separator-rotate)));
   height: var(--dcstatus-row-expanded-indicator-separator-icon);
@@ -315,17 +315,17 @@ body .page .card .content .datacenters .datacenter .expandable .indicator .separ
 }
 
 @media screen and (max-width: 1100px) {
-  body .page .card .content .datacenters .datacenter.expanded {
+  body > .page > .card .content .datacenters .datacenter.expanded {
     padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height) * 3);
   }
 
-  body .page .card .content .datacenters .datacenter .expandable {
+  body > .page > .card .content .datacenters .datacenter .expandable {
     flex-direction: column;
     height: calc(var(--dcstatus-row-expanded-expandable-height) * 3);
     gap: var(--dcstatus-row-expanded-expandable-gap-mobile);
   }
 
-  body .page .card .content .datacenters .datacenter .expandable .indicator {
+  body > .page > .card .content .datacenters .datacenter .expandable .indicator {
     width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
   }
 }

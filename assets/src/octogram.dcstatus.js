@@ -23,7 +23,7 @@ let isLoading = false;
 window.addEventListener('load', () => {
   reloadState();
 
-  const reloadButton = document.querySelector('body .page .pointer .message .button');
+  const reloadButton = document.querySelector('body > .page > .pointer .message .button');
   if (reloadButton != null) {
     reloadButton.addEventListener('click', () => {
       executeForceReload();
@@ -32,7 +32,7 @@ window.addEventListener('load', () => {
 });
 
 function reloadState() {
-  const bodyItem = document.querySelector('body .page .card.server .content .datacenters');
+  const bodyItem = document.querySelector('body > .page > .card.server .content .datacenters');
   if (bodyItem != null && !isLoading) {
     isLoading = true;
     const XML = new XMLHttpRequest();
@@ -112,8 +112,8 @@ function reloadState() {
 }
 
 function initReload() {
-  const loadingItem = document.querySelector('body .page .card.server .content .descriptor .description');
-  const leftSeconds = document.querySelector('body .page .card.server .content .descriptor .description .seconds');
+  const loadingItem = document.querySelector('body > .page > .card.server .content .descriptor .description');
+  const leftSeconds = document.querySelector('body > .page > .card.server .content .descriptor .description .seconds');
   if (loadingItem != null && leftSeconds != null) {
     if (!loadingItem.classList.contains('definite')) {
       loadingItem.addEventListener('animationiteration', () => {
@@ -146,7 +146,7 @@ function initReload() {
 }
 
 function executeForceReload() {
-  const loadingItem = document.querySelector('body .page .card.server .content .descriptor .description');
+  const loadingItem = document.querySelector('body > .page > .card.server .content .descriptor .description');
   if (loadingItem != null) {
     loadingItem.classList.remove('definite');
     loadingItem.style.setProperty('--percent', 100);

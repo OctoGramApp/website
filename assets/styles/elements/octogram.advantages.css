@@ -1,4 +1,4 @@
-body .page .advantages {
+body > .page > .advantages {
   width: 100%;
   padding-block: calc(var(--advantages-shadow-height) + var(--advantages-paddingblock));
   background: var(--advantages-bg);
@@ -11,7 +11,7 @@ body .page .advantages {
   gap: var(--advantages-message-gap);
 }
 
-body .page .advantages::before {
+body > .page > .advantages::before {
   content: "";
   position: absolute;
   top: 0;
@@ -24,7 +24,7 @@ body .page .advantages::before {
   );
 }
 
-body .page .advantages::after {
+body > .page > .advantages::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -37,11 +37,11 @@ body .page .advantages::after {
   );
 }
 
-body .page .advantages .message {
+body > .page > .advantages .message {
   text-align: center;
 }
 
-body .page .advantages .message .title {
+body > .page > .advantages .message .title {
   color: var(--advantages-message-title);
   font-size: 3em;
   font-weight: 800;
@@ -49,14 +49,14 @@ body .page .advantages .message .title {
   opacity: var(--parallax-state);
 }
 
-body .page .advantages .message .description {
+body > .page > .advantages .message .description {
   color: var(--advantages-message-description);
   font-size: 1.5em;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
   opacity: var(--parallax-state);
 }
 
-body .page .advantages .items {
+body > .page > .advantages .items {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -67,20 +67,20 @@ body .page .advantages .items {
 }
 
 @media screen and (max-width: 1000px) {
-  body .page .advantages .items {
+  body > .page > .advantages .items {
     flex-direction: column;
     max-width: none;
   }
 }
 
-body .page .advantages .items .separator {
+body > .page > .advantages .items .separator {
   height: calc(var(--parallax-state) * var(--advantages-list-separator-height));
   transform: rotate(15deg);
   border-left: 2px dashed var(--advantages-list-separator-color);
 }
 
 @media screen and (max-width: 1000px) {
-  body .page .advantages .items .separator {
+  body > .page > .advantages .items .separator {
     height: 0px;
     width: 90vw;
     transform: rotate(0);
@@ -88,7 +88,7 @@ body .page .advantages .items .separator {
   }
 }
 
-body .page .advantages .items .item {
+body > .page > .advantages .items .item {
   max-width: var(--advantages-list-item-width-limit);
   display: flex;
   align-items: center;
@@ -100,7 +100,7 @@ body .page .advantages .items .item {
 }
 
 @media screen and (max-width: 1000px) {
-  body .page .advantages .items .item {
+  body > .page > .advantages .items .item {
     flex-direction: row;
     max-width: 95vw;
     gap: var(--advantages-list-item-gap-mobile);
@@ -108,19 +108,19 @@ body .page .advantages .items .item {
   }
 }
 
-body .page .advantages .items .item img {
+body > .page > .advantages .items .item img {
   height: var(--advantages-list-item-image-size);
   width: var(--advantages-list-item-image-size);
 }
 
-body .page .advantages .items .item .title {
+body > .page > .advantages .items .item .title {
   color: var(--advantages-list-item-title-color);
   font-size: 1.5em;
   text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
-  body .page .advantages .items .item .title {
+  body > .page > .advantages .items .item .title {
     font-size: 1.3em;
     text-align: left;
   }
