@@ -39,6 +39,7 @@ The site uses some animated stickers in the "Always in step" category.
   <img src="assets/animations/tosCompliantAnimation.gif" style="height: 90px">
   <img src="assets/animations/premiumAnimation.gif" style="height: 90px">
   <img src="assets/animations/dcstatusAnimation.gif" style="height: 90px">
+  <img src="assets/animations/dcstatusFailAnimation.gif" style="height: 90px">
 </div>
 
 The animated stickers used on the site are all from the same pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
