@@ -69,6 +69,7 @@
   --dcstatus-row-status-color-slow: #e0bd25;
   --dcstatus-row-status-color-offline: #c26266;
   --dcstatus-row-status-size: 14px;
+  --dcstatus-row-padding: 5px;
   --dcstatus-row-expanded-bg: rgba(0, 0, 0, 0.3);
   --dcstatus-row-expanded-padding: 20px;
   --dcstatus-row-expanded-radius: 10px;

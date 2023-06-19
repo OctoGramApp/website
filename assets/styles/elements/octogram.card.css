@@ -134,7 +134,7 @@ body > .page > .card .content .datacenters .datacenter {
   cursor: pointer;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 5px;
+  padding: var(--dcstatus-row-padding);
   transition: var(--animations-duration) padding, var(--animations-duration) background, var(--animations-duration) border-radius;
 }
 
@@ -293,7 +293,8 @@ body > .page > .card .content .datacenters .datacenter .expandable {
   bottom: calc(var(--dcstatus-row-expanded-padding) / 2);
   height: var(--dcstatus-row-expanded-expandable-height);
   gap: var(--dcstatus-row-expanded-expandable-gap);
-  transform: translateY(120%);
+  left: 50%;
+  transform: translateY(120%) translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -302,7 +303,7 @@ body > .page > .card .content .datacenters .datacenter .expandable {
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expandable {
-  transform: translateY(0);
+  transform: translateY(0) translateX(-50%);
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator {
@@ -342,7 +343,8 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .s
 
 @media screen and (max-width: 1100px) {
   body > .page > .card .content .datacenters .datacenter.expanded {
-    padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
+    padding: var(--dcstatus-row-padding);
+    padding-bottom: calc(var(--dcstatus-row-padding) + 15px + var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable {
@@ -352,7 +354,7 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .s
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable .indicator {
-    width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
+    width: calc(100% - var(--dcstatus-row-padding) * 2);
     flex-direction: column;
     gap: 0;
     align-items: flex-start;
