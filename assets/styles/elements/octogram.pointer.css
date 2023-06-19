@@ -37,6 +37,7 @@ body > .page > .pointer .message {
   justify-content: center;
   flex-direction: column;
   gap: var(--pointer-gap);
+  max-width: var(--pointer-width-limit);
 }
 
 body > .page > .pointer .message .sticker img {
