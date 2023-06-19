@@ -5,19 +5,19 @@ window.addEventListener('resize', reloadParallax);
 function reloadParallax() {
   reloadItems(
     [
-      document.querySelector('body > .page > .download .content')
+      document.querySelector('body > .page > #download> .download .content')
     ],
-    document.querySelector('body > .page > .download .content')
+    document.querySelector('body > .page > #download> .download .content')
   );
   reloadItems(
-    document.querySelectorAll('body > .page > .advantages .items *'),
-    document.querySelector('body > .page > .advantages .items')
+    document.querySelectorAll('body > .page > #advantages > .advantages .items *'),
+    document.querySelector('body > .page > #advantages > .advantages .items')
   );
   reloadItems(
-    document.querySelectorAll('body > .page > .advantages .message *'),
-    document.querySelector('body > .page > .advantages')
+    document.querySelectorAll('body > .page > #advantages > .advantages .message *'),
+    document.querySelector('body > .page > #advantages > .advantages')
   );
-  reloadItems(document.querySelectorAll('body > .page > .features .list > *'));
+  reloadItems(document.querySelectorAll('body > .page > #features > .features .list > *'));
 }
 
 function reloadItems(item, byContainer) {
