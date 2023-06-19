@@ -5,7 +5,8 @@ OctoGram is an **unofficial** messaging app that uses **Telegram's API**. This s
 * [Main website](https://octogram.site/)
 * [Main website (features)](https://octogram.site/#features)
 * [Main website (download)](https://octogram.site/#download)
-* [404 page](https://octogram.site/404.html)
+* [DC Status](https://octogram.site/dcstatus)
+* [404 page](https://octogram.site/404)
 
 # 🖼️ Screenshots
 ![Introduction](assets/readme.images/introduction.png)
@@ -42,4 +43,4 @@ The site uses some animated stickers in the "Always in step" category.
   <img src="assets/animations/dcstatusFailAnimation.gif" style="height: 90px">
 </div>
 
-The animated stickers used on the site are all from the same pack: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
+The animated stickers used on the site are all from the same packs: [UtyaDuckFull](https://t.me/addstickers/UtyaDuckFull).
