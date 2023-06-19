@@ -45,8 +45,11 @@ function reloadState() {
         if (typeof response.status != 'undefined') {
           const fragment = document.createDocumentFragment();
           let currentActiveRow;
+          
+          let status = response.status;
+          status.sort((a, b) => a.dc_id - b.dc_id);
 
-          for(const datacenter of response.status) {
+          for(const datacenter of status) {
             if (datacenter.dc_id <= DATACENTER_COUNT) {
               const datacenterBackground = document.createElement('div');
               datacenterBackground.classList.add('background');
