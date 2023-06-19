@@ -316,6 +316,7 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator {
   padding-inline: var(--dcstatus-row-expanded-indicator-padding);
   border-radius: var(--dcstatus-row-expanded-indicator-radius);
   overflow: hidden;
+  position: relative;
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator .title {
@@ -341,16 +342,26 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .s
 
 @media screen and (max-width: 1100px) {
   body > .page > .card .content .datacenters .datacenter.expanded {
-    padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height) * 3);
+    padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable {
     flex-direction: column;
-    height: calc(var(--dcstatus-row-expanded-expandable-height) * 3);
+    height: calc(var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
     gap: var(--dcstatus-row-expanded-expandable-gap-mobile);
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable .indicator {
     width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator {
+    position: absolute;
+    right: var(--dcstatus-row-expanded-indicator-separator-rightpos);
+    top: 50%;
+    transform: translateY(-50%) rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
   }
 }

@@ -85,7 +85,7 @@ function reloadState() {
               datacenterRow.appendChild(datacenterIconContainer);
               datacenterRow.appendChild(datacenterDescription);
               datacenterRow.appendChild(datacenterExpand);
-              datacenterRow.appendChild(createExpandableContainer(datacenter));
+              createExpandableContainer(datacenter, datacenterRow);
 
               if (typeof currentActiveDcId != 'undefined' && currentActiveDcId == datacenter.dc_id) {
                 datacenterRow.classList.add('expanded');
@@ -185,7 +185,7 @@ function composeErrorContainer(){
   return container;
 }
 
-function createExpandableContainer(datacenter) {
+function createExpandableContainer(datacenter, container) {
   const ipContainerTitle = document.createElement('div');
   ipContainerTitle.classList.add('title');
   ipContainerTitle.textContent = 'IP Address';
@@ -229,10 +229,21 @@ function createExpandableContainer(datacenter) {
     e.stopImmediatePropagation();
   });
   expandableContainer.appendChild(ipContainer);
-  datacenter.last_lag > 0 && expandableContainer.appendChild(lastLagContainer);
-  datacenter.last_down > 0 && expandableContainer.appendChild(lastDownContainer);
 
-  return expandableContainer;
+  let visibleItems = 1;
+
+  if (datacenter.last_lag > 0) {
+    expandableContainer.appendChild(lastLagContainer);
+    visibleItems++;
+  }
+
+  if (datacenter.last_down > 0) {
+    expandableContainer.appendChild(lastDownContainer);
+    visibleItems++;
+  }
+
+  container.style.setProperty('--items', visibleItems);
+  container.appendChild(expandableContainer);
 }
 
 function composeSeparatorFromIcon(icon) {

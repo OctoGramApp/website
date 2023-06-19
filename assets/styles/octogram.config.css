@@ -47,6 +47,7 @@
   --pointer-sticker-size: 200px;
   --pointer-title: #FFFFFF;
   --pointer-gap: 10px;
+  --pointer-width-limit: min(500px, 87vw);
 
   --dcstatus-bg: #1d2733;
   --dcstatus-descriptorgap-mobile: 5px;
@@ -83,6 +84,7 @@
   --dcstatus-row-expanded-indicator-separator-width: 2px;
   --dcstatus-row-expanded-indicator-separator-rotate: 35deg;
   --dcstatus-row-expanded-indicator-separator-icon: 22px;
+  --dcstatus-row-expanded-indicator-separator-rightpos: 35px;
 
   --features-title: #FFFFFF;
   --features-title-gap: 20px;
