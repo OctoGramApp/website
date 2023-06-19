@@ -229,8 +229,8 @@ function createExpandableContainer(datacenter) {
     e.stopImmediatePropagation();
   });
   expandableContainer.appendChild(ipContainer);
-  expandableContainer.appendChild(lastLagContainer);
-  expandableContainer.appendChild(lastDownContainer);
+  datacenter.last_lag > 0 && expandableContainer.appendChild(lastLagContainer);
+  datacenter.last_down > 0 && expandableContainer.appendChild(lastDownContainer);
 
   return expandableContainer;
 }
