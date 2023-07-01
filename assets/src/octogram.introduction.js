@@ -41,6 +41,19 @@ window.addEventListener('load', () => {
       imageList[newImageId].classList.add('active');
     }, 3000);
   }
+
+  const currentYearItem = document.querySelector('body > .page > .footer .text #yeardate');
+  if (currentYearItem != null) {
+    const currentYear = new Date().getFullYear();
+    
+    let currentDate = currentYear;
+    if (currentYear != 2023) {
+      currentDate = '2023-';
+      currentDate += currentYear;
+    }
+
+    currentYearItem.textContent = currentDate;
+  }
 });
 
 window.addEventListener('scroll', () => {
