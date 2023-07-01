@@ -1,0 +1,143 @@
+body > .page > #monet > .monet-theme-reference {
+  background: rgba(0, 0, 0, var(--parallax-pending));
+  border: calc(50px * calc(1 - var(--parallax-pending))) solid var(--background);
+  border-radius: calc(90px * calc(1 - var(--parallax-pending)));
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme {
+  height: calc(100vh * 6);
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
+  opacity: calc(1.2 - var(--parallax-pending));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: min(calc(var(--visible-height) * 1px), 40vh);
+  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+}
+
+body > .page > #monet > .monet-theme-reference.visible > .monet-theme > .introduction {
+  transform: scale(1.4);
+  opacity: 0;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .title {
+  color: var(--advantages-message-title);
+  font-size: 3em;
+  font-weight: 800;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .description {
+  color: var(--advantages-message-description);
+  font-size: 1.5em;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example {
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="0"] {
+  --url: url("/assets/images/monetstyling/cop.0.bg.png");
+  --color: #d9e3f0;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="1"] {
+  --url: url("/assets/images/monetstyling/cop.1.bg.png");
+  --color: #ffdcbb;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="2"] {
+  --url: url("/assets/images/monetstyling/cop.2.bg.png");
+  --color: #dbea98;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="3"] {
+  --url: url("/assets/images/monetstyling/cop.3.bg.png");
+  --color: #ffdad8;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="4"] {
+  --url: url("/assets/images/monetstyling/cop.4.bg.png");
+  --color: #a8f2cf;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example > .background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--url);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: min(0.2, calc(var(--parallax-state) - 0.5));
+  transform: scale(max(0.95, calc(var(--parallax-state) + 0.6)));
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .icon {
+  filter: var(--icons-transform);
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device {
+  position: relative;
+  padding-inline: 10px;
+  padding-bottom: 18px;
+  transform: scale(min(max(calc(var(--parallax-state) + 0.2), 0.8), 1.0));
+  opacity: var(--parallax-state);
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device::after {
+  content: "";
+  position: absolute;
+  top: -48px;
+  left: 0px;
+  height: calc(100% + 54px);
+  width: calc(100% + 7px);
+  background: url("/assets/images/monetstyling/pixelmockup.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device img {
+  max-height: 80vh;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: var(--background);
+  transition: var(--animations-duration) width;
+}
+
+body > .page > #monet > .monet-theme-reference.visible:not(.visible-full) > .monet-theme > .progress-bar {
+  width: 100%;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar .progress {
+  height: 100%;
+  width: calc(var(--visible-percent) * 100%);
+  background: #6a7ed6;
+  transition: var(--animations-duration) width;
+}

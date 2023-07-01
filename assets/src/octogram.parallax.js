@@ -5,9 +5,9 @@ window.addEventListener('resize', reloadParallax);
 function reloadParallax() {
   reloadItems(
     [
-      document.querySelector('body > .page > #download> .download .content')
+      document.querySelector('body > .page > #download > .download .content')
     ],
-    document.querySelector('body > .page > #download> .download .content')
+    document.querySelector('body > .page > #download > .download .content')
   );
   reloadItems(
     document.querySelectorAll('body > .page > #advantages > .advantages .items *'),
@@ -18,6 +18,8 @@ function reloadParallax() {
     document.querySelector('body > .page > #advantages > .advantages')
   );
   reloadItems(document.querySelectorAll('body > .page > #features > .features .list > *'));
+  reloadItems(document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .example'),);
+  initMonetReference();
 }
 
 function reloadItems(item, byContainer) {
@@ -54,4 +56,35 @@ function calculateVisibleArea(element) {
   }
 
   return Math.min(100, Math.max(0, percent));
+}
+
+function initMonetReference() {
+  const element = document.querySelector('body > .page > #monet > .monet-theme-reference');
+  if (element != null) {
+    const currentPosition = element.getBoundingClientRect().top;
+    const elementHeight = element.getBoundingClientRect().height;
+
+    let parallaxPercent;
+    let visibleHeight;
+    if (currentPosition > window.innerHeight) {
+      parallaxPercent = 0;
+      visibleHeight = 0;
+    } else {
+      parallaxPercent = 1 - currentPosition / window.innerHeight;
+      parallaxPercent = Math.max(parallaxPercent, 0);
+      parallaxPercent = Math.min(parallaxPercent, 1);
+
+      visibleHeight = window.innerHeight - currentPosition;
+    }
+
+    let visiblePercent = visibleHeight / elementHeight;
+    visiblePercent = Math.max(visiblePercent, 0);
+    visiblePercent = Math.min(visiblePercent, 1);
+
+    element.style.setProperty('--parallax-pending', parallaxPercent);
+    element.style.setProperty('--visible-height', visibleHeight);
+    element.style.setProperty('--visible-percent', visiblePercent);
+    element.classList.toggle('visible', parallaxPercent == 1);
+    element.classList.toggle('visible-full', visiblePercent == 1);
+  }
 }

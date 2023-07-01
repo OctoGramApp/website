@@ -27,7 +27,8 @@ The colours of the site are all obtained through the client's default 'dark' the
 * Settings icon: https://fontawesome.com/icons/gear?f=classic&s=solid
 * Appearance icon: https://fontawesome.com/icons/brush?f=classic&s=solid
 * Pause: https://fontawesome.com/icons/pause?f=classic&s=solid
-* Left arrow (404 page): https://fontawesome.com/icons/arrow-left?f=classic&s=solid
+* Left arrow: https://fontawesome.com/icons/arrow-left?f=classic&s=solid
+* Right arrow: https://fontawesome.com/icons/arrow-right?f=classic&s=solid
 * Chevron down (DC Status page): https://fontawesome.com/icons/chevron-down?f=classic&s=solid
 * Explosion (DC Status page): https://fontawesome.com/icons/explosion?f=classic&s=solid
 * Fan (DC Status page): https://fontawesome.com/icons/fan?f=classic&s=solid
