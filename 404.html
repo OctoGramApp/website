@@ -7,10 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <noscript>
-      <link rel="stylesheet" href="assets/styles/octogram.noscript.css">
-    </noscript>
-
     <meta name="theme-color" content="#283157">
     <meta name="google" content="nositelinkssearchbox">
     <meta name="google" content="notranslate">
@@ -29,12 +25,36 @@
     <meta property="twitter:description" content="The Telegram alternative client with all the features you need.">
     <meta property="twitter:image" content="/assets/images/applogo.preview.jpg">
   </head>
-  <body class="as-error">
+  <body>
+    <noscript>
+      <style>
+        body .splash, body > .page:not(.js-error) {
+          display: none;
+        }
+      </style>
+    </noscript>
+    <div class="page js-error">
+      <div class="error">
+        <div class="message">
+          <div class="title">
+            Something went wrong.
+          </div>
+          <div class="description">
+            Try to reload the page or update your browser.
+          </div>
+          <a href="" class="button big accent">
+            <div class="text">
+              Reload this page
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
     <div class="splash">
       <img src="assets/icons/applogo.svg">
     </div>
     <div class="page">
-      <div class="header">
+      <div class="header as-error">
         <div class="content">
           <a href="/" class="applogo">
             <img src="assets/icons/arrowleft.svg" class="arrow">
