@@ -1,4 +1,4 @@
-body > .page {
+body > .page:not(.js-error) {
   --splash-delay: calc(0.5s + var(--animations-duration));
   opacity: 0;
   animation: var(--animations-duration) animateFromSplash var(--splash-delay) forwards;
