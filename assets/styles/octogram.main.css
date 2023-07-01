@@ -35,6 +35,9 @@ body {
   }
 }
 
+body > .page.js-error {
+  display: none;
+}
 
 body::-webkit-scrollbar {
 	width: 5px;

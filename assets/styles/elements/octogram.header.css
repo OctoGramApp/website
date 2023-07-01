@@ -10,7 +10,7 @@ body > .page > .header {
   justify-content: center;
 }
 
-body.as-error .header {
+body > .page > .header.as-error {
   background: linear-gradient(
     var(--header-bg),
     var(--background)
