@@ -18,12 +18,12 @@ function reloadParallax() {
     document.querySelector('body > .page > #advantages > .advantages')
   );
   reloadItems(document.querySelectorAll('body > .page > #features > .features .list > *'));
-  reloadItems(document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .example'),);
+  reloadItems(document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .example'), undefined, true);
   initMonetReference();
 }
 
-function reloadItems(item, byContainer) {
-  const isMobileDevice = window.innerWidth < 1000;
+function reloadItems(item, byContainer, ignoreMobileCheck = false) {
+  const isMobileDevice = !ignoreMobileCheck && window.innerWidth < 1000;
   if (item instanceof Object) {
     if (typeof byContainer == 'undefined') {
       for(const child of item) {
