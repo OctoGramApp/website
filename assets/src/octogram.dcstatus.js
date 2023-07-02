@@ -36,7 +36,7 @@ function reloadState() {
   if (bodyItem != null && !isLoading) {
     isLoading = true;
     const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://assets.octogram.site/DCStatus/dc_status.json?'+Math.random().toString(), true);
+    XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/main/DCStatus/dc_status.json?'+Math.random().toString(), true);
     XML.send();
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState == 4 && e.target.status == 200) {
