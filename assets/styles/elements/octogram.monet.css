@@ -9,7 +9,7 @@ body > .page > #monet > .monet-theme-reference {
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme {
-  height: calc(100vh * 6);
+  height: calc(100vh * 6 + 40vh);
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
@@ -29,19 +29,61 @@ body > .page > #monet > .monet-theme-reference.visible > .monet-theme > .introdu
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .title {
   color: var(--advantages-message-title);
-  font-size: 3em;
+  font-size: min(3em, 10vw);
   font-weight: 800;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .description {
   color: var(--advantages-message-description);
   font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .scrolling {
+  height: 124.4px;
+  width: 60.9px;
+  border-radius: 45px;
+  border: calc(10px * var(--parallax-pending)) solid var(--advantages-message-description);
+  overflow: hidden;
+  position: absolute;
+  opacity: 0.18;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .scrolling::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 90%;
+  aspect-ratio: 1;
+  -webkit-aspect-ratio: 1;
+  background: var(--advantages-message-description);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: 2s keepScrollingAnimation infinite cubic-bezier(0.43, 0.07, 0, 0.97);
+}
+
+@keyframes keepScrollingAnimation {
+  from {
+    top: -100%;
+    transform: translateX(-50%) scale(0.8);
+  }
+  50% {
+    transform: translateX(-50%) scale(1);
+  }
+  to {
+    top: 100%;
+    transform: translateX(-50%) scale(0.8);
+  }
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example {
   height: 100vh;
   width: 100vw;
-  pointer-events: none;
+  overflow: hidden;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example[data-id="0"] {
@@ -91,6 +133,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .contai
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .icon {
@@ -119,6 +162,27 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .contai
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device img {
   max-height: 80vh;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .example .add {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  border: 2px dashed white;
+  padding: 10px;
+  border-radius: 13px;
+  text-decoration: none;
+  opacity: var(--parallax-state);
+  z-index: 5;
+  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+}
+
+body > .page > #monet > .monet-theme-reference:not(.visible) > .monet-theme > .example .add,
+body > .page > #monet > .monet-theme-reference.visible-full > .monet-theme > .example .add {
+  transform: scale(0.8);
+  opacity: 0;
+  pointer-events: none;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {

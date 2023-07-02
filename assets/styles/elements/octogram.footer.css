@@ -10,6 +10,10 @@ body > .page > .footer {
   box-sizing: border-box;
 }
 
+body > .page > .footer.big {
+  height: var(--footer-height-big);
+}
+
 body > .page > .footer::before {
   content: "";
   position: absolute;
