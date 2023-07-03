@@ -6,25 +6,20 @@ body > .page > #monet > .monet-theme-reference {
   border-bottom-right-radius: 60px;
   margin-bottom: 20px;
   position: relative;
+  overflow: hidden;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme {
-  height: calc(100vh * 6 + 40vh);
+  height: calc(100vh * 5 + 80vh + 40vh);
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
-  opacity: calc(1.2 - var(--parallax-pending));
+  opacity: calc(1 - var(--parallax-pending));
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: min(calc(var(--visible-height) * 1px), 40vh);
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
-}
-
-body > .page > #monet > .monet-theme-reference.visible > .monet-theme > .introduction {
-  transform: scale(1.4);
-  opacity: 0;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .title {
@@ -122,7 +117,6 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example > .back
   background-size: cover;
   background-repeat: no-repeat;
   opacity: min(0.2, calc(var(--parallax-state) - 0.5));
-  transform: scale(max(0.95, calc(var(--parallax-state) + 0.6)));
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container {
@@ -142,26 +136,12 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .contai
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device {
   position: relative;
-  padding-inline: 10px;
-  padding-bottom: 18px;
-  transform: scale(min(max(calc(var(--parallax-state) + 0.2), 0.8), 1.0));
+  transform: scale(min(max(calc(var(--parallax-state) + 0.2), 0.0), 1.0));
   opacity: var(--parallax-state);
 }
 
-body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device::after {
-  content: "";
-  position: absolute;
-  top: -48px;
-  left: 0px;
-  height: calc(100% + 54px);
-  width: calc(100% + 7px);
-  background: url("/assets/images/monetstyling/pixelmockup.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device img {
-  max-height: 80vh;
+  max-height: min(800px, 80vh);
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .add {
@@ -183,6 +163,118 @@ body > .page > #monet > .monet-theme-reference.visible-full > .monet-theme > .ex
   transform: scale(0.8);
   opacity: 0;
   pointer-events: none;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer {
+  height: 80vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:first-child {
+  position: absolute;
+  animation: 1s updateFirstColorFrames paused;
+  animation-delay: max(calc(var(--parallax-state) * -1s), -0.9s);
+  --start-left: calc(50% - 20px - 40px * 2 - 15px * 2);
+  --final-top: 435px;
+  --final-left: 50px;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:nth-child(2) {
+  position: absolute;
+  animation: 1s updateFirstColorFrames paused;
+  animation-delay: max(calc(var(--parallax-state) * -1s), -0.9s);
+  --start-left: calc(50% - 20px - 40px - 15px);
+  --final-top: calc(100% + 60px);
+  --final-left: 30vw;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:nth-child(3) {
+  position: absolute;
+  animation: 1s updateFirstColorFrames paused;
+  animation-delay: max(calc(var(--parallax-state) * -1s), -0.9s);
+  --start-left: calc(50% - 20px);
+  --final-top: 450px;
+  --final-left: 60vw;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:nth-child(4) {
+  position: absolute;
+  animation: 1s updateFirstColorFrames paused;
+  animation-delay: max(calc(var(--parallax-state) * -1s), -0.9s);
+  --start-left: calc(50% + 20px + 15px);
+  --final-top: calc(100% + 60px);
+  --final-left: 80vw;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:nth-child(5) {
+  position: absolute;
+  animation: 1s updateFirstColorFrames paused;
+  animation-delay: max(calc(var(--parallax-state) * -1s), -0.9s);
+  --start-left: calc(50% + 20px + 40px + 15px * 2);
+  --final-top: 420px;
+  --final-left: 90vw;
+}
+
+@keyframes updateFirstColorFrames {
+  from, 80% {
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    top: 0;
+    left: var(--start-left);
+    box-shadow: 0px 0px 0px 0px var(--color);
+    opacity: 1;
+    background: var(--color);
+  }
+  80% {
+    left: calc(50% - 20px);
+  }
+  to {
+    height: 0px;
+    border-radius: 0;
+    top: var(--final-top);
+    left: var(--final-left);
+    box-shadow: 0px 0px 277px 150px var(--color);
+    opacity: 0.3;
+    background: transparent;
+  }
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message {
+  opacity: var(--parallax-state);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateY(calc(calc(1 - var(--parallax-state)) * -189px));
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .title {
+  color: var(--advantages-message-title);
+  font-size: min(3em, 10vw);
+  font-weight: 800;
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .description {
+  color: var(--advantages-message-description);
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {
