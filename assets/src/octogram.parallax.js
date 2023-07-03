@@ -19,6 +19,11 @@ function reloadParallax() {
   );
   reloadItems(document.querySelectorAll('body > .page > #features > .features .list > *'));
   reloadItems(document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .example'), undefined, true);
+  reloadItems(
+    document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .footer'),
+    undefined,
+    true
+  );
   initMonetReference();
 }
 
