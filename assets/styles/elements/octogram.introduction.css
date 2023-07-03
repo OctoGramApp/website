@@ -73,7 +73,7 @@ body > .page > .introduction .content .message {
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message {
-    max-width: min(97vw, var(--introduction-message-width-limit));
+    max-width: min(88vw, var(--introduction-message-width-limit));
   }
 }
 

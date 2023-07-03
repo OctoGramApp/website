@@ -33,11 +33,13 @@ function reloadItems(item, byContainer, ignoreMobileCheck = false) {
     if (typeof byContainer == 'undefined') {
       for(const child of item) {
         const percent = isMobileDevice ? 1 : (calculateVisibleArea(child) / 100);
+        child.classList.toggle('visible', percent > 0.8);
         child.style.setProperty('--parallax-state', percent.toString());
       }
     } else if(byContainer instanceof Element) {
       const percent = isMobileDevice ? 1 : (calculateVisibleArea(byContainer) / 100);
       for(const child of item) {
+        child.classList.toggle('visible', percent > 0.8);
         child.style.setProperty('--parallax-state', percent.toString());
       }
     }

@@ -110,6 +110,32 @@
   --buttons-big-paddingblock: 10px;
   --buttons-radius: 5px;
 
+  --monet-border: 50px;
+  --monet-radius: 90px;
+  --monet-bottommargin: 50px;
+  --monet-message-height-limit: 40vh;
+  --monet-message-width-limit: 600px;
+  --monet-message-scrolling: #FFFFFF;
+  --monet-message-icon-size: 150px;
+  --monet-message-title: #FFFFFF;
+  --monet-message-description: #FFFFFF;
+  --monet-example-add-distance: 20px;
+  --monet-example-add-padding: 10px;
+  --monet-example-add-radius: 13px;
+  --monet-example-add-color: #FFFFFF;
+  --monet-example-add-border: #FFFFFF;
+  --monet-example-image-gap: 20px;
+  --monet-example-image-height-limit: min(800px, 80vh);
+  --monet-footer-height-limit: 80vh;
+  --monet-footer-coloranimation-from-size: 40px;
+  --monet-footer-coloranimation-from-radius: 25px;
+  --monet-footer-coloranimation-from-gap: 15px;
+  --monet-footer-coloranimation-to-blur: 277px;
+  --monet-footer-coloranimation-to-blur-mobile: 184px;
+  --monet-footer-coloranimation-to-spread: 150px;
+  --monet-footer-coloranimation-to-spread-mobile: 90px;
+  --monet-progressbar-height: 5px;
+
   --downloads-bg: #6a7ed63d;
   --downloads-title: #FFFFFF;
   --downloads-description: #FFFFFF;

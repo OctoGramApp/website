@@ -29,6 +29,7 @@ body > .page > .footer::before {
 
 body > .page > .footer .text {
   color: var(--footer-text);
+  text-align: center;
 }
 
 body > .page > .footer .text a {
