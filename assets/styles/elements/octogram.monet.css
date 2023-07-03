@@ -118,7 +118,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example > .back
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: min(0.2, calc(var(--parallax-state) - 0.5));
+  opacity: min(0.2, calc(var(--parallax-state, 0) - 0.5));
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container {
