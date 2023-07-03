@@ -322,17 +322,14 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .title {
   color: var(--monet-message-title);
-  font-size: min(3em, 10vw);
+  font-size: min(3em, 9vw);
   font-weight: 800;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .description {
   color: var(--monet-message-description);
   font-size: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  text-align: center;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {
