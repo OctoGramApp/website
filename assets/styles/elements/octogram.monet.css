@@ -5,10 +5,23 @@ body > .page > #monet > .monet-theme-reference {
   margin-bottom: var(--monet-bottommargin);
   position: relative;
   overflow: hidden;
+  will-change: background, border, border-radius;
+}
+
+@media screen and (max-width: 800px) {
+  body > .page > #monet > .monet-theme-reference {
+    transition: 0.05s background, 0.05s border, 0.05s border-radius;
+  }
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme {
   height: calc(100vh * 5 + var(--monet-footer-height-limit) + var(--monet-message-height-limit));
+}
+
+@media screen and (max-width: 800px) {
+  body > .page > #monet > .monet-theme-reference > .monet-theme {
+    transition: 0.05s height;
+  }
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
@@ -20,11 +33,18 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
   text-align: center;
   margin-inline: auto;
   height: min(calc(var(--visible-height) * 1px), var(--monet-message-height-limit));
+  will-change: opacity, height;
 }
 
 @media screen and (max-width: 700px) {
   body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
     max-width: min(80vw, var(--monet-message-width-limit));
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction {
+    height: var(--monet-message-height-limit);
   }
 }
 
@@ -47,6 +67,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .s
   overflow: hidden;
   position: absolute;
   opacity: 0.18;
+  will-change: border;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .introduction .scrolling::after {
@@ -119,6 +140,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example > .back
   background-size: cover;
   background-repeat: no-repeat;
   opacity: min(0.2, calc(var(--parallax-state, 0) - 0.5));
+  will-change: opacity;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container {
@@ -140,6 +162,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .contai
   position: relative;
   transform: scale(min(max(calc(var(--parallax-state) + 0.2), 0.0), 1.0));
   opacity: var(--parallax-state);
+  will-change: transform, opacity;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device img {
@@ -147,6 +170,10 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .contai
 }
 
 @media screen and (max-width: 800px) {
+  body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device {
+    transition: 0.05s transform;
+  }
+
   body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .device.screenshot,
   body > .page > #monet > .monet-theme-reference > .monet-theme > .example .container .icon {
     display: none;
@@ -164,6 +191,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .add {
   text-decoration: none;
   opacity: var(--parallax-state);
   transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+  will-change: transform, opacity;
 }
 
 body > .page > #monet > .monet-theme-reference:not(.visible) > .monet-theme > .example .add,
@@ -199,6 +227,11 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors 
     --final-blur-level: var(--monet-footer-coloranimation-to-blur-mobile);
     --final-spread-level: var(--monet-footer-coloranimation-to-spread-mobile);
   }
+}
+
+body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color {
+  will-change: box-shadow;
+  transition: 0.2s all linear;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors .color:first-child {
@@ -274,7 +307,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .colors 
     height: var(--monet-footer-coloranimation-from-size);
     width: var(--monet-footer-coloranimation-from-size);
     border-radius: var(--monet-footer-coloranimation-from-radius);
-    box-shadow: 0 0 0 0 var(--color);
+    box-shadow: 0 0 var(--final-blur-level) var(--final-spread-level) transparent;
     opacity: 1;
     top: 0;
     left: var(--start-left);
@@ -301,6 +334,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message
   justify-content: center;
   flex-direction: column;
   transform: translateY(calc(calc(1 - var(--parallax-state)) * -150px));
+  will-change: opacity, transform;
 }
 
 @media screen and (max-width: 700px) {
@@ -312,6 +346,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message
 body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .icon {
   margin-bottom: calc(var(--monet-message-icon-size) * -1 * calc(1 - var(--parallax-state)));
   opacity: var(--parallax-state);
+  will-change: opacity, margin-bottom;
 }
 
 body > .page > #monet > .monet-theme-reference > .monet-theme > .footer .message .icon img {
@@ -340,6 +375,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {
   height: var(--monet-progressbar-height);
   background: var(--background);
   transition: var(--animations-duration) width;
+  will-change: width;
 }
 
 body > .page > #monet > .monet-theme-reference.visible:not(.visible-full) > .monet-theme > .progress-bar {
@@ -351,4 +387,5 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar .p
   width: calc(var(--visible-percent) * 100%);
   background: #6a7ed6;
   transition: var(--animations-duration) width;
+  will-change: width;
 }
