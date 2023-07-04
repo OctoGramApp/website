@@ -10,7 +10,9 @@ body > .page > #monet > .monet-theme-reference {
 
 @media screen and (max-width: 800px) {
   body > .page > #monet > .monet-theme-reference {
-    transition: 0.05s background, 0.05s border, 0.05s border-radius;
+    border: none;
+    border-radius: none;
+    transition: 0.05s background;
   }
 }
 
