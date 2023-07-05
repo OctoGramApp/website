@@ -137,6 +137,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example > .back
   left: 0;
   width: 100%;
   height: 100vh;
+  pointer-events: none;
   background: var(--url);
   background-position: center;
   background-size: cover;
