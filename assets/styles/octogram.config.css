@@ -147,7 +147,7 @@
   --downloads-files-width: 265px;
   --downloads-select-paddingblock: 10px;
   --downloads-select-bottommargin: 6px;
-  --downloads-separator: rgba(255, 255, 255, 0.6);
+  --downloads-separator: rgba(255, 255, 255, 0.2);
   --downloads-stores-bg: rgba(106, 124, 214, 0.2);
   --downloads-stores-gap: 20px;
   --downloads-stores-gap-mobile: 10px;
@@ -163,6 +163,7 @@
   --downloads-stores-description: rgba(255, 255, 255, 0.95);
   --downloads-stores-store-gap: 10px;
   --downloads-stores-store-gap-mobile: 20px;
+  --downloads-placeholder-icon-size: 25px;
 
   --footer-bg: #252d3a;
   --footer-text: #FFFFFF;
@@ -170,6 +171,22 @@
   --footer-height: 60px;
   --footer-height-big: 90px;
   --footer-shadow-height: 20px;
+
+  --selectmenu-overflow-bg: rgba(0, 0, 0, 0.3);
+  --selectmenu-width-limit: 420px;
+  --selectmenu-padding: 9px;
+  --selectmenu-animation-size: 140px;
+  --selectmenu-animation-bottommargin: 40px;
+  --selectmenu-option-padding: 10px;
+  --selectmenu-option-background: #6a7ed63d;
+  --selectmenu-option-radius: 5px;
+  --selectmenu-option-gap: 9px;
+  --selectmenu-option-bottommargin: 10px;
+  --selectmenu-option-text: #FFFFFF;
+  --selectmenu-option-radio-border: 2px;
+  --selectmenu-option-radio-color: #FFFFFF;
+  --selectmenu-option-radio-size: 15px;
+  --selectmenu-option-radio-insider: 2px;
 
   --advantages-bg: #252d3a;
   --advantages-bottommargin: 50px;

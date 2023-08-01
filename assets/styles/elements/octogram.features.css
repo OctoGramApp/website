@@ -28,12 +28,7 @@ body > .page > #features > .features .list {
   gap: var(--features-list-gap);
   box-sizing: border-box;
   position: relative;
-}
-
-@supports (overflow-x: overlay) {
-  body > .page > #features > .features .list {  
-    overflow-x: overlay;
-  }
+  overflow: hidden;
 }
 
 @media screen and (max-width: 450px) {
@@ -81,6 +76,8 @@ body > .page > #features > .features .list .item {
   justify-content: center;
   flex-direction: column;
   gap: var(--features-item-gap);
+  opacity: var(--parallax-state);
+  transform: translateY(calc(150px - 150px * var(--parallax-state)));
 }
 
 body > .page > #features > .features .list .item.extra {
@@ -105,16 +102,10 @@ body > .page > #features > .features .list .item.extra .text {
   color: var(--features-item-extra-text);
 }
 
-body > .page > #features > .features .list .item.extra .button {
-  clip-path: circle(calc(var(--parallax-state) * 100%));
-}
-
 body > .page > #features > .features .list .item .image {
-  border-radius: calc(50% * calc(1.1 - var(--parallax-state)));
   overflow: hidden;
   box-shadow: 0 0 30px 0 #000000;
-  transform: scale(max(0.6, var(--parallax-state)));
-  opacity: var(--parallax-state);
+  border-radius: 10%;
 }
 
 body > .page > #features > .features .list .item .image img {

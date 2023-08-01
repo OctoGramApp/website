@@ -11,6 +11,7 @@
 @import url('elements/octogram.introduction.css');
 @import url('elements/octogram.monet.css');
 @import url('elements/octogram.pointer.css');
+@import url('elements/octogram.selectmenu.css');
 
 :root {
   scroll-behavior: smooth;
