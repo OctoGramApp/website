@@ -1,0 +1,133 @@
+body > .page > .select-overflow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+body > .page > .select-overflow::before {
+  position: absolute;
+}
+
+body > .page > .select-overflow:not(.closing) {
+  animation: var(--animations-duration) animateBackground forwards linear;
+}
+
+@keyframes animateBackground {
+  to {
+    background: var(--selectmenu-overflow-bg);
+  }
+}
+
+body > .page > .select-overflow.closing {
+  animation: var(--animations-duration) animateBackgroundRev forwards linear;
+}
+
+@keyframes animateBackgroundRev {
+  from {
+    background: var(--selectmenu-overflow-bg);
+  }
+}
+
+body > .page > .select-overflow .select-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  max-width: var(--selectmenu-width-limit);
+  padding: var(--selectmenu-padding);
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--background);
+}
+
+body > .page > .select-overflow:not(.closing) .select-menu {
+  animation: var(--animations-duration) expandMenu forwards cubic-bezier(0.42, 0, 0, 1.03);
+}
+
+@keyframes expandMenu {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+body > .page > .select-overflow.closing .select-menu {
+  animation: var(--animations-duration) expandMenuRev forwards cubic-bezier(0.42, 0, 0, 1.03);
+}
+
+@keyframes expandMenuRev {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+body > .page > .select-overflow .select-menu .animation {
+  width: var(--selectmenu-animation-size);
+  height: var(--selectmenu-animation-size);
+  margin-bottom: var(--selectmenu-animation-bottommargin);
+}
+
+body > .page > .select-overflow .select-menu .option {
+  width: 100%;
+  padding: var(--selectmenu-option-padding);
+  background: var(--selectmenu-option-background);
+  border-radius: var(--selectmenu-option-radius);
+  color: var(--selectmenu-option-text);
+  gap: var(--selectmenu-option-gap);
+  margin-bottom: var(--selectmenu-option-bottommargin);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2em;
+  transform: translateX(100%);
+  animation: var(--animations-duration) appearOption calc(var(--id) * 0.05s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+}
+
+@keyframes appearOption {
+  to {
+    transform: translateX(0);
+  }
+}
+
+body > .page > .select-overflow .select-menu .option .radio {
+  width: var(--selectmenu-option-radio-size);
+  height: var(--selectmenu-option-radio-size);
+  border-radius: 50%;
+  border: var(--selectmenu-option-radio-border) solid var(--selectmenu-option-radio-color);
+  position: relative;
+  overflow: hidden;
+  transform: scale(0);
+  animation: var(--animations-duration) upgradeRadio calc(var(--id) * 0.15s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+}
+
+@keyframes upgradeRadio {
+  to {
+    transform: scale(1);
+  }
+}
+
+body > .page > .select-overflow .select-menu .option .radio::after {
+  content: "";
+  position: absolute;
+  background: var(--selectmenu-option-radio-color);
+  border-radius: 50%;
+  transform: scale(0.6);
+  opacity: 0;
+  top: var(--selectmenu-option-radio-insider);
+  left: var(--selectmenu-option-radio-insider);
+  width: calc(100% - var(--selectmenu-option-radio-insider) * 2);
+  height: calc(100% - var(--selectmenu-option-radio-insider) * 2);
+  transition: var(--animations-duration) opacity, var(--animations-duration) transform;
+}
+
+body > .page > .select-overflow .select-menu .option .radio.selected::after {
+  transform: scale(1);
+  opacity: 1;
+}
