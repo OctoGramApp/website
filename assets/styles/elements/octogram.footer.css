@@ -148,7 +148,7 @@ body > .page > .footer .links .single-link-container .link:hover .icon {
 }
 
 body > .page > .footer .links .single-link-container .link .text {
-  z-index: 4;
+  z-index: 0;
   position: relative;
   background: var(--footer-bg);
   width: fit-content;
