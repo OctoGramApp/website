@@ -35,6 +35,19 @@ body > .page > .card .content .descriptor .title {
   color: var(--dcstatus-title);
   font-size: 1.3em;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+body > .page > .card .content .descriptor .title .badge {
+  padding-inline: var(--dcstatus-title-badge-paddinginline);
+  padding-block: var(--dcstatus-title-badge-paddingblock);
+  background: var(--dcstatus-title-badge-bg);
+  color: var(--dcstatus-title-badge-text);
+  border-radius: var(--dcstatus-title-badge-radius);
+  font-size: 0.6em;
 }
 
 body > .page > .card .content .descriptor .description {
@@ -94,6 +107,59 @@ body > .page > .card .content .descriptor .description .pending {
 body > .page > .card .content .descriptor .description:not(.definite) .pending {
   transform: scale(0.9);
   opacity: 0;
+}
+
+body > .page > .card .content .body {
+  position: relative;
+  margin-top: var(--dcstatus-body-topmargin);
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 950px) {
+  body > .page > .card .content .body  {
+    flex-direction: column;
+  }
+}
+
+body > .page > .card .content .body .message {
+  position: relative;
+  color: var(--dcstatus-body-text);
+  padding-left: var(--dcstatus-body-paddingleft);
+  flex: 1;
+}
+
+body > .page > .card .content .body .message:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--dcstatus-body-text-border-width);
+  background: var(--dcstatus-body-text-border-color);
+  border-radius: var(--dcstatus-body-text-border-radius);
+}
+
+body > .page > .card .content .body .message .bold {
+  font-weight: 600;
+}
+
+body > .page > .card .content .body .message .code {
+  background: var(--dcstatus-body-text-code-bg);
+  padding: var(--dcstatus-body-text-code-padding);
+  border-radius: var(--dcstatus-body-text-code-radius);
+}
+
+body > .page > .card .content .body .download {
+  width: 100%;
+  max-width: 300px;
+}
+
+@media screen and (max-width: 950px) {
+  body > .page > .card .content .body .download {
+    margin-top: 20px;
+    max-width: none;
+  }
 }
 
 body > .page > .card .content .datacenters {

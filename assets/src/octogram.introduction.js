@@ -42,6 +42,20 @@ window.addEventListener('load', () => {
     }, 3000);
   }
 
+  const footerLinks = document.querySelectorAll('body > .page > .footer .links .single-link-container');
+  for(const link of footerLinks) {
+    link.addEventListener('click', () => {
+      if (!link.classList.contains('expanded')) {
+        for(const links of footerLinks) {
+          if (links.classList.contains('expanded')) {
+            links.classList.remove('expanded');
+          }
+        }
+        link.classList.add('expanded');
+      }
+    });
+  }
+
   const currentYearItem = document.querySelector('body > .page > .footer .text #yeardate');
   if (currentYearItem != null) {
     const currentYear = new Date().getFullYear();

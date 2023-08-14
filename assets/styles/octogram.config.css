@@ -52,6 +52,11 @@
   --dcstatus-bg: #1d2733;
   --dcstatus-descriptorgap-mobile: 5px;
   --dcstatus-title: #FFFFFF;
+  --dcstatus-title-badge-bg: #FFFFFF;
+  --dcstatus-title-badge-text: #000000;
+  --dcstatus-title-badge-radius: 4px;
+  --dcstatus-title-badge-paddinginline: 3px;
+  --dcstatus-title-badge-paddingblock: 3px;
   --dcstatus-description: rgba(255, 255, 255, 0.8);
   --dcstatus-description-gap: 5px;
   --dcstatus-description-progress-size: 20px;
@@ -86,6 +91,15 @@
   --dcstatus-row-expanded-indicator-separator-rotate: 35deg;
   --dcstatus-row-expanded-indicator-separator-icon: 22px;
   --dcstatus-row-expanded-indicator-separator-rightpos: 35px;
+  --dcstatus-body-topmargin: 20px;
+  --dcstatus-body-text: rgba(255, 255, 255, 0.9);
+  --dcstatus-body-text-border-color: rgba(255, 255, 255, 0.9);
+  --dcstatus-body-text-border-width: 3px;
+  --dcstatus-body-text-border-radius: 10px;
+  --dcstatus-body-text-code-bg: #151e27;
+  --dcstatus-body-text-code-padding: 3px;
+  --dcstatus-body-text-code-radius: 5px;
+  --dcstatus-body-paddingleft: 20px;
 
   --features-title: #FFFFFF;
   --features-title-gap: 20px;
@@ -144,7 +158,17 @@
   --downloads-padding: 30px;
   --downloads-radius: 5px;
   --downloads-gap: 20px;
-  --downloads-files-width: 265px;
+  --downloads-files-width: 375px;
+  --downloads-files-padding: 17px;
+  --downloads-files-bg: rgba(106, 124, 214, 0.2);
+  --downloads-files-radius: 10px;
+  --downloads-files-icon-size: 70px;
+  --downloads-files-icon-rightgap: 15px;
+  --downloads-files-icon-size-font: 15px;
+  --downloads-files-icon-size-color: #FFFFFF;
+  --downloads-files-title-size: 20px;
+  --downloads-files-title-color: #FFFFFF;
+  --downloads-files-description-color: rgba(255, 255, 255, 0.8);
   --downloads-select-paddingblock: 10px;
   --downloads-select-bottommargin: 6px;
   --downloads-separator: rgba(255, 255, 255, 0.2);
@@ -167,12 +191,18 @@
 
   --footer-bg: #252d3a;
   --footer-text: #FFFFFF;
-  --footer-text-link: #6a7ed6;
-  --footer-height: 60px;
-  --footer-height-big: 90px;
+  --footer-text-link: #547ed6;
   --footer-shadow-height: 20px;
 
-  --selectmenu-overflow-bg: rgba(0, 0, 0, 0.3);
+  --selectmenu-select-bg: rgba(0, 0, 0, 0.6);
+  --selectmenu-select-text: #FFFFFF;
+  --selectmenu-select-paddinginline: 17px;
+  --selectmenu-select-paddinginline-hover: 11px;
+  --selectmenu-select-paddinginline-active: 0;
+  --selectmenu-select-paddingblock: 15px;
+  --selectmenu-select-radius: 8px;
+  --selectmenu-select-bottommargin: 12px;
+  --selectmenu-overflow-bg: rgba(0, 0, 0, 0.8);
   --selectmenu-width-limit: 420px;
   --selectmenu-padding: 9px;
   --selectmenu-animation-size: 140px;

@@ -1,5 +1,5 @@
 body > .page > .error {
-  height: calc(100vh - var(--header-height) - var(--footer-height));
+  height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;
