@@ -7,6 +7,12 @@ body > .page .button {
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
+  transition: var(--animations-duration) opacity;
+}
+
+body > .page .button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 body > .page .button.big {

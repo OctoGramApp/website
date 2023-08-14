@@ -1,7 +1,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>OctoGram - DC Status</title>
+    <title>OctoGram - Changelog</title>
     <link rel="icon" href="assets/icons/applogo.tabicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/styles/octogram.main.css">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -17,12 +17,12 @@
     <meta property="tg:channel" content="@OctoGramApp">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://octogram.site/">
-    <meta property="og:title" content="DC Status | OctoGram">
-    <meta property="og:description" content="Check the status of Telegram's data centers. More informations on telegram.org.">
+    <meta property="og:title" content="Changelog | OctoGram">
+    <meta property="og:description" content="Stay up-to-date on the latest versions of your favorite client.">
     <meta property="og:image" content="/assets/images/applogo.preview.jpg">
     <meta property="twitter:url" content="https://octogram.site/">
-    <meta property="twitter:title" content="DC Status | OctoGram">
-    <meta property="twitter:description" content="Check the status of Telegram's data centers. More informations on telegram.org.">
+    <meta property="twitter:title" content="Changelog | OctoGram">
+    <meta property="twitter:description" content="Stay up-to-date on the latest versions of your favorite client.">
     <meta property="twitter:image" content="/assets/images/applogo.preview.jpg">
   </head>
   <body>
@@ -71,6 +71,11 @@
                 Download
               </div>
             </a>
+            <a href="/dcstatus" class="button secondary">
+              <div class="text">
+                DC Status
+              </div>
+            </a>
             <a href="https://github.com/OctoGramApp/OctoGram" target="_blank" class="button secondary">
               <div class="text">
                 Source
@@ -83,37 +88,29 @@
         <div class="content">
           <div class="message">
             <div class="sticker">
-              <img src="assets/animations/dcstatusAnimation.gif">
+              <img src="assets/animations/changelogAnimation.gif">
             </div>
             <div class="title">
-              Check the Telegram's DataCenter status in real time.
-            </div>
-            <div class="button accent">
-              Reload status
+              All latest beta and stable client versions
             </div>
           </div>
         </div>
       </div>
-      <div class="card server">
+      <div class="card changelog">
         <div class="content">
           <div class="descriptor">
             <div class="title">
-              Current status
+              Loading versions...
             </div>
             <div class="description">
-              <div class="pending">
-                Next update in
-                <span class="seconds">29</span>
-                seconds...
-              </div>
               <svg xmlns="http://www.w3.org/2000/svg">
                 <circle cx="10" cy="10" r="8" stroke-linecap="round" />
               </svg>
             </div>
           </div>
-          <div class="datacenters"></div>
         </div>
       </div>
+      <div class="cards-container"></div>
       <noscript>
         <div class="error">
           <div class="message">
@@ -212,6 +209,7 @@
       </div>
     </div>
     <script src="assets/src/octogram.introduction.js"></script>
-    <script src="assets/src/octogram.dcstatus.js"></script>
+    <script src="assets/src/octogram.changelog.js"></script>
+    <script src="assets/src/octogram.utils.js"></script>
   </body>
 </html>

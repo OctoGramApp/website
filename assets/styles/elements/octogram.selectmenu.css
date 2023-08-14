@@ -1,3 +1,31 @@
+body > .page .select {
+  width: 100%;
+  background: var(--selectmenu-select-bg);
+  color: var(--selectmenu-select-text);
+  padding-inline: var(--selectmenu-select-paddinginline);
+  padding-block: var(--selectmenu-select-paddingblock);
+  border-radius: var(--selectmenu-select-radius);
+  margin-bottom: var(--selectmenu-select-bottommargin);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: var(--animations-duration) padding-inline;
+}
+
+body > .page .select .icon {
+  filter: var(--icons-transform);
+}
+
+body > .page .select:hover {
+  padding-inline: var(--selectmenu-select-paddinginline-hover);
+}
+
+body > .page .select:active {
+  padding-inline: var(--selectmenu-select-paddinginline-active);
+}
+
 body > .page > .select-overflow {
   position: fixed;
   top: 0;
@@ -130,4 +158,13 @@ body > .page > .select-overflow .select-menu .option .radio::after {
 body > .page > .select-overflow .select-menu .option .radio.selected::after {
   transform: scale(1);
   opacity: 1;
+}
+
+body > .page > .select-overflow .select-menu .option .optiontitle {
+  flex: 1;
+}
+
+body > .page > .select-overflow .select-menu .option .description {
+  font-size: 0.8em;
+  opacity: 0.8;
 }
