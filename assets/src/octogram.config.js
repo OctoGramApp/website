@@ -27,47 +27,54 @@ const DC_ASSOC = [
 		86, 886, 91, 93, 94, 95, 960, 975, 976, 977
 	]
 ];
-
 const DC_DESC = [
   [
     376,
     "Andorra",
-    "AD"
+    "AD",
+    "XX XX XX"
   ],
   [
     971,
     "United Arab Emirates",
-    "AE"
+    "AE",
+    "XX XXX XXXX"
   ],
   [
     93,
     "Afghanistan",
-    "AF"
+    "AF",
+    "XXX XXX XXX"
   ],
   [
     1268,
     "Antigua & Barbuda",
-    "AG"
+    "AG",
+    "XXX XXXX"
   ],
   [
     1264,
     "Anguilla",
-    "AI"
+    "AI",
+    "XXX XXXX"
   ],
   [
     355,
     "Albania",
-    "AL"
+    "AL",
+    "XX XXX XXXX"
   ],
   [
     374,
     "Armenia",
-    "AM"
+    "AM",
+    "XX XXX XXX"
   ],
   [
     244,
     "Angola",
-    "AO"
+    "AO",
+    "XXX XXX XXX"
   ],
   [
     54,
@@ -77,52 +84,62 @@ const DC_DESC = [
   [
     1684,
     "American Samoa",
-    "AS"
+    "AS",
+    "XXX XXXX"
   ],
   [
     43,
     "Austria",
-    "AT"
+    "AT",
+    "XXX XXXXXX"
   ],
   [
     61,
     "Australia",
-    "AU"
+    "AU",
+    "X XXXX XXXX"
   ],
   [
     297,
     "Aruba",
-    "AW"
+    "AW",
+    "XXX XXXX"
   ],
   [
     994,
     "Azerbaijan",
-    "AZ"
+    "AZ",
+    "XX XXX XXXX"
   ],
   [
     387,
     "Bosnia & Herzegovina",
-    "BA"
+    "BA",
+    "XX XXX XXX"
   ],
   [
     1246,
     "Barbados",
-    "BB"
+    "BB",
+    "XXX XXXX"
   ],
   [
     880,
     "Bangladesh",
-    "BD"
+    "BD",
+    "XX XXX XXX"
   ],
   [
     32,
     "Belgium",
-    "BE"
+    "BE",
+    "XXX XX XX XX"
   ],
   [
     226,
     "Burkina Faso",
-    "BF"
+    "BF",
+    "XX XX XX XX"
   ],
   [
     359,
@@ -132,32 +149,38 @@ const DC_DESC = [
   [
     973,
     "Bahrain",
-    "BH"
+    "BH",
+    "XXXX XXXX"
   ],
   [
     257,
     "Burundi",
-    "BI"
+    "BI",
+    "XX XX XXXX"
   ],
   [
     229,
     "Benin",
-    "BJ"
+    "BJ",
+    "XX XXX XXX"
   ],
   [
     1441,
     "Bermuda",
-    "BM"
+    "BM",
+    "XXX XXXX"
   ],
   [
     673,
     "Brunei Darussalam",
-    "BN"
+    "BN",
+    "XXX XXXX"
   ],
   [
     591,
     "Bolivia",
-    "BO"
+    "BO",
+    "X XXX XXXX"
   ],
   [
     599,
@@ -167,27 +190,32 @@ const DC_DESC = [
   [
     55,
     "Brazil",
-    "BR"
+    "BR",
+    "XX XXXXX XXXX"
   ],
   [
     1242,
     "Bahamas",
-    "BS"
+    "BS",
+    "XXX XXXX"
   ],
   [
     975,
     "Bhutan",
-    "BT"
+    "BT",
+    "XX XXX XXX"
   ],
   [
     267,
     "Botswana",
-    "BW"
+    "BW",
+    "XX XXX XXX"
   ],
   [
     375,
     "Belarus",
-    "BY"
+    "BY",
+    "XX XXX XXXX"
   ],
   [
     501,
@@ -197,32 +225,38 @@ const DC_DESC = [
   [
     1,
     "Canada",
-    "CA"
+    "CA",
+    "XXX XXX XXXX"
   ],
   [
     243,
     "Congo (Dem. Rep.)",
-    "CD"
+    "CD",
+    "XX XXX XXXX"
   ],
   [
     236,
     "Central African Rep.",
-    "CF"
+    "CF",
+    "XX XX XX XX"
   ],
   [
     242,
     "Congo (Rep.)",
-    "CG"
+    "CG",
+    "XX XXX XXXX"
   ],
   [
     41,
     "Switzerland",
-    "CH"
+    "CH",
+    "XX XXX XXXX"
   ],
   [
     225,
     "Côte d'Ivoire",
-    "CI"
+    "CI",
+    "XX XX XX XXXX"
   ],
   [
     682,
@@ -232,37 +266,44 @@ const DC_DESC = [
   [
     56,
     "Chile",
-    "CL"
+    "CL",
+    "X XXXX XXXX"
   ],
   [
     237,
     "Cameroon",
-    "CM"
+    "CM",
+    "XXXX XXXX"
   ],
   [
     86,
     "China",
-    "CN"
+    "CN",
+    "XXX XXXX XXXX"
   ],
   [
     57,
     "Colombia",
-    "CO"
+    "CO",
+    "XXX XXX XXXX"
   ],
   [
     506,
     "Costa Rica",
-    "CR"
+    "CR",
+    "XXXX XXXX"
   ],
   [
     53,
     "Cuba",
-    "CU"
+    "CU",
+    "X XXX XXXX"
   ],
   [
     238,
     "Cape Verde",
-    "CV"
+    "CV",
+    "XXX XXXX"
   ],
   [
     599,
@@ -272,12 +313,14 @@ const DC_DESC = [
   [
     357,
     "Cyprus",
-    "CY"
+    "CY",
+    "XXXX XXXX"
   ],
   [
     420,
     "Czech Republic",
-    "CZ"
+    "CZ",
+    "XXX XXX XXX"
   ],
   [
     49,
@@ -287,67 +330,80 @@ const DC_DESC = [
   [
     253,
     "Djibouti",
-    "DJ"
+    "DJ",
+    "XX XX XX XX"
   ],
   [
     45,
     "Denmark",
-    "DK"
+    "DK",
+    "XXXX XXXX"
   ],
   [
     1767,
     "Dominica",
-    "DM"
+    "DM",
+    "XXX XXXX"
   ],
   [
     1809,
     "Dominican Rep.",
-    "DO"
+    "DO",
+    "XXX XXXX"
   ],
   [
     1829,
     "Dominican Rep.",
-    "DO"
+    "DO",
+    "XXX XXXX"
   ],
   [
     1849,
     "Dominican Rep.",
-    "DO"
+    "DO",
+    "XXX XXXX"
   ],
   [
     213,
     "Algeria",
-    "DZ"
+    "DZ",
+    "XXX XX XX XX"
   ],
   [
     593,
     "Ecuador",
-    "EC"
+    "EC",
+    "XX XXX XXXX"
   ],
   [
     372,
     "Estonia",
-    "EE"
+    "EE",
+    "XXXX XXX"
   ],
   [
     20,
     "Egypt",
-    "EG"
+    "EG",
+    "XX XXXX XXXX"
   ],
   [
     291,
     "Eritrea",
-    "ER"
+    "ER",
+    "X XXX XXX"
   ],
   [
     34,
     "Spain",
-    "ES"
+    "ES",
+    "XXX XXX XXX"
   ],
   [
     251,
     "Ethiopia",
-    "ET"
+    "ET",
+    "XX XXX XXX"
   ],
   [
     358,
@@ -357,7 +413,8 @@ const DC_DESC = [
   [
     679,
     "Fiji",
-    "FJ"
+    "FJ",
+    "XXX XXXX"
   ],
   [
     500,
@@ -372,37 +429,50 @@ const DC_DESC = [
   [
     298,
     "Faroe Islands",
-    "FO"
+    "FO",
+    "XXX XXX"
   ],
   [
     33,
     "France",
-    "FR"
+    "FR",
+    "X XX XX XX XX"
   ],
   [
     888,
     "Anonymous Numbers",
-    "FT"
+    "FT",
+    "8 XXX"
+  ],
+  [
+    888,
+    "Anonymous Numbers",
+    "FT",
+    "XXXX XXXX"
   ],
   [
     241,
     "Gabon",
-    "GA"
+    "GA",
+    "X XX XX XX"
   ],
   [
     44,
     "United Kingdom",
-    "GB"
+    "GB",
+    "XXXX XXXXXX"
   ],
   [
     1473,
     "Grenada",
-    "GD"
+    "GD",
+    "XXX XXXX"
   ],
   [
     995,
     "Georgia",
-    "GE"
+    "GE",
+    "XXX XXX XXX"
   ],
   [
     594,
@@ -412,177 +482,212 @@ const DC_DESC = [
   [
     233,
     "Ghana",
-    "GH"
+    "GH",
+    "XX XXX XXXX"
   ],
   [
     350,
     "Gibraltar",
-    "GI"
+    "GI",
+    "XXXX XXXX"
   ],
   [
     299,
     "Greenland",
-    "GL"
+    "GL",
+    "XXX XXX"
   ],
   [
     220,
     "Gambia",
-    "GM"
+    "GM",
+    "XXX XXXX"
   ],
   [
     224,
     "Guinea",
-    "GN"
+    "GN",
+    "XXX XXX XXX"
   ],
   [
     590,
     "Guadeloupe",
-    "GP"
+    "GP",
+    "XXX XX XX XX"
   ],
   [
     240,
     "Equatorial Guinea",
-    "GQ"
+    "GQ",
+    "XXX XXX XXX"
   ],
   [
     30,
     "Greece",
-    "GR"
+    "GR",
+    "XXX XXX XXXX"
   ],
   [
     502,
     "Guatemala",
-    "GT"
+    "GT",
+    "X XXX XXXX"
   ],
   [
     1671,
     "Guam",
-    "GU"
+    "GU",
+    "XXX XXXX"
   ],
   [
     245,
     "Guinea-Bissau",
-    "GW"
+    "GW",
+    "XXX XX XX XX"
   ],
   [
     592,
     "Guyana",
-    "GY"
+    "GY",
+    "5926XXXXXX"
   ],
   [
     852,
     "Hong Kong",
-    "HK"
+    "HK",
+    "X XXX XXXX"
   ],
   [
     504,
     "Honduras",
-    "HN"
+    "HN",
+    "XXXX XXXX"
   ],
   [
     385,
     "Croatia",
-    "HR"
+    "HR",
+    "XX XXX XXX"
   ],
   [
     509,
     "Haiti",
-    "HT"
+    "HT",
+    "XXXX XXXX"
   ],
   [
     36,
     "Hungary",
-    "HU"
+    "HU",
+    "XXX XXX XXX"
   ],
   [
     62,
     "Indonesia",
-    "ID"
+    "ID",
+    "XXX XXXXXX"
   ],
   [
     353,
     "Ireland",
-    "IE"
+    "IE",
+    "XX XXX XXXX"
   ],
   [
     972,
     "Israel",
-    "IL"
+    "IL",
+    "XX XXX XXXX"
   ],
   [
     91,
     "India",
-    "IN"
+    "IN",
+    "XXXXX XXXXX"
   ],
   [
     246,
     "Diego Garcia",
-    "IO"
+    "IO",
+    "XXX XXXX"
   ],
   [
     964,
     "Iraq",
-    "IQ"
+    "IQ",
+    "XXX XXX XXXX"
   ],
   [
     98,
     "Iran",
-    "IR"
+    "IR",
+    "XXX XXX XXXX"
   ],
   [
     354,
     "Iceland",
-    "IS"
+    "IS",
+    "XXX XXXX"
   ],
   [
     39,
     "Italy",
-    "IT"
+    "IT",
+    "XXX XXX XXXX"
   ],
   [
     1876,
     "Jamaica",
-    "JM"
+    "JM",
+    "XXX XXXX"
   ],
   [
     962,
     "Jordan",
-    "JO"
+    "JO",
+    "X XXXX XXXX"
   ],
   [
     81,
     "Japan",
-    "JP"
+    "JP",
+    "XX XXXX XXXX"
   ],
   [
     254,
     "Kenya",
-    "KE"
+    "KE",
+    "XXX XXX XXX"
   ],
   [
     996,
     "Kyrgyzstan",
-    "KG"
+    "KG",
+    "XXX XXXXXX"
   ],
   [
     855,
     "Cambodia",
-    "KH"
+    "KH",
+    "XX XXX XXX"
   ],
   [
     686,
     "Kiribati",
-    "KI"
+    "KI",
+    "XXXX XXXX"
   ],
   [
     269,
     "Comoros",
-    "KM"
+    "KM",
+    "XXX XXXX"
   ],
   [
     1869,
     "Saint Kitts & Nevis",
-    "KN"
+    "KN",
+    "XXX XXXX"
   ],
   [
     850,
@@ -592,27 +697,32 @@ const DC_DESC = [
   [
     82,
     "South Korea",
-    "KR"
+    "KR",
+    "XX XXXX XXX"
   ],
   [
     965,
     "Kuwait",
-    "KW"
+    "KW",
+    "XXXX XXXX"
   ],
   [
     1345,
     "Cayman Islands",
-    "KY"
+    "KY",
+    "XXX XXXX"
   ],
   [
     7,
     "Kazakhstan",
-    "KZ"
+    "KZ",
+    "XXX XXX XX XX"
   ],
   [
     856,
     "Laos",
-    "LA"
+    "LA",
+    "XX XX XXX XXX"
   ],
   [
     961,
@@ -622,62 +732,74 @@ const DC_DESC = [
   [
     1758,
     "Saint Lucia",
-    "LC"
+    "LC",
+    "XXX XXXX"
   ],
   [
     423,
     "Liechtenstein",
-    "LI"
+    "LI",
+    "XXX XXXX"
   ],
   [
     94,
     "Sri Lanka",
-    "LK"
+    "LK",
+    "XX XXX XXXX"
   ],
   [
     231,
     "Liberia",
-    "LR"
+    "LR",
+    "XX XXX XXXX"
   ],
   [
     266,
     "Lesotho",
-    "LS"
+    "LS",
+    "XX XXX XXX"
   ],
   [
     370,
     "Lithuania",
-    "LT"
+    "LT",
+    "XXX XXXXX"
   ],
   [
     352,
     "Luxembourg",
-    "LU"
+    "LU",
+    "XXX XXX XXX"
   ],
   [
     371,
     "Latvia",
-    "LV"
+    "LV",
+    "XXX XXXXX"
   ],
   [
     218,
     "Libya",
-    "LY"
+    "LY",
+    "XX XXX XXXX"
   ],
   [
     212,
     "Morocco",
-    "MA"
+    "MA",
+    "XX XXX XXXX"
   ],
   [
     377,
     "Monaco",
-    "MC"
+    "MC",
+    "XXXX XXXX"
   ],
   [
     373,
     "Moldova",
-    "MD"
+    "MD",
+    "XX XXX XXX"
   ],
   [
     382,
@@ -687,7 +809,8 @@ const DC_DESC = [
   [
     261,
     "Madagascar",
-    "MG"
+    "MG",
+    "XX XX XXX XX"
   ],
   [
     692,
@@ -697,12 +820,14 @@ const DC_DESC = [
   [
     389,
     "North Macedonia",
-    "MK"
+    "MK",
+    "XX XXXXXX"
   ],
   [
     223,
     "Mali",
-    "ML"
+    "ML",
+    "XXXX XXXX"
   ],
   [
     95,
@@ -712,17 +837,20 @@ const DC_DESC = [
   [
     976,
     "Mongolia",
-    "MN"
+    "MN",
+    "XX XX XXXX"
   ],
   [
     853,
     "Macau",
-    "MO"
+    "MO",
+    "XXXX XXXX"
   ],
   [
     1670,
     "Northern Mariana Islands",
-    "MP"
+    "MP",
+    "XXX XXXX"
   ],
   [
     596,
@@ -732,32 +860,38 @@ const DC_DESC = [
   [
     222,
     "Mauritania",
-    "MR"
+    "MR",
+    "XXXX XXXX"
   ],
   [
     1664,
     "Montserrat",
-    "MS"
+    "MS",
+    "XXX XXXX"
   ],
   [
     356,
     "Malta",
-    "MT"
+    "MT",
+    "XX XX XX XX"
   ],
   [
     230,
     "Mauritius",
-    "MU"
+    "MU",
+    "XXXX XXXX"
   ],
   [
     960,
     "Maldives",
-    "MV"
+    "MV",
+    "XXX XXXX"
   ],
   [
     265,
     "Malawi",
-    "MW"
+    "MW",
+    "XX XXX XXXX"
   ],
   [
     52,
@@ -772,12 +906,14 @@ const DC_DESC = [
   [
     258,
     "Mozambique",
-    "MZ"
+    "MZ",
+    "XX XXX XXXX"
   ],
   [
     264,
     "Namibia",
-    "NA"
+    "NA",
+    "XX XXX XXXX"
   ],
   [
     687,
@@ -787,7 +923,8 @@ const DC_DESC = [
   [
     227,
     "Niger",
-    "NE"
+    "NE",
+    "XX XX XX XX"
   ],
   [
     672,
@@ -797,27 +934,32 @@ const DC_DESC = [
   [
     234,
     "Nigeria",
-    "NG"
+    "NG",
+    "XX XXXX XXXX"
   ],
   [
     505,
     "Nicaragua",
-    "NI"
+    "NI",
+    "XXXX XXXX"
   ],
   [
     31,
     "Netherlands",
-    "NL"
+    "NL",
+    "X XX XX XX XX"
   ],
   [
     47,
     "Norway",
-    "NO"
+    "NO",
+    "XXX XX XXX"
   ],
   [
     977,
     "Nepal",
-    "NP"
+    "NP",
+    "XX XXXX XXXX"
   ],
   [
     674,
@@ -832,22 +974,26 @@ const DC_DESC = [
   [
     64,
     "New Zealand",
-    "NZ"
+    "NZ",
+    "XXXX XXXX"
   ],
   [
     968,
     "Oman",
-    "OM"
+    "OM",
+    "XXXX XXXX"
   ],
   [
     507,
     "Panama",
-    "PA"
+    "PA",
+    "XXXX XXXX"
   ],
   [
     51,
     "Peru",
-    "PE"
+    "PE",
+    "XXX XXX XXX"
   ],
   [
     689,
@@ -862,17 +1008,20 @@ const DC_DESC = [
   [
     63,
     "Philippines",
-    "PH"
+    "PH",
+    "XXX XXX XXXX"
   ],
   [
     92,
     "Pakistan",
-    "PK"
+    "PK",
+    "XXX XXX XXXX"
   ],
   [
     48,
     "Poland",
-    "PL"
+    "PL",
+    "XXX XXX XXX"
   ],
   [
     508,
@@ -882,22 +1031,26 @@ const DC_DESC = [
   [
     1787,
     "Puerto Rico",
-    "PR"
+    "PR",
+    "XXX XXXX"
   ],
   [
     1939,
     "Puerto Rico",
-    "PR"
+    "PR",
+    "XXX XXXX"
   ],
   [
     970,
     "Palestine",
-    "PS"
+    "PS",
+    "XXX XX XXXX"
   ],
   [
     351,
     "Portugal",
-    "PT"
+    "PT",
+    "XXX XXX XXX"
   ],
   [
     680,
@@ -907,42 +1060,50 @@ const DC_DESC = [
   [
     595,
     "Paraguay",
-    "PY"
+    "PY",
+    "XXX XXX XXX"
   ],
   [
     974,
     "Qatar",
-    "QA"
+    "QA",
+    "XX XXX XXX"
   ],
   [
     262,
     "Réunion",
-    "RE"
+    "RE",
+    "XXX XXX XXX"
   ],
   [
     40,
     "Romania",
-    "RO"
+    "RO",
+    "XXX XXX XXX"
   ],
   [
     381,
     "Serbia",
-    "RS"
+    "RS",
+    "XX XXX XXX"
   ],
   [
     7,
     "Russian Federation",
-    "RU"
+    "RU",
+    "XXX XXX XXXX"
   ],
   [
     250,
     "Rwanda",
-    "RW"
+    "RW",
+    "XXX XXX XXX"
   ],
   [
     966,
     "Saudi Arabia",
-    "SA"
+    "SA",
+    "XX XXX XXXX"
   ],
   [
     677,
@@ -952,22 +1113,26 @@ const DC_DESC = [
   [
     248,
     "Seychelles",
-    "SC"
+    "SC",
+    "X XX XX XX"
   ],
   [
     249,
     "Sudan",
-    "SD"
+    "SD",
+    "XX XXX XXXX"
   ],
   [
     46,
     "Sweden",
-    "SE"
+    "SE",
+    "XX XXX XXXX"
   ],
   [
     65,
     "Singapore",
-    "SG"
+    "SG",
+    "XXXX XXXX"
   ],
   [
     247,
@@ -977,22 +1142,26 @@ const DC_DESC = [
   [
     290,
     "Saint Helena",
-    "SH"
+    "SH",
+    "XX XXX"
   ],
   [
     386,
     "Slovenia",
-    "SI"
+    "SI",
+    "XX XXX XXX"
   ],
   [
     421,
     "Slovakia",
-    "SK"
+    "SK",
+    "XXX XXX XXX"
   ],
   [
     232,
     "Sierra Leone",
-    "SL"
+    "SL",
+    "XX XXX XXX"
   ],
   [
     378,
@@ -1002,72 +1171,86 @@ const DC_DESC = [
   [
     221,
     "Senegal",
-    "SN"
+    "SN",
+    "XX XXX XXXX"
   ],
   [
     252,
     "Somalia",
-    "SO"
+    "SO",
+    "XX XXX XXX"
   ],
   [
     597,
     "Suriname",
-    "SR"
+    "SR",
+    "XXX XXXX"
   ],
   [
     211,
     "South Sudan",
-    "SS"
+    "SS",
+    "XX XXX XXXX"
   ],
   [
     239,
     "São Tomé & Príncipe",
-    "ST"
+    "ST",
+    "XX XXXXX"
   ],
   [
     503,
     "El Salvador",
-    "SV"
+    "SV",
+    "XXXX XXXX"
   ],
   [
     1721,
     "Sint Maarten",
-    "SX"
+    "SX",
+    "XXX XXXX"
   ],
   [
     963,
     "Syria",
-    "SY"
+    "SY",
+    "XXX XXX XXX"
   ],
   [
     268,
     "Eswatini",
-    "SZ"
+    "SZ",
+    "XXXX XXXX"
   ],
   [
     1649,
     "Turks & Caicos Islands",
-    "TC"
+    "TC",
+    "XXX XXXX"
   ],
   [
     235,
     "Chad",
-    "TD"
+    "TD",
+    "XX XX XX XX"
   ],
   [
     228,
     "Togo",
-    "TG"
+    "TG",
+    "XX XXX XXX"
   ],
   [
     66,
     "Thailand",
-    "TH"
+    "TH",
+    "X XXXX XXXX"
   ],
   [
     992,
     "Tajikistan",
-    "TJ"
+    "TJ",
+    "XX XXX XXXX"
   ],
   [
     690,
@@ -1082,12 +1265,14 @@ const DC_DESC = [
   [
     993,
     "Turkmenistan",
-    "TM"
+    "TM",
+    "XX XXXXXX"
   ],
   [
     216,
     "Tunisia",
-    "TN"
+    "TN",
+    "XX XXX XXX"
   ],
   [
     676,
@@ -1097,12 +1282,14 @@ const DC_DESC = [
   [
     90,
     "Turkey",
-    "TR"
+    "TR",
+    "XXX XXX XXXX"
   ],
   [
     1868,
     "Trinidad & Tobago",
-    "TT"
+    "TT",
+    "XXX XXXX"
   ],
   [
     688,
@@ -1112,57 +1299,68 @@ const DC_DESC = [
   [
     886,
     "Taiwan",
-    "TW"
+    "TW",
+    "XXX XXX XXX"
   ],
   [
     255,
     "Tanzania",
-    "TZ"
+    "TZ",
+    "XX XXX XXXX"
   ],
   [
     380,
     "Ukraine",
-    "UA"
+    "UA",
+    "XX XXX XX XX"
   ],
   [
     256,
     "Uganda",
-    "UG"
+    "UG",
+    "XX XXX XXXX"
   ],
   [
     1,
     "USA",
-    "US"
+    "US",
+    "XXX XXX XXXX"
   ],
   [
     598,
     "Uruguay",
-    "UY"
+    "UY",
+    "X XXX XXXX"
   ],
   [
     998,
     "Uzbekistan",
-    "UZ"
+    "UZ",
+    "XX XXX XX XX"
   ],
   [
     1784,
     "Saint Vincent & the Grenadines",
-    "VC"
+    "VC",
+    "XXX XXXX"
   ],
   [
     58,
     "Venezuela",
-    "VE"
+    "VE",
+    "XXX XXX XXXX"
   ],
   [
     1284,
     "British Virgin Islands",
-    "VG"
+    "VG",
+    "XXX XXXX"
   ],
   [
     1340,
     "US Virgin Islands",
-    "VI"
+    "VI",
+    "XXX XXXX"
   ],
   [
     84,
@@ -1192,7 +1390,8 @@ const DC_DESC = [
   [
     383,
     "Kosovo",
-    "XK"
+    "XK",
+    "XXXX XXXX"
   ],
   [
     882,
@@ -1207,7 +1406,8 @@ const DC_DESC = [
   [
     967,
     "Yemen",
-    "YE"
+    "YE",
+    "XXX XXX XXX"
   ],
   [
     42,
@@ -1217,16 +1417,19 @@ const DC_DESC = [
   [
     27,
     "South Africa",
-    "ZA"
+    "ZA",
+    "XX XXX XXXX"
   ],
   [
     260,
     "Zambia",
-    "ZM"
+    "ZM",
+    "XX XXX XXXX"
   ],
   [
     263,
     "Zimbabwe",
-    "ZW"
+    "ZW",
+    "XX XXX XXXX"
   ]
 ];
