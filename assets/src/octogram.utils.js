@@ -29,37 +29,77 @@ function fixInjectionTags(text) {
   return text;
 }
 
-function parseCustomSelectMenu(element, availableOptions, callback) {
+function parseCustomSelectMenu({
+  element,
+  availableOptions,
+  callback,
+  onOpenCallback,
+  description,
+  replyWithoutWaiting = false,
+  isBig = false,
+  useCallbackWhenForceClose = true
+}) {
   let lastSelectedOption;
   let currentSelectedOption;
 
+  if (isBig) {
+    availableOptions.sort((a, b) => a.title[0].localeCompare(b.title[0]));
+  }
+
   element.addEventListener('click', (e) => {
+    if (typeof onOpenCallback != 'undefined') {
+      try {
+        onOpenCallback();
+      } catch(_) {}
+    }
+
     e.preventDefault();
     e.stopImmediatePropagation();
     let isClosing = false;
     let isOpening = true;
 
-    function closeSelectMenu() {
+    function closeSelectMenu(selectedAnOption) {
       if (!isClosing && !isOpening) {
         isClosing = true;
+        
+        const sendCallback = useCallbackWhenForceClose || selectedAnOption;
+
+        if (typeof lastSelectedOption != 'undefined' && replyWithoutWaiting && sendCallback) {
+          try {
+            callback(lastSelectedOption);
+          } catch(_) {}
+        }
 
         selectOverflow.classList.add('closing');
         selectOverflow.addEventListener('animationend', (e) => {
           if (e.target == selectOverflow || e.target == selectMenu) {
             selectOverflow.remove();
             
-            if (typeof lastSelectedOption != 'undefined') {
-              callback(lastSelectedOption);
+            if (typeof lastSelectedOption != 'undefined' && !replyWithoutWaiting && sendCallback) {
+              try {
+                callback(lastSelectedOption);
+              } catch(_) {}
             }
           }
         });
       }
     }
 
-    let i = 0;
+    let lastInitLetter = '';
+    let initLettersAssoc = {};
+
     const optionsFragment = document.createDocumentFragment();
-    for(const { id, title, description } of availableOptions) {
-      i++;
+    for(const [i, { id, title, description }] of Object.entries(availableOptions)) {
+      if (isBig && lastInitLetter != title[0].toUpperCase() && !initLettersAssoc[title[0].toUpperCase()]) {
+        lastInitLetter = title[0].toUpperCase();
+
+        const letterSeparator = document.createElement('div');
+        letterSeparator.classList.add('letter-separator');
+        letterSeparator.textContent = lastInitLetter;
+        optionsFragment.append(letterSeparator);
+
+        initLettersAssoc[lastInitLetter] = letterSeparator;
+      }
 
       const radioOption = document.createElement('div');
       radioOption.classList.add('radio');
@@ -71,7 +111,6 @@ function parseCustomSelectMenu(element, availableOptions, callback) {
 
       const option = document.createElement('div');
       option.classList.add('option');
-      option.style.setProperty('--id', i);
       option.addEventListener('click', () => {
         if (typeof currentSelectedOption != 'undefined') {
           currentSelectedOption.classList.remove('selected');
@@ -80,9 +119,17 @@ function parseCustomSelectMenu(element, availableOptions, callback) {
         radioOption.classList.add('selected');
         currentSelectedOption = radioOption;
         lastSelectedOption = id;
+        
+        if (isBig) {
+          closeSelectMenu(true);
+        }
       });
       option.appendChild(radioOption);
       option.appendChild(optionTitle);
+
+      if (!isBig) {
+        option.style.setProperty('--id', parseInt(i) + 1);
+      }
 
       if (lastSelectedOption == id) {
         radioOption.classList.add('selected');
@@ -105,21 +152,29 @@ function parseCustomSelectMenu(element, availableOptions, callback) {
 
     const selectButton = document.createElement('div');
     selectButton.classList.add('button', 'big', 'accent');
-    selectButton.addEventListener('click', closeSelectMenu);
+    selectButton.addEventListener('click', () => closeSelectMenu(true));
     selectButton.textContent = 'Select';
+
+    const hasDescription = typeof description == 'string';
+    const selectMenuDescription = document.createElement('div');
+    selectMenuDescription.classList.add('general-description');
+    selectMenuDescription.textContent = description ?? '';
 
     const selectMenu = document.createElement('div');
     selectMenu.classList.add('select-menu');
+    selectMenu.classList.toggle('is-big', isBig);
     selectMenu.addEventListener('click', (e) => {
       e.stopImmediatePropagation();
     });
     selectMenu.appendChild(selectAnimation);
+    isBig && hasDescription && selectMenu.appendChild(selectMenuDescription);
     selectMenu.appendChild(optionsFragment);
-    selectMenu.appendChild(selectButton);
+    !isBig && selectMenu.appendChild(selectButton);
+    !isBig && hasDescription && selectMenu.appendChild(selectMenuDescription);
 
     const selectOverflow = document.createElement('div');
     selectOverflow.classList.add('select-overflow');
-    selectOverflow.addEventListener('click', closeSelectMenu);
+    selectOverflow.addEventListener('click', () => closeSelectMenu(false));
     selectOverflow.addEventListener('animationend', () => {
       isOpening = false;
     }, { once: true });
@@ -133,24 +188,49 @@ function parseCustomSelectMenu(element, availableOptions, callback) {
   });
 }
 
-function parseApkName(name) {
+function parseApkName(name, small = false) {
   switch(name) {
     case 'OctoGram_arm32.apk':
-      return 'For ARM32 devices';
+      return small ? 'ARM32' : 'For ARM32 devices';
     case 'OctoGram_arm64.apk':
-      return 'For ARM64 devices';
+      return small ? 'ARM64' : 'For ARM64 devices';
     case 'OctoGram_universal.apk':
       return 'Universal';
     case 'OctoGram_x86.apk':
-      return 'For x86 devices';
+      return small ? 'X86' : 'For x86 devices';
     case 'OctoGram_x86_64.apk':
-      return 'For x86_64 devices';
+      return small ? 'X86_64' : 'For x86_64 devices';
     default:
       return name;
   }
 }
 
-function calculateSize(size, useBinaryUnits = true, addSpace = false){
+function tryToGetValidVersion(assetNames) {
+  const isAndroid = navigator.userAgent.toLowerCase().includes("android");
+  if (isAndroid) {
+    // TRY TO DETECT ABI FROM USERAGENT
+    // maybe it works on some cringe browsers
+    
+    const supportsX64 = navigator.userAgent.includes("x86_64") || navigator.userAgent.includes("x64");
+    const supportsX86 = navigator.userAgent.includes("x86");
+    const supportsARM64 = navigator.userAgent.includes("aarch64") || navigator.userAgent.includes("arm64");
+    const supportsARM32 = navigator.userAgent.includes("armv7");
+
+    for(const name of assetNames) {
+      if (name == 'OctoGram_arm32.apk' && supportsARM32) {
+        return parseApkName(name, true);
+      } else if (name == 'OctoGram_arm64.apk' && supportsARM64) {
+        return parseApkName(name, true);
+      } else if (name == 'OctoGram_x86.apk' && supportsX86) {
+        return parseApkName(name, true);
+      } else if (name == 'OctoGram_x86_64.apk' && supportsX64) {
+        return parseApkName(name, true);
+      }
+    }
+  }
+}
+
+function calculateSize(size, useBinaryUnits = true, addSpace = false) {
   const binaryUnits = ['B', 'KiB', 'MiB', 'GiB', 'TiB'];
   const basicUnits = ['B', 'KB', 'MB', 'GB', 'TB'];
   const units = useBinaryUnits ? binaryUnits : basicUnits;
@@ -168,4 +248,9 @@ function calculateSize(size, useBinaryUnits = true, addSpace = false){
   finalString += addSpace ? ' ' : '';
   finalString += units[divisionCounter];
   return finalString;
+}
+
+function getEmojiByIso2(isoString) {
+  const codePoint = [...isoString.toUpperCase()].map(char => char.charCodeAt(0) + 127397);
+  return String.fromCodePoint(...codePoint);
 }

@@ -100,6 +100,24 @@
   --dcstatus-body-text-code-padding: 3px;
   --dcstatus-body-text-code-radius: 5px;
   --dcstatus-body-paddingleft: 20px;
+  --dcstatus-suggestions-title: #FFFFFF;
+  --dcstatus-suggestions-gap: 30px;
+  --dcstatus-suggestions-topmargin: 10px;
+  --dcstatus-suggestions-topmargin-hidden: -39px;
+  --dcstatus-identifydc-radius: 15px;
+  --dcstatus-identifydc-height: 245px;
+  --dcstatus-identifydc-topmargin: 10px;
+  --dcstatus-identifydc-topmargin-hidden: -40px;
+  --dcstatus-identifydc-number: #FFFFFF;
+  --dcstatus-identifydc-number-placeholder-size: 72px;
+  --dcstatus-identifydc-number-prefix-size: 26px;
+  --dcstatus-identifydc-number-param-height: 28.3px;
+  --dcstatus-identifydc-number-param-spoiler-height: 29px;
+  --dcstatus-identifydc-number-param-spoiler-text-size: 26px;
+  --dcstatus-identifydc-number-param-spoiler-text-size-mobile: 16px;
+  --dcstatus-identifydc-number-param-spoiler-text-color: #FFFFFF;
+  --dcstatus-identifydc-number-param-spacer: 22px;
+  --dcstatus-identifydc-number-param-spacer-mobile: 13px;
 
   --features-title: #FFFFFF;
   --features-title-gap: 20px;
@@ -202,6 +220,8 @@
   --selectmenu-select-paddingblock: 15px;
   --selectmenu-select-radius: 8px;
   --selectmenu-select-bottommargin: 12px;
+  --selectmenu-mini-paddingblock: 10px;
+  --selectmenu-mini-gap: 10px;
   --selectmenu-overflow-bg: rgba(0, 0, 0, 0.8);
   --selectmenu-width-limit: 420px;
   --selectmenu-padding: 9px;
@@ -217,6 +237,14 @@
   --selectmenu-option-radio-color: #FFFFFF;
   --selectmenu-option-radio-size: 15px;
   --selectmenu-option-radio-insider: 2px;
+  --selectmenu-separator-bg: #4a6092;
+  --selectmenu-separator-text: #FFFFFF;
+  --selectmenu-separator-bottommargin: 10px;
+  --selectmenu-separator-paddingleft: 20px;
+  --selectmenu-separator-radius: 12px;
+  --selectmenu-description-color: rgba(255, 255, 255, 0.7);
+  --selectmenu-description-aslast-topmargin: 20px;
+  --selectmenu-description-asfirst-bottommargin: 20px;
 
   --advantages-bg: #252d3a;
   --advantages-bottommargin: 50px;

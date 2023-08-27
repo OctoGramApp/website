@@ -59,3 +59,7 @@ body::-webkit-scrollbar-thumb {
 	background: #666666a1;
 	border-radius: 10px;
 }
+
+body > .page img {
+  pointer-events: none;
+}

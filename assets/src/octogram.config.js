@@ -27,6 +27,7 @@ const DC_ASSOC = [
 		86, 886, 91, 93, 94, 95, 960, 975, 976, 977
 	]
 ];
+
 const DC_DESC = [
   [
     376,
@@ -437,18 +438,6 @@ const DC_DESC = [
     "France",
     "FR",
     "X XX XX XX XX"
-  ],
-  [
-    888,
-    "Anonymous Numbers",
-    "FT",
-    "8 XXX"
-  ],
-  [
-    888,
-    "Anonymous Numbers",
-    "FT",
-    "XXXX XXXX"
   ],
   [
     241,
