@@ -507,7 +507,7 @@ body > .page > .card .content .identifydc.animate:not(.available) {
     width: 100%;
     transform: none;
     height: var(--dcstatus-identifydc-height);
-    margin-top: var(----dcstatus-identifydc-topmargin);
+    margin-top: var(--dcstatus-identifydc-topmargin);
   }
 }
 
@@ -532,7 +532,7 @@ body > .page > .card .content .identifydc.visible {
   width: 100%;
   transform: none;
   background: var(--selectmenu-select-bg);
-  margin-top: var(--dcstatus-padding);
+  margin-top: var(--dcstatus-identifydc-topmargin);
 }
 
 body > .page > .card .content .identifydc .number-container {
