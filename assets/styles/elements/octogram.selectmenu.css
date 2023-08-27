@@ -11,19 +11,30 @@ body > .page .select {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: var(--animations-duration) padding-inline;
+  transition: var(--animations-duration) padding-inline, var(--animations-duration) opacity;
+}
+
+body > .page .select.mini {
+  padding-block: var(--selectmenu-mini-paddingblock);
+  gap: var(--selectmenu-mini-gap);
+}
+
+body > .page .select.nomargin {
+  margin-bottom: 0;
 }
 
 body > .page .select .icon {
   filter: var(--icons-transform);
 }
 
-body > .page .select:hover {
-  padding-inline: var(--selectmenu-select-paddinginline-hover);
-}
-
-body > .page .select:active {
-  padding-inline: var(--selectmenu-select-paddinginline-active);
+@media screen and (min-width: 500px) {
+  body > .page .select:hover {
+    padding-inline: var(--selectmenu-select-paddinginline-hover);
+  }
+  
+  body > .page .select:active {
+    padding-inline: var(--selectmenu-select-paddinginline-active);
+  }
 }
 
 body > .page > .select-overflow {
@@ -72,7 +83,31 @@ body > .page > .select-overflow .select-menu {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  overflow: hidden;
   background: var(--background);
+}
+
+body > .page > .select-overflow .select-menu.is-big {
+  overflow-y: auto;
+  justify-content: flex-start;
+}
+
+body > .page > .select-overflow .select-menu::-webkit-scrollbar {
+	width: 5px;
+}
+
+body > .page > .select-overflow .select-menu::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
+	background: transparent;
+	transition: var(--animations-timing) background;
+}
+
+:root:hover body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
+	background: #666666a1;
+	border-radius: 10px;
 }
 
 body > .page > .select-overflow:not(.closing) .select-menu {
@@ -101,6 +136,30 @@ body > .page > .select-overflow .select-menu .animation {
   margin-bottom: var(--selectmenu-animation-bottommargin);
 }
 
+body > .page > .select-overflow .select-menu .general-description {
+  color: var(--selectmenu-description-color);
+}
+
+body > .page > .select-overflow .select-menu .general-description:last-child {
+  margin-top: var(--selectmenu-description-aslast-topmargin);
+  text-align: right;
+}
+
+body > .page > .select-overflow .select-menu .general-description:not(:last-child) {
+  margin-bottom: var(--selectmenu-description-asfirst-bottommargin);
+  text-align: center;
+}
+
+body > .page > .select-overflow .select-menu .letter-separator {
+  width: 100%;
+  background: var(--selectmenu-separator-bg);
+  color: var(--selectmenu-separator-text);
+  margin-bottom: var(--selectmenu-separator-bottommargin);
+  padding-left: var(--selectmenu-separator-paddingleft);
+  border-radius: var(--selectmenu-separator-radius);
+  box-sizing: border-box;
+}
+
 body > .page > .select-overflow .select-menu .option {
   width: 100%;
   padding: var(--selectmenu-option-padding);
@@ -124,6 +183,11 @@ body > .page > .select-overflow .select-menu .option {
   }
 }
 
+body > .page > .select-overflow .select-menu.is-big .option {
+  transform: translateX(0);
+  animation: none;
+}
+
 body > .page > .select-overflow .select-menu .option .radio {
   width: var(--selectmenu-option-radio-size);
   height: var(--selectmenu-option-radio-size);
@@ -139,6 +203,11 @@ body > .page > .select-overflow .select-menu .option .radio {
   to {
     transform: scale(1);
   }
+}
+
+body > .page > .select-overflow .select-menu.is-big .option .radio {
+  transform: scale(1);
+  animation: none;
 }
 
 body > .page > .select-overflow .select-menu .option .radio::after {

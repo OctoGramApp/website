@@ -23,6 +23,7 @@ window.addEventListener('load', () => {
             let selectedOption;
             let downloadsCount = 0;
             let availableOptions = [];
+            let assetsNames = [];
             for(const asset of release['assets']) {
               downloadsCount += asset['download_count'];
               availableOptions.push({
@@ -30,7 +31,15 @@ window.addEventListener('load', () => {
                 title: parseApkName(asset['name']),
                 description: calculateSize(asset['size'], false)
               });
+              assetsNames.push(asset['name']);
             }
+
+            const validVersion = tryToGetValidVersion(assetsNames);
+            let selectMenuDescription =' ';
+            if (typeof validVersion == 'string') {
+              selectMenuDescription = 'The ' + validVersion + ' version should be the most suitable and stable one for your device. ';
+            }
+            selectMenuDescription += 'If you have doubts, you can also use Universal, which is valid for all devices.';
 
             const title = document.createElement('div');
             title.classList.add('title');
@@ -88,14 +97,19 @@ window.addEventListener('load', () => {
             card.classList.add('card', 'changelog');
             card.appendChild(content);
 
-            parseCustomSelectMenu(select, availableOptions, (id) => {
-              selectedOption = id;
-  
-              for(const option of availableOptions) {
-                if (option.id == id) {
-                  selectValue.textContent = option.title;
-                  button.classList.remove('disabled');
-                  break;
+            parseCustomSelectMenu({
+              element: select,
+              availableOptions: availableOptions,
+              description: selectMenuDescription,
+              callback: (id) => {
+                selectedOption = id;
+    
+                for(const option of availableOptions) {
+                  if (option.id == id) {
+                    selectValue.textContent = option.title;
+                    button.classList.remove('disabled');
+                    break;
+                  }
                 }
               }
             });

@@ -19,6 +19,7 @@ let currentTimeout;
 let currentInterval;
 let currentActiveDcId;
 let isLoading = false;
+let customDataSlots = [];
 
 window.addEventListener('load', () => {
   reloadState();
@@ -29,7 +30,212 @@ window.addEventListener('load', () => {
       executeForceReload();
     });
   }
+
+  const identifyCardContent = document.querySelector('body > .page > .card.identify .content');
+  if (identifyCardContent != null) {
+    const selector = identifyCardContent.querySelector('.description .select');
+    const suggestions = identifyCardContent.querySelector('.suggestions');
+    const container = identifyCardContent.querySelector('.identifydc');
+    if (selector != null && suggestions != null && container != null) {
+      const prefixesSuggestions = getPrefixesSuggestions();
+      if (prefixesSuggestions.length) {
+        const suggestionsTitle = document.createElement('div');
+        suggestionsTitle.classList.add('suggestions-title');
+        suggestionsTitle.textContent = 'Rapid suggestions';
+        suggestions.appendChild(suggestionsTitle);
+
+        for(const result of prefixesSuggestions) {
+          const suggestionPrefix = document.createElement('span');
+          suggestionPrefix.textContent = '+' + result[0];
+          const suggestionContainer = document.createElement('div');
+          suggestionContainer.classList.add('select', 'mini', 'nomargin');
+          suggestionContainer.addEventListener('click', () => {
+            suggestions.classList.add('disabled');
+            suggestionContainer.classList.add('selected');
+            updateUiWithPrefix(result[0], suggestionContainer, identifyCardContent, container);
+
+            container.addEventListener('animationend', () => {
+              suggestions.classList.remove('disabled');
+              suggestions.classList.add('hidden');
+              suggestionContainer.classList.remove('selected');
+            }, { once: true });
+          });
+          suggestionContainer.textContent = result[1];
+          suggestionContainer.appendChild(suggestionPrefix);
+          suggestions.appendChild(suggestionContainer);
+        }
+      }
+
+      let newPrefixSelector = [];
+
+      for(const dc of DC_DESC) {
+        newPrefixSelector.push({
+          id: dc[0],
+          title: dc[1],
+          description: '+' + dc[0] + ' ' + getEmojiByIso2(dc[2])
+        });
+      }
+
+      parseCustomSelectMenu({
+        element: selector,
+        availableOptions: newPrefixSelector,
+        replyWithoutWaiting: true,
+        useCallbackWhenForceClose: false,
+        callback: (id) => {
+          updateUiWithPrefix(id, selector, identifyCardContent, container);
+        },
+        onOpenCallback: () => {
+          if (container.classList.contains('visible')) {
+            const selectRect = selector.getBoundingClientRect();
+            const containerRect = identifyCardContent.getBoundingClientRect();
+  
+            container.style.setProperty('--start-right', (selectRect.left - containerRect.left) + 'px');
+            container.style.setProperty('--start-width', selectRect.width + 'px');
+            container.style.setProperty('--start-height', selectRect.height + 'px');
+            container.classList.add('closing');
+            container.classList.remove('visible');
+
+            container.addEventListener('animationend', () => {
+              container.classList.remove('closing');
+              container.style.removeProperty('--start-right');
+              container.style.removeProperty('--start-width');
+              container.style.removeProperty('--start-height');
+
+              container.textContent = '';
+            }, { once: true });
+          }
+        },
+        isBig: true
+      });
+    }
+  }
 });
+
+function updateUiWithPrefix(id, selector, identifyCardContent, container) {
+  customDataSlots = [];
+
+  let found = false;
+  let datacenterDataFormat;
+  let datacenters = [];
+
+  for (const datacenter of DC_DESC) {
+    if (datacenter[0] == id) {
+      found = true;
+      datacenterDataFormat = datacenter;
+
+      for (const [id, prefixes] of DC_ASSOC.entries()) {
+        if (prefixes.includes(datacenter[0])) {
+          datacenters.push(id + 1);
+        }
+      }
+      break;
+    }
+  }
+
+  if (found && typeof datacenterDataFormat != 'undefined') {
+    container.textContent = '';
+
+    const prefixContainer = document.createElement('div');
+    prefixContainer.classList.add('prefix');
+    prefixContainer.textContent = '+' + id;
+    const paramContainer = document.createElement('div');
+    paramContainer.classList.add('param-container');
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('placeholder');
+    placeholder.textContent = datacenterDataFormat[1].toUpperCase();
+    const numberContainer = document.createElement('div');
+    numberContainer.classList.add('number-container');
+    numberContainer.appendChild(placeholder);
+    numberContainer.appendChild(prefixContainer);
+    numberContainer.appendChild(paramContainer);
+    container.appendChild(numberContainer);
+
+    const datacentersContainer = document.createElement('div');
+    datacentersContainer.classList.add('dc-recap');
+    container.appendChild(datacentersContainer);
+
+    for(const datacenter of datacenters) {
+      const datacenterBackground = document.createElement('div');
+      datacenterBackground.classList.add('background');
+      const datacenterIcon = document.createElement('img');
+      datacenterIcon.src = 'assets/icons/datacenters/dc'+datacenter+'.svg';
+      const datacenterIconContainer = document.createElement('div');
+      datacenterIconContainer.classList.add('icon');
+      datacenterIconContainer.appendChild(datacenterBackground);
+      datacenterIconContainer.appendChild(datacenterIcon);
+
+      const datacenterName = document.createElement('div');
+      datacenterName.classList.add('name');
+      datacenterName.textContent = 'DC'+datacenter;
+      const datacenterStatus = document.createElement('div');
+      const datacenterStatusMini = document.createElement('div');
+      const datacenterDescription = document.createElement('div');
+      datacenterDescription.classList.add('description');
+      datacenterDescription.appendChild(datacenterName);
+      datacenterDescription.appendChild(datacenterStatus);
+      datacenterDescription.appendChild(datacenterStatusMini);
+
+      const datacenterSum = document.createElement('div');
+      datacenterSum.classList.add('datacenter');
+      datacenterSum.dataset.id = datacenter;
+      datacenterSum.appendChild(datacenterIconContainer);
+      datacenterSum.appendChild(datacenterDescription);
+
+      datacentersContainer.appendChild(datacenterSum);
+
+      customDataSlots.push({
+        dc: datacenter,
+        element: datacenterStatus,
+        small: 1
+      });
+      customDataSlots.push({
+        dc: datacenter,
+        element: datacenterStatusMini,
+        small: 2
+      });
+    }
+
+    let spoilerId = 0;
+    for(const value of ' ' + datacenterDataFormat[3]) {
+      if (value == ' ') {
+        const spacer = document.createElement('div');
+        spacer.classList.add('spacer');
+        paramContainer.appendChild(spacer);
+      } else {
+        spoilerId++;
+
+        const blurred = document.createElement('div');
+        blurred.classList.add('spoiler');
+        blurred.style.setProperty('--id', spoilerId);
+        paramContainer.appendChild(blurred);
+
+        if (spoilerId < 10) {
+          blurred.textContent = spoilerId;
+        } else {
+          blurred.textContent = '0';
+        }
+      }
+    }
+
+    const selectRect = selector.getBoundingClientRect();
+    const containerRect = identifyCardContent.getBoundingClientRect();
+
+    container.style.setProperty('--start-right', (selectRect.left - containerRect.left) + 'px');
+    container.style.setProperty('--start-width', selectRect.width + 'px');
+    container.style.setProperty('--start-height', selectRect.height + 'px');
+    container.classList.add('animate');
+
+    container.addEventListener('animationend', () => {
+      container.classList.add('visible');
+      container.classList.remove('animate');
+      container.style.removeProperty('--start-right');
+      container.style.removeProperty('--start-width');
+      container.style.removeProperty('--start-height');
+    }, { once: true });
+
+    executeForceReload();
+  }
+}
 
 function reloadState() {
   const bodyItem = document.querySelector('body > .page > .card.server .content .datacenters');
@@ -96,6 +302,12 @@ function reloadState() {
               }
 
               fragment.append(datacenterRow);
+
+              for(const slot of customDataSlots) {
+                if (slot.dc == datacenter.dc_id) {
+                  slot.element.replaceWith(composeStatus(datacenter, slot.small));
+                }
+              }
             }
           }
 
@@ -258,7 +470,7 @@ function composeSeparatorFromIcon(icon) {
   return separator;
 }
 
-function composeStatus(datacenter) {
+function composeStatus(datacenter, smallState = 0) {
   const datacenterStatus = document.createElement('div');
   datacenterStatus.classList.add('status');
 
@@ -277,7 +489,15 @@ function composeStatus(datacenter) {
     break;
   }
 
-  datacenterStatus.textContent += ', Ping: '+datacenter.ping+'ms';
+  if (smallState == 1) {
+    datacenterStatus.textContent += ' ('+datacenter.ping+'ms)';
+  } else if(smallState == 2) {
+    if (datacenter.dc_status == 1) {
+      datacenterStatus.textContent = datacenter.ping+'ms';
+    }
+  } else if (datacenter.dc_status != 0) {
+    datacenterStatus.textContent += ', Ping: '+datacenter.ping+'ms';
+  }
 
   return datacenterStatus;
 }
@@ -314,4 +534,32 @@ function formatDateUnit(unit) {
   } else {
     return unit;
   }
+}
+
+function getPrefixesSuggestions() {
+  const findCorrectRes = (prefix) => DC_DESC.some((x) => x[0] == prefix) && DC_DESC.filter((x) => x[0] == prefix)[0];
+  let mainLanguageSuggestion;
+
+  if (typeof window.navigator.languages != 'undefined') {
+    firstLanguageFor:
+    for(let language of window.navigator.languages) {
+      language = language.toLowerCase();
+      
+      for(const desc of DC_DESC) {
+        if (desc[2].toLowerCase() == language) {
+          mainLanguageSuggestion = desc;
+          break firstLanguageFor;
+        }
+      }
+    }
+  }
+
+  return [
+    mainLanguageSuggestion,
+    findCorrectRes(1),
+    findCorrectRes(30),
+    findCorrectRes(33),
+    findCorrectRes(974),
+    findCorrectRes(1876)
+  ].filter((x) => !!x);
 }
