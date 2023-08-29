@@ -68,7 +68,7 @@ body > .page > .introduction .content .message {
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
-  animation: var(--animations-duration) showMessage var(--splash-delay) forwards;
+  animation: var(--animations-duration) showMessage 0.1s forwards;
 }
 
 @media screen and (max-width: 700px) {
@@ -118,7 +118,7 @@ body > .page > .introduction .content .illustration {
   gap: var(--introduction-image-gap);
   height: var(--introduction-image-active-maxheight);
   opacity: 0;
-  animation: var(--animations-duration) showIllustration calc(var(--splash-delay) + 0.2s) forwards;
+  animation: var(--animations-duration) showIllustration 0.3s forwards;
   transition: var(--animations-duration) transform;
 }
 

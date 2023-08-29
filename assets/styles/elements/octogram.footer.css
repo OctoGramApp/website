@@ -105,6 +105,10 @@ body > .page > .footer .links .single-link-container .link {
   transition: var(--animations-duration) padding-left,  var(--animations-duration) opacity;
 }
 
+body > .page > .footer .links .single-link-container a.link:not([href]) {
+  cursor: pointer;
+}
+
 body > .page > .footer .links:has(.link:hover) .single-link-container .link {
   opacity: 0.2;
 }

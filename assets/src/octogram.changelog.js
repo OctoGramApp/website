@@ -1,133 +1,41 @@
-window.addEventListener('load', () => {
-  const fakeCard = document.querySelector('body > .page > .card.changelog');
-  const cardsContainer = document.querySelector('body > .page > .cards-container');
+class Changelog {
+  init() {
+    utils.clearPage('changelog');
 
-  if (fakeCard != null && cardsContainer != null) {
-    const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://api.github.com/repos/OctoGramApp/OctoGram/releases?cache='+Math.random().toString(), true);
-    XML.send();
-    XML.addEventListener('readystatechange', (e) => {
-      if (e.target.readyState == 4 && e.target.status == 200) {
-        const response = JSON.parse(e.target.responseText);
+    const pageContainer = document.createElement('div');
+    pageContainer.classList.add('page');
+    pageContainer.appendChild(header.createElement(() => homePage.init()));
+    pageContainer.appendChild(this.#generatePointer());
+    pageContainer.appendChild(footer.createElement());
 
-        if (response.length > 0) {
-          fakeCard.remove();
-
-          const releasesFragment = document.createDocumentFragment();
-
-          for (const release of response) {
-            if (!release['assets'].length) {
-              continue;
-            }
-
-            let selectedOption;
-            let downloadsCount = 0;
-            let availableOptions = [];
-            let assetsNames = [];
-            for(const asset of release['assets']) {
-              downloadsCount += asset['download_count'];
-              availableOptions.push({
-                id: asset['id'],
-                title: parseApkName(asset['name']),
-                description: calculateSize(asset['size'], false)
-              });
-              assetsNames.push(asset['name']);
-            }
-
-            const validVersion = tryToGetValidVersion(assetsNames);
-            let selectMenuDescription =' ';
-            if (typeof validVersion == 'string') {
-              selectMenuDescription = 'The ' + validVersion + ' version should be the most suitable and stable one for your device. ';
-            }
-            selectMenuDescription += 'If you have doubts, you can also use Universal, which is valid for all devices.';
-
-            const title = document.createElement('div');
-            title.classList.add('title');
-            title.appendChild(document.createTextNode(release['name']));
-
-            if (release['prerelease']) {
-              const titleBadge = document.createElement('span');
-              titleBadge.classList.add('badge');
-              titleBadge.textContent = 'BETA';
-              title.appendChild(titleBadge);
-            }
-
-            const description = document.createElement('div');
-            description.classList.add('description');
-            description.textContent = release['assets'].length+' files, '+downloadsCount+' downloads';
-
-            const descriptor = document.createElement('div');
-            descriptor.classList.add('descriptor');
-            descriptor.appendChild(title);
-            descriptor.appendChild(description);
-
-            const message = document.createElement('div');
-            message.classList.add('message');
-            message.innerHTML = fixInjectionTags(release['body']);
-            
-            const selectValue = document.createElement('span');
-            selectValue.classList.add('value');
-            selectValue.textContent = 'Select your option';
-            const selectIcon = document.createElement('img');
-            selectIcon.classList.add('icon');
-            selectIcon.src = '/assets/icons/arrowright.svg';
-            const select = document.createElement('div');
-            select.classList.add('select');
-            select.appendChild(selectValue);
-            select.appendChild(selectIcon);
-            const button = document.createElement('div');
-            button.classList.add('button', 'big', 'accent');
-            button.classList.add('disabled');
-            button.textContent = 'Download';
-            const download = document.createElement('div');
-            download.classList.add('download');
-            download.appendChild(select);
-            download.appendChild(button);
-
-            const body = document.createElement('div');
-            body.classList.add('body');
-            body.appendChild(message);
-            body.appendChild(download);
-
-            const content = document.createElement('div');
-            content.classList.add('content');
-            content.appendChild(descriptor);
-            content.appendChild(body);
-            const card = document.createElement('div');
-            card.classList.add('card', 'changelog');
-            card.appendChild(content);
-
-            parseCustomSelectMenu({
-              element: select,
-              availableOptions: availableOptions,
-              description: selectMenuDescription,
-              callback: (id) => {
-                selectedOption = id;
-    
-                for(const option of availableOptions) {
-                  if (option.id == id) {
-                    selectValue.textContent = option.title;
-                    button.classList.remove('disabled');
-                    break;
-                  }
-                }
-              }
-            });
-
-            button.addEventListener('click', () => {
-              for(const asset of release['assets']) {
-                if (asset['id'] == parseInt(selectedOption)) {
-                  window.location.href = asset['browser_download_url'];
-                }
-              }
-            });
-            
-            releasesFragment.append(card);
-          }
-
-          cardsContainer.replaceWith(releasesFragment);
-        }
-      }
-    });
+    document.body.appendChild(pageContainer);
   }
-});
+
+  #generatePointer() {
+    const stickerImage = document.createElement('img');
+    stickerImage.src = 'assets/animations/changelogAnimation.gif';
+    const stickerContainer = document.createElement('div');
+    stickerContainer.classList.add('sticker');
+    stickerContainer.appendChild(stickerImage);
+    const messageTitle = document.createElement('div');
+    messageTitle.classList.add('title');
+    messageTitle.textContent = translations.getStringRef('CHANGELOG_TITLE');
+
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.appendChild(stickerContainer);
+    message.appendChild(messageTitle);
+
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.appendChild(message);
+
+    const pointer = document.createElement('div');
+    pointer.classList.add('pointer');
+    pointer.appendChild(content);
+
+    return pointer;
+  }
+}
+
+const changelog = new Changelog();

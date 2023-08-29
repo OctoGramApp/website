@@ -26,7 +26,8 @@ body > .page .button.accent {
   color: var(--buttons-accent-text);
 }
 
-body div.button {
+body div.button,
+body a.button:not([href]) {
   cursor: pointer;
 }
 

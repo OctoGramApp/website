@@ -1,80 +1,82 @@
-window.addEventListener('scroll', reloadParallax);
-window.addEventListener('load', reloadParallax);
-window.addEventListener('resize', reloadParallax);
+class ParallaxHelper {
+  #parallaxListeners = [];
+  #registeredEvent = false;
 
-function reloadParallax() {
-  requestAnimationFrame(() => {
-    reloadItems(
-      [
-        document.querySelector('body > .page > #download > .download .content')
-      ],
-      document.querySelector('body > .page > #download > .download .content')
-    );
-    reloadItems(
-      document.querySelectorAll('body > .page > #advantages > .advantages .items *'),
-      document.querySelector('body > .page > #advantages > .advantages .items')
-    );
-    reloadItems(
-      document.querySelectorAll('body > .page > #advantages > .advantages .message *'),
-      document.querySelector('body > .page > #advantages > .advantages')
-    );
-    reloadItems(document.querySelectorAll('body > .page > #features > .features .list > *'));
-    reloadItems(document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .example'), undefined, true);
-    reloadItems(
-      document.querySelectorAll('body > .page > #monet > .monet-theme-reference > .monet-theme > .footer'),
-      undefined,
-      true,
-      true,
-    );
-    initMonetReference();
-  });
-}
+  registerForParallax({
+    element,
+    basedOnContainer = element,
+    ignoreMobileCheck = false,
+    set1AfterScroll = false,
+    isMonetMainCheck = false
+  }) {
+    this.#parallaxListeners.push({
+      element,
+      basedOnContainer,
+      ignoreMobileCheck,
+      set1AfterScroll,
+      isMonetMainCheck
+    });
 
-function reloadItems(item, byContainer, ignoreMobileCheck = false, set1AfterScroll = false) {
-  const isMobileDevice = !ignoreMobileCheck && window.innerWidth < 1000;
-  if (item instanceof Object) {
-    if (typeof byContainer == 'undefined') {
-      for(const child of item) {
-        const percent = isMobileDevice ? 1 : (calculateVisibleArea(child, set1AfterScroll) / 100);
-        child.classList.toggle('visible', percent > 0.8);
-        child.style.setProperty('--parallax-state', percent.toString());
-      }
-    } else if(byContainer instanceof Element) {
-      const percent = isMobileDevice ? 1 : (calculateVisibleArea(byContainer, set1AfterScroll) / 100);
-      for(const child of item) {
-        child.classList.toggle('visible', percent > 0.8);
-        child.style.setProperty('--parallax-state', percent.toString());
-      }
+    if (!this.#registeredEvent) {
+      window.addEventListener('scroll', (e) => this.#handle(e));
+      this.#registeredEvent = true;
     }
   }
-}
 
-function calculateVisibleArea(element, set1AfterScroll = false) {
-  const currentPosition = element.getBoundingClientRect().top;
-  const elementHeight = element.getBoundingClientRect().height;
+  clearParallaxState() {
+    this.#parallaxListeners = [];
+  }
 
-  let percent;
+  #handle(event) {
+    for (const listener of this.#parallaxListeners) {
+      try {
+        if (listener.isMonetMainCheck) {
+          this.#reloadItemsAsMonet(listener);
+        } else {
+          this.#reloadItems(listener);
+        }
+      } catch(e) {}
+    }
+  }
+  
+  #reloadItems({
+    element,
+    basedOnContainer,
+    ignoreMobileCheck,
+    set1AfterScroll
+  }) {
+    const isMobileDevice = !ignoreMobileCheck && window.innerWidth < 1000;
+    if (element instanceof Element) {
+      const percent = isMobileDevice ? 1 : (this.#calculateVisibleArea(basedOnContainer, set1AfterScroll) / 100);
+      element.classList.toggle('visible', percent > 0.8);
+      element.style.setProperty('--parallax-state', percent.toString());
+    }
+  }
 
-  if (currentPosition > window.innerHeight) {
-    percent = 0;
-  } else if(currentPosition + elementHeight > window.innerHeight) {
-    percent = 100 - (currentPosition + elementHeight - window.innerHeight) * 100 / elementHeight;
-  } else if(currentPosition < 0) {
-    if (set1AfterScroll) {
-      percent = 100;
+  #calculateVisibleArea(element, set1AfterScroll = false) {
+    const currentPosition = element.getBoundingClientRect().top;
+    const elementHeight = element.getBoundingClientRect().height;
+
+    let percent;
+
+    if (currentPosition > window.innerHeight) {
+      percent = 0;
+    } else if(currentPosition + elementHeight > window.innerHeight) {
+      percent = 100 - (currentPosition + elementHeight - window.innerHeight) * 100 / elementHeight;
+    } else if(currentPosition < 0) {
+      if (set1AfterScroll) {
+        percent = 100;
+      } else {
+        percent = (currentPosition + elementHeight) * 100 / elementHeight;
+      }
     } else {
-      percent = (currentPosition + elementHeight) * 100 / elementHeight;
+      percent = 100;
     }
-  } else {
-    percent = 100;
+
+    return Math.min(100, Math.max(0, percent));
   }
 
-  return Math.min(100, Math.max(0, percent));
-}
-
-function initMonetReference() {
-  const element = document.querySelector('body > .page > #monet > .monet-theme-reference');
-  if (element != null) {
+  #reloadItemsAsMonet({ element }) {
     const currentPosition = element.getBoundingClientRect().top;
     const elementHeight = element.getBoundingClientRect().height;
 
@@ -102,3 +104,5 @@ function initMonetReference() {
     element.classList.toggle('visible-full', visiblePercent == 1);
   }
 }
+
+const parallaxHelper = new ParallaxHelper();

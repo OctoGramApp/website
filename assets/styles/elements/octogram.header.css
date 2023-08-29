@@ -32,6 +32,10 @@ body > .page > .header .content .applogo {
   justify-content: center;
 }
 
+body > .page > .header .content a.applogo:not([href]) {
+  cursor: pointer;
+}
+
 body > .page > .header .content .applogo img {
   height: var(--header-appicon-size);
   width: var(--header-appicon-size);
