@@ -80,12 +80,15 @@ class Translations {
   load() {
     return new Promise((resolve) => {
       const XML = new XMLHttpRequest();
-      XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/lang_packs/LanguageWebSite/it.json?cache=' + Math.random().toString(), true);
+      XML.open('GET', this.#composeUrl(), true);
       XML.send();
       XML.addEventListener('readystatechange', (e) => {
-        if (e.target.readyState == 4 && e.target.status == 200) {
-          const response = JSON.parse(e.target.responseText);
-          this.#cachedTranslations = response;
+        if (e.target.readyState == 4) {
+          if (e.target.status == 200) {
+            const response = JSON.parse(e.target.responseText);
+            this.#cachedTranslations = response;
+          }
+          
           resolve();
         }
       });
@@ -100,7 +103,7 @@ class Translations {
     return this.#TRANSLATIONS_REF[name];
   }
 
-  getLanguageCode() {
+  #getLanguageCode() {
     if (typeof window.navigator.language != 'undefined') {
       for(const lang of window.navigator.language.split('-')) {
         if (this.#AVAILABLE_LANGUAGES.includes(lang.toLowerCase())) {
@@ -110,6 +113,16 @@ class Translations {
     }
 
     return 'en';
+  }
+
+  #composeUrl() {
+    let url = 'https://raw.githubusercontent.com';
+    url += '/OctoGramApp/assets/lang_packs';
+    url += '/LanguageWebsite/';
+    url += this.#getLanguageCode();
+    url += '.json?cache=';
+    url += Math.random().toString();
+    return url;
   }
 }
 
