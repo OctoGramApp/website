@@ -194,15 +194,15 @@ class Utils {
   parseApkName(name, small = false) {
     switch(name) {
       case 'OctoGram_arm32.apk':
-        return small ? 'ARM32' : 'For ARM32 devices';
+        return small ? 'ARM32' : translations.getStringRef('CHANGELOG_DOWNLOAD_ARM32');
       case 'OctoGram_arm64.apk':
-        return small ? 'ARM64' : 'For ARM64 devices';
+        return small ? 'ARM64' : translations.getStringRef('CHANGELOG_DOWNLOAD_ARM64');
       case 'OctoGram_universal.apk':
-        return 'Universal';
+        return translations.getStringRef('CHANGELOG_DOWNLOAD_UNIVERSAL');
       case 'OctoGram_x86.apk':
-        return small ? 'X86' : 'For x86 devices';
+        return small ? 'X86' : translations.getStringRef('CHANGELOG_DOWNLOAD_X86');
       case 'OctoGram_x86_64.apk':
-        return small ? 'X86_64' : 'For x86_64 devices';
+        return small ? 'X86_64' : translations.getStringRef('CHANGELOG_DOWNLOAD_X86_64');
       default:
         return name;
     }
@@ -256,6 +256,40 @@ class Utils {
   getEmojiByIso2(isoString) {
     const codePoint = [...isoString.toUpperCase()].map(char => char.charCodeAt(0) + 127397);
     return String.fromCodePoint(...codePoint);
+  }
+
+  formatDate(timestamp) {
+    const date = new Date(timestamp * 1000);
+  
+    let format = 'YY-mm-dd HH:ii:ss';
+    if (this.#canUseItalianFormat()) {
+      format = 'dd/mm/YY HH:ii:ss';
+    }
+  
+    let finalString = format;
+    finalString = finalString.replace('dd', this.#formatDateUnit(date.getDate()));
+    finalString = finalString.replace('mm', this.#formatDateUnit(date.getMonth()+1));
+    finalString = finalString.replace('YY', this.#formatDateUnit(date.getFullYear()));
+    finalString = finalString.replace('HH', this.#formatDateUnit(date.getHours()));
+    finalString = finalString.replace('ii', this.#formatDateUnit(date.getMinutes()));
+    finalString = finalString.replace('ss', this.#formatDateUnit(date.getSeconds()));
+  
+    return finalString;
+  }
+  
+  #canUseItalianFormat() {
+    return (
+      typeof window.navigator?.language != 'undefined'
+      && window.navigator.language.indexOf('it') != -1
+    );
+  }
+
+  #formatDateUnit(unit) {
+    if (unit.toString().length == 1) {
+      return '0'+unit;
+    } else {
+      return unit;
+    }
   }
 
   clearPage(pageId) {

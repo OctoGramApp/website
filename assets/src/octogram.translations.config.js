@@ -48,7 +48,26 @@ const TRANSLATIONS_REF = {
 
     DCSTATUS_TITLE: 'Check the Telegram\'s DataCenter status in real time.',
     DCSTATUS_BUTTON: 'Reload status',
+    DCSTATUS_SERVER_TITLE: 'Current status',
+    DCSTATUS_SERVER_DESCRIPTION: 'Next update in',
+    DCSTATUS_SERVER_ADDRESS: 'IP Address',
+    DCSTATUS_SERVER_LAST_LAG: 'Last lag',
+    DCSTATUS_SERVER_LAST_DOWNTIME: 'Last downtime',
+    DCSTATUS_IDENTIFY_TITLE: 'Discover your datacenter',
+    DCSTATUS_IDENTIFY_SELECT: 'Select your prefix',
+    DCSTATUS_IDENTIFY_RAPID: 'Rapid suggestions',
     
-    CHANGELOG_TITLE: 'All latest beta and stable client versions.'
+    CHANGELOG_TITLE: 'All latest beta and stable client versions.',
+    CHANGELOG_LOADING: 'Loading versions...',
+    CHANGELOG_DOWNLOAD_BETA: 'BETA',
+    CHANGELOG_DOWNLOAD_ARM32: 'For ARM32 devices',
+    CHANGELOG_DOWNLOAD_ARM64: 'For ARM64 devices',
+    CHANGELOG_DOWNLOAD_UNIVERSAL: 'Universal',
+    CHANGELOG_DOWNLOAD_X86: 'For x86 devices',
+    CHANGELOG_DOWNLOAD_X86_64: 'For x86_64 devices',
+    CHANGELOG_DOWNLOAD_SUBTITLE: 'If you have doubts, you can also use Universal, which is valid for all devices.',
+    CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION: 'The %s version should be the most suitable and stable one for your device.',
+    CHANGELOG_DOWNLOAD_SELECT: 'Select your option',
+    CHANGELOG_DOWNLOAD_BUTTON: 'Download',
   }
 }
