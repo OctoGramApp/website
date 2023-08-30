@@ -1,6 +1,8 @@
 class HomePage {
   init() {
     utils.clearPage('home');
+    window.scrollTo(0, 0);
+    document.title = 'OctoGram';
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('page');
@@ -324,10 +326,10 @@ class HomePage {
     messageScrolling.classList.add('scrolling');
     const messageTitle = document.createElement('div');
     messageTitle.classList.add('title');
-    messageTitle.textContent = translations.getStringRef('ADVANTAGES_TITLE');
+    messageTitle.textContent = translations.getStringRef('MONET_TITLE');
     const messageDescription = document.createElement('div');
     messageDescription.classList.add('description');
-    messageDescription.textContent = translations.getStringRef('ADVANTAGES_DESCRIPTION');
+    messageDescription.textContent = translations.getStringRef('MONET_DESCRIPTION');
     const message = document.createElement('div');
     message.classList.add('introduction');
     message.appendChild(messageScrolling);

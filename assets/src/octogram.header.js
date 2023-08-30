@@ -2,20 +2,14 @@ class Header {
   createElement(onBackCallback) {
     const appLogoImage = document.createElement('img');
     appLogoImage.src = 'assets/icons/applogo.svg';
-    
-    let appLogo;
-    if (onBackCallback) {
-      const arrowLeft = document.createElement('img');
-      arrowLeft.classList.add('arrow');
-      arrowLeft.src = 'assets/icons/arrowleft.svg';
-
-      appLogo = document.createElement('a');
-      appLogo.addEventListener('click', onBackCallback);
-      appLogo.appendChild(arrowLeft);
-    } else {
-      appLogo = document.createElement('div');
-    }
+    const arrowLeft = document.createElement('img');
+    arrowLeft.classList.add('arrow');
+    arrowLeft.src = 'assets/icons/arrowleft.svg';
+    const appLogo = document.createElement('a');
     appLogo.classList.add('applogo');
+    appLogo.classList.toggle('show-back', !!onBackCallback);
+    appLogo.addEventListener('click', onBackCallback);
+    appLogo.appendChild(arrowLeft);
     appLogo.appendChild(appLogoImage);
 
     const actions = document.createElement('div');
@@ -37,6 +31,7 @@ class Header {
   #appendActions(actions) {
     actions.appendChild(this.#createButton({
       text: 'Features',
+      isSecondary: true,
       onClick: () => {
         if (utils.pageId != 'home') {
           homePage.init();
@@ -57,6 +52,7 @@ class Header {
 
     actions.appendChild(this.#createButton({
       text: 'DC Status',
+      isSecondary: true,
       onClick: () => {
         if (utils.pageId != 'dcstatus') {
           dcStatus.init();
@@ -66,6 +62,7 @@ class Header {
 
     actions.appendChild(this.#createButton({
       text: 'Source',
+      isSecondary: true,
       url: 'https://github.com/OctoGramApp/OctoGram'
     }));
   }

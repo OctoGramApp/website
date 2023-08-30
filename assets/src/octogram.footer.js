@@ -1,5 +1,9 @@
 class Footer {
+  #currentExpandedCategory;
+
   createElement() {
+    this.#currentExpandedCategory = undefined;
+
     const linksContainer = document.createElement('div');
     linksContainer.classList.add('links');
     this.#appendLinkContainer(linksContainer, 'site');
@@ -7,7 +11,7 @@ class Footer {
     this.#appendLinkContainer(linksContainer, 'telegram');
 
     const footerTextFork = document.createElement('a');
-    footerTextFork.href = 'https://github.com/OctoGramApp/Website';
+    footerTextFork.href = 'https://github.com/OctoGramApp/Website/fork';
     footerTextFork.target = '_blank';
     footerTextFork.textContent = translations.getStringRef('FOOTER_TEXT_1');
     const footerText = document.createElement('div');
@@ -27,6 +31,14 @@ class Footer {
 
   #appendLinkContainer(container, id) {
     const singleLinkContainer = document.createElement('div');
+    singleLinkContainer.addEventListener('click', () => {
+      if (typeof this.#currentExpandedCategory != 'undefined') {
+        this.#currentExpandedCategory.classList.remove('expanded');
+      }
+
+      singleLinkContainer.classList.add('expanded');
+      this.#currentExpandedCategory = singleLinkContainer;
+    });
     singleLinkContainer.classList.add('single-link-container');
 
     switch (id) {

@@ -30,7 +30,9 @@ class DCStatus {
 
   init() {
     utils.clearPage('dcstatus');
-
+    window.scrollTo(0, 0);
+    document.title = 'OctoGram - DC Status';
+    
     this.#availableSlots = [];
 
     const pageContainer = document.createElement('div');
@@ -541,6 +543,8 @@ class DCStatus {
     }
 
     if (found && typeof datacenterDataFormat != 'undefined') {
+      this.#clearUnavailableSlots();
+
       this.#identifyCardContainer.textContent = '';
       const container = this.#identifyCardContainer;
       
@@ -653,6 +657,8 @@ class DCStatus {
 
   #closePrefixIdentifyContainer() {
     if (this.#identifyCardContainer.classList.contains('visible')) {
+      this.#clearUnavailableSlots();
+
       const selectRect = this.#identifyCardSelector.getBoundingClientRect();
       const containerRect = this.#identifyCardContent.getBoundingClientRect();
       const container = this.#identifyCardContainer;
@@ -672,6 +678,25 @@ class DCStatus {
         container.textContent = '';
       }, { once: true });
     }
+  }
+
+  #clearUnavailableSlots() {
+    for(const [id, slot] of this.#availableSlots.entries()) {
+      let availableInDom = true;
+
+      if (slot.slots.status && !document.body.contains(slot.slots.status)) {
+        availableInDom = false;
+      } else if(slot.slots.expandableContainer && !document.body.contains(slot.slots.expandableContainer)) {
+        availableInDom = false;
+      }
+      
+      if (!availableInDom) {
+        this.#availableSlots[id] = undefined;
+      }
+    }
+
+    this.#availableSlots = this.#availableSlots.filter((x) => typeof x != 'undefined');
+    // workaround
   }
 }
 

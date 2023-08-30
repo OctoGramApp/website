@@ -27,6 +27,7 @@ body > .page > .footer > .text {
   color: var(--footer-text);
   text-align: center;
   margin-bottom: 20px;
+  padding-inline: 20px;
 }
 
 body > .page > .footer > .text a {

@@ -42,17 +42,15 @@ body > .page > .header .content .applogo img {
   filter: var(--icons-transform);
 }
 
-body > .page > .header .content a.applogo img.arrow {
+body > .page > .header .content .applogo img.arrow {
   height: var(--header-back-size);
   width: var(--header-back-size);
   margin-right: var(--header-back-gap);
   transition: var(--animations-duration) transform, var(--animations-duration) margin-right, var(--animations-duration) opacity;
 }
 
-body > .page > .header:not(:hover) .content a.applogo img.arrow {
-  transform: scale(0.8);
-  margin-right: calc(var(--header-back-size) * -1);
-  opacity: 0;
+body > .page > .header .content .applogo:not(.show-back) img.arrow {
+  display: none;
 }
 
 body > .page > .header .content .actions {

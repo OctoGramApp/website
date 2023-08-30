@@ -3,6 +3,8 @@ class Changelog {
 
   init() {
     utils.clearPage('changelog');
+    window.scrollTo(0, 0);
+    document.title = 'OctoGram - Changelog';
 
     const fakeLoadingCard = this.#generateFakeLoadingCard();
 
