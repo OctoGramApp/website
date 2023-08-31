@@ -319,41 +319,45 @@ class DCStatus {
     this.#isLoading = true;
 
     const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://raw.githubusercontent.com/OctoGramApp/assets/main/DCStatus/dc_status.json?cache='+Math.random().toString(), true);
+    XML.open('GET', 'https://api.github.com/repos/OctoGramApp/assets/contents/DCStatus/dc_status.json?cache='+Math.random().toString(), true);
     XML.send();
     XML.addEventListener('readystatechange', (e) => {
       if (e.target.readyState == 4 && e.target.status == 200) {
         const response = JSON.parse(e.target.responseText);
-        
-        if (typeof response.status != 'undefined') {
-          this.#isLoading = false;
 
-          for(const datacenter of response.status) {
-            for(const [i, slot] of this.#availableSlots.entries()) {
-              if (slot.dc_id == datacenter.dc_id) {
-                if (slot.slots.status) {
-                  const newStatus = this.#composeStatus(datacenter, slot.smallStatusState);
-                  slot.slots.status.replaceWith(newStatus);
-                  this.#availableSlots[i].slots.status = newStatus;
-                }
+        if (response['content'].length > 0) {
+          const parsedContent = JSON.parse(atob(response['content']));
 
-                if (slot.slots.expandableContainer) {
-                  const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
-                    datacenter,
-                    datacenterId: datacenter.dc_id
-                  });
-                  slot.slots.expandableContainer.replaceWith(expandableContainer);
-                  this.#availableSlots[i].slots.expandableContainer = expandableContainer;
-
-                  if (slot.row) {
-                    slot.row.style.setProperty('--items', visibleItems);
+          if (typeof parsedContent.status != 'undefined') {
+            this.#isLoading = false;
+  
+            for(const datacenter of parsedContent.status) {
+              for(const [i, slot] of this.#availableSlots.entries()) {
+                if (slot.dc_id == datacenter.dc_id) {
+                  if (slot.slots.status) {
+                    const newStatus = this.#composeStatus(datacenter, slot.smallStatusState);
+                    slot.slots.status.replaceWith(newStatus);
+                    this.#availableSlots[i].slots.status = newStatus;
+                  }
+  
+                  if (slot.slots.expandableContainer) {
+                    const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
+                      datacenter,
+                      datacenterId: datacenter.dc_id
+                    });
+                    slot.slots.expandableContainer.replaceWith(expandableContainer);
+                    this.#availableSlots[i].slots.expandableContainer = expandableContainer;
+  
+                    if (slot.row) {
+                      slot.row.style.setProperty('--items', visibleItems);
+                    }
                   }
                 }
               }
             }
+  
+            this.#initProgressLoading();
           }
-
-          this.#initProgressLoading();
         }
       }
     });
