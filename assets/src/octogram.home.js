@@ -1,8 +1,13 @@
 class HomePage {
+  #precachedResponse;
+  #downloadContent;
+  #downloadFiles;
+
   init() {
     utils.clearPage('home');
     window.scrollTo(0, 0);
     document.title = 'OctoGram';
+    history.pushState(null, document.title, '/');
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('page');
@@ -11,9 +16,12 @@ class HomePage {
     pageContainer.appendChild(this.#generateFeatures());
     pageContainer.appendChild(this.#generateAdvantages());
     pageContainer.appendChild(this.#generateMonet());
+    pageContainer.appendChild(this.#generateDownload());
     pageContainer.appendChild(footer.createElement());
 
     document.body.appendChild(pageContainer);
+
+    this.#loadVersions();
   }
 
   #generateIntroduction() {
@@ -482,6 +490,217 @@ class HomePage {
     footer.appendChild(message);
 
     return footer;
+  }
+
+  #generateDownload() {
+    const messageTitle = document.createElement('div');
+    messageTitle.classList.add('title');
+    messageTitle.textContent = translations.getStringRef('DOWNLOAD_TITLE');
+    const messageDescription = document.createElement('div');
+    messageDescription.classList.add('description');
+    messageDescription.textContent = translations.getStringRef('DOWNLOAD_DESCRIPTION');
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.appendChild(messageTitle);
+    message.appendChild(messageDescription);
+
+    const files = document.createElement('a');
+    files.classList.add('files');
+    files.addEventListener('click', () => changelog.init());
+
+    const fromApk = document.createElement('div');
+    fromApk.classList.add('from-apk');
+    fromApk.appendChild(message);
+    fromApk.appendChild(files);
+
+    const separator = document.createElement('div');
+    separator.classList.add('separator');
+
+    const storeMessageDescription = document.createElement('div');
+    storeMessageDescription.classList.add('description');
+    storeMessageDescription.textContent = translations.getStringRef('DOWNLOAD_STORES');
+    const storeMessage = document.createElement('div');
+    storeMessage.classList.add('message');
+    storeMessage.appendChild(storeMessageDescription);
+
+    const stores = document.createElement('div');
+    stores.classList.add('stores');
+    this.#appendStores(stores);
+
+    const placeholderImage = document.createElement('img');
+    placeholderImage.src = 'assets/animations/wavesAnimation.svg';
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('placeholder');
+    placeholder.appendChild(placeholderImage);
+
+    const content = document.createElement('div');
+    content.classList.add('content', 'unavailable-apk');
+    content.appendChild(fromApk);
+    content.appendChild(separator);
+    content.appendChild(storeMessage);
+    content.appendChild(stores);
+    content.appendChild(placeholder);
+
+    const downloadContainer = document.createElement('div');
+    downloadContainer.classList.add('download');
+    downloadContainer.appendChild(content);
+
+    const downloadSection = document.createElement('section');
+    downloadSection.id = 'download';
+    downloadSection.appendChild(downloadContainer);
+
+    this.#downloadContent = content;
+    this.#downloadFiles = files;
+
+    return downloadSection;
+  }
+
+  #appendStores(stores) {
+    stores.appendChild(this.#generateStore({
+      iconUrl: 'assets/stores/appcenter.png',
+      id: 'appcenter',
+      title: 'AppCenter',
+      href: '/ac'
+    }));
+    stores.appendChild(this.#generateStore({
+      iconUrl: 'assets/stores/apkpure.png',
+      id: 'apkpure',
+      title: 'ApkPure',
+      href: '/apkpure'
+    }));
+    stores.appendChild(this.#generateStore({
+      iconUrl: 'assets/stores/apkmirror.png',
+      id: 'apkmirror',
+      title: 'Apkmirror',
+      isUnavailable: true
+    }));
+    stores.appendChild(this.#generateStore({
+      iconUrl: 'assets/stores/playstore.png',
+      id: 'playstore',
+      title: 'PlayStore',
+      isUnavailable: true
+    }));
+  }
+
+  #generateStore({
+    iconUrl,
+    id,
+    title,
+    href,
+    isUnavailable = false
+  }) {
+    const storeIconElement = document.createElement('img');
+    storeIconElement.src = iconUrl;
+    const storeIconContainer = document.createElement('div');
+    storeIconContainer.classList.add('icon', 'need-border');
+    storeIconContainer.appendChild(storeIconElement);
+
+    const storeTitle = document.createElement('div');
+    storeTitle.classList.add('text');
+    storeTitle.textContent = title;
+
+    let store;
+    if (isUnavailable) {
+      store = document.createElement('div');
+      store.classList.add('unavailable');
+
+      const storeDescription = document.createElement('div');
+      storeDescription.classList.add('description');
+      storeDescription.textContent = translations.getStringRef('DOWNLOAD_UNAVAILABLE');
+
+      const container = document.createElement('div');
+      container.classList.add('container');
+      container.appendChild(storeDescription);
+      container.appendChild(storeTitle);
+
+      store.appendChild(container);
+    } else {
+      store = document.createElement('a');
+      store.href = href;
+      store.target = '_blank';
+
+      const animatedIconContainer = document.createElement('div');
+      animatedIconContainer.classList.add('access-icon');
+      animatedIconContainer.appendChild(storeIconContainer.cloneNode(true));
+      
+      const continueContainer = document.createElement('div');
+      continueContainer.classList.add('continue');
+      continueContainer.textContent = translations.getStringRef('DOWNLOAD_AVAILABLE');
+
+      store.appendChild(storeTitle);
+      store.appendChild(animatedIconContainer);
+      store.appendChild(continueContainer);
+    }
+
+    store.classList.add('store');
+    store.dataset.id = id;
+    store.prepend(storeIconContainer);
+
+    return store;
+  }
+
+  #loadVersions() {
+    if (typeof this.#precachedResponse != 'undefined') {
+      this.#loadVersionsWithResponse(this.#precachedResponse);
+    } else {
+      const XML = new XMLHttpRequest();
+      XML.open('GET', 'https://api.github.com/repos/OctoGramApp/OctoGram/releases?cache='+Math.random().toString(), true);
+      XML.send();
+      XML.addEventListener('readystatechange', (e) => {
+        if (e.target.readyState == 4 && e.target.status == 200) {
+          const response = JSON.parse(e.target.responseText);
+  
+          if (response.length > 0) {
+            this.#precachedResponse = response;
+            this.#loadVersionsWithResponse(response);
+          }
+        }
+      });
+    }
+  }
+
+  #loadVersionsWithResponse(response) {
+    let selectedRelease = response[0];
+    if (selectedRelease['prerelease']) {
+      for(const release of response) {
+        if (!release['prerelease']) {
+          selectedRelease = release;
+          break;
+        }
+      }
+    }
+
+    let sizeSum = 0;
+    for(const asset of selectedRelease['assets']) {
+      sizeSum += asset['size'];
+    }
+    sizeSum /= selectedRelease['assets'].length;
+    
+    const fileIcon = document.createElement('img');
+    fileIcon.classList.add('icon');
+    fileIcon.src = '/assets/icons/file.svg';
+    const fileSize = document.createElement('div');
+    fileSize.classList.add('size');
+    fileSize.innerHTML = utils.calculateSize(sizeSum, true, true).replaceAll(' ', '<br/>');
+    const fileIconContainer = document.createElement('div');
+    fileIconContainer.classList.add('file-icon-container');
+    fileIconContainer.appendChild(fileIcon);
+    fileIconContainer.appendChild(fileSize);
+
+    const rightContainerTitle = document.createElement('div');
+    rightContainerTitle.classList.add('title');
+    rightContainerTitle.textContent = selectedRelease['name'];
+    const rightContainerDescription = document.createElement('div');
+    rightContainerDescription.classList.add('description');
+    rightContainerDescription.textContent = translations.getStringRef('DOWNLOAD_DIRECTLY');
+    const rightContainer = document.createElement('div');
+    rightContainer.classList.add('right-container');
+    rightContainer.appendChild(rightContainerTitle);
+    rightContainer.appendChild(rightContainerDescription);
+
+    this.#downloadContent.classList.remove('unavailable-apk');
+    this.#downloadFiles.appendChild(fileIconContainer);
+    this.#downloadFiles.appendChild(rightContainer);
   }
 }
 

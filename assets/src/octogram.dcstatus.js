@@ -32,12 +32,15 @@ class DCStatus {
     utils.clearPage('dcstatus');
     window.scrollTo(0, 0);
     document.title = 'OctoGram - DC Status';
+    history.pushState(null, document.title, '/dcstatus');
     
     this.#availableSlots = [];
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('page');
-    pageContainer.appendChild(header.createElement(() => homePage.init()));
+    pageContainer.appendChild(header.createElement({
+      onBackCallback: () => homePage.init()
+    }));
     pageContainer.appendChild(this.#generatePointer());
     pageContainer.appendChild(this.#generateIdentifyDcContainer());
     pageContainer.appendChild(this.#generateServerContainer());
@@ -275,7 +278,7 @@ class DCStatus {
       }, { once: true });
     }
 
-    let currentLeftSeconds = 30;
+    let currentLeftSeconds = 31;
 
     const updateState = () => {
       currentLeftSeconds--;
@@ -283,7 +286,7 @@ class DCStatus {
       if (currentLeftSeconds > 0) {
         const percent = (100 * currentLeftSeconds) / 30;
         this.#cardDescription.style.setProperty('--percent', percent);
-        this.#secondsIndicator.textContent = currentLeftSeconds;
+        this.#secondsIndicator.textContent = currentLeftSeconds.toString();
       } else {
         clearInterval(this.#currentInterval);
         this.#executeForceReload();
@@ -295,7 +298,7 @@ class DCStatus {
     }
 
     this.#currentInterval = setInterval(updateState, 1000);
-    updateState();
+    this.#secondsIndicator.textContent = '30';
   }
 
   #executeForceReload() {
@@ -309,7 +312,7 @@ class DCStatus {
     this.#currentTimeout = setTimeout(() => {
       clearTimeout(this.#currentTimeout);
       this.#initLoading();
-    }, 1400);
+    }, 300);
   }
   
   #initLoading() {

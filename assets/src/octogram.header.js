@@ -1,5 +1,8 @@
 class Header {
-  createElement(onBackCallback) {
+  createElement({
+    onBackCallback,
+    isError = false
+  } = {}) {
     const appLogoImage = document.createElement('img');
     appLogoImage.src = 'assets/icons/applogo.svg';
     const arrowLeft = document.createElement('img');
@@ -8,7 +11,7 @@ class Header {
     const appLogo = document.createElement('a');
     appLogo.classList.add('applogo');
     appLogo.classList.toggle('show-back', !!onBackCallback);
-    appLogo.addEventListener('click', onBackCallback);
+    onBackCallback && appLogo.addEventListener('click', onBackCallback);
     appLogo.appendChild(arrowLeft);
     appLogo.appendChild(appLogoImage);
 
@@ -23,6 +26,7 @@ class Header {
     
     const header = document.createElement('div');
     header.classList.add('header');
+    header.classList.toggle('as-error', isError);
     header.appendChild(content);
 
     return header;

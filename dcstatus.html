@@ -26,211 +26,23 @@
     <meta property="twitter:image" content="/assets/images/applogo.preview.jpg">
   </head>
   <body>
-    <noscript>
-      <style>
-        body .splash, body > .page:not(.js-error) {
-          display: none;
-        }
-      </style>
-    </noscript>
-    <div class="page js-error">
-      <div class="error">
-        <div class="message">
-          <div class="title">
-            Something went wrong.
-          </div>
-          <div class="description">
-            Try to reload the page or update your browser.
-          </div>
-          <a href="" class="button big accent">
-            <div class="text">
-              Reload this page
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
     <div class="splash">
-      <img src="assets/icons/applogo.svg">
+      <div class="shape"></div>
+      <img src="assets/icons/applogo.svg" class="applogo">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="105" stroke-linecap="round"></circle>
+      </svg>
     </div>
-    <div class="page">
-      <div class="header">
-        <div class="content">
-          <a href="/" class="applogo">
-            <img src="assets/icons/arrowleft.svg" class="arrow">
-            <img src="assets/icons/applogo.svg">
-          </a>
-          <div class="actions">
-            <a href="/#features" class="button secondary">
-              <div class="text">
-                Features
-              </div>
-            </a>
-            <a href="/#download" class="button">
-              <div class="text">
-                Download
-              </div>
-            </a>
-            <a href="https://github.com/OctoGramApp/OctoGram" target="_blank" class="button secondary">
-              <div class="text">
-                Source
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="pointer">
-        <div class="content">
-          <div class="message">
-            <div class="sticker">
-              <img src="assets/animations/dcstatusAnimation.gif">
-            </div>
-            <div class="title">
-              Check the Telegram's DataCenter status in real time.
-            </div>
-            <div class="button accent">
-              Reload status
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card identify">
-        <div class="content">
-          <div class="descriptor">
-            <div class="title">
-              Discover your datacenter
-            </div>
-            <div class="description">
-              <div class="select mini nomargin">
-                <span class="value">Select your prefix</span>
-                <img class="icon" src="/assets/icons/arrowright.svg">
-              </div>
-            </div>
-          </div>
-          <div class="suggestions"></div>
-          <div class="identifydc"></div>
-        </div>
-      </div>
-      <div class="card server">
-        <div class="content">
-          <div class="descriptor">
-            <div class="title">
-              Current status
-            </div>
-            <div class="description">
-              <div class="pending">
-                Next update in
-                <span class="seconds">29</span>
-                seconds...
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8" stroke-linecap="round" />
-              </svg>
-            </div>
-          </div>
-          <div class="datacenters"></div>
-        </div>
-      </div>
-      <noscript>
-        <div class="error">
-          <div class="message">
-            <div class="title">
-              Something went wrong.
-            </div>
-            <div class="description">
-              Try to reload the page or update your browser.
-            </div>
-            <a href="/" class="button big accent">
-              <div class="text">
-                I am an octopus <img src="assets/icons/applogo.svg">
-              </div>
-            </a>
-          </div>
-        </div>
-      </noscript>
-      
-      <div class="footer big">
-        <div class="links">
-          <div class="single-link-container">
-            <div class="link-title">
-              Site pages
-              <img src="assets/icons/chevrondown.svg" class="expand">
-            </div>
-            <a class="link" href="#features">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Features</div>
-            </a>
-            <a class="link" href="#download">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Download</div>
-            </a>
-            <a class="link" href="/dcstatus">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">DC Status</div>
-            </a>
-            <a class="link" href="/changelog">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Changelog</div>
-            </a>
-          </div>
-          <div class="single-link-container">
-            <div class="link-title">
-              GitHub links
-              <img src="assets/icons/chevrondown.svg" class="expand">
-            </div>
-            <a class="link" href="https://github.com/OctoGramApp/OctoGram" target="_blank">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Client source</div>
-            </a>
-            <a class="link" href="https://github.com/OctoGramApp/OctoGram/blob/develop/LICENSE" target="_blank">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Client license</div>
-            </a>
-            <a class="link" href="https://github.com/OctoGramApp/Website" target="_blank">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Website source</div>
-            </a>
-            <a class="link" href="https://github.com/OctoGramApp/website/blob/main/LICENSE" target="_blank">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">Website license</div>
-            </a>
-          </div>
-          <div class="single-link-container">
-            <div class="link-title">
-              Telegram links
-              <img src="assets/icons/chevrondown.svg" class="expand">
-            </div>
-            <a class="link" href="tg://resolve?domain=OctoGramApp">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">[Channel] News</div>
-            </a>
-            <a class="link" href="tg://resolve?domain=OctoGramApks">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">[Channel] Apks</div>
-            </a>
-            <a class="link" href="tg://resolve?domain=OctoGramBeta">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">[Channel] Beta Apks</div>
-            </a>
-            <a class="link" href="tg://resolve?domain=OctoGramChat">
-              <img src="assets/icons/arrowright.svg" class="icon">
-              <div class="text">[Group] Support</div>
-            </a>
-          </div>
-        </div>
-        <div class="text">
-          OctoGram &copy; <span id="yeardate"></span> - <a
-            href="https://github.com/OctoGramApp/Website"
-            target="_blank"
-          >Fork or edit this website</a>
-          <br/>
-          Android 12+ wallpapers are copyrighted by Google.
-        </div>
-      </div>
-    </div>
-    <script src="assets/src/octogram.introduction.js"></script>
-    <script src="assets/src/octogram.config.js"></script>
-    <script src="assets/src/octogram.utils.js"></script>
-    <script src="assets/src/octogram.dcstatus.js"></script>
   </body>
+  <script src="assets/src/octogram.changelog.js"></script>
+  <script src="assets/src/octogram.dcstatus.config.js"></script>
+  <script src="assets/src/octogram.dcstatus.js"></script>
+  <script src="assets/src/octogram.errorpage.js"></script>
+  <script src="assets/src/octogram.footer.js"></script>
+  <script src="assets/src/octogram.header.js"></script>
+  <script src="assets/src/octogram.home.js"></script>
+  <script src="assets/src/octogram.main.js"></script>
+  <script src="assets/src/octogram.parallax.js"></script>
+  <script src="assets/src/octogram.translations.js"></script>
+  <script src="assets/src/octogram.utils.js"></script>
 </html>

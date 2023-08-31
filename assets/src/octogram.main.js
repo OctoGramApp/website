@@ -13,6 +13,21 @@ window.addEventListener('load', () => {
     splashScreenPromise
   ]).then(() => {
     splashScreen.remove();
-    homePage.init();
+    
+    switch(window.location.pathname) {
+      case '/changelog.html':
+      case '/changelog':
+        changelog.init();
+      break;
+      case '/dcstatus.html':
+      case '/dcstatus':
+        dcStatus.init();
+      break;
+      case '/':
+        homePage.init();
+      break;
+      default:
+        errorPage.init();
+    }
   });
 });

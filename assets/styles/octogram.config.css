@@ -8,7 +8,7 @@
   --header-back-gap: 10px;
   --header-appicon-size: 30px;
   --header-actions-gap: 10px;
-  --header-width-limit: min(90vw, 900px);
+  --header-width-limit: min(90vw, 1320px);
 
   --introduction-bg: #1d2733;
   --introduction-height: 75vh;
@@ -65,7 +65,7 @@
   --dcstatus-bottommargin: 50px;
   --dcstatus-width-limit: min(95vw, 1400px);
   --dcstatus-padding: 20px;
-  --dcstatus-radius: 5px;
+  --dcstatus-radius: 15px;
   --dcstatus-row-gap: 15px;
   --dcstatus-row-gap-lines: 7px;
   --dcstatus-row-name-color: #FFFFFF;

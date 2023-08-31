@@ -75,6 +75,17 @@ class Translations {
     CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION: 'The %s version should be the most suitable and stable one for your device.',
     CHANGELOG_DOWNLOAD_SELECT: 'Select your option',
     CHANGELOG_DOWNLOAD_BUTTON: 'Download',
+
+    DOWNLOAD_TITLE: 'Are you ready?',
+    DOWNLOAD_DESCRIPTION: 'Choose your version',
+    DOWNLOAD_STORES: 'Check other app stores:',
+    DOWNLOAD_AVAILABLE: 'Press to open',
+    DOWNLOAD_UNAVAILABLE: 'Currently unavailable',
+    DOWNLOAD_DIRECTLY: 'Press for download page',
+
+    ERROR_TITLE: 'This page doesn\'t exist.',
+    ERROR_DESCRIPTION: 'Looking for an octopus?',
+    ERROR_BUTTON: 'I am an octopus'
   };
 
   load() {
@@ -88,7 +99,7 @@ class Translations {
             const response = JSON.parse(e.target.responseText);
             this.#cachedTranslations = response;
           }
-          
+
           resolve();
         }
       });
@@ -101,6 +112,15 @@ class Translations {
     }
 
     return this.#TRANSLATIONS_REF[name];
+  }
+
+  getTextNodeByStringRef(name) {
+    const string = this.getStringRef(name);
+    if (typeof string != 'undefined') {
+      return document.createTextNode(string);
+    } else {
+      return document.createDocumentFragment();
+    }
   }
 
   #getLanguageCode() {
@@ -118,7 +138,7 @@ class Translations {
   #composeUrl() {
     let url = 'https://raw.githubusercontent.com';
     url += '/OctoGramApp/assets/lang_packs';
-    url += '/LanguageWebsite/';
+    url += '/LanguageWebSite/';
     url += this.#getLanguageCode();
     url += '.json?cache=';
     url += Math.random().toString();

@@ -5,12 +5,15 @@ class Changelog {
     utils.clearPage('changelog');
     window.scrollTo(0, 0);
     document.title = 'OctoGram - Changelog';
+    history.pushState(null, document.title, '/changelog');
 
     const fakeLoadingCard = this.#generateFakeLoadingCard();
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('page');
-    pageContainer.appendChild(header.createElement(() => homePage.init()));
+    pageContainer.appendChild(header.createElement({
+      onBackCallback: () => homePage.init()
+    }));
     pageContainer.appendChild(this.#generatePointer());
     pageContainer.appendChild(fakeLoadingCard);
     pageContainer.appendChild(footer.createElement());
