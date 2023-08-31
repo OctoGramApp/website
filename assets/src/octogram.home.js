@@ -32,10 +32,10 @@ class HomePage {
 
     const messageTitleClient = document.createElement('span');
     messageTitleClient.classList.add('appname');
-    messageTitleClient.textContent = 'OctoGram';
+    messageTitleClient.textContent = ' OctoGram';
     const messageTitle = document.createElement('div');
     messageTitle.classList.add('title');
-    messageTitle.appendChild(document.createTextNode(translations.getStringRef('INTRODUCTION_DISCOVER') + ' '));
+    messageTitle.appendChild(translations.getTextNodeByStringRef('INTRODUCTION_DISCOVER'));
     messageTitle.appendChild(messageTitleClient);
     const messageDescription = document.createElement('div');
     messageDescription.classList.add('description');

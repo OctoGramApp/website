@@ -19,7 +19,7 @@ class Footer {
     footerText.textContent = 'Octogram © ' + new Date().getFullYear().toString() + ' - ';
     footerText.appendChild(footerTextFork);
     footerText.appendChild(document.createElement('br'));
-    footerText.appendChild(document.createTextNode(translations.getStringRef('FOOTER_TEXT_2')));
+    footerText.appendChild(translations.getTextNodeByStringRef('FOOTER_TEXT_2'));
 
     const footerContainer = document.createElement('div');
     footerContainer.classList.add('footer', 'big');
