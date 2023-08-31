@@ -125,7 +125,7 @@ class Changelog {
       const validVersion = utils.tryToGetValidVersion(assetsNames);
       let selectMenuDescription = '';
       if (typeof validVersion == 'string') {
-        selectMenuDescription = translations.getStringRef('CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION');
+        selectMenuDescription = translations.getStringRef('CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION', validVersion);
         selectMenuDescription += ' ';
       }
       selectMenuDescription += translations.getStringRef('CHANGELOG_DOWNLOAD_SUBTITLE');
@@ -143,7 +143,11 @@ class Changelog {
 
       const description = document.createElement('div');
       description.classList.add('description');
-      description.textContent = release['assets'].length+' files, '+downloadsCount+' downloads';
+      description.textContent = translations.getStringRef(
+        'CHANGELOG_DOWNLOAD_STATS',
+        release['assets'].length,
+        downloadsCount
+      );
 
       const descriptor = document.createElement('div');
       descriptor.classList.add('descriptor');

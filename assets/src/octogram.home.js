@@ -35,8 +35,7 @@ class HomePage {
     messageTitleClient.textContent = ' OctoGram';
     const messageTitle = document.createElement('div');
     messageTitle.classList.add('title');
-    messageTitle.appendChild(translations.getTextNodeByStringRef('INTRODUCTION_DISCOVER'));
-    messageTitle.appendChild(messageTitleClient);
+    messageTitle.appendChild(translations.getStringRef('INTRODUCTION_DISCOVER', messageTitleClient));
     const messageDescription = document.createElement('div');
     messageDescription.classList.add('description');
     messageDescription.textContent = translations.getStringRef('INTRODUCTION_DISCOVER_DESCRIPTION');
@@ -135,12 +134,7 @@ class HomePage {
     featuresAppName.textContent = 'OctoGram';
     const featuresTitle = document.createElement('div');
     featuresTitle.classList.add('title');
-    featuresTitle.textContent = translations.getStringRef('FEATURES_TITLE').replace('%s', '');
-    if (translations.getStringRef('FEATURES_TITLE').indexOf('%s') == 0) {
-      featuresTitle.prepend(featuresAppName);
-    } else {
-      featuresTitle.appendChild(featuresAppName);
-    }
+    featuresTitle.appendChild(translations.getStringRef('FEATURES_TITLE', featuresAppName));
 
     const listPlaceholderIcon = document.createElement('img');
     listPlaceholderIcon.src = 'assets/icons/applogo.svg';

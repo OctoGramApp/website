@@ -6,14 +6,14 @@ class Translations {
   ];
 
   #TRANSLATIONS_REF = {
-    INTRODUCTION_DISCOVER: 'Discover',
+    INTRODUCTION_DISCOVER: 'Discover {0}',
     INTRODUCTION_DISCOVER_DESCRIPTION: 'The Telegram alternative client with all the features you need.',
     INTRODUCTION_SETTINGS: 'Impostazioni',
     INTRODUCTION_CHAT: 'Chat',
     INTRODUCTION_CHAT_EXPAND: 'and many other features',
     INTRODUCTION_APPEARANCE: 'Appearance',
     INTRODUCTION_APPEARANCE_EXPAND: 'and many other features',
-    FEATURES_TITLE: '%s\'s features',
+    FEATURES_TITLE: '{0}\'s features',
     FEATURES_ALTERNATIVE_BUTTONS: 'Alternative buttons',
     FEATURES_REGISTRATION_DATE: 'Registration date',
     FEATURES_DCID_INDICATOR: 'DC & ID indicator',
@@ -66,13 +66,14 @@ class Translations {
     CHANGELOG_TITLE: 'All latest beta and stable client versions.',
     CHANGELOG_LOADING: 'Loading versions...',
     CHANGELOG_DOWNLOAD_BETA: 'BETA',
+    CHANGELOG_DOWNLOAD_STATS: '{0} files, {1} downloads',
     CHANGELOG_DOWNLOAD_ARM32: 'For ARM32 devices',
     CHANGELOG_DOWNLOAD_ARM64: 'For ARM64 devices',
     CHANGELOG_DOWNLOAD_UNIVERSAL: 'Universal',
     CHANGELOG_DOWNLOAD_X86: 'For x86 devices',
     CHANGELOG_DOWNLOAD_X86_64: 'For x86_64 devices',
     CHANGELOG_DOWNLOAD_SUBTITLE: 'If you have doubts, you can also use Universal, which is valid for all devices.',
-    CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION: 'The %s version should be the most suitable and stable one for your device.',
+    CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION: 'The {0} version should be the most suitable and stable one for your device.',
     CHANGELOG_DOWNLOAD_SELECT: 'Select your option',
     CHANGELOG_DOWNLOAD_BUTTON: 'Download',
 
@@ -106,18 +107,58 @@ class Translations {
     });
   }
 
-  getStringRef(name) {
+  getStringRef(name, ...args) {
+    let string = this.#TRANSLATIONS_REF[name];
+
     if (this.#cachedTranslations[name]) {
-      return this.#cachedTranslations[name];
+      string = this.#cachedTranslations[name];
     }
 
-    return this.#TRANSLATIONS_REF[name];
+    if (args.length) {
+      const isSortObject = args.some((e) => typeof e == 'object');
+			if(isSortObject){
+				const splittedString = string.split('{');
+				let temporaryString = '';
+
+				for(const part of splittedString){
+					if(part[1] == '}' && !isNaN(parseInt(part[0]))){
+						const isElement = args[part[0]] instanceof HTMLElement;
+						const repartSet = '<smali data-id="'+part[0]+'"></smali>';
+						temporaryString += isElement && repartSet || args[part[0]];
+						temporaryString += part.slice(2);
+					}else{
+						temporaryString += part;
+					}
+				}
+
+				const newGeneratedElement = document.createElement('span');
+				newGeneratedElement.classList.add('dynamic-translation');
+				newGeneratedElement.innerHTML = temporaryString;
+				for(const element of newGeneratedElement.childNodes){
+					if(element.tagName == 'SMALI' && element.dataset.id){
+						element.replaceWith(args[element.dataset.id]);
+					}
+				}
+
+				return newGeneratedElement;
+			}else{
+				for(const [id, arg] of args.entries()){
+					string = string.replaceAll('{'+id+'}', arg);
+				}
+			}
+    }
+
+    return string;
   }
 
-  getTextNodeByStringRef(name) {
-    const string = this.getStringRef(name);
+  getTextNodeByStringRef(name, ...args) {
+    const string = this.getStringRef(name, ...args);
     if (typeof string != 'undefined') {
-      return document.createTextNode(string);
+      if (string instanceof Element && string.tagName == 'SPAN' && string.classList.contains('dynamic-translation')) {
+        return string;
+      } else {
+        return document.createTextNode(string);
+      }
     } else {
       return document.createDocumentFragment();
     }
