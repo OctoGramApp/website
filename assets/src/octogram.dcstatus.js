@@ -31,7 +31,7 @@ class DCStatus {
   init() {
     utils.clearPage('dcstatus');
     window.scrollTo(0, 0);
-    document.title = 'OctoGram - DC Status';
+    document.title = 'OctoGram - ' + translations.getStringRef('DCSTATUS_TITLE_PAGE');
     history.pushState(null, document.title, '/dcstatus');
     
     this.#availableSlots = [];

@@ -6,6 +6,11 @@ class Translations {
   ];
 
   #TRANSLATIONS_REF = {
+    HEADER_FEATURES: 'Features',
+    HEADER_DOWNLOAD: 'Download',
+    HEADER_DC_STATUS: 'DC Status',
+    HEADER_SOURCE: 'Source',
+
     INTRODUCTION_DISCOVER: 'Discover {0}',
     INTRODUCTION_DISCOVER_DESCRIPTION: 'The Telegram alternative client with all the features you need.',
     INTRODUCTION_SETTINGS: 'Impostazioni',
@@ -54,6 +59,7 @@ class Translations {
     FOOTER_TEXT_2: 'Android 12+ wallpapers are copyrighted by Google.',
   
     DCSTATUS_TITLE: 'Check the Telegram\'s DataCenter status in real time.',
+    DCSTATUS_TITLE_PAGE: 'DC Status',
     DCSTATUS_BUTTON: 'Reload status',
     DCSTATUS_SERVER_TITLE: 'Current status',
     DCSTATUS_SERVER_DESCRIPTION: 'Next update in',
@@ -65,6 +71,7 @@ class Translations {
     DCSTATUS_IDENTIFY_RAPID: 'Rapid suggestions',
     
     CHANGELOG_TITLE: 'All latest beta and stable client versions.',
+    CHANGELOG_TITLE_PAGE: 'Changelog',
     CHANGELOG_LOADING: 'Loading versions...',
     CHANGELOG_DOWNLOAD_BETA: 'BETA',
     CHANGELOG_DOWNLOAD_STATS: '{0} files, {1} downloads',
@@ -90,6 +97,7 @@ class Translations {
     ERROR_BUTTON: 'I am an octopus',
     
     PRIVACYPOLICY_TITLE: 'Find out how we save and process your personal data',
+    PRIVACYPOLICY_TITLE_PAGE: 'Privacy Policy',
     PRIVACYPOLICY_LOADING: 'Loading policy...',
   };
 

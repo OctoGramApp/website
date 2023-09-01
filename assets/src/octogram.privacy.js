@@ -4,7 +4,7 @@ class PrivacyPolicy {
   init() {
     utils.clearPage('privacypolicy');
     window.scrollTo(0, 0);
-    document.title = 'OctoGram - Privacy Policy';
+    document.title = 'OctoGram - ' + translations.getStringRef('PRIVACYPOLICY_TITLE_PAGE');
     history.pushState(null, document.title, '/privacy');
 
     const fakeLoadingCard = this.#generateFakeLoadingCard();

@@ -34,7 +34,7 @@ class Header {
 
   #appendActions(actions) {
     actions.appendChild(this.#createButton({
-      text: 'Features',
+      text: translations.getStringRef('HEADER_FEATURES'),
       isSecondary: true,
       onClick: () => {
         if (utils.pageId != 'home') {
@@ -45,7 +45,7 @@ class Header {
     }));
     
     actions.appendChild(this.#createButton({
-      text: 'Download',
+      text: translations.getStringRef('HEADER_DOWNLOAD'),
       onClick: () => {
         if (utils.pageId != 'home') {
           homePage.init();
@@ -55,7 +55,7 @@ class Header {
     }));
 
     actions.appendChild(this.#createButton({
-      text: 'DC Status',
+      text: translations.getStringRef('HEADER_DC_STATUS'),
       isSecondary: true,
       onClick: () => {
         if (utils.pageId != 'dcstatus') {
@@ -65,7 +65,7 @@ class Header {
     }));
 
     actions.appendChild(this.#createButton({
-      text: 'Source',
+      text: translations.getStringRef('HEADER_SOURCE'),
       isSecondary: true,
       url: 'https://github.com/OctoGramApp/OctoGram'
     }));

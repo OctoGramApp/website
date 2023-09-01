@@ -4,7 +4,7 @@ class Changelog {
   init() {
     utils.clearPage('changelog');
     window.scrollTo(0, 0);
-    document.title = 'OctoGram - Changelog';
+    document.title = 'OctoGram - ' + translations.getStringRef('CHANGELOG_TITLE_PAGE');
     history.pushState(null, document.title, '/changelog');
 
     const fakeLoadingCard = this.#generateFakeLoadingCard();
