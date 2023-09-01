@@ -49,7 +49,7 @@ class Footer {
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_FEATURES'),
           onClick: () => {
-            if (utils.pageId != 'home') {
+            if (utils.pageId != homePage.id) {
               homePage.init();
             }
             window.location.href = '#features';
@@ -58,7 +58,7 @@ class Footer {
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_DOWNLOAD'),
           onClick: () => {
-            if (utils.pageId != 'home') {
+            if (utils.pageId != homePage.id) {
               homePage.init();
             }
             window.location.href = '#download';
@@ -67,7 +67,7 @@ class Footer {
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_DC_STATUS'),
           onClick: () => {
-            if (utils.pageId != 'dcstatus') {
+            if (utils.pageId != dcStatus.id) {
               dcStatus.init();
             }
           }
@@ -75,7 +75,7 @@ class Footer {
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_CHANGELOG'),
           onClick: () => {
-            if (utils.pageId != 'changelog') {
+            if (utils.pageId != changelog.id) {
               changelog.init();
             }
           }
@@ -83,7 +83,7 @@ class Footer {
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_PRIVACYPOLICY'),
           onClick: () => {
-            if (utils.pageId != 'privacypolicy') {
+            if (utils.pageId != privacyPolicy.id) {
               privacyPolicy.init();
             }
           }

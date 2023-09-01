@@ -1,8 +1,10 @@
 class PrivacyPolicy {
+  id = 'privacyPolicy';
+
   #precachedResponse;
 
   init() {
-    utils.clearPage('privacypolicy');
+    utils.clearPage(this.id);
     window.scrollTo(0, 0);
     document.title = 'OctoGram - ' + translations.getStringRef('PRIVACYPOLICY_TITLE_PAGE');
     history.pushState(null, document.title, '/privacy');

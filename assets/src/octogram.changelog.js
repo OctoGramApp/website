@@ -1,8 +1,10 @@
 class Changelog {
+  id = 'changelog';
+
   #precachedResponse;
 
   init() {
-    utils.clearPage('changelog');
+    utils.clearPage(this.id);
     window.scrollTo(0, 0);
     document.title = 'OctoGram - ' + translations.getStringRef('CHANGELOG_TITLE_PAGE');
     history.pushState(null, document.title, '/changelog');

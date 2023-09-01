@@ -1,10 +1,13 @@
 class HomePage {
+  id = 'homePage';
+
   #precachedResponse;
   #downloadContent;
   #downloadFiles;
+  #currentInterval;
 
   init() {
-    utils.clearPage('home');
+    utils.clearPage(this.id, () => this.#destroy());
     window.scrollTo(0, 0);
     document.title = 'OctoGram';
     history.pushState(null, document.title, '/');
@@ -24,11 +27,15 @@ class HomePage {
     this.#loadVersions();
   }
 
+  #destroy() {
+    if (typeof this.#currentInterval != 'undefined') {
+      clearInterval(this.#currentInterval);
+    }
+  }
+
   #generateIntroduction() {
     const placeholder = document.createElement('div');
     placeholder.classList.add('placeholder');
-
-    // TODO: manage messageTitle
 
     const messageTitleClient = document.createElement('span');
     messageTitleClient.classList.add('appname');

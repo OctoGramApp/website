@@ -1,4 +1,6 @@
 class DCStatus {
+  id = 'dcStatus';
+
   #DATACENTER_NAMES = [
     'DC1 - MIA, Miami FL, USA',
     'DC2 - AMS, Amsterdam, NL',
@@ -29,7 +31,7 @@ class DCStatus {
   #identifyCardContainer;
 
   init() {
-    utils.clearPage('dcstatus');
+    utils.clearPage(this.id, () => this.#destroy());
     window.scrollTo(0, 0);
     document.title = 'OctoGram - ' + translations.getStringRef('DCSTATUS_TITLE_PAGE');
     history.pushState(null, document.title, '/dcstatus');
@@ -49,6 +51,16 @@ class DCStatus {
     document.body.appendChild(pageContainer);
     
     this.#initLoading();
+  }
+
+  #destroy() {
+    if (typeof this.#currentTimeout != 'undefined') {
+      clearTimeout(this.#currentTimeout);
+    }
+
+    if (typeof this.#currentInterval != 'undefined') {
+      clearInterval(this.#currentInterval);
+    }
   }
 
   #generatePointer() {

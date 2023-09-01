@@ -37,7 +37,7 @@ class Header {
       text: translations.getStringRef('HEADER_FEATURES'),
       isSecondary: true,
       onClick: () => {
-        if (utils.pageId != 'home') {
+        if (utils.pageId != homePage.id) {
           homePage.init();
         }
         window.location.href = '#features';
@@ -47,7 +47,7 @@ class Header {
     actions.appendChild(this.#createButton({
       text: translations.getStringRef('HEADER_DOWNLOAD'),
       onClick: () => {
-        if (utils.pageId != 'home') {
+        if (utils.pageId != homePage.id) {
           homePage.init();
         }
         window.location.href = '#download';
@@ -58,7 +58,7 @@ class Header {
       text: translations.getStringRef('HEADER_DC_STATUS'),
       isSecondary: true,
       onClick: () => {
-        if (utils.pageId != 'dcstatus') {
+        if (utils.pageId != dcStatus.id) {
           dcStatus.init();
         }
       }

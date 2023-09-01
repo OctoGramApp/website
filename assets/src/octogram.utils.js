@@ -1,5 +1,6 @@
 class Utils {
   #currentPageId;
+  #currentPageOnDestroyCallback;
 
   fixInjectionTags(text) {
     const VALID_TAGS = ['b', '/b', 'code', '/code', '/a'];
@@ -297,9 +298,16 @@ class Utils {
     }
   }
 
-  clearPage(pageId) {
+  clearPage(pageId, onDestroyCallback) {
+    if (typeof this.#currentPageOnDestroyCallback != 'undefined') {
+      try {
+        this.#currentPageOnDestroyCallback();
+      } catch(e) {}
+    }
+
     document.body.innerHTML = '';
     this.#currentPageId = pageId;
+    this.#currentPageOnDestroyCallback = onDestroyCallback;
     
     parallaxHelper.clearParallaxState();
   }
