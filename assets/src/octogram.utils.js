@@ -2,7 +2,7 @@ class Utils {
   #currentPageId;
 
   fixInjectionTags(text) {
-    const VALID_TAGS = ['b', '/b', 'code', '/code'];
+    const VALID_TAGS = ['b', '/b', 'code', '/code', '/a'];
     const TAG_REPLACEMENTS = {
       'b': '<span class="bold">',
       '/b': '</span>',
@@ -14,9 +14,14 @@ class Utils {
       for(const [i, tag] of text.split('<').entries()) {
         if (i != 0) {
           const realTag = tag.split('>')[0];
-          if (VALID_TAGS.includes(realTag.toLowerCase())) {
+          const isLinkTag = realTag.startsWith('a href="https://') || realTag.startsWith("a href='https://");
+          if (VALID_TAGS.includes(realTag.toLowerCase()) || isLinkTag) {
             const replacement = TAG_REPLACEMENTS[realTag.toLowerCase()];
-            if (replacement){
+            if (isLinkTag) {
+              if (realTag.indexOf('target=') == -1) {
+                text = text.replaceAll('<'+realTag+'>', '<'+realTag+' target="_blank">');
+              }
+            } else if (replacement){
               text = text.replaceAll('<'+realTag+'>', replacement);
             }
           } else {

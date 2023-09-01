@@ -80,6 +80,14 @@ class Footer {
             }
           }
         }));
+        singleLinkContainer.appendChild(this.#generateSingleLink({
+          text: translations.getStringRef('FOOTER_SITE_PRIVACYPOLICY'),
+          onClick: () => {
+            if (utils.pageId != 'privacypolicy') {
+              privacyPolicy.init();
+            }
+          }
+        }));
         break;
       }
       case 'github': {

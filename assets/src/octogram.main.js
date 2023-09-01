@@ -23,6 +23,10 @@ window.addEventListener('load', () => {
       case '/dcstatus':
         dcStatus.init();
       break;
+      case '/privacy.html':
+      case '/privacy':
+        privacyPolicy.init();
+      break;
       case '/':
         homePage.init();
       break;

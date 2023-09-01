@@ -145,6 +145,11 @@ body > .page > .card .content .body .message:before {
   border-radius: var(--dcstatus-body-text-border-radius);
 }
 
+body > .page > .card .content .body .message a {
+  text-decoration: none;
+  color: var(--dcstatus-body-text-link);
+}
+
 body > .page > .card .content .body .message .bold {
   font-weight: 600;
 }

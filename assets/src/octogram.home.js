@@ -377,7 +377,7 @@ class HomePage {
         'assets/images/monetstyling/cop.' + id.toString() + '.home.png',
         'assets/images/monetstyling/cop.' + id.toString() + '.client.png',
         example,
-        translations.getStringRef('MONET_TRY')
+        translations.getStringRef('MONET_TRY').toUpperCase()
       );
 
       parallaxHelper.registerForParallax({

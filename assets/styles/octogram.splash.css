@@ -3,7 +3,7 @@ body > .splash {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   transition: var(--animations-duration) transform, var(--animations-duration) opacity;
 }
 

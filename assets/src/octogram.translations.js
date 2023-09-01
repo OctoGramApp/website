@@ -39,6 +39,7 @@ class Translations {
     FOOTER_SITE_DOWNLOAD: 'Download',
     FOOTER_SITE_DC_STATUS: 'DC Status',
     FOOTER_SITE_CHANGELOG: 'Changelog',
+    FOOTER_SITE_PRIVACYPOLICY: 'Privacy Policy',
     FOOTER_GITHUB_TITLE: 'GitHub links',
     FOOTER_GITHUB_CLIENT_SOURCE: 'Client source',
     FOOTER_GITHUB_CLIENT_LICENSE: 'Client license',
@@ -86,7 +87,10 @@ class Translations {
 
     ERROR_TITLE: 'This page doesn\'t exist.',
     ERROR_DESCRIPTION: 'Looking for an octopus?',
-    ERROR_BUTTON: 'I am an octopus'
+    ERROR_BUTTON: 'I am an octopus',
+    
+    PRIVACYPOLICY_TITLE: 'Find out how we save and process your personal data',
+    PRIVACYPOLICY_LOADING: 'Loading policy...',
   };
 
   load() {
