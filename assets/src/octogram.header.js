@@ -47,10 +47,9 @@ class Header {
     actions.appendChild(this.#createButton({
       text: translations.getStringRef('HEADER_DOWNLOAD'),
       onClick: () => {
-        if (utils.pageId != homePage.id) {
-          homePage.init();
+        if (utils.pageId != changelog.id) {
+          changelog.init();
         }
-        window.location.href = '#download';
       }
     }));
 
