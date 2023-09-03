@@ -366,37 +366,6 @@ body > .page > #download > .download .content .placeholder {
   pointer-events: none;
 }
 
-body > .page > #download > .download .content .placeholder .animated-icon {
-  height: var(--downloads-placeholder-icon-size);
-  width: var(--downloads-placeholder-icon-size);
-  filter: var(--icons-transform);
-  position: absolute;
-  left: calc(var(--x-position) * 1%);
-}
-
-body > .page > #download > .download .content .placeholder .animated-icon:not(.animated) {
-  visibility: hidden;
-}
-
-body > .page > #download > .download .content .placeholder .animated-icon.animated {
-  animation: 3s moveToTopAnimatedIcon linear;
-}
-
-@keyframes moveToTopAnimatedIcon {
-  from {
-    bottom: -30px;
-    opacity: 0;
-    transform: rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: rotate(var(--rotation));
-  }
-  to {
-    bottom: 100%;
-    transform: rotate(var(--rotation));
-  }
-}
 
 body > .page > #download > .download .content.unavailable-apk .from-apk .files,
 body > .page > #download > .download .content.unavailable-apk .separator,

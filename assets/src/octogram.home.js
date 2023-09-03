@@ -51,6 +51,11 @@ class HomePage {
     message.appendChild(messageTitle);
     message.appendChild(messageDescription);
 
+    const introductionContent = document.createElement('div');
+    introductionContent.classList.add('content');
+    introductionContent.appendChild(placeholder);
+    introductionContent.appendChild(message);
+
     const illustrationContainer = document.createElement('div');
     illustrationContainer.classList.add('illustration');
     illustrationContainer.dataset.state = '1';
@@ -72,16 +77,11 @@ class HomePage {
       mainText: translations.getStringRef('INTRODUCTION_APPEARANCE'),
       bottomText: translations.getStringRef('INTRODUCTION_APPEARANCE_EXPAND')
     }));
-
-    const introductionContent = document.createElement('div');
-    introductionContent.classList.add('content');
-    introductionContent.appendChild(placeholder);
-    introductionContent.appendChild(message);
-    introductionContent.appendChild(illustrationContainer);
-
+    
     const introduction = document.createElement('div');
     introduction.classList.add('introduction');
     introduction.appendChild(introductionContent);
+    introduction.appendChild(illustrationContainer);
 
     return introduction;
   }
@@ -143,14 +143,8 @@ class HomePage {
     featuresTitle.classList.add('title');
     featuresTitle.appendChild(translations.getStringRef('FEATURES_TITLE', featuresAppName));
 
-    const listPlaceholderIcon = document.createElement('img');
-    listPlaceholderIcon.src = 'assets/icons/applogo.svg';
-    const listPlaceholder = document.createElement('div');
-    listPlaceholder.classList.add('placeholder');
-    listPlaceholder.appendChild(listPlaceholderIcon);
     const list = document.createElement('div');
     list.classList.add('list');
-    list.appendChild(listPlaceholder);
     this.#appendFeaturesItems(list);
 
     const featuresContainer = document.createElement('div');
@@ -168,20 +162,47 @@ class HomePage {
   #appendFeaturesItems(list) {
     const featuresItems = [
       [
-        'assets/images/features.buttons.jpg',
-        translations.getStringRef('FEATURES_ALTERNATIVE_BUTTONS')
+        translations.getStringRef('FEATURES_APPEARANCE'),
+        [
+          [
+            'buttons',
+            translations.getStringRef('FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS'),
+            translations.getStringRef('FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS_DESCRIPTION')
+          ],
+          [
+            'emojiset',
+            translations.getStringRef('FEATURES_APPEARANCE_EMOJI_SET'),
+            translations.getStringRef('FEATURES_APPEARANCE_EMOJI_SET_DESCRIPTION')
+          ],
+        ]
       ],
       [
+        translations.getStringRef('FEATURES_FUNCTIONS'),
+        [
+          [
+            'creationdate',
+            translations.getStringRef('FEATURES_FUNCTIONS_REGISTRATION_DATE'),
+            translations.getStringRef('FEATURES_FUNCTIONS_REGISTRATION_DATE_DESCRIPTION')
+          ],
+          [
+            'details',
+            translations.getStringRef('FEATURES_FUNCTIONS_MESSAGE_DETAILS'),
+            translations.getStringRef('FEATURES_FUNCTIONS_MESSAGE_DETAILS_DESCRIPTION')
+          ],
+        ]
+      ],
+      [
+        'dcstatus',
+        translations.getStringRef('FEATURES_DC_STATUS'),
+        translations.getStringRef('FEATURES_DC_STATUS_DESCRIPTION')
+      ],
+      /*[
         'assets/images/features.creationdate.jpg',
         translations.getStringRef('FEATURES_REGISTRATION_DATE')
       ],
       [
         'assets/images/features.dc.jpg',
         translations.getStringRef('FEATURES_DCID_INDICATOR')
-      ],
-      [
-        'assets/images/features.dcstatus.jpg',
-        translations.getStringRef('FEATURES_DC_STATUS')
       ],
       [
         'assets/images/features.details.jpg',
@@ -199,62 +220,321 @@ class HomePage {
         translations.getStringRef('FEATURES_EXTRA_TITLE_1'),
         translations.getStringRef('FEATURES_EXTRA_TITLE_2'),
         translations.getStringRef('FEATURES_EXTRA_BUTTON')
-      ]
+      ]*/
     ];
 
     for(const item of featuresItems) {
-      let element;
-      if (item.length == 2) {
-        element = this.#generateFeaturesItem(...item);
+      let callbackFunction;
+      if (item.length == 2 && typeof item[0] == 'string' && typeof item[1] == 'object') {
+        callbackFunction = (...x) => this.#generateFeaturesCarousel(...x);
       } else {
-        element = this.#generateFeaturesExtraItem(...item);
+        callbackFunction = (...x) => this.#generateFeaturesItem(...x);
       }
+
+      const { element, onVisible, onHidden } = callbackFunction(...item);
 
       parallaxHelper.registerForParallax({
         element: element,
-        basedOnContainer: list
+        ignoreMobileCheck: true,
+        onVisible,
+        onHidden
       });
 
       list.appendChild(element);
     }
   }
 
-  #generateFeaturesItem(imageUrl, text) {
+  #generateFeaturesCarousel(title, items) {
+    let isVisible = false;
+
+    const carouselScrollable = document.createElement('div');
+    carouselScrollable.classList.add('scrollable');
+    carouselScrollable.style.setProperty('--items', items.length.toString());
+    const carousel = document.createElement('div');
+    carousel.classList.add('items-carousel');
+    carousel.appendChild(carouselScrollable);
+
+    let elementsList = [];
+    let activeTabElement;
+    let activeTabId;
+
+    const setAsActive = (elementId) => {
+      activeTabId = elementId;
+      carousel.dataset.enabledId = elementId;
+      carouselScrollable.style.setProperty('--translate', (elementId + 1).toString());
+    };
+
+    const executeOnVisibleFor = (elementId) => {
+      for(const [id, { onVisible }] of elementsList.entries()) {
+        if (id == elementId) {
+          onVisible();
+        }
+      }
+    };
+
+    const hideAllItems = () => {
+      for(const { onHidden } of elementsList) {
+        onHidden();
+      }
+    };
+
+    for(const item of items) {
+      const { element, onVisible, onHidden } = this.#generateFeaturesItem(...item);
+      carouselScrollable.appendChild(element);
+      elementsList.push({ element, onVisible, onHidden });
+    }
+
+    const carouselTitle = document.createElement('div');
+    carouselTitle.classList.add('title');
+    carouselTitle.textContent = title.toUpperCase();
+    const carouselTabs = document.createElement('div');
+    carouselTabs.classList.add('tabs');
+    carouselTabs.appendChild(carouselTitle);
+    for(const [id, item] of items.entries()) {
+      const tab = document.createElement('div');
+      tab.classList.add('tab');
+      tab.addEventListener('click', () => {
+        if (activeTabId != id) {
+          if (typeof activeTabElement != 'undefined') {
+            activeTabElement.classList.remove('active');
+          }
+  
+          activeTabElement = tab;
+          tab.classList.add('active');
+          setAsActive(id);
+  
+          if (isVisible) {
+            hideAllItems();
+            executeOnVisibleFor(id);
+          }
+        }
+      });
+      tab.textContent = item[1];
+      carouselTabs.appendChild(tab);
+
+      if (!id) {
+        activeTabElement = tab;
+        tab.classList.add('active');
+        setAsActive(0);
+      }
+    }
+
+    carousel.prepend(carouselTabs);
+
+    return {
+      element: carousel,
+      onVisible: () => {
+        if (!isVisible) {
+          isVisible = true;
+          executeOnVisibleFor(activeTabId);
+        }
+      },
+      onHidden: () => {
+        if (isVisible) {
+          isVisible = false;
+          hideAllItems();
+        }
+      }
+    };
+  }
+
+  #generateFeaturesItem(id, title, description) {
+    let isVisible = false;
+
     const imageElement = document.createElement('img');
-    imageElement.src = imageUrl;
     const imageContainer = document.createElement('div');
     imageContainer.classList.add('image');
     imageContainer.appendChild(imageElement);
+    this.#appendDecoration(imageContainer, imageElement, id);
 
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('text');
-    textContainer.textContent = text;
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('title');
+    titleContainer.textContent = title;
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('description');
+    descriptionContainer.textContent = description;
+    const messageContainer = document.createElement('div');
+    messageContainer.classList.add('item-message');
+    messageContainer.appendChild(titleContainer);
+    messageContainer.appendChild(descriptionContainer);
 
     const item = document.createElement('div');
     item.classList.add('item');
+    item.dataset.id = id;
     item.appendChild(imageContainer);
-    item.appendChild(textContainer);
+    item.appendChild(messageContainer);
 
-    return item;
+    const { startAnimation, stopAnimation } = this.#initDecorationAnimation(item, imageContainer, id);
+
+    return {
+      element: item,
+      onVisible: () => {
+        if (!isVisible) {
+          isVisible = true;
+          startAnimation();
+        }
+      },
+      onHidden: () => {
+        if (isVisible) {
+          isVisible = false;
+          stopAnimation();
+        }
+      }
+    };
   }
 
-  #generateFeaturesExtraItem(title1, title2, button) {
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('text');
-    textContainer.appendChild(document.createTextNode(title1));
-    textContainer.appendChild(document.createElement('br'));
-    textContainer.appendChild(document.createTextNode(title2));
+  #appendDecoration(imageContainer, imageElement, id) {
+    switch (id) {
+      case 'buttons':
+        imageElement.src = 'assets/images/features.buttons.jpg';
+        
+        const switchableRowText = document.createElement('span');
+        switchableRowText.textContent = 'Minimal';
+        const switchableRowCheckbox = document.createElement('div');
+        switchableRowCheckbox.classList.add('checkbox');
+        const switchableRow = document.createElement('div');
+        switchableRow.classList.add('switchable-row');
+        switchableRow.appendChild(switchableRowText);
+        switchableRow.appendChild(switchableRowCheckbox);
 
-    const buttonElement = document.createElement('div');
-    buttonElement.classList.add('button', 'big', 'accent');
-    buttonElement.textContent = button;
+        imageContainer.appendChild(switchableRow);
+      break;
+      case 'emojiset':
+        imageElement.src = 'assets/images/features.dcstatus.jpg';
+      break;
+      case 'dcstatus':
+        imageElement.src = 'assets/images/features.dcstatus.jpg';
+      break;
+      case 'creationdate':
+        imageElement.src = 'assets/images/features.creationdate.jpg';
+      break;
+      case 'details':
+        imageElement.src = 'assets/images/features.details.jpg';
+      break;
+    }
+  }
 
-    const item = document.createElement('div');
-    item.classList.add('item', 'extra');
-    item.appendChild(textContainer);
-    item.appendChild(buttonElement);
+  #getAnimationDataForDecoration(id) {
+    let iconNames = [];
+    switch(id) {
+      case 'buttons':
+        for(let i = 0; i < 8; i++) {
+          iconNames.push('star');
+        }
+      break;
+      case 'emojiset':
+        iconNames.push('faceheart');
+        iconNames.push('facekiss');
+        iconNames.push('facelaughsquint');
+        iconNames.push('facerollingeyes');
+        iconNames.push('facesmile');
+        iconNames.push('settings');
+      break;
+      case 'dcstatus':
+        iconNames.push('server');
+        iconNames.push('datacenters/dc1');
+        iconNames.push('datacenters/dc2');
+        iconNames.push('datacenters/dc3');
+        iconNames.push('datacenters/dc4');
+        iconNames.push('datacenters/dc5');
+      break;
+      case 'creationdate':
+        iconNames.push('calendardays');
+        iconNames.push('clock');
+        iconNames.push('usersecret');
+        iconNames.push('microphone');
+      break;
+      case 'details':
+        iconNames.push('info');
+        iconNames.push('comments');
+        iconNames.push('reply');
+        iconNames.push('settings');
+        iconNames.push('download');
+        iconNames.push('microphone');
+      break;
+    }
 
-    return item;
+    return iconNames;
+  }
+
+  #initDecorationAnimation(container, startElement, id) {
+    const ANIMATION_ICON_NAMES = this.#getAnimationDataForDecoration(id);
+
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('placeholder');
+
+    let availableSlots = [];
+    for(let i = 0; i < 3; i++){
+      for(const icon of ANIMATION_ICON_NAMES) {
+        const animatedElement = document.createElement('img');
+        animatedElement.classList.add('animated-icon');
+        animatedElement.addEventListener('animationend', () => {
+          animatedElement.classList.remove('animated');
+        });
+        animatedElement.src = '/assets/icons/'+icon+'.svg';
+        placeholder.appendChild(animatedElement);
+        availableSlots.push(animatedElement);
+      }
+    }
+
+    container.prepend(placeholder);
+
+    let rightCounter = 0;
+    let currentInterval;
+    
+    return {
+      startAnimation: () => {
+        if (typeof currentInterval != 'undefined') {
+          clearInterval(currentInterval);
+        }
+
+        currentInterval = setInterval(() => {
+          if (!document.hasFocus()) {
+            return;
+          }
+
+          const startElementRect = startElement.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+    
+          for(const element of availableSlots) {
+            if (!element.classList.contains('animated')) {    
+              let xPosition;
+              if (rightCounter > 2) {
+                rightCounter = 0;
+
+                const maximumXPosition = startElementRect.left - containerRect.left;
+                xPosition = Math.floor(Math.random() * maximumXPosition);
+              } else {
+                rightCounter++;
+
+                const minimumXPosition = startElementRect.left + startElementRect.width - containerRect.left;
+                const maximumXPosition = containerRect.width - minimumXPosition;
+                xPosition = Math.floor(Math.random() * (maximumXPosition - minimumXPosition)) + minimumXPosition;
+              }
+
+              const yPosition = Math.floor(Math.random() * containerRect.height);
+
+              const startFromPositionX = startElementRect.left - containerRect.left + startElementRect.width / 2;
+              const startFromPositionY = startElementRect.top - containerRect.top + startElementRect.height / 2;
+    
+              element.style.setProperty('--start-from-x', startFromPositionX);
+              element.style.setProperty('--start-from-y', startFromPositionY);
+              element.style.setProperty('--arrive-to-y', yPosition);
+              element.style.setProperty('--arrive-to-x', xPosition);
+              element.classList.add('animated');
+              break;
+            }
+          }
+        }, 300);
+      },
+      stopAnimation: () => {
+        if (typeof currentInterval != 'undefined') {
+          clearInterval(currentInterval);
+        }
+
+        rightCounter = 0;
+      }
+    };
   }
 
   #generateAdvantages() {

@@ -7,14 +7,18 @@ class ParallaxHelper {
     basedOnContainer = element,
     ignoreMobileCheck = false,
     set1AfterScroll = false,
-    isMonetMainCheck = false
+    isMonetMainCheck = false,
+    onVisible,
+    onHidden
   }) {
     this.#parallaxListeners.push({
       element,
       basedOnContainer,
       ignoreMobileCheck,
       set1AfterScroll,
-      isMonetMainCheck
+      isMonetMainCheck,
+      onVisible,
+      onHidden
     });
 
     if (!this.#registeredEvent) {
@@ -27,7 +31,7 @@ class ParallaxHelper {
     this.#parallaxListeners = [];
   }
 
-  #handle(event) {
+  #handle() {
     for (const listener of this.#parallaxListeners) {
       try {
         if (listener.isMonetMainCheck) {
@@ -43,13 +47,21 @@ class ParallaxHelper {
     element,
     basedOnContainer,
     ignoreMobileCheck,
-    set1AfterScroll
+    set1AfterScroll,
+    onVisible,
+    onHidden
   }) {
     const isMobileDevice = !ignoreMobileCheck && window.innerWidth < 1000;
     if (element instanceof Element) {
       const percent = isMobileDevice ? 1 : (this.#calculateVisibleArea(basedOnContainer, set1AfterScroll) / 100);
       element.classList.toggle('visible', percent > 0.8);
       element.style.setProperty('--parallax-state', percent.toString());
+
+      if (percent > 0.8) {
+        requestAnimationFrame(onVisible); 
+      } else {
+        requestAnimationFrame(onHidden);
+      }
     }
   }
 

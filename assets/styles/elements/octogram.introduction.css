@@ -111,7 +111,7 @@ body > .page > .introduction .content .message .description {
   }
 }
 
-body > .page > .introduction .content .illustration {
+body > .page > .introduction .illustration {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,7 +133,7 @@ body > .page > .introduction .content .illustration {
     margin-bottom: calc(var(--introduction-image-active-maxheight) / 3);
   }
 
-  body > .page > .introduction .content .illustration {
+  body > .page > .introduction .illustration {
     --introduction-image-active-maxheight: 300px;
     --introduction-image-maxheight: 200px;
     height: calc(var(--introduction-image-active-mobile-maxheight) + 15px);
@@ -143,14 +143,14 @@ body > .page > .introduction .content .illustration {
 }
 
 @media screen and (min-width: 700px) and (max-width: 1400px) {
-  body > .page > .introduction .content .illustration {
+  body > .page > .introduction .illustration {
     --introduction-image-active-maxheight: 350px;
     --introduction-image-maxheight: 250px;
     height: var(--introduction-image-active-maxheight);
   }
 }
 
-body > .page > .introduction .content .illustration .image {
+body > .page > .introduction .illustration .image {
   position: relative;
   border-radius: var(--introduction-image-radius);
   overflow: hidden;
@@ -158,45 +158,45 @@ body > .page > .introduction .content .illustration .image {
   transition: var(--animations-duration) box-shadow;
 }
 
-body > .page > .introduction .content .illustration .image.active {
+body > .page > .introduction .illustration .image.active {
   box-shadow: 0 0 15px -1px #000000;
 }
 
-body > .page > .introduction .content .illustration .image > img {
+body > .page > .introduction .illustration .image > img {
   max-height: var(--introduction-image-active-maxheight);
   max-width: var(--introduction-image-active-maxwidth);
   transition: var(--animations-duration) max-height, var(--animations-duration) max-width;
 }
 
-body > .page > .introduction .content .illustration .image:not(.active) > img {
+body > .page > .introduction .illustration .image:not(.active) > img {
   max-height: var(--introduction-image-maxheight);
   max-width: var(--introduction-image-maxwidth);
 }
 
 @media screen and (max-width: 700px) {
-  body > .page > .introduction .content .illustration {
+  body > .page > .introduction .illustration {
     transform: translateX(35%);
   }
 
-  body > .page > .introduction .content .illustration .image > img {
+  body > .page > .introduction .illustration .image > img {
     max-height: var(--introduction-image-active-mobile-maxheight) !important;
     max-width: var(--introduction-image-active-maxwidth) !important;
   }
 
-  body > .page > .introduction .content .illustration[data-state="1"] {
+  body > .page > .introduction .illustration[data-state="1"] {
     transform: translateX(35%);
   }
 
-  body > .page > .introduction .content .illustration[data-state="2"] {
+  body > .page > .introduction .illustration[data-state="2"] {
     transform: translateX(0);
   }
 
-  body > .page > .introduction .content .illustration[data-state="3"] {
+  body > .page > .introduction .illustration[data-state="3"] {
     transform: translateX(-35%);
   }
 }
 
-body > .page > .introduction .content .illustration .image .full-placeholder {
+body > .page > .introduction .illustration .image .full-placeholder {
   position: absolute;
   top: 0;
   left: 0;
@@ -211,27 +211,27 @@ body > .page > .introduction .content .illustration .image .full-placeholder {
   transition: var(--animations-duration) opacity;
 }
 
-body > .page > .introduction .content .illustration .image .full-placeholder .text {
+body > .page > .introduction .illustration .image .full-placeholder .text {
   color: var(--introduction-imageplaceholder-full-text);
 }
 
 @media screen and (max-width: 1400px) {
-  body > .page > .introduction .content .illustration .image .full-placeholder .text {
+  body > .page > .introduction .illustration .image .full-placeholder .text {
     display: none;
   }
 }
 
-body > .page > .introduction .content .illustration .image.active .full-placeholder {
+body > .page > .introduction .illustration .image.active .full-placeholder {
   opacity: 0;
 }
 
-body > .page > .introduction .content .illustration .image .full-placeholder .icon img {
+body > .page > .introduction .illustration .image .full-placeholder .icon img {
   height: var(--introduction-imageplaceholder-full-icon);
   width: var(--introduction-imageplaceholder-full-icon);
   filter: var(--icons-transform);
 }
 
-body > .page > .introduction .content .illustration .image .bottom-placeholder {
+body > .page > .introduction .illustration .image .bottom-placeholder {
   position: absolute;
   left: 0;
   bottom: calc(var(--introduction-imageplaceholder-bottom-height) * -1);
@@ -248,17 +248,17 @@ body > .page > .introduction .content .illustration .image .bottom-placeholder {
   transition: var(--animations-duration) bottom;
 }
 
-body > .page > .introduction .content .illustration .image.active .bottom-placeholder {
+body > .page > .introduction .illustration .image.active .bottom-placeholder {
   bottom: 0;
 }
 
-body > .page > .introduction .content .illustration .image .bottom-placeholder .text {
+body > .page > .introduction .illustration .image .bottom-placeholder .text {
   color: var(--introduction-imageplaceholder-bottom-text);
   padding-inline: var(--introduction-imageplaceholder-bottom-text-padding);
   text-align: center;
 }
 
-body > .page > .introduction .content .illustration .image .pause {
+body > .page > .introduction .illustration .image .pause {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -274,13 +274,13 @@ body > .page > .introduction .content .illustration .image .pause {
   transition: var(--animations-duration) transform, var(--animations-duration) opacity;
 }
 
-body > .page > .introduction .content .illustration .image .pause img {
+body > .page > .introduction .illustration .image .pause img {
   filter: var(--icons-transform);
   width: var(--introduction-image-pause-size);
   height: var(--introduction-image-pause-size);
 }
 
-body > .page > .introduction .content .illustration.is-paused .image.active .pause {
+body > .page > .introduction .illustration.is-paused .image.active .pause {
   transform: translateX(-50%) translateY(-50%) scale(1.0);
   opacity: 1;
 }

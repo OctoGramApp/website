@@ -126,7 +126,7 @@
   --features-list-width-limit: 1000px;
   --features-list-gap: 40px;
   --features-item-placeholder: min(80vw, 800px);
-  --features-item-gap: 15px;
+  --features-item-gap: 150px;
   --features-item-image-size: 300px;
   --features-item-text-color: #FFFFFF;
   --features-item-extra-bg: #252d3a;
