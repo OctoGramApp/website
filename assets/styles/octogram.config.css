@@ -1,275 +1,202 @@
+
 :root {
+
   --appnamecolor: #6a7ed6;
+
   --background: #151e27;
 
+
+
   --header-bg: #283157;
-  --header-height: 60px;
-  --header-back-size: 20px;
-  --header-back-gap: 10px;
-  --header-appicon-size: 30px;
-  --header-actions-gap: 10px;
-  --header-width-limit: min(90vw, 1320px);
+
+
 
   --introduction-bg: #1d2733;
-  --introduction-height: 75vh;
-  --introduction-bottommargin: 40px;
-  --introduction-shadow-height: 150px;
-  --introduction-height-min: 800px;
-  --introduction-width-limit: 1000px;
-  --introduction-gap: 300px;
-  --introduction-gap-mobile: 35px;
-  --introduction-message-width-limit: 700px;
+
   --introduction-message-title: #FFFFFF;
+
   --introduction-message-description: #FFFFFF;
-  --introduction-image-gap: 5px;
-  --introduction-image-radius: 10px;
-  --introduction-image-maxheight: 250px;
-  --introduction-image-maxwidth: 150px;
-  --introduction-image-active-maxheight: 600px;
-  --introduction-image-active-maxwidth: 1000px;
-  --introduction-image-active-mobile-maxheight: 500px;
+
   --introduction-image-pause: rgba(0, 0, 0, 0.5);
-  --introduction-image-pause-size: 20px;
+
   --introduction-imageplaceholder-full-bg: rgba(21, 30, 39, 0.8);
+
   --introduction-imageplaceholder-full-text: #FFFFFF;
-  --introduction-imageplaceholder-full-icon: 40px;
-  --introduction-imageplaceholder-full-gap: 10px;
-  --introduction-imageplaceholder-bottom-height: 80px;
+
   --introduction-imageplaceholder-bottom-gradient-start: transparent;
+
   --introduction-imageplaceholder-bottom-gradient-end: #000000;
+
   --introduction-imageplaceholder-bottom-text: #FFFFFF;
-  --introduction-imageplaceholder-bottom-text-padding: 15px;
+
+
 
   --pointer-bg: #1d2733;
-  --pointer-padding: 20px;
-  --pointer-shadow-height: 50px;
-  --pointer-bottommargin: 40px;
-  --pointer-sticker-size: 200px;
+
   --pointer-title: #FFFFFF;
-  --pointer-gap: 10px;
-  --pointer-width-limit: min(500px, 87vw);
+
+
 
   --dcstatus-bg: #1d2733;
-  --dcstatus-descriptorgap-mobile: 5px;
+
   --dcstatus-title: #FFFFFF;
+
   --dcstatus-title-badge-bg: #FFFFFF;
+
   --dcstatus-title-badge-text: #000000;
-  --dcstatus-title-badge-radius: 4px;
-  --dcstatus-title-badge-paddinginline: 3px;
-  --dcstatus-title-badge-paddingblock: 3px;
+
   --dcstatus-description: rgba(255, 255, 255, 0.8);
-  --dcstatus-description-gap: 5px;
-  --dcstatus-description-progress-size: 20px;
+
   --dcstatus-description-progress-color: rgba(255, 255, 255, 0.8);
-  --dcstatus-description-progress-width: 3px;
-  --dcstatus-bottommargin: 50px;
-  --dcstatus-width-limit: min(95vw, 1400px);
-  --dcstatus-padding: 20px;
-  --dcstatus-radius: 15px;
-  --dcstatus-row-gap: 15px;
-  --dcstatus-row-gap-lines: 7px;
+
   --dcstatus-row-name-color: #FFFFFF;
-  --dcstatus-row-name-size: 17px;
+
   --dcstatus-row-status-color-online: #69b972;
+
   --dcstatus-row-status-color-slow: #e0bd25;
+
   --dcstatus-row-status-color-offline: #c26266;
-  --dcstatus-row-status-size: 14px;
-  --dcstatus-row-padding: 5px;
+
   --dcstatus-row-expanded-bg: rgba(0, 0, 0, 0.3);
-  --dcstatus-row-expanded-padding: 20px;
-  --dcstatus-row-expanded-radius: 10px;
-  --dcstatus-row-expanded-expandable-height: 55px;
-  --dcstatus-row-expanded-expandable-gap: 15px;
-  --dcstatus-row-expanded-expandable-gap-mobile: 7px;
+
   --dcstatus-row-expanded-indicator-bg: #1d2733;
+
   --dcstatus-row-expanded-indicator-text: #FFFFFF;
-  --dcstatus-row-expanded-indicator-gap: 25px;
-  --dcstatus-row-expanded-indicator-padding: 15px;
-  --dcstatus-row-expanded-indicator-radius: 30px;
+
   --dcstatus-row-expanded-indicator-separator: rgba(255, 255, 255, 0.1);
-  --dcstatus-row-expanded-indicator-separator-width: 2px;
+
   --dcstatus-row-expanded-indicator-separator-rotate: 35deg;
-  --dcstatus-row-expanded-indicator-separator-icon: 22px;
-  --dcstatus-row-expanded-indicator-separator-rightpos: 35px;
-  --dcstatus-body-topmargin: 20px;
+
   --dcstatus-body-text: rgba(255, 255, 255, 0.9);
+
   --dcstatus-body-text-border-color: rgba(255, 255, 255, 0.9);
-  --dcstatus-body-text-border-width: 3px;
-  --dcstatus-body-text-border-radius: 10px;
+
   --dcstatus-body-text-link: #547ed6;
+
   --dcstatus-body-text-code-bg: #151e27;
-  --dcstatus-body-text-code-padding: 3px;
-  --dcstatus-body-text-code-radius: 5px;
-  --dcstatus-body-paddingleft: 20px;
+
   --dcstatus-suggestions-title: #FFFFFF;
-  --dcstatus-suggestions-gap: 30px;
-  --dcstatus-suggestions-topmargin: 10px;
-  --dcstatus-suggestions-topmargin-hidden: -39px;
-  --dcstatus-identifydc-radius: 15px;
-  --dcstatus-identifydc-height: 245px;
-  --dcstatus-identifydc-topmargin: 20px;
-  --dcstatus-identifydc-topmargin-hidden: -40px;
+
   --dcstatus-identifydc-number: #FFFFFF;
-  --dcstatus-identifydc-number-placeholder-size: 72px;
-  --dcstatus-identifydc-number-prefix-size: 26px;
-  --dcstatus-identifydc-number-param-height: 28.3px;
-  --dcstatus-identifydc-number-param-spoiler-height: 29px;
-  --dcstatus-identifydc-number-param-spoiler-text-size: 26px;
-  --dcstatus-identifydc-number-param-spoiler-text-size-mobile: 16px;
+
   --dcstatus-identifydc-number-param-spoiler-text-color: #FFFFFF;
-  --dcstatus-identifydc-number-param-spacer: 22px;
-  --dcstatus-identifydc-number-param-spacer-mobile: 13px;
+
+
 
   --features-title: #FFFFFF;
-  --features-title-gap: 20px;
-  --features-bottommargin: 30px;
-  --features-list-width-limit: 1000px;
-  --features-list-gap: 40px;
-  --features-item-placeholder: min(80vw, 800px);
-  --features-item-gap: 150px;
-  --features-item-image-size: 300px;
+
   --features-item-text-color: #FFFFFF;
+
   --features-item-extra-bg: #252d3a;
+
   --features-item-extra-text: #FFFFFF;
-  --features-item-extra-radius: 10px;
-  --features-item-extra-padding: 15px;
+
+
 
   --buttons-textcolor: #FFFFFF;
-  --buttons-hoverbg: rgba(255, 255, 255, 0.1);
-  --buttons-activebg: rgba(255, 255, 255, 0.05);
-  --buttons-accent-bg: #6a7ed6;
-  --buttons-accent-text: #FFFFFF;
-  --buttons-padding: 8px;
-  --buttons-big-paddingblock: 10px;
-  --buttons-radius: 5px;
 
-  --monet-border: 50px;
-  --monet-radius: 90px;
-  --monet-bottommargin: 50px;
-  --monet-message-height-limit: 40vh;
-  --monet-message-width-limit: 600px;
+  --buttons-hoverbg: rgba(255, 255, 255, 0.1);
+
+  --buttons-activebg: rgba(255, 255, 255, 0.05);
+
+  --buttons-accent-bg: #6a7ed6;
+
+  --buttons-accent-text: #FFFFFF;
+
+
+
   --monet-message-scrolling: #FFFFFF;
-  --monet-message-icon-size: 150px;
+
   --monet-message-title: #FFFFFF;
+
   --monet-message-description: #FFFFFF;
-  --monet-example-add-distance: 20px;
-  --monet-example-add-padding: 10px;
-  --monet-example-add-radius: 13px;
+
   --monet-example-add-color: #FFFFFF;
+
   --monet-example-add-border: #FFFFFF;
-  --monet-example-image-gap: 20px;
-  --monet-example-image-height-limit: min(800px, 80vh);
-  --monet-footer-height-limit: 80vh;
-  --monet-footer-coloranimation-from-size: 40px;
-  --monet-footer-coloranimation-from-radius: 25px;
-  --monet-footer-coloranimation-from-gap: 15px;
-  --monet-footer-coloranimation-to-blur: 277px;
-  --monet-footer-coloranimation-to-blur-mobile: 184px;
-  --monet-footer-coloranimation-to-spread: 150px;
-  --monet-footer-coloranimation-to-spread-mobile: 90px;
-  --monet-progressbar-height: 5px;
+
+
 
   --downloads-bg: #6a7ed63d;
+
   --downloads-title: #FFFFFF;
+
   --downloads-description: #FFFFFF;
-  --downloads-bottommargin: 50px;
-  --downloads-width-limit: min(95vw, 1400px);
-  --downloads-padding: 30px;
-  --downloads-radius: 5px;
-  --downloads-gap: 20px;
-  --downloads-files-width: 375px;
-  --downloads-files-padding: 17px;
+
   --downloads-files-bg: rgba(106, 124, 214, 0.2);
-  --downloads-files-radius: 10px;
-  --downloads-files-icon-size: 70px;
-  --downloads-files-icon-rightgap: 15px;
-  --downloads-files-icon-size-font: 15px;
+
   --downloads-files-icon-size-color: #FFFFFF;
-  --downloads-files-title-size: 20px;
+
   --downloads-files-title-color: #FFFFFF;
+
   --downloads-files-description-color: rgba(255, 255, 255, 0.8);
-  --downloads-select-paddingblock: 10px;
-  --downloads-select-bottommargin: 6px;
+
   --downloads-separator: rgba(255, 255, 255, 0.2);
+
   --downloads-stores-bg: rgba(106, 124, 214, 0.2);
-  --downloads-stores-gap: 20px;
-  --downloads-stores-gap-mobile: 10px;
+
   --downloads-stores-primary-apkmirror: #f76912;
+
   --downloads-stores-primary-apkpure: #005d52;
+
   --downloads-stores-primary-appcenter: #4f1428;
+
   --downloads-stores-primary-playstore: #0e0e0e;
-  --downloads-stores-length-apkmirror: 156.2px;
-  --downloads-stores-length-apkpure: 129.61px;
-  --downloads-stores-length-appcenter: 166.19px;
-  --downloads-stores-length-playstore: 147.14px;
+
   --downloads-stores-text: #FFFFFF;
+
   --downloads-stores-description: rgba(255, 255, 255, 0.95);
-  --downloads-stores-store-gap: 10px;
-  --downloads-stores-store-gap-mobile: 20px;
-  --downloads-placeholder-icon-size: 25px;
+
+
 
   --footer-bg: #252d3a;
+
   --footer-text: #FFFFFF;
+
   --footer-text-link: #547ed6;
-  --footer-shadow-height: 20px;
+
+
 
   --selectmenu-select-bg: rgba(0, 0, 0, 0.6);
+
   --selectmenu-select-text: #FFFFFF;
-  --selectmenu-select-paddinginline: 17px;
-  --selectmenu-select-paddinginline-hover: 11px;
-  --selectmenu-select-paddinginline-active: 0;
-  --selectmenu-select-paddingblock: 15px;
-  --selectmenu-select-radius: 8px;
-  --selectmenu-select-bottommargin: 12px;
-  --selectmenu-mini-paddingblock: 10px;
-  --selectmenu-mini-gap: 10px;
+
   --selectmenu-overflow-bg: rgba(0, 0, 0, 0.8);
-  --selectmenu-width-limit: 420px;
-  --selectmenu-padding: 9px;
-  --selectmenu-animation-size: 140px;
-  --selectmenu-animation-bottommargin: 40px;
-  --selectmenu-option-padding: 10px;
+
   --selectmenu-option-background: #6a7ed63d;
-  --selectmenu-option-radius: 5px;
-  --selectmenu-option-gap: 9px;
-  --selectmenu-option-bottommargin: 10px;
+
   --selectmenu-option-text: #FFFFFF;
-  --selectmenu-option-radio-border: 2px;
+
   --selectmenu-option-radio-color: #FFFFFF;
-  --selectmenu-option-radio-size: 15px;
-  --selectmenu-option-radio-insider: 2px;
+
   --selectmenu-separator-bg: #4a6092;
+
   --selectmenu-separator-text: #FFFFFF;
-  --selectmenu-separator-bottommargin: 10px;
-  --selectmenu-separator-paddingleft: 20px;
-  --selectmenu-separator-radius: 12px;
+
   --selectmenu-description-color: rgba(255, 255, 255, 0.7);
-  --selectmenu-description-aslast-topmargin: 20px;
-  --selectmenu-description-asfirst-bottommargin: 20px;
+
+
 
   --advantages-bg: #252d3a;
-  --advantages-bottommargin: 50px;
-  --advantages-shadow-height: 20px;
-  --advantages-paddingblock: 40px;
+
   --advantages-message-title: #FFFFFF;
+
   --advantages-message-description: #FFFFFF;
-  --advantages-message-gap: 30px;
-  --advantages-list-gap: 20px;
-  --advantages-list-width-limit: 1400px;
+
   --advantages-list-separator-color: rgba(255, 255, 255, 0.5);
-  --advantages-list-separator-height: 270px;
-  --advantages-list-item-width-limit: 270px;
-  --advantages-list-item-gap: 30px;
-  --advantages-list-item-gap-mobile: 20px;
-  --advantages-list-item-image-size: 230px;
+
   --advantages-list-item-title-color: #FFFFFF;
 
-  --error-message-gap: 20px;
+
+
   --error-message-title: #FFFFFF;
+
   --error-message-description: #FFFFFF;
-  --error-message-octo-size: 25px;
-  --error-message-octo-gap: 7.5px;
+
+
 
   --animations-duration: 0.5s;
+
   --icons-transform: invert(1);
+
 }

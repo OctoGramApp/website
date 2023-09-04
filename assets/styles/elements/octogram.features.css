@@ -3,8 +3,8 @@ body > .page > #features > .features {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--features-title-gap);
-  margin-bottom: var(--features-bottommargin);
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 body > .page > #features > .features > .title {
@@ -22,9 +22,9 @@ body > .page > #features > .features .list {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  max-width: calc(var(--features-item-image-size) * 4 + var(--features-list-gap) * 4 + 40px);
+  max-width: calc(300px * 4 + 40px * 4 + 40px);
   padding: 40px;
-  gap: var(--features-list-gap);
+  gap: 40px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -32,7 +32,7 @@ body > .page > #features > .features .list {
 
 @media screen and (max-width: 450px) {
   body > .page > #features > .features .list {
-    gap: var(--features-list-gap) 0;
+    gap: 40px 0;
     padding: 0;
   }
 }
@@ -65,7 +65,7 @@ body > .page > #features > .features .list .placeholder {
 
 body > .page > #features > .features .list .placeholder img {
   filter: var(--icons-transform);
-  width: var(--features-item-placeholder);
+  width: min(80vw, 800px);
   opacity: 10%;
 }
 
@@ -154,7 +154,7 @@ body > .page > #features > .features .list .item {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--features-item-gap);
+  gap: 150px;
   background: rgba(13, 15, 19, var(--parallax-state));
   padding-block: 59px;
   border-radius: 20px;
@@ -324,8 +324,8 @@ body > .page > #features > .features .list .item .placeholder {
 }
 
 body > .page > #features > .features .list .item .placeholder .animated-icon {
-  height: var(--downloads-placeholder-icon-size);
-  width: var(--downloads-placeholder-icon-size);
+  height: 25px;
+  width: 25px;
   filter: var(--icons-transform);
   position: absolute;
 }

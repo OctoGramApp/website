@@ -1,6 +1,6 @@
 body > .page > .header {
   width: 100%;
-  height: var(--header-height);
+  height: 60px;
   background: linear-gradient(
     var(--header-bg),
     var(--introduction-bg)
@@ -20,7 +20,7 @@ body > .page > .header.as-error {
 body > .page > .header .content {
   height: 100%;
   width: 100%;
-  max-width: var(--header-width-limit);
+  max-width: min(90vw, 1320px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,15 +37,15 @@ body > .page > .header .content a.applogo:not([href]) {
 }
 
 body > .page > .header .content .applogo img {
-  height: var(--header-appicon-size);
-  width: var(--header-appicon-size);
+  height: 30px;
+  width: 30px;
   filter: var(--icons-transform);
 }
 
 body > .page > .header .content .applogo img.arrow {
-  height: var(--header-back-size);
-  width: var(--header-back-size);
-  margin-right: var(--header-back-gap);
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
   transition: var(--animations-duration) transform, var(--animations-duration) margin-right, var(--animations-duration) opacity;
 }
 
@@ -57,7 +57,7 @@ body > .page > .header .content .actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--header-actions-gap);
+  gap: 10px;
 }
 
 @media screen and (max-width: 750px) {

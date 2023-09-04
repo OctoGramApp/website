@@ -2,8 +2,8 @@ body > .page .button {
   position: relative;
   color: var(--buttons-textcolor);
   font-size: 1.3em;
-  border-radius: var(--buttons-radius);
-  padding: var(--buttons-padding);
+  border-radius: 5px;
+  padding: 8px;
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
@@ -17,7 +17,7 @@ body > .page .button.disabled {
 
 body > .page .button.big {
   font-size: 1.5em;
-  padding-block: var(--buttons-big-paddingblock);
+  padding-block: 10px;
   width: 100%;
 }
 

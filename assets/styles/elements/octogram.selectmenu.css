@@ -2,10 +2,10 @@ body > .page .select {
   width: 100%;
   background: var(--selectmenu-select-bg);
   color: var(--selectmenu-select-text);
-  padding-inline: var(--selectmenu-select-paddinginline);
-  padding-block: var(--selectmenu-select-paddingblock);
-  border-radius: var(--selectmenu-select-radius);
-  margin-bottom: var(--selectmenu-select-bottommargin);
+  padding-inline: 17px;
+  padding-block: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -15,8 +15,8 @@ body > .page .select {
 }
 
 body > .page .select.mini {
-  padding-block: var(--selectmenu-mini-paddingblock);
-  gap: var(--selectmenu-mini-gap);
+  padding-block: 10px;
+  gap: 10px;
 }
 
 body > .page .select.nomargin {
@@ -29,11 +29,11 @@ body > .page .select .icon {
 
 @media screen and (min-width: 500px) {
   body > .page .select:hover {
-    padding-inline: var(--selectmenu-select-paddinginline-hover);
+    padding-inline: 11px;
   }
   
   body > .page .select:active {
-    padding-inline: var(--selectmenu-select-paddinginline-active);
+    padding-inline: 0;
   }
 }
 
@@ -75,8 +75,8 @@ body > .page > .select-overflow .select-menu {
   top: 0;
   right: 0;
   width: 100vw;
-  max-width: var(--selectmenu-width-limit);
-  padding: var(--selectmenu-padding);
+  max-width: 420px;
+  padding: 9px;
   box-sizing: border-box;
   height: 100%;
   display: flex;
@@ -131,9 +131,9 @@ body > .page > .select-overflow.closing .select-menu {
 }
 
 body > .page > .select-overflow .select-menu .animation {
-  width: var(--selectmenu-animation-size);
-  height: var(--selectmenu-animation-size);
-  margin-bottom: var(--selectmenu-animation-bottommargin);
+  width: 140px;
+  height: 140px;
+  margin-bottom: 40px;
 }
 
 body > .page > .select-overflow .select-menu .general-description {
@@ -141,12 +141,12 @@ body > .page > .select-overflow .select-menu .general-description {
 }
 
 body > .page > .select-overflow .select-menu .general-description:last-child {
-  margin-top: var(--selectmenu-description-aslast-topmargin);
+  margin-top: 20px;
   text-align: right;
 }
 
 body > .page > .select-overflow .select-menu .general-description:not(:last-child) {
-  margin-bottom: var(--selectmenu-description-asfirst-bottommargin);
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -154,20 +154,20 @@ body > .page > .select-overflow .select-menu .letter-separator {
   width: 100%;
   background: var(--selectmenu-separator-bg);
   color: var(--selectmenu-separator-text);
-  margin-bottom: var(--selectmenu-separator-bottommargin);
-  padding-left: var(--selectmenu-separator-paddingleft);
-  border-radius: var(--selectmenu-separator-radius);
+  margin-bottom: 10px;
+  padding-left: 20px;
+  border-radius: 12px;
   box-sizing: border-box;
 }
 
 body > .page > .select-overflow .select-menu .option {
   width: 100%;
-  padding: var(--selectmenu-option-padding);
+  padding: 10px;
   background: var(--selectmenu-option-background);
-  border-radius: var(--selectmenu-option-radius);
+  border-radius: 5px;
   color: var(--selectmenu-option-text);
-  gap: var(--selectmenu-option-gap);
-  margin-bottom: var(--selectmenu-option-bottommargin);
+  gap: 9px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -189,10 +189,10 @@ body > .page > .select-overflow .select-menu.is-big .option {
 }
 
 body > .page > .select-overflow .select-menu .option .radio {
-  width: var(--selectmenu-option-radio-size);
-  height: var(--selectmenu-option-radio-size);
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  border: var(--selectmenu-option-radio-border) solid var(--selectmenu-option-radio-color);
+  border: 2px solid var(--selectmenu-option-radio-color);
   position: relative;
   overflow: hidden;
   transform: scale(0);
@@ -217,10 +217,10 @@ body > .page > .select-overflow .select-menu .option .radio::after {
   border-radius: 50%;
   transform: scale(0.6);
   opacity: 0;
-  top: var(--selectmenu-option-radio-insider);
-  left: var(--selectmenu-option-radio-insider);
-  width: calc(100% - var(--selectmenu-option-radio-insider) * 2);
-  height: calc(100% - var(--selectmenu-option-radio-insider) * 2);
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 2px * 2);
+  height: calc(100% - 2px * 2);
   transition: var(--animations-duration) opacity, var(--animations-duration) transform;
 }
 

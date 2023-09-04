@@ -417,46 +417,46 @@ class HomePage {
     switch(id) {
       case 'buttons':
         for(let i = 0; i < 8; i++) {
-          iconNames.push('star');
+          iconNames.push('assets/icons/star.svg');
         }
       break;
       case 'emojiset':
-        iconNames.push('faceheart');
-        iconNames.push('facekiss');
-        iconNames.push('facelaughsquint');
-        iconNames.push('facerollingeyes');
-        iconNames.push('facesmile');
-        iconNames.push('settings');
+        iconNames.push('assets/icons/faceheart.svg');
+        iconNames.push('assets/icons/facekiss.svg');
+        iconNames.push('assets/icons/facelaughsquint.svg');
+        iconNames.push('assets/icons/facerollingeyes.svg');
+        iconNames.push('assets/icons/facesmile.svg');
+        iconNames.push('assets/icons/settings.svg');
       break;
       case 'dcstatus':
-        iconNames.push('server');
-        iconNames.push('datacenters/dc1');
-        iconNames.push('datacenters/dc2');
-        iconNames.push('datacenters/dc3');
-        iconNames.push('datacenters/dc4');
-        iconNames.push('datacenters/dc5');
+        iconNames.push('assets/icons/server.svg');
+        iconNames.push('assets/icons/datacenters/dc1.svg');
+        iconNames.push('assets/icons/datacenters/dc2.svg');
+        iconNames.push('assets/icons/datacenters/dc3.svg');
+        iconNames.push('assets/icons/datacenters/dc4.svg');
+        iconNames.push('assets/icons/datacenters/dc5.svg');
       break;
       case 'creationdate':
-        iconNames.push('calendardays');
-        iconNames.push('clock');
-        iconNames.push('usersecret');
-        iconNames.push('microphone');
+        iconNames.push('assets/icons/calendardays.svg');
+        iconNames.push('assets/icons/clock.svg');
+        iconNames.push('assets/icons/usersecret.svg');
+        iconNames.push('assets/icons/microphone.svg');
       break;
       case 'details':
-        iconNames.push('info');
-        iconNames.push('comments');
-        iconNames.push('reply');
-        iconNames.push('settings');
-        iconNames.push('download');
-        iconNames.push('microphone');
+        iconNames.push('assets/icons/info.svg');
+        iconNames.push('assets/icons/comments.svg');
+        iconNames.push('assets/icons/reply.svg');
+        iconNames.push('assets/icons/settings.svg');
+        iconNames.push('assets/icons/download.svg');
+        iconNames.push('assets/icons/microphone.svg');
       break;
       case 'experimental':
-        iconNames.push('flask');
-        iconNames.push('dev');
-        iconNames.push('terminal');
-        iconNames.push('settings');
-        iconNames.push('usersecret');
-        iconNames.push('server');
+        iconNames.push('assets/icons/flask.svg');
+        iconNames.push('assets/icons/dev.svg');
+        iconNames.push('assets/icons/terminal.svg');
+        iconNames.push('assets/icons/settings.svg');
+        iconNames.push('assets/icons/usersecret.svg');
+        iconNames.push('assets/icons/server.svg');
       break;
     }
 
@@ -471,13 +471,13 @@ class HomePage {
 
     let availableSlots = [];
     for(let i = 0; i < 3; i++){
-      for(const icon of ANIMATION_ICON_NAMES) {
+      for(const iconUrl of ANIMATION_ICON_NAMES) {
         const animatedElement = document.createElement('img');
         animatedElement.classList.add('animated-icon');
         animatedElement.addEventListener('animationend', () => {
           animatedElement.classList.remove('animated');
         });
-        animatedElement.src = '/assets/icons/'+icon+'.svg';
+        animatedElement.src = iconUrl;
         placeholder.appendChild(animatedElement);
         availableSlots.push(animatedElement);
       }

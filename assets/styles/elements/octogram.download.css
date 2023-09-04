@@ -3,16 +3,16 @@ body > .page > #download > .download {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--downloads-bottommargin);
+  margin-bottom: 50px;
 }
 
 body > .page > #download > .download .content {
   position: relative;
   overflow: hidden;
-  max-width: var(--downloads-width-limit);
-  padding: var(--downloads-padding);
-  border-radius: var(--downloads-radius);
-  gap: var(--downloads-gap);
+  max-width: min(95vw, 1400px);
+  padding: 30px;
+  border-radius: 5px;
+  gap: 20px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -74,14 +74,14 @@ body > .page > #download > .download .content .from-apk {
 
 body > .page > #download > .download .content .from-apk .files {
   width: 100%;
-  max-width: var(--downloads-files-width);
-  padding: var(--downloads-files-padding);
+  max-width: 375px;
+  padding: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--downloads-files-bg);
   background: var(--downloads-files-bg);
-  border-radius: var(--downloads-files-radius);
+  border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -120,19 +120,19 @@ body > .page > #download > .download .content .from-apk .files:hover::before {
 }
 
 body > .page > #download > .download .content .from-apk .files .file-icon-container {
-  margin-right: var(--downloads-files-icon-rightgap);
+  margin-right: 15px;
   position: relative;
 }
 
 body > .page > #download > .download .content .from-apk .files .file-icon-container .icon {
-  height: var(--downloads-files-icon-size);
-  width: var(--downloads-files-icon-size);
+  height: 70px;
+  width: 70px;
 }
 
 body > .page > #download > .download .content .from-apk .files .file-icon-container .size {
   position: absolute;
   bottom: 9px;
-  font-size: var(--downloads-files-icon-size-font);
+  font-size: 15px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -145,11 +145,11 @@ body > .page > #download > .download .content .from-apk .files .right-container 
 }
 
 body > .page > #download > .download .content .from-apk .files:hover .right-container {
-  margin-left: calc(-1 * var(--downloads-files-icon-size) - var(--downloads-files-icon-rightgap));
+  margin-left: calc(-1 * 70px - 15px);
 }
 
 body > .page > #download > .download .content .from-apk .files .right-container .title {
-  font-size: var(--downloads-files-title-size);
+  font-size: 20px;
   color: var(--downloads-files-title-color);
 }
 
@@ -169,7 +169,7 @@ body > .page > #download > .download .stores {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--downloads-stores-gap);
+  gap: 20px;
 }
 
 @media screen and (min-width: 650px) and (max-width: 1270px) {
@@ -183,7 +183,7 @@ body > .page > #download > .download .stores {
   body > .page > #download > .download .stores {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: 1fr;
-    gap: var(--downloads-stores-gap-mobile);
+    gap: 10px;
   }
 }
 
@@ -192,7 +192,7 @@ body > .page > #download > .download .stores .store {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--downloads-stores-store-gap);
+  gap: 10px;
   border-radius: 10px;
   position: relative;
   cursor: pointer;
@@ -205,8 +205,8 @@ body > .page > #download > .download .stores .store {
 @media screen and (max-width: 650px) {
   body > .page > #download > .download .stores .store {
     justify-content: start;
-    padding-left: var(--downloads-stores-store-gap-mobile);
-    gap: var(--downloads-stores-store-gap-mobile);
+    padding-left: 20px;
+    gap: 20px;
   }
 }
 
@@ -225,22 +225,22 @@ body > .page > #download > .download .stores a.store {
 
 body > .page > #download > .download .stores .store[data-id="apkmirror"] {
   --primary: var(--downloads-stores-primary-apkmirror);
-  --text-width: var(--downloads-stores-length-apkmirror);
+  --text-width: 156.2px;
 }
 
 body > .page > #download > .download .stores .store[data-id="apkpure"] {
   --primary: var(--downloads-stores-primary-apkpure);
-  --text-width: var(--downloads-stores-length-apkpure);
+  --text-width: 129.61px;
 }
 
 body > .page > #download > .download .stores .store[data-id="appcenter"] {
   --primary: var(--downloads-stores-primary-appcenter);
-  --text-width: var(--downloads-stores-length-appcenter);
+  --text-width: 166.19px;
 }
 
 body > .page > #download > .download .stores .store[data-id="playstore"] {
   --primary: var(--downloads-stores-primary-playstore);
-  --text-width: var(--downloads-stores-length-playstore);
+  --text-width: 147.14px;
 }
 
 body > .page > #download > .download .stores .store::before {
@@ -260,7 +260,7 @@ body > .page > #download > .download .stores .store::before {
 
 @media screen and (max-width: 650px) {
   body > .page > #download > .download .stores .store:not(.unavailable):not(:hover)::before {
-    clip-path: circle(0% at calc(var(--downloads-stores-store-gap-mobile) + 1.5em) 50%);
+    clip-path: circle(0% at calc(20px + 1.5em) 50%);
   }
 }
 

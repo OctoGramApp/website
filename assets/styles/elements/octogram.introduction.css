@@ -1,9 +1,9 @@
 body > .page > .introduction {
-  height: var(--introduction-height);
+  height: 75vh;
   background: var(--introduction-bg);
-  padding-bottom: var(--introduction-shadow-height);
-  margin-bottom: var(--introduction-bottommargin);
-  min-height: var(--introduction-height-min);
+  padding-bottom: 150px;
+  margin-bottom: 40px;
+  min-height: 800px;
   box-sizing: border-box;
   overflow: hidden;
   width: 100%;
@@ -19,7 +19,7 @@ body > .page > .introduction::after {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: var(--introduction-shadow-height);
+  height: 150px;
   background: linear-gradient(
     var(--introduction-bg),
     var(--background)
@@ -27,11 +27,11 @@ body > .page > .introduction::after {
 }
 
 body > .page > .introduction .content {
-  max-width: var(--introduction-width-limit);
+  max-width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--introduction-gap);
+  gap: 300px;
 }
 
 @media screen and (max-width: 700px) {
@@ -44,7 +44,7 @@ body > .page > .introduction .content {
 @media screen and (max-width: 1400px) {
   body > .page > .introduction .content {
     flex-direction: column;
-    gap: var(--introduction-gap-mobile);
+    gap: 35px;
   }
 }
 
@@ -64,7 +64,7 @@ body > .page > .introduction .content .placeholder {
 }
 
 body > .page > .introduction .content .message {
-  max-width: var(--introduction-message-width-limit);
+  max-width: 700px;
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
@@ -73,7 +73,7 @@ body > .page > .introduction .content .message {
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message {
-    max-width: min(88vw, var(--introduction-message-width-limit));
+    max-width: min(88vw, 700px);
   }
 }
 
@@ -115,8 +115,8 @@ body > .page > .introduction .illustration {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--introduction-image-gap);
-  height: var(--introduction-image-active-maxheight);
+  gap: 5px;
+  height: 600px;
   opacity: 0;
   animation: var(--animations-duration) showIllustration 0.3s forwards;
   transition: var(--animations-duration) transform;
@@ -130,14 +130,14 @@ body > .page > .introduction .illustration {
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction {
-    margin-bottom: calc(var(--introduction-image-active-maxheight) / 3);
+    margin-bottom: calc(600px / 3);
   }
 
   body > .page > .introduction .illustration {
     --introduction-image-active-maxheight: 300px;
     --introduction-image-maxheight: 200px;
-    height: calc(var(--introduction-image-active-mobile-maxheight) + 15px);
-    margin-bottom: calc(-0.2 * var(--introduction-image-active-mobile-maxheight) - 15px);
+    height: calc(500px + 15px);
+    margin-bottom: calc(-0.2 * 500px - 15px);
     z-index: 1;
   }
 }
@@ -146,13 +146,13 @@ body > .page > .introduction .illustration {
   body > .page > .introduction .illustration {
     --introduction-image-active-maxheight: 350px;
     --introduction-image-maxheight: 250px;
-    height: var(--introduction-image-active-maxheight);
+    height: 600px;
   }
 }
 
 body > .page > .introduction .illustration .image {
   position: relative;
-  border-radius: var(--introduction-image-radius);
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   transition: var(--animations-duration) box-shadow;
@@ -163,14 +163,14 @@ body > .page > .introduction .illustration .image.active {
 }
 
 body > .page > .introduction .illustration .image > img {
-  max-height: var(--introduction-image-active-maxheight);
-  max-width: var(--introduction-image-active-maxwidth);
+  max-height: 600px;
+  max-width: 1000px;
   transition: var(--animations-duration) max-height, var(--animations-duration) max-width;
 }
 
 body > .page > .introduction .illustration .image:not(.active) > img {
-  max-height: var(--introduction-image-maxheight);
-  max-width: var(--introduction-image-maxwidth);
+  max-height: 250px;
+  max-width: 150px;
 }
 
 @media screen and (max-width: 700px) {
@@ -179,8 +179,8 @@ body > .page > .introduction .illustration .image:not(.active) > img {
   }
 
   body > .page > .introduction .illustration .image > img {
-    max-height: var(--introduction-image-active-mobile-maxheight) !important;
-    max-width: var(--introduction-image-active-maxwidth) !important;
+    max-height: 500px !important;
+    max-width: 1000px !important;
   }
 
   body > .page > .introduction .illustration[data-state="1"] {
@@ -207,7 +207,7 @@ body > .page > .introduction .illustration .image .full-placeholder {
   justify-content: center;
   flex-direction: column;
   background: var(--introduction-imageplaceholder-full-bg);
-  gap: var(--introduction-imageplaceholder-full-gap);
+  gap: 10px;
   transition: var(--animations-duration) opacity;
 }
 
@@ -226,17 +226,17 @@ body > .page > .introduction .illustration .image.active .full-placeholder {
 }
 
 body > .page > .introduction .illustration .image .full-placeholder .icon img {
-  height: var(--introduction-imageplaceholder-full-icon);
-  width: var(--introduction-imageplaceholder-full-icon);
+  height: 40px;
+  width: 40px;
   filter: var(--icons-transform);
 }
 
 body > .page > .introduction .illustration .image .bottom-placeholder {
   position: absolute;
   left: 0;
-  bottom: calc(var(--introduction-imageplaceholder-bottom-height) * -1);
+  bottom: calc(80px * -1);
   width: 100%;
-  height: var(--introduction-imageplaceholder-bottom-height);
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -254,7 +254,7 @@ body > .page > .introduction .illustration .image.active .bottom-placeholder {
 
 body > .page > .introduction .illustration .image .bottom-placeholder .text {
   color: var(--introduction-imageplaceholder-bottom-text);
-  padding-inline: var(--introduction-imageplaceholder-bottom-text-padding);
+  padding-inline: 15px;
   text-align: center;
 }
 
@@ -276,8 +276,8 @@ body > .page > .introduction .illustration .image .pause {
 
 body > .page > .introduction .illustration .image .pause img {
   filter: var(--icons-transform);
-  width: var(--introduction-image-pause-size);
-  height: var(--introduction-image-pause-size);
+  width: 20px;
+  height: 20px;
 }
 
 body > .page > .introduction .illustration.is-paused .image.active .pause {

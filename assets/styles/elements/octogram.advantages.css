@@ -1,14 +1,14 @@
 body > .page > #advantages > .advantages {
   width: 100%;
-  padding-block: calc(var(--advantages-shadow-height) + var(--advantages-paddingblock));
+  padding-block: calc(20px + 40px);
   background: var(--advantages-bg);
-  margin-bottom: var(--advantages-bottommargin);
+  margin-bottom: 50px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--advantages-message-gap);
+  gap: 30px;
 }
 
 body > .page > #advantages > .advantages::before {
@@ -17,7 +17,7 @@ body > .page > #advantages > .advantages::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--advantages-shadow-height);
+  height: 20px;
   background: linear-gradient(
     var(--background),
     var(--advantages-bg)
@@ -30,7 +30,7 @@ body > .page > #advantages > .advantages::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: var(--advantages-shadow-height);
+  height: 20px;
   background: linear-gradient(
     var(--advantages-bg),
     var(--background)
@@ -62,8 +62,8 @@ body > .page > #advantages > .advantages .items {
   justify-content: space-evenly;
   position: relative;
   width: 100%;
-  gap: var(--advantages-list-gap);
-  max-width: var(--advantages-list-width-limit);
+  gap: 20px;
+  max-width: 1400px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -74,7 +74,7 @@ body > .page > #advantages > .advantages .items {
 }
 
 body > .page > #advantages > .advantages .items .separator {
-  height: calc(var(--parallax-state) * var(--advantages-list-separator-height));
+  height: calc(var(--parallax-state) * 270px);
   transform: rotate(15deg);
   border-left: 2px dashed var(--advantages-list-separator-color);
 }
@@ -89,12 +89,12 @@ body > .page > #advantages > .advantages .items .separator {
 }
 
 body > .page > #advantages > .advantages .items .item {
-  max-width: var(--advantages-list-item-width-limit);
+  max-width: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--advantages-list-item-gap);
+  gap: 30px;
   transform: scale(max(0.3, var(--parallax-state)));
   opacity: var(--parallax-state);
 }
@@ -103,14 +103,14 @@ body > .page > #advantages > .advantages .items .item {
   body > .page > #advantages > .advantages .items .item {
     flex-direction: row;
     max-width: 95vw;
-    gap: var(--advantages-list-item-gap-mobile);
+    gap: 20px;
     --advantages-list-item-image-size: 40px;
   }
 }
 
 body > .page > #advantages > .advantages .items .item img {
-  height: var(--advantages-list-item-image-size);
-  width: var(--advantages-list-item-image-size);
+  height: 230px;
+  width: 230px;
 }
 
 body > .page > #advantages > .advantages .items .item .title {

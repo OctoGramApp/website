@@ -1,6 +1,6 @@
 body > .page > .footer {
   width: 100%;
-  padding-top: var(--footer-shadow-height);
+  padding-top: 20px;
   background: var(--footer-bg);
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@ body > .page > .footer::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--footer-shadow-height);
+  height: 20px;
   background: linear-gradient(
     var(--background),
     var(--footer-bg)
