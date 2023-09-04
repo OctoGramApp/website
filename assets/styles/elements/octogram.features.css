@@ -85,14 +85,14 @@ body > .page > #features > .features .list .items-carousel .tabs {
   border-radius: 15px;
   background: #151e27;
   border: 3px solid #151e27;
+  overflow-x: auto;
+  max-width: min(100%, 88vw);
   transition: var(--animations-duration) opacity, var(--animations-duration) transform;
 }
 
 @media screen and (max-width: 860px) {
   body > .page > #features > .features .list .items-carousel .tabs {
     justify-content: flex-start;
-    overflow-x: scroll;
-    width: 88vw;
     top: 10px;
   }
 }
@@ -113,13 +113,8 @@ body > .page > #features > .features .list .items-carousel .tabs .tab {
   font-size: 22px;
   cursor: pointer;
   padding-inline: 21px;
+  white-space: nowrap;
   transition: var(--animations-duration) color;
-}
-
-@media screen and (max-width: 860px) {
-  body > .page > #features > .features .list .items-carousel .tabs .tab {
-    white-space: nowrap;
-  }
 }
 
 body > .page > #features > .features .list .items-carousel .tabs .tab:not(.active) {
@@ -129,7 +124,7 @@ body > .page > #features > .features .list .items-carousel .tabs .tab:not(.activ
 body > .page > #features > .features .list .items-carousel .scrollable {
   display: flex;
   width: calc(100% * var(--items));
-  transform: translateX(calc(100% * -0.5 * var(--translate) + 50%));
+  transform: translateX(calc(100% * -1 * calc(1 / var(--items)) * var(--translate) + calc(100% / var(--items))));
   transition: var(--animations-duration) transform;
 }
 
@@ -153,7 +148,6 @@ body > .page > #features > .features .list .items-carousel[data-enabled-id="1"] 
 body > .page > #features > .features .list .items-carousel[data-enabled-id="2"] .scrollable .item:not(:nth-child(3)),
 body > .page > #features > .features .list .items-carousel[data-enabled-id="3"] .scrollable .item:not(:nth-child(4)) {
   transform: scale(0.8);
-  opacity: 0;
 }
 
 body > .page > #features > .features .list .item {
@@ -166,7 +160,7 @@ body > .page > #features > .features .list .item {
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+  transition: var(--animations-duration) transform;
 }
 
 @media screen and (max-width: 860px) {
@@ -209,34 +203,65 @@ body > .page > #features > .features .list .item .image img {
   border-radius: 10%;
 }
 
+body > .page > #features > .features .list .item .image img:not(:first-child) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: var(--animations-duration) opacity;
+}
+
+body > .page > #features > .features .list .item .image img:not(:first-child):not(.active) {
+  opacity: 0;
+}
+
 body > .page > #features > .features .list .item .image .switchable-row {
   position: absolute;
+  top: -25px;
+  right: -25px;
   width: 218px;
   height: 47px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   background: #00000061;
-  top: -23px;
-  right: -24px;
   border-radius: 10px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  cursor: pointer;
 }
 
-body > .page > #features > .features .list .item .image .switchable-row span {
+body > .page > #features > .features .list .item .image .switchable-row .switchable-row-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  transition: var(--animations-duration) transform;
+}
+
+body > .page > #features > .features .list .item .image .switchable-row:hover .switchable-row-content {
+  transform: scale(0.98);
+}
+
+body > .page > #features > .features .list .item .image .switchable-row:active .switchable-row-content {
+  transform: scale(0.9);
+}
+
+body > .page > #features > .features .list .item .image .switchable-row .switchable-row-content span {
   color: white;
 }
 
-body > .page > #features > .features .list .item .image .switchable-row .checkbox {
+body > .page > #features > .features .list .item .image .switchable-row .switchable-row-content .checkbox {
   width: 27px;
   height: 12px;
   background: #2b3a4d;
   position: relative;
   border-radius: 10px;
+  transition: var(--animations-duration) background;
 }
 
-body > .page > #features > .features .list .item .image .switchable-row .checkbox::after {
+body > .page > #features > .features .list .item .image .switchable-row.is-checked .switchable-row-content .checkbox {
+  background: #4a5895;
+}
+
+body > .page > #features > .features .list .item .image .switchable-row .switchable-row-content .checkbox::after {
   position: absolute;
   content: "";
   right: 50%;
@@ -246,6 +271,13 @@ body > .page > #features > .features .list .item .image .switchable-row .checkbo
   width: 20px;
   background: #42648c;
   border-radius: 50%;
+  transition: var(--animations-duration) right, var(--animations-duration) background;
+  transition-timing-function: linear(0 0%, 0 1.8%, 0.01 3.6%, 0.03 6.35%, 0.07 9.1%, 0.13 11.4%, 0.19 13.4%, 0.27 15%, 0.34 16.1%, 0.54 18.35%, 0.66 20.6%, 0.72 22.4%, 0.77 24.6%, 0.81 27.3%, 0.85 30.4%, 0.88 35.1%, 0.92 40.6%, 0.94 47.2%, 0.96 55%, 0.98 64%, 0.99 74.4%, 1 86.4%, 1 100%);
+}
+
+body > .page > #features > .features .list .item .image .switchable-row.is-checked .switchable-row-content .checkbox::after {
+  right: -25%;
+  background: #6a7ed6;
 }
 
 body > .page > #features > .features .list .item > .item-message {

@@ -189,6 +189,11 @@ class HomePage {
             translations.getStringRef('FEATURES_FUNCTIONS_MESSAGE_DETAILS'),
             translations.getStringRef('FEATURES_FUNCTIONS_MESSAGE_DETAILS_DESCRIPTION')
           ],
+          [
+            'experimental',
+            translations.getStringRef('FEATURES_FUNCTIONS_EXPERIMENTAL_FEATURES'),
+            translations.getStringRef('FEATURES_FUNCTIONS_EXPERIMENTAL_FEATURES_DESCRIPTION')
+          ],
         ]
       ],
       [
@@ -196,31 +201,6 @@ class HomePage {
         translations.getStringRef('FEATURES_DC_STATUS'),
         translations.getStringRef('FEATURES_DC_STATUS_DESCRIPTION')
       ],
-      /*[
-        'assets/images/features.creationdate.jpg',
-        translations.getStringRef('FEATURES_REGISTRATION_DATE')
-      ],
-      [
-        'assets/images/features.dc.jpg',
-        translations.getStringRef('FEATURES_DCID_INDICATOR')
-      ],
-      [
-        'assets/images/features.details.jpg',
-        translations.getStringRef('FEATURES_MESSAGE_DETAILS')
-      ],
-      [
-        'assets/images/features.menuitems.jpg',
-        translations.getStringRef('FEATURES_CUSTOMIZABLE_MENU')
-      ],
-      [
-        'assets/images/features.experimental.jpg',
-        translations.getStringRef('FEATURES_EXPERIMENTAL_SETTINGS')
-      ],
-      [
-        translations.getStringRef('FEATURES_EXTRA_TITLE_1'),
-        translations.getStringRef('FEATURES_EXTRA_TITLE_2'),
-        translations.getStringRef('FEATURES_EXTRA_BUTTON')
-      ]*/
     ];
 
     for(const item of featuresItems) {
@@ -345,7 +325,6 @@ class HomePage {
     const imageContainer = document.createElement('div');
     imageContainer.classList.add('image');
     imageContainer.appendChild(imageElement);
-    this.#appendDecoration(imageContainer, imageElement, id);
 
     const titleContainer = document.createElement('div');
     titleContainer.classList.add('title');
@@ -364,7 +343,8 @@ class HomePage {
     item.appendChild(imageContainer);
     item.appendChild(messageContainer);
 
-    const { startAnimation, stopAnimation } = this.#initDecorationAnimation(item, imageContainer, id);
+    const { startAnimation, stopAnimation, enhanceAnimation } = this.#initDecorationAnimation(item, imageContainer, id);
+    this.#appendDecoration(imageContainer, imageElement, id, enhanceAnimation);
 
     return {
       element: item,
@@ -383,19 +363,34 @@ class HomePage {
     };
   }
 
-  #appendDecoration(imageContainer, imageElement, id) {
+  #appendDecoration(imageContainer, imageElement, id, enhanceAnimationInstance) {
     switch (id) {
       case 'buttons':
         imageElement.src = 'assets/images/features.buttons.jpg';
+
+        const secondaryImageItem = document.createElement('img');
+        secondaryImageItem.src = 'assets/images/features.dcstatus.jpg';
+        imageContainer.appendChild(secondaryImageItem);
         
         const switchableRowText = document.createElement('span');
         switchableRowText.textContent = 'Minimal';
         const switchableRowCheckbox = document.createElement('div');
         switchableRowCheckbox.classList.add('checkbox');
+        const switchableRowContent = document.createElement('div');
+        switchableRowContent.classList.add('switchable-row-content');
+        switchableRowContent.appendChild(switchableRowText);
+        switchableRowContent.appendChild(switchableRowCheckbox);
         const switchableRow = document.createElement('div');
         switchableRow.classList.add('switchable-row');
-        switchableRow.appendChild(switchableRowText);
-        switchableRow.appendChild(switchableRowCheckbox);
+        switchableRow.addEventListener('click', () => {
+          const state = switchableRow.classList.toggle('is-checked');
+          secondaryImageItem.classList.toggle('active', state);
+
+          if (typeof enhanceAnimationInstance == 'function') {
+            enhanceAnimationInstance();
+          }
+        });
+        switchableRow.appendChild(switchableRowContent);
 
         imageContainer.appendChild(switchableRow);
       break;
@@ -410,6 +405,9 @@ class HomePage {
       break;
       case 'details':
         imageElement.src = 'assets/images/features.details.jpg';
+      break;
+      case 'experimental':
+        imageElement.src = 'assets/images/features.experimental.jpg';
       break;
     }
   }
@@ -452,6 +450,14 @@ class HomePage {
         iconNames.push('download');
         iconNames.push('microphone');
       break;
+      case 'experimental':
+        iconNames.push('flask');
+        iconNames.push('dev');
+        iconNames.push('terminal');
+        iconNames.push('settings');
+        iconNames.push('usersecret');
+        iconNames.push('server');
+      break;
     }
 
     return iconNames;
@@ -480,7 +486,35 @@ class HomePage {
     container.prepend(placeholder);
 
     let rightCounter = 0;
+    let isAnimationEnhanceInProgress = false;
     let currentInterval;
+
+    const animateElement = (element, startElementRect, containerRect) => {
+      let xPosition;
+      if (rightCounter > 2) {
+        rightCounter = 0;
+
+        const maximumXPosition = startElementRect.left - containerRect.left;
+        xPosition = Math.floor(Math.random() * maximumXPosition);
+      } else {
+        rightCounter++;
+
+        const minimumXPosition = startElementRect.left + startElementRect.width - containerRect.left;
+        const maximumXPosition = containerRect.width - minimumXPosition;
+        xPosition = Math.floor(Math.random() * (maximumXPosition - minimumXPosition)) + minimumXPosition;
+      }
+
+      const yPosition = Math.floor(Math.random() * containerRect.height);
+
+      const startFromPositionX = startElementRect.left - containerRect.left + startElementRect.width / 2;
+      const startFromPositionY = startElementRect.top - containerRect.top + startElementRect.height / 2;
+
+      element.style.setProperty('--start-from-x', startFromPositionX);
+      element.style.setProperty('--start-from-y', startFromPositionY);
+      element.style.setProperty('--arrive-to-y', yPosition);
+      element.style.setProperty('--arrive-to-x', xPosition);
+      element.classList.add('animated');
+    };
     
     return {
       startAnimation: () => {
@@ -498,34 +532,46 @@ class HomePage {
     
           for(const element of availableSlots) {
             if (!element.classList.contains('animated')) {    
-              let xPosition;
-              if (rightCounter > 2) {
-                rightCounter = 0;
-
-                const maximumXPosition = startElementRect.left - containerRect.left;
-                xPosition = Math.floor(Math.random() * maximumXPosition);
-              } else {
-                rightCounter++;
-
-                const minimumXPosition = startElementRect.left + startElementRect.width - containerRect.left;
-                const maximumXPosition = containerRect.width - minimumXPosition;
-                xPosition = Math.floor(Math.random() * (maximumXPosition - minimumXPosition)) + minimumXPosition;
-              }
-
-              const yPosition = Math.floor(Math.random() * containerRect.height);
-
-              const startFromPositionX = startElementRect.left - containerRect.left + startElementRect.width / 2;
-              const startFromPositionY = startElementRect.top - containerRect.top + startElementRect.height / 2;
-    
-              element.style.setProperty('--start-from-x', startFromPositionX);
-              element.style.setProperty('--start-from-y', startFromPositionY);
-              element.style.setProperty('--arrive-to-y', yPosition);
-              element.style.setProperty('--arrive-to-x', xPosition);
-              element.classList.add('animated');
+              animateElement(element, startElementRect, containerRect);
               break;
             }
           }
         }, 300);
+      },
+      enhanceAnimation: () => {
+        if (!isAnimationEnhanceInProgress) {
+          isAnimationEnhanceInProgress = true;
+
+          const startElementRect = startElement.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+
+          let temporarySlots = [];
+          let removedItems = 0;
+          for(let i = 0; i < 5; i++){
+            for(const icon of ANIMATION_ICON_NAMES) {
+              const animatedElement = document.createElement('img');
+              animatedElement.classList.add('animated-icon');
+              animatedElement.addEventListener('animationend', () => {
+                animatedElement.classList.remove('animated');
+                setTimeout(() => {
+                  animatedElement.remove();
+                  removedItems++;
+
+                  if (removedItems == temporarySlots.length) {
+                    isAnimationEnhanceInProgress = false;
+                  }
+                }, 200);
+              });
+              animatedElement.src = '/assets/icons/'+icon+'.svg';
+              placeholder.appendChild(animatedElement);
+              temporarySlots.push(animatedElement);
+            }
+          }
+    
+          for(const element of temporarySlots) {
+            animateElement(element, startElementRect, containerRect);
+          }
+        }
       },
       stopAnimation: () => {
         if (typeof currentInterval != 'undefined') {

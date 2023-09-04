@@ -29,6 +29,8 @@ class Translations {
     FEATURES_FUNCTIONS_REGISTRATION_DATE_DESCRIPTION: 'Find out when your girlfriend created her Telegram account. Unfortunately, in a roundabout way.',
     FEATURES_FUNCTIONS_MESSAGE_DETAILS: 'Message details',
     FEATURES_FUNCTIONS_MESSAGE_DETAILS_DESCRIPTION: 'Discover the most secret details of any message in any chat. Simply activate the option from the settings and press on a message.',
+    FEATURES_FUNCTIONS_EXPERIMENTAL_FEATURES: 'Experimental features',
+    FEATURES_FUNCTIONS_EXPERIMENTAL_FEATURES_DESCRIPTION: 'If you are very curious or you like risks, use our lab functions. Warning: these functions may make your app unstable or may cause it to crash.',
     FEATURES_DC_STATUS: 'Datacenter status',
     FEATURES_DC_STATUS_DESCRIPTION: 'Stay updated on any lag or internal issues from Telegram. This option is also available online.',
     ADVANTAGES_TITLE: 'Always in step',
