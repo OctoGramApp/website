@@ -101,7 +101,7 @@ class Footer {
         }));
         singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_GITHUB_CLIENT_LICENSE'),
-          url: 'https://github.com/OctoGramApp/OctoGramblob/develop/LICENSE',
+          url: 'https://github.com/OctoGramApp/OctoGram/blob/develop/LICENSE',
           openOnBlank: true
         }));
         singleLinkContainer.appendChild(this.#generateSingleLink({

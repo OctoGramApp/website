@@ -134,7 +134,7 @@ body > .page > #features > .features .list .items-carousel .scrollable .item {
 
 @media screen and (max-width: 860px) {
   body > .page > #features > .features .list .items-carousel .scrollable {
-    transform: translateX(calc(100% * -0.5 * var(--translate) + 50% + 2vw * var(--translate) + 2vw * calc(var(--translate) - 1)));
+    transform: translateX(calc(100% * -1 * calc(1 / var(--items)) * var(--translate) + calc(100% / var(--items)) + 2vw * var(--translate) + 2vw * calc(var(--translate) - 1)));
   }
 
   body > .page > #features > .features .list .items-carousel .scrollable .item {

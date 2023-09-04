@@ -104,13 +104,19 @@ body > .page > #advantages > .advantages .items .item {
     flex-direction: row;
     max-width: 95vw;
     gap: 20px;
-    --advantages-list-item-image-size: 40px;
   }
 }
 
 body > .page > #advantages > .advantages .items .item img {
   height: 230px;
   width: 230px;
+}
+
+@media screen and (max-width: 800px) {
+  body > .page > #advantages > .advantages .items .item img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 body > .page > #advantages > .advantages .items .item .title {
