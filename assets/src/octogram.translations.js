@@ -13,12 +13,7 @@ class Translations {
 
     INTRODUCTION_PLACEHOLDER: 'Are we ready for 2.0.0?',
     INTRODUCTION_DISCOVER: 'Discover {0}',
-    INTRODUCTION_DISCOVER_DESCRIPTION: 'The Telegram alternative client with all the features you need.',
-    INTRODUCTION_SETTINGS: 'Impostazioni',
-    INTRODUCTION_CHAT: 'Chat',
-    INTRODUCTION_CHAT_EXPAND: 'and many other features',
-    INTRODUCTION_APPEARANCE: 'Appearance',
-    INTRODUCTION_APPEARANCE_EXPAND: 'and many other features',
+    INTRODUCTION_DISCOVER_DESCRIPTION: 'The open-source alternative Telegram client with all the features you\'ve always wanted.',
     FEATURES_TITLE: '{0}\'s features',
     FEATURES_APPEARANCE: 'Appearance',
     FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS: 'Alternative buttons',
