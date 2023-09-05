@@ -108,6 +108,7 @@ class HomePage {
     }
     const messageText = document.createElement('div');
     messageText.classList.add('message-text');
+    messageText.innerHTML = '&nbsp;';
     const messageContent = document.createElement('div');
     messageContent.appendChild(messageUserName);
     messageContent.appendChild(messageText);
@@ -128,10 +129,10 @@ class HomePage {
       const widthRef = window.innerWidth < 800 ? 100 : 200;
       
       const finalMessageRect = message.getBoundingClientRect();
-      const animationDurationSeconds = placeholderString.length * 0.05;
+      const animationDurationSeconds = placeholderString.length * 0.05 + 0.95;
       const maxMultiplier = window.innerWidth / (finalMessageRect.width + widthRef);
 
-      messageText.textContent = '';
+      messageText.innerHTML = '&nbsp;';
 
       let string = '';
       for(const letter of placeholderString) {
@@ -154,7 +155,7 @@ class HomePage {
             message.remove();
             onAnimationEnd();
           }, { once: true });
-        }, 1000);
+        }, 300);
       }, { once: true });
     });
 

@@ -96,12 +96,8 @@ body > .page > .introduction .temporary-placeholder .message.disappear {
   from {
     transform: scale(var(--multiplier));
   }
-  30% {
-    transform: scale(calc(var(--multiplier) + 0.3));
-    opacity: 1;
-  }
   to {
-    transform: scale(var(--multiplier)) translateY(-50px);
+    transform: scale(var(--multiplier)) translateY(-100%);
     opacity: 0;
   }
 }
