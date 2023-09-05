@@ -193,7 +193,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .example .add {
   border-radius: 13px;
   text-decoration: none;
   opacity: var(--parallax-state);
-  transition: 0.5s transform, 0.5s opacity;
+  transition: 0.4s transform, 0.4s opacity;
   will-change: transform, opacity;
 }
 
@@ -377,7 +377,7 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar {
   width: 0%;
   height: 5px;
   background: #151e27;
-  transition: 0.5s width;
+  transition: 0.4s width;
   will-change: width;
 }
 
@@ -389,6 +389,6 @@ body > .page > #monet > .monet-theme-reference > .monet-theme > .progress-bar .p
   height: 100%;
   width: calc(var(--visible-percent) * 100%);
   background: #6a7ed6;
-  transition: 0.5s width;
+  transition: 0.4s width;
   will-change: width;
 }

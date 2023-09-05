@@ -1,4 +1,3 @@
-@import url('octogram.config.css');
 @import url('octogram.splash.css');
 @import url('elements/octogram.advantages.css');
 @import url('elements/octogram.buttons.css');
@@ -52,7 +51,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
 	background: transparent;
-	transition: var(--animations-timing) background;
+	transition: 0.4s background;
 }
 
 :root:hover body::-webkit-scrollbar-thumb {

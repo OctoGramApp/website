@@ -11,7 +11,7 @@ body > .page .select {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: 0.5s padding-inline, 0.5s opacity;
+  transition: 0.4s padding-inline, 0.4s opacity;
 }
 
 body > .page .select.mini {
@@ -51,7 +51,7 @@ body > .page > .select-overflow::before {
 }
 
 body > .page > .select-overflow:not(.closing) {
-  animation: 0.5s animateBackground forwards linear;
+  animation: 0.4s animateBackground forwards linear;
 }
 
 @keyframes animateBackground {
@@ -61,7 +61,7 @@ body > .page > .select-overflow:not(.closing) {
 }
 
 body > .page > .select-overflow.closing {
-  animation: 0.5s animateBackgroundRev forwards linear;
+  animation: 0.4s animateBackgroundRev forwards linear;
 }
 
 @keyframes animateBackgroundRev {
@@ -102,7 +102,7 @@ body > .page > .select-overflow .select-menu::-webkit-scrollbar-track {
 
 body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
 	background: transparent;
-	transition: var(--animations-timing) background;
+	transition: 0.4s background;
 }
 
 :root:hover body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
@@ -111,7 +111,7 @@ body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
 }
 
 body > .page > .select-overflow:not(.closing) .select-menu {
-  animation: 0.5s expandMenu forwards cubic-bezier(0.42, 0, 0, 1.03);
+  animation: 0.4s expandMenu forwards cubic-bezier(0.42, 0, 0, 1.03);
 }
 
 @keyframes expandMenu {
@@ -121,7 +121,7 @@ body > .page > .select-overflow:not(.closing) .select-menu {
 }
 
 body > .page > .select-overflow.closing .select-menu {
-  animation: 0.5s expandMenuRev forwards cubic-bezier(0.42, 0, 0, 1.03);
+  animation: 0.4s expandMenuRev forwards cubic-bezier(0.42, 0, 0, 1.03);
 }
 
 @keyframes expandMenuRev {
@@ -174,7 +174,7 @@ body > .page > .select-overflow .select-menu .option {
   cursor: pointer;
   font-size: 1.2em;
   transform: translateX(100%);
-  animation: 0.5s appearOption calc(var(--id) * 0.05s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+  animation: 0.4s appearOption calc(var(--id) * 0.05s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
 }
 
 @keyframes appearOption {
@@ -196,7 +196,7 @@ body > .page > .select-overflow .select-menu .option .radio {
   position: relative;
   overflow: hidden;
   transform: scale(0);
-  animation: 0.5s upgradeRadio calc(var(--id) * 0.15s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+  animation: 0.4s upgradeRadio calc(var(--id) * 0.15s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
 }
 
 @keyframes upgradeRadio {
@@ -221,7 +221,7 @@ body > .page > .select-overflow .select-menu .option .radio::after {
   left: 2px;
   width: calc(100% - 2px * 2);
   height: calc(100% - 2px * 2);
-  transition: 0.5s opacity, 0.5s transform;
+  transition: 0.4s opacity, 0.4s transform;
 }
 
 body > .page > .select-overflow .select-menu .option .radio.selected::after {

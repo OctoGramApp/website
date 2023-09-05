@@ -7,7 +7,7 @@ body > .page .button {
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
-  transition: 0.5s opacity;
+  transition: 0.4s opacity;
 }
 
 body > .page .button.disabled {
@@ -45,7 +45,7 @@ body > .page .button::before {
   background-color: rgba(255, 255, 255, 0.1);
   z-index: 0;
   opacity: 0;
-  transition: 0.5s opacity;
+  transition: 0.4s opacity;
 }
 
 body > .page .button:hover::before {
@@ -65,7 +65,7 @@ body > .page .button::after {
 }
 
 body > .page .button:active::after {
-  animation: 0.5s applyRipple forwards;
+  animation: 0.4s applyRipple forwards;
 }
 
 @keyframes applyRipple {

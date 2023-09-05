@@ -87,7 +87,7 @@ body > .page > #download > .download .content .from-apk .files {
   position: relative;
   text-decoration: none;
   box-sizing: border-box;
-  transition: 0.5s border-color;
+  transition: 0.4s border-color;
 }
 
 body > .page > #download > .download .content .from-apk .files:hover {
@@ -106,7 +106,7 @@ body > .page > #download > .download .content .from-apk .files::before {
   pointer-events: none;
   background: #5769a7;
   clip-path: circle(0% at 25% 50%);
-  transition: 0.5s clip-path;
+  transition: 0.4s clip-path;
 }
 
 body > .page > #download > .download .content .from-apk .files:hover::before {
@@ -141,7 +141,7 @@ body > .page > #download > .download .content .from-apk .files .file-icon-contai
 
 body > .page > #download > .download .content .from-apk .files .right-container {
   z-index: 1;
-  transition: 0.5s margin-left;
+  transition: 0.4s margin-left;
 }
 
 body > .page > #download > .download .content .from-apk .files:hover .right-container {
@@ -199,7 +199,7 @@ body > .page > #download > .download .stores .store {
   overflow: hidden;
   border: 2px solid rgba(106, 124, 214, 0.2);
   background: rgba(106, 124, 214, 0.2);
-  transition: 0.5s border-color;
+  transition: 0.4s border-color;
 }
 
 @media screen and (max-width: 650px) {
@@ -255,7 +255,7 @@ body > .page > #download > .download .stores .store::before {
   pointer-events: none;
   background: var(--primary);
   clip-path: circle(0% at 25% 50%);
-  transition: 0.5s clip-path;
+  transition: 0.4s clip-path;
 }
 
 @media screen and (max-width: 650px) {
@@ -271,7 +271,7 @@ body > .page > #download > .download .stores .store:not(.unavailable):hover::bef
 body > .page > #download > .download .stores .store .icon {
   border-radius: 25%;
   overflow: hidden;
-  transition: 0.5s transform;
+  transition: 0.4s transform;
 }
 
 @media screen and (min-width: 650px) {
@@ -307,7 +307,7 @@ body > .page > #download > .download .stores .store .text {
   font-size: 2em;
   color: #FFFFFF;
   z-index: 0;
-  transition: 0.5s margin-right;
+  transition: 0.4s margin-right;
 }
 
 body > .page > #download > .download .stores .store:not(.unavailable):hover .text {
@@ -327,7 +327,7 @@ body > .page > #download > .download .stores .store .access-icon {
   z-index: 1;
   opacity: 0;
   pointer-events: none;
-  transition: 0.5s top, 0.5s opacity;
+  transition: 0.4s top, 0.4s opacity;
 }
 
 @media screen and (max-width: 650px) {
@@ -347,7 +347,7 @@ body > .page > #download > .download .stores .store .continue {
   font-weight: 500;
   z-index: 1;
   opacity: 0;
-  transition: 0.5s bottom, 0.5s opacity;
+  transition: 0.4s bottom, 0.4s opacity;
 }
 
 body > .page > #download > .download .stores .store:hover .continue {

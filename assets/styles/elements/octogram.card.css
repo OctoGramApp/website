@@ -94,7 +94,7 @@ body > .page > .card .content .descriptor .description svg circle {
   stroke-width: 3px;
   stroke-dasharray: 48;
   stroke-dashoffset: 15;
-  transition: 0.5s stroke-dashoffset;
+  transition: 0.4s stroke-dashoffset;
 }
 
 body > .page > .card .content .descriptor .description.definite svg circle {
@@ -106,7 +106,7 @@ body > .page > .card .content .descriptor .description:not(.definite) svg circle
 }
 
 body > .page > .card .content .descriptor .description .pending {
-  transition: 0.5s transform, 0.5s opacity;
+  transition: 0.4s transform, 0.4s opacity;
 }
 
 body > .page > .card .content .descriptor .description:not(.definite) .pending {
@@ -211,7 +211,7 @@ body > .page > .card .content .datacenters .datacenter {
   box-sizing: border-box;
   overflow: hidden;
   padding: 5px;
-  transition: 0.5s padding, 0.5s background, 0.5s border-radius;
+  transition: 0.4s padding, 0.4s background, 0.4s border-radius;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded {
@@ -357,7 +357,7 @@ body > .page > .card .content .datacenters .datacenter .description .status.offl
 body > .page > .card .content .datacenters .datacenter .expand {
   filter: invert(1);
   opacity: 0.8;
-  transition: 0.5s transform;
+  transition: 0.4s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expand {
@@ -376,7 +376,7 @@ body > .page > .card .content .datacenters .datacenter .expandable {
   align-items: center;
   justify-content: center;
   cursor: default;
-  transition: 0.5s opacity, 0.5s transform;
+  transition: 0.4s opacity, 0.4s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expandable {
@@ -451,7 +451,7 @@ body > .page > .card .content .suggestions {
   gap: 30px;
   margin-top: 10px;
   overflow-x: auto;
-  transition: 0.5s margin-top, 0.5s opacity;
+  transition: 0.4s margin-top, 0.4s opacity;
 }
 
 body > .page > .card .content .suggestions.disabled,
@@ -498,7 +498,7 @@ body > .page > .card .content .identifydc {
 
 body > .page > .card .content .identifydc.animate:not(.available) {
   background: rgba(0, 0, 0, 0.6);
-  animation: 0.5s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
+  animation: 0.4s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDc {
@@ -518,7 +518,7 @@ body > .page > .card .content .identifydc.animate:not(.available) {
 
 body > .page > .card .content .identifydc.animate.available {
   background: rgba(0, 0, 0, 0.6);
-  animation: 0.5s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
+  animation: 0.4s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDcAvailable {
@@ -529,7 +529,7 @@ body > .page > .card .content .identifydc.animate.available {
 
 body > .page > .card .content .identifydc.closing {
   background: rgba(0, 0, 0, 0.6);
-  animation: 0.5s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
+  animation: 0.4s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
 }
 
 body > .page > .card .content .identifydc.visible {
@@ -545,7 +545,7 @@ body > .page > .card .content .identifydc .number-container {
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  transition: 0.5s opacity;
+  transition: 0.4s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .number-container {
@@ -553,7 +553,7 @@ body > .page > .card .content .identifydc.closing .number-container {
 }
 
 body > .page > .card .content .identifydc.animate .number-container {
-  animation: 0.5s updateOpacity forwards;
+  animation: 0.4s updateOpacity forwards;
 }
 
 @keyframes updateOpacity {
@@ -647,7 +647,7 @@ body > .page > .card .content .identifydc .dc-recap {
   align-items: center;
   justify-content: center;
   gap: 60px;
-  transition: 0.5s opacity;
+  transition: 0.4s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .dc-recap {
@@ -655,7 +655,7 @@ body > .page > .card .content .identifydc.closing .dc-recap {
 }
 
 body > .page > .card .content .identifydc.animate .dc-recap {
-  animation: 0.5s updateOpacity forwards;
+  animation: 0.4s updateOpacity forwards;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter {

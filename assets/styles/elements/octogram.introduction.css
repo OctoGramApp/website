@@ -1,7 +1,6 @@
 body > .page > .introduction {
-  height: 75vh;
+  height: 100vh;
   background: #1d2733;
-  padding-bottom: 150px;
   margin-bottom: 40px;
   min-height: 800px;
   box-sizing: border-box;
@@ -11,56 +10,137 @@ body > .page > .introduction {
   align-items: center;
   justify-content: center;
   position: relative;
+  transform: translateY(-60px);
+  z-index: -1;
 }
 
 body > .page > .introduction::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
-  height: 150px;
+  height: 50px;
   background: linear-gradient(
-    #1d2733,
+    transparent,
     #151e27
   );
 }
 
+body > .page > .introduction .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+}
+
+body > .page > .introduction .background .animator {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #dbddbb, #6ba587, #d5d88d, #88b88a);
+  mask-image: url("/assets/images/pattern.svg");
+  -webkit-mask-image: url("/assets/images/pattern.svg");
+  opacity: 0.05;
+  transition: 0.4s opacity;
+}
+
+body > .page > .introduction .background.enhance .animator {
+  opacity: 0.3;
+}
+
+body > .page > .introduction .stack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/images/stackbg.png");
+  background-position: 70%;
+  background-size: cover;
+  opacity: 0.3;
+  filter: hue-rotate(36deg);
+  transform: translateX(100%);
+  transition: 0.4s transform;
+}
+
+body > .page > .introduction .stack.visible {
+  transform: translateX(0);
+}
+
+body > .page > .introduction .temporary-placeholder .message {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+body > .page > .introduction .temporary-placeholder .message.animate {
+  animation: var(--duration) animateMessage forwards;
+}
+
+@keyframes animateMessage {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(var(--multiplier));
+  }
+}
+
+body > .page > .introduction .temporary-placeholder .message.disappear {
+  animation: 0.4s disappearMessage forwards;
+}
+
+@keyframes disappearMessage {
+  from {
+    transform: scale(var(--multiplier));
+  }
+  30% {
+    transform: scale(calc(var(--multiplier) + 0.3));
+    opacity: 1;
+  }
+  to {
+    transform: scale(var(--multiplier)) translateY(-50px);
+    opacity: 0;
+  }
+}
+
+body > .page > .introduction .temporary-placeholder .message .image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: translateY(-4px);
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble .shrin img {
+  transform: translateY(3px);
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) {
+  background: white;
+  padding: 13px;
+  padding-inline-end: 46px;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) .user-name {
+  font-weight: 500;
+  color: #e75a60;
+}
+
 body > .page > .introduction .content {
-  max-width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 300px;
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .content {
-    max-width: none;
-    gap: 0;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  body > .page > .introduction .content {
-    flex-direction: column;
-    gap: 35px;
-  }
-}
-
-body > .page > .introduction .content .placeholder {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 70%;
-  height: 70%;
-  background: radial-gradient(
-    #6a7ed6,
-    #1d2733,
-    #1d2733
-  );
-  opacity: 0.5;
+  flex-direction: column;
 }
 
 body > .page > .introduction .content .message {
@@ -68,12 +148,18 @@ body > .page > .introduction .content .message {
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 37px;
+  border-radius: 10px;
+  border: 1px solid #ffffff1f;
+  box-sizing: border-box;
   animation: 0.5s showMessage 0.1s forwards;
 }
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message {
-    max-width: min(88vw, 700px);
+    max-width: min(93vw, 700px);
   }
 }
 
@@ -88,6 +174,8 @@ body > .page > .introduction .content .message .title {
   color: #FFFFFF;
   font-size: 4em;
   font-weight: 800;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 body > .page > .introduction .content .message .title .appname {
@@ -97,190 +185,17 @@ body > .page > .introduction .content .message .title .appname {
 body > .page > .introduction .content .message .description {
   color: #FFFFFF;
   font-size: 2em;
+  text-align: center;
 }
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message .title {
-    font-size: 3em;
+    font-size: 3.5em;
     text-align: center;
   }
 
   body > .page > .introduction .content .message .description {
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-align: center;
   }
-}
-
-body > .page > .introduction .illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 600px;
-  opacity: 0;
-  animation: 0.5s showIllustration 0.3s forwards;
-  transition: 0.5s transform;
-}
-
-@keyframes showIllustration {
-  to {
-    opacity: 1;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction {
-    margin-bottom: calc(600px / 3);
-  }
-
-  body > .page > .introduction .illustration {
-    --introduction-image-active-maxheight: 300px;
-    --introduction-image-maxheight: 200px;
-    height: calc(500px + 15px);
-    margin-bottom: calc(-0.2 * 500px - 15px);
-    z-index: 1;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 1400px) {
-  body > .page > .introduction .illustration {
-    --introduction-image-active-maxheight: 350px;
-    --introduction-image-maxheight: 250px;
-    height: 600px;
-  }
-}
-
-body > .page > .introduction .illustration .image {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.5s box-shadow;
-}
-
-body > .page > .introduction .illustration .image.active {
-  box-shadow: 0 0 15px -1px #000000;
-}
-
-body > .page > .introduction .illustration .image > img {
-  max-height: 600px;
-  max-width: 1000px;
-  transition: 0.5s max-height, 0.5s max-width;
-}
-
-body > .page > .introduction .illustration .image:not(.active) > img {
-  max-height: 250px;
-  max-width: 150px;
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .illustration {
-    transform: translateX(35%);
-  }
-
-  body > .page > .introduction .illustration .image > img {
-    max-height: 500px !important;
-    max-width: 1000px !important;
-  }
-
-  body > .page > .introduction .illustration[data-state="1"] {
-    transform: translateX(35%);
-  }
-
-  body > .page > .introduction .illustration[data-state="2"] {
-    transform: translateX(0);
-  }
-
-  body > .page > .introduction .illustration[data-state="3"] {
-    transform: translateX(-35%);
-  }
-}
-
-body > .page > .introduction .illustration .image .full-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(21, 30, 39, 0.8);
-  gap: 10px;
-  transition: 0.5s opacity;
-}
-
-body > .page > .introduction .illustration .image .full-placeholder .text {
-  color: #FFFFFF;
-}
-
-@media screen and (max-width: 1400px) {
-  body > .page > .introduction .illustration .image .full-placeholder .text {
-    display: none;
-  }
-}
-
-body > .page > .introduction .illustration .image.active .full-placeholder {
-  opacity: 0;
-}
-
-body > .page > .introduction .illustration .image .full-placeholder .icon img {
-  height: 40px;
-  width: 40px;
-  filter: invert(1);
-}
-
-body > .page > .introduction .illustration .image .bottom-placeholder {
-  position: absolute;
-  left: 0;
-  bottom: calc(80px * -1);
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(
-    transparent,
-    #000000
-  );
-  transition: 0.5s bottom;
-}
-
-body > .page > .introduction .illustration .image.active .bottom-placeholder {
-  bottom: 0;
-}
-
-body > .page > .introduction .illustration .image .bottom-placeholder .text {
-  color: #FFFFFF;
-  padding-inline: 15px;
-  text-align: center;
-}
-
-body > .page > .introduction .illustration .image .pause {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) scale(0.7);
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1em;
-  box-sizing: border-box;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  transition: 0.5s transform, 0.5s opacity;
-}
-
-body > .page > .introduction .illustration .image .pause img {
-  filter: invert(1);
-  width: 20px;
-  height: 20px;
-}
-
-body > .page > .introduction .illustration.is-paused .image.active .pause {
-  transform: translateX(-50%) translateY(-50%) scale(1.0);
-  opacity: 1;
 }

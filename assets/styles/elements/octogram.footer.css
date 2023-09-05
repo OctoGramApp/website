@@ -66,7 +66,7 @@ body > .page > .footer .links .single-link-container {
   body > .page > .footer .links .single-link-container {
     max-height: calc(30px * 5);
     overflow: hidden;
-    transition: 0.5s max-height, 0.5s margin-bottom;
+    transition: 0.4s max-height, 0.4s margin-bottom;
   }
 
   body > .page > .footer .links .single-link-container:not(.expanded) {
@@ -90,7 +90,7 @@ body > .page > .footer .links .single-link-container .link-title .expand {
   position: absolute;
   right: 0;
   filter: invert(1);
-  transition: 0.5s transform;
+  transition: 0.4s transform;
 }
 
 body > .page > .footer .links .single-link-container.expanded .link-title .expand {
@@ -103,7 +103,7 @@ body > .page > .footer .links .single-link-container .link {
   margin-bottom: 4px;
   padding-left: 20px;
   position: relative;
-  transition: 0.5s padding-left,  0.5s opacity;
+  transition: 0.4s padding-left,  0.4s opacity;
 }
 
 body > .page > .footer .links .single-link-container a.link:not([href]) {
@@ -123,7 +123,7 @@ body > .page > .footer .links .single-link-container .link::before {
   height: 2px;
   width: 0%;
   background: #FFFFFF;
-  transition: 0.5s width;
+  transition: 0.4s width;
 }
 
 body > .page > .footer .links .single-link-container .link:hover {
@@ -145,7 +145,7 @@ body > .page > .footer .links .single-link-container .link .icon {
   transform: translateY(-50%);
   left: 0;
   filter: invert(1);
-  transition: 0.5s left;
+  transition: 0.4s left;
 }
 
 body > .page > .footer .links .single-link-container .link:hover .icon {

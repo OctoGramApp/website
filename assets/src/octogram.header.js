@@ -1,6 +1,7 @@
 class Header {
   createElement({
     onBackCallback,
+    isHomePage = false,
     isError = false
   } = {}) {
     const appLogoImage = document.createElement('img');
@@ -26,7 +27,8 @@ class Header {
     
     const header = document.createElement('div');
     header.classList.add('header');
-    header.classList.toggle('as-error', isError);
+    header.classList.toggle('as-homepage', isHomePage && !isError);
+    header.classList.toggle('as-error', isError && !isHomePage);
     header.appendChild(content);
 
     return header;

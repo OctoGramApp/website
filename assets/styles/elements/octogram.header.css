@@ -17,6 +17,10 @@ body > .page > .header.as-error {
   );
 }
 
+body > .page > .header.as-homepage {
+  background: transparent;
+}
+
 body > .page > .header .content {
   height: 100%;
   width: 100%;
@@ -46,7 +50,7 @@ body > .page > .header .content .applogo img.arrow {
   height: 20px;
   width: 20px;
   margin-right: 10px;
-  transition: 0.5s transform, 0.5s margin-right, 0.5s opacity;
+  transition: 0.4s transform, 0.4s margin-right, 0.4s opacity;
 }
 
 body > .page > .header .content .applogo:not(.show-back) img.arrow {

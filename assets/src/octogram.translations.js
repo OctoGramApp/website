@@ -11,6 +11,7 @@ class Translations {
     HEADER_DC_STATUS: 'DC Status',
     HEADER_SOURCE: 'Source',
 
+    INTRODUCTION_PLACEHOLDER: 'Are we ready for 2.0.0?',
     INTRODUCTION_DISCOVER: 'Discover {0}',
     INTRODUCTION_DISCOVER_DESCRIPTION: 'The Telegram alternative client with all the features you need.',
     INTRODUCTION_SETTINGS: 'Impostazioni',

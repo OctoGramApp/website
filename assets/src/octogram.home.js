@@ -14,7 +14,9 @@ class HomePage {
 
     const pageContainer = document.createElement('div');
     pageContainer.classList.add('page');
-    pageContainer.appendChild(header.createElement());
+    pageContainer.appendChild(header.createElement({
+      isHomePage: true
+    }));
     pageContainer.appendChild(this.#generateIntroduction());
     pageContainer.appendChild(this.#generateFeatures());
     pageContainer.appendChild(this.#generateAdvantages());
@@ -34,8 +36,23 @@ class HomePage {
   }
 
   #generateIntroduction() {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('placeholder');
+    const patternAnimator = document.createElement('div');
+    patternAnimator.classList.add('animator');
+    const background = document.createElement('div');
+    background.classList.add('background');
+    background.appendChild(patternAnimator);
+
+    const stackBg = document.createElement('div');
+    stackBg.classList.add('stack');
+
+    const temporaryPlaceholder = document.createElement('div');
+    temporaryPlaceholder.classList.add('temporary-placeholder');
+    temporaryPlaceholder.appendChild(this.#generateIntroductionMessage(() => {
+      temporaryPlaceholder.remove();
+      background.classList.add('enhance');
+      stackBg.classList.add('visible');
+      introduction.appendChild(content);
+    }));
 
     const messageTitleClient = document.createElement('span');
     messageTitleClient.classList.add('appname');
@@ -50,40 +67,98 @@ class HomePage {
     message.classList.add('message');
     message.appendChild(messageTitle);
     message.appendChild(messageDescription);
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.appendChild(message);
 
-    const introductionContent = document.createElement('div');
-    introductionContent.classList.add('content');
-    introductionContent.appendChild(placeholder);
-    introductionContent.appendChild(message);
-
-    const illustrationContainer = document.createElement('div');
-    illustrationContainer.classList.add('illustration');
-    illustrationContainer.dataset.state = '1';
-    illustrationContainer.appendChild(this.#generateImage({
-      imageUrl: 'assets/images/settings.darkmode.jpg',
-      iconUrl: 'assets/icons/settings.svg',
-      mainText: translations.getStringRef('INTRODUCTION_SETTINGS'),
-      isActive: true
-    }));
-    illustrationContainer.appendChild(this.#generateImage({
-      imageUrl: 'assets/images/chats.darkmode.jpg',
-      iconUrl: 'assets/icons/chats.svg',
-      mainText: translations.getStringRef('INTRODUCTION_CHAT'),
-      bottomText: translations.getStringRef('INTRODUCTION_CHAT_EXPAND')
-    }));
-    illustrationContainer.appendChild(this.#generateImage({
-      imageUrl: 'assets/images/appearance.darkmode.jpg',
-      iconUrl: 'assets/icons/appearance.svg',
-      mainText: translations.getStringRef('INTRODUCTION_APPEARANCE'),
-      bottomText: translations.getStringRef('INTRODUCTION_APPEARANCE_EXPAND')
-    }));
-    
     const introduction = document.createElement('div');
     introduction.classList.add('introduction');
-    introduction.appendChild(introductionContent);
-    introduction.appendChild(illustrationContainer);
+    introduction.appendChild(background);
+    introduction.appendChild(stackBg);
+    introduction.appendChild(temporaryPlaceholder);
 
     return introduction;
+  }
+
+  #generateIntroductionMessage(onAnimationEnd) {
+    const placeholderString = translations.getStringRef('INTRODUCTION_PLACEHOLDER');
+
+    const chosenUser = Math.floor(Math.random() * 2) + 1;
+
+    const userImage = document.createElement('img');
+    userImage.classList.add('image');
+    if (chosenUser == 2) {
+      userImage.src = 'assets/images/introductionuserimage.2.jpg';
+    } else {
+      userImage.src = 'assets/images/introductionuserimage.jpg';
+    }
+
+    const messageShrinImage = document.createElement('img');
+    messageShrinImage.src = 'assets/icons/messageshrin.svg';
+    const messageShrin = document.createElement('div');
+    messageShrin.classList.add('shrin');
+    messageShrin.appendChild(messageShrinImage);
+    
+    const messageUserName = document.createElement('div');
+    messageUserName.classList.add('user-name');
+    if (chosenUser == 2) {
+      messageUserName.textContent = 'ImØnlyFīrė';
+    } else {
+      messageUserName.textContent = 'Nick';
+    }
+    const messageText = document.createElement('div');
+    messageText.classList.add('message-text');
+    const messageContent = document.createElement('div');
+    messageContent.appendChild(messageUserName);
+    messageContent.appendChild(messageText);
+
+    const messageBubble = document.createElement('div');
+    messageBubble.classList.add('message-bubble');
+    messageBubble.appendChild(messageShrin);
+    messageBubble.appendChild(messageContent);
+
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.appendChild(userImage);
+    message.appendChild(messageBubble);
+
+    requestAnimationFrame(() => {
+      messageText.textContent = placeholderString;
+
+      const widthRef = window.innerWidth < 800 ? 100 : 200;
+      
+      const finalMessageRect = message.getBoundingClientRect();
+      const animationDurationSeconds = placeholderString.length * 0.05;
+      const maxMultiplier = window.innerWidth / (finalMessageRect.width + widthRef);
+
+      messageText.textContent = '';
+
+      let string = '';
+      for(const letter of placeholderString) {
+        string += letter;
+        setTimeout((string) => {
+          messageText.textContent = string;
+        }, string.length * 50, string);
+      }
+
+      message.style.setProperty('--duration', animationDurationSeconds.toString() + 's');
+      message.style.setProperty('--multiplier', maxMultiplier);
+      message.classList.add('animate');
+
+      message.addEventListener('animationend', () => {
+        setTimeout(() => {
+          message.classList.remove('animate');
+          message.classList.add('disappear');
+        
+          message.addEventListener('animationend', () => {
+            message.remove();
+            onAnimationEnd();
+          }, { once: true });
+        }, 1000);
+      }, { once: true });
+    });
+
+    return message;
   }
 
   #generateImage({
@@ -548,7 +623,7 @@ class HomePage {
           let temporarySlots = [];
           let removedItems = 0;
           for(let i = 0; i < 5; i++){
-            for(const icon of ANIMATION_ICON_NAMES) {
+            for(const iconUrl of ANIMATION_ICON_NAMES) {
               const animatedElement = document.createElement('img');
               animatedElement.classList.add('animated-icon');
               animatedElement.addEventListener('animationend', () => {
@@ -562,7 +637,7 @@ class HomePage {
                   }
                 }, 200);
               });
-              animatedElement.src = '/assets/icons/'+icon+'.svg';
+              animatedElement.src = iconUrl;
               placeholder.appendChild(animatedElement);
               temporarySlots.push(animatedElement);
             }
