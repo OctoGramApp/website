@@ -1,5 +1,5 @@
 body > .page > .pointer {
-  background: var(--pointer-bg);
+  background: #1d2733;
   padding-block: 20px;
   padding-bottom: calc(20px + 50px);
   margin-bottom: 40px;
@@ -20,8 +20,8 @@ body > .page > .pointer::after {
   width: 100%;
   height: 50px;
   background: linear-gradient(
-    var(--introduction-bg),
-    var(--background)
+    #1d2733,
+    #151e27
   );
 }
 
@@ -46,7 +46,7 @@ body > .page > .pointer .message .sticker img {
 }
 
 body > .page > .pointer .message .title {
-  color: var(--pointer-title);
+  color: #FFFFFF;
 }
 
 body > .page > .pointer .message .button {

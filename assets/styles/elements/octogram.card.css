@@ -9,7 +9,7 @@ body > .page > .card {
 body > .page > .card .content {
   position: relative;
   overflow: hidden;
-  background: var(--dcstatus-bg);
+  background: #1d2733;
   max-width: min(95vw, 1400px);
   padding: 20px;
   border-radius: 15px;
@@ -32,7 +32,7 @@ body > .page > .card .content .descriptor {
 }
 
 body > .page > .card .content .descriptor .title {
-  color: var(--dcstatus-title);
+  color: #FFFFFF;
   font-size: 1.3em;
   font-weight: 500;
   display: flex;
@@ -44,14 +44,14 @@ body > .page > .card .content .descriptor .title {
 body > .page > .card .content .descriptor .title .badge {
   padding-inline: 3px;
   padding-block: 3px;
-  background: var(--dcstatus-title-badge-bg);
-  color: var(--dcstatus-title-badge-text);
+  background: #FFFFFF;
+  color: #000000;
   border-radius: 4px;
   font-size: 0.6em;
 }
 
 body > .page > .card .content .descriptor .description {
-  color: var(--dcstatus-description);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,11 +90,11 @@ body > .page > .card .content .descriptor .description:not(.definite) svg {
 
 body > .page > .card .content .descriptor .description svg circle {
   fill: none;
-  stroke: var(--dcstatus-description-progress-color);
+  stroke: rgba(255, 255, 255, 0.8);
   stroke-width: 3px;
   stroke-dasharray: 48;
   stroke-dashoffset: 15;
-  transition: var(--animations-duration) stroke-dashoffset;
+  transition: 0.5s stroke-dashoffset;
 }
 
 body > .page > .card .content .descriptor .description.definite svg circle {
@@ -106,7 +106,7 @@ body > .page > .card .content .descriptor .description:not(.definite) svg circle
 }
 
 body > .page > .card .content .descriptor .description .pending {
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+  transition: 0.5s transform, 0.5s opacity;
 }
 
 body > .page > .card .content .descriptor .description:not(.definite) .pending {
@@ -129,7 +129,7 @@ body > .page > .card .content .body {
 
 body > .page > .card .content .body .message {
   position: relative;
-  color: var(--dcstatus-body-text);
+  color: rgba(255, 255, 255, 0.9);
   padding-left: 20px;
   flex: 1;
 }
@@ -141,13 +141,13 @@ body > .page > .card .content .body .message:before {
   left: 0;
   height: 100%;
   width: 3px;
-  background: var(--dcstatus-body-text-border-color);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
 }
 
 body > .page > .card .content .body .message a {
   text-decoration: none;
-  color: var(--dcstatus-body-text-link);
+  color: #547ed6;
 }
 
 body > .page > .card .content .body .message .bold {
@@ -155,7 +155,7 @@ body > .page > .card .content .body .message .bold {
 }
 
 body > .page > .card .content .body .message .code {
-  background: var(--dcstatus-body-text-code-bg);
+  background: #151e27;
   padding: 3px;
   border-radius: 5px;
 }
@@ -189,14 +189,14 @@ body > .page > .card .content .datacenters .error img {
 }
 
 body > .page > .card .content .datacenters .error .title {
-  color: var(--error-message-title);
+  color: #FFFFFF;
   font-size: 1.8em;
   font-weight: 500;
   text-align: center;
 }
 
 body > .page > .card .content .datacenters .error .description {
-  color: var(--error-message-description);
+  color: #FFFFFF;
   font-size: 1.3em;
   text-align: center;
 }
@@ -211,13 +211,13 @@ body > .page > .card .content .datacenters .datacenter {
   box-sizing: border-box;
   overflow: hidden;
   padding: 5px;
-  transition: var(--animations-duration) padding, var(--animations-duration) background, var(--animations-duration) border-radius;
+  transition: 0.5s padding, 0.5s background, 0.5s border-radius;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded {
   padding: 20px;
   padding-bottom: calc(20px + 55px);
-  background: var(--dcstatus-row-expanded-bg);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 }
 
@@ -331,7 +331,7 @@ body > .page > .card .content .datacenters .datacenter .description {
 
 body > .page > .card .content .datacenters .datacenter .description .name {
   font-size: 17px;
-  color: var(--dcstatus-row-name-color);
+  color: #FFFFFF;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -343,21 +343,21 @@ body > .page > .card .content .datacenters .datacenter .description .status {
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.online {
-  color: var(--dcstatus-row-status-color-online);
+  color: #69b972;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.slow {
-  color: var(--dcstatus-row-status-color-slow);
+  color: #e0bd25;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.offline {
-  color: var(--dcstatus-row-status-color-offline);
+  color: #c26266;
 }
 
 body > .page > .card .content .datacenters .datacenter .expand {
-  filter: var(--icons-transform);
+  filter: invert(1);
   opacity: 0.8;
-  transition: var(--animations-duration) transform;
+  transition: 0.5s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expand {
@@ -376,7 +376,7 @@ body > .page > .card .content .datacenters .datacenter .expandable {
   align-items: center;
   justify-content: center;
   cursor: default;
-  transition: var(--animations-duration) opacity, var(--animations-duration) transform;
+  transition: 0.5s opacity, 0.5s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expandable {
@@ -385,8 +385,8 @@ body > .page > .card .content .datacenters .datacenter.expanded .expandable {
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator {
   height: 100%;
-  background: var(--dcstatus-row-expanded-indicator-bg);
-  color: var(--dcstatus-row-expanded-indicator-text);
+  background: #1d2733;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -402,18 +402,18 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .t
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator {
-  background: var(--dcstatus-row-expanded-indicator-separator);
+  background: rgba(255, 255, 255, 0.1);
   width: 2px;
   height: 150%;
-  transform: rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
+  transform: rotate(35deg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator img {
-  filter: var(--icons-transform);
-  transform: rotate(calc(-1 * var(--dcstatus-row-expanded-indicator-separator-rotate)));
+  filter: invert(1);
+  transform: rotate(calc(-1 * 35deg));
   height: 22px;
   width: 22px;
 }
@@ -441,7 +441,7 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .s
     position: absolute;
     right: 35px;
     top: 50%;
-    transform: translateY(-50%) rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
+    transform: translateY(-50%) rotate(35deg);
   }
 }
 
@@ -451,7 +451,7 @@ body > .page > .card .content .suggestions {
   gap: 30px;
   margin-top: 10px;
   overflow-x: auto;
-  transition: var(--animations-duration) margin-top, var(--animations-duration) opacity;
+  transition: 0.5s margin-top, 0.5s opacity;
 }
 
 body > .page > .card .content .suggestions.disabled,
@@ -470,7 +470,7 @@ body > .page > .card .content .suggestions.hidden {
 
 body > .page > .card .content .suggestions .suggestions-title {
   white-space: nowrap;
-  color: var(--dcstatus-suggestions-title);
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 500px) {
@@ -497,8 +497,8 @@ body > .page > .card .content .identifydc {
 }
 
 body > .page > .card .content .identifydc.animate:not(.available) {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.5s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDc {
@@ -517,8 +517,8 @@ body > .page > .card .content .identifydc.animate:not(.available) {
 }
 
 body > .page > .card .content .identifydc.animate.available {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.5s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDcAvailable {
@@ -528,15 +528,15 @@ body > .page > .card .content .identifydc.animate.available {
 }
 
 body > .page > .card .content .identifydc.closing {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.5s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
 }
 
 body > .page > .card .content .identifydc.visible {
   height: 245px;
   width: 100%;
   transform: none;
-  background: var(--selectmenu-select-bg);
+  background: rgba(0, 0, 0, 0.6);
   margin-top: 20px;
 }
 
@@ -544,8 +544,8 @@ body > .page > .card .content .identifydc .number-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--dcstatus-identifydc-number);
-  transition: var(--animations-duration) opacity;
+  color: #FFFFFF;
+  transition: 0.5s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .number-container {
@@ -553,7 +553,7 @@ body > .page > .card .content .identifydc.closing .number-container {
 }
 
 body > .page > .card .content .identifydc.animate .number-container {
-  animation: var(--animations-duration) updateOpacity forwards;
+  animation: 0.5s updateOpacity forwards;
 }
 
 @keyframes updateOpacity {
@@ -606,7 +606,7 @@ body > .page > .card .content .identifydc .number-container .param-container .sp
 body > .page > .card .content .identifydc .number-container .param-container .spoiler {
   height: 100%;
   width: 29px;
-  color: var(--dcstatus-identifydc-number-param-spoiler-text-color);
+  color: #FFFFFF;
   font-size: 26px;
   position: relative;
   display: flex;
@@ -628,7 +628,7 @@ body > .page > .card .content .identifydc .number-container .param-container .sp
   width: 100%;
   height: 100%;
   opacity: 0.5;
-  filter: var(--icons-transform);
+  filter: invert(1);
   background: url("/assets/images/spoiler-dots.png");
   animation: 10s moveSpoiler infinite forwards calc(var(--id) * 0.2s) linear;
 }
@@ -647,7 +647,7 @@ body > .page > .card .content .identifydc .dc-recap {
   align-items: center;
   justify-content: center;
   gap: 60px;
-  transition: var(--animations-duration) opacity;
+  transition: 0.5s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .dc-recap {
@@ -655,7 +655,7 @@ body > .page > .card .content .identifydc.closing .dc-recap {
 }
 
 body > .page > .card .content .identifydc.animate .dc-recap {
-  animation: var(--animations-duration) updateOpacity forwards;
+  animation: 0.5s updateOpacity forwards;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter {
@@ -759,7 +759,7 @@ body > .page > .card .content .identifydc .dc-recap .datacenter .icon img {
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .name {
   overflow: hidden;
   text-overflow: ellipsis;
-  color: white;
+  color: #FFFFFF;
   font-size: 35px;
   text-align: center;
 }
@@ -787,13 +787,13 @@ body > .page > .card .content .identifydc .dc-recap .datacenter .description .st
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.online {
-  color: var(--dcstatus-row-status-color-online);
+  color: #69b972;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.slow {
-  color: var(--dcstatus-row-status-color-slow);
+  color: #e0bd25;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.offline {
-  color: var(--dcstatus-row-status-color-offline);
+  color: #c26266;
 }

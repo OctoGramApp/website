@@ -1,101 +1,15 @@
 :root {
-  --appnamecolor: #6a7ed6;
-  --background: #151e27;
 
-  --header-bg: #283157;
 
-  --introduction-bg: #1d2733;
-  --introduction-message-title: #FFFFFF;
-  --introduction-message-description: #FFFFFF;
-  --introduction-image-pause: rgba(0, 0, 0, 0.5);
-  --introduction-imageplaceholder-full-bg: rgba(21, 30, 39, 0.8);
-  --introduction-imageplaceholder-full-text: #FFFFFF;
-  --introduction-imageplaceholder-bottom-gradient-start: transparent;
-  --introduction-imageplaceholder-bottom-gradient-end: #000000;
-  --introduction-imageplaceholder-bottom-text: #FFFFFF;
 
-  --pointer-bg: #1d2733;
-  --pointer-title: #FFFFFF;
 
-  --dcstatus-bg: #1d2733;
-  --dcstatus-title: #FFFFFF;
-  --dcstatus-title-badge-bg: #FFFFFF;
-  --dcstatus-title-badge-text: #000000;
-  --dcstatus-description: rgba(255, 255, 255, 0.8);
-  --dcstatus-description-progress-color: rgba(255, 255, 255, 0.8);
-  --dcstatus-row-name-color: #FFFFFF;
-  --dcstatus-row-status-color-online: #69b972;
-  --dcstatus-row-status-color-slow: #e0bd25;
-  --dcstatus-row-status-color-offline: #c26266;
-  --dcstatus-row-expanded-bg: rgba(0, 0, 0, 0.3);
-  --dcstatus-row-expanded-indicator-bg: #1d2733;
-  --dcstatus-row-expanded-indicator-text: #FFFFFF;
-  --dcstatus-row-expanded-indicator-separator: rgba(255, 255, 255, 0.1);
-  --dcstatus-row-expanded-indicator-separator-rotate: 35deg;
-  --dcstatus-body-text: rgba(255, 255, 255, 0.9);
-  --dcstatus-body-text-border-color: rgba(255, 255, 255, 0.9);
-  --dcstatus-body-text-link: #547ed6;
-  --dcstatus-body-text-code-bg: #151e27;
-  --dcstatus-suggestions-title: #FFFFFF;
-  --dcstatus-identifydc-number: #FFFFFF;
-  --dcstatus-identifydc-number-param-spoiler-text-color: #FFFFFF;
 
-  --features-title: #FFFFFF;
-  --features-item-text-color: #FFFFFF;
-  --features-item-extra-bg: #252d3a;
-  --features-item-extra-text: #FFFFFF;
 
-  --buttons-textcolor: #FFFFFF;
-  --buttons-hoverbg: rgba(255, 255, 255, 0.1);
-  --buttons-activebg: rgba(255, 255, 255, 0.05);
-  --buttons-accent-bg: #6a7ed6;
-  --buttons-accent-text: #FFFFFF;
 
-  --monet-message-scrolling: #FFFFFF;
-  --monet-message-title: #FFFFFF;
-  --monet-message-description: #FFFFFF;
-  --monet-example-add-color: #FFFFFF;
-  --monet-example-add-border: #FFFFFF;
 
-  --downloads-bg: #6a7ed63d;
-  --downloads-title: #FFFFFF;
-  --downloads-description: #FFFFFF;
-  --downloads-files-bg: rgba(106, 124, 214, 0.2);
-  --downloads-files-icon-size-color: #FFFFFF;
-  --downloads-files-title-color: #FFFFFF;
-  --downloads-files-description-color: rgba(255, 255, 255, 0.8);
-  --downloads-separator: rgba(255, 255, 255, 0.2);
-  --downloads-stores-bg: rgba(106, 124, 214, 0.2);
-  --downloads-stores-primary-apkmirror: #f76912;
-  --downloads-stores-primary-apkpure: #005d52;
-  --downloads-stores-primary-appcenter: #4f1428;
-  --downloads-stores-primary-playstore: #0e0e0e;
-  --downloads-stores-text: #FFFFFF;
-  --downloads-stores-description: rgba(255, 255, 255, 0.95);
 
-  --footer-bg: #252d3a;
-  --footer-text: #FFFFFF;
-  --footer-text-link: #547ed6;
 
-  --selectmenu-select-bg: rgba(0, 0, 0, 0.6);
-  --selectmenu-select-text: #FFFFFF;
-  --selectmenu-overflow-bg: rgba(0, 0, 0, 0.8);
-  --selectmenu-option-background: #6a7ed63d;
-  --selectmenu-option-text: #FFFFFF;
-  --selectmenu-option-radio-color: #FFFFFF;
-  --selectmenu-separator-bg: #4a6092;
-  --selectmenu-separator-text: #FFFFFF;
-  --selectmenu-description-color: rgba(255, 255, 255, 0.7);
 
-  --advantages-bg: #252d3a;
-  --advantages-message-title: #FFFFFF;
-  --advantages-message-description: #FFFFFF;
-  --advantages-list-separator-color: rgba(255, 255, 255, 0.5);
-  --advantages-list-item-title-color: #FFFFFF;
 
-  --error-message-title: #FFFFFF;
-  --error-message-description: #FFFFFF;
 
-  --animations-duration: 0.5s;
-  --icons-transform: invert(1);
 }

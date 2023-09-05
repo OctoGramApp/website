@@ -1,7 +1,7 @@
 body > .page > #advantages > .advantages {
   width: 100%;
   padding-block: calc(20px + 40px);
-  background: var(--advantages-bg);
+  background: #252d3a;
   margin-bottom: 50px;
   position: relative;
   display: flex;
@@ -19,8 +19,8 @@ body > .page > #advantages > .advantages::before {
   width: 100%;
   height: 20px;
   background: linear-gradient(
-    var(--background),
-    var(--advantages-bg)
+    #151e27,
+    #252d3a
   );
 }
 
@@ -32,8 +32,8 @@ body > .page > #advantages > .advantages::after {
   width: 100%;
   height: 20px;
   background: linear-gradient(
-    var(--advantages-bg),
-    var(--background)
+    #252d3a,
+    #151e27
   );
 }
 
@@ -42,7 +42,7 @@ body > .page > #advantages > .advantages .message {
 }
 
 body > .page > #advantages > .advantages .message .title {
-  color: var(--advantages-message-title);
+  color: #FFFFFF;
   font-size: 3em;
   font-weight: 800;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
@@ -50,7 +50,7 @@ body > .page > #advantages > .advantages .message .title {
 }
 
 body > .page > #advantages > .advantages .message .description {
-  color: var(--advantages-message-description);
+  color: #FFFFFF;
   font-size: 1.5em;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
   opacity: var(--parallax-state);
@@ -76,7 +76,7 @@ body > .page > #advantages > .advantages .items {
 body > .page > #advantages > .advantages .items .separator {
   height: calc(var(--parallax-state) * 270px);
   transform: rotate(15deg);
-  border-left: 2px dashed var(--advantages-list-separator-color);
+  border-left: 2px dashed rgba(255, 255, 255, 0.5);
 }
 
 @media screen and (max-width: 1000px) {
@@ -84,7 +84,7 @@ body > .page > #advantages > .advantages .items .separator {
     height: 0px;
     width: 90vw;
     transform: rotate(0);
-    border-top: 2px dashed var(--advantages-list-separator-color);
+    border-top: 2px dashed rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -120,7 +120,7 @@ body > .page > #advantages > .advantages .items .item img {
 }
 
 body > .page > #advantages > .advantages .items .item .title {
-  color: var(--advantages-list-item-title-color);
+  color: #FFFFFF;
   font-size: 1.5em;
   text-align: center;
 }

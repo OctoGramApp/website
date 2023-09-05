@@ -1,7 +1,7 @@
 body > .page .select {
   width: 100%;
-  background: var(--selectmenu-select-bg);
-  color: var(--selectmenu-select-text);
+  background: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
   padding-inline: 17px;
   padding-block: 15px;
   border-radius: 8px;
@@ -11,7 +11,7 @@ body > .page .select {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: var(--animations-duration) padding-inline, var(--animations-duration) opacity;
+  transition: 0.5s padding-inline, 0.5s opacity;
 }
 
 body > .page .select.mini {
@@ -24,7 +24,7 @@ body > .page .select.nomargin {
 }
 
 body > .page .select .icon {
-  filter: var(--icons-transform);
+  filter: invert(1);
 }
 
 @media screen and (min-width: 500px) {
@@ -51,22 +51,22 @@ body > .page > .select-overflow::before {
 }
 
 body > .page > .select-overflow:not(.closing) {
-  animation: var(--animations-duration) animateBackground forwards linear;
+  animation: 0.5s animateBackground forwards linear;
 }
 
 @keyframes animateBackground {
   to {
-    background: var(--selectmenu-overflow-bg);
+    background: rgba(0, 0, 0, 0.8);
   }
 }
 
 body > .page > .select-overflow.closing {
-  animation: var(--animations-duration) animateBackgroundRev forwards linear;
+  animation: 0.5s animateBackgroundRev forwards linear;
 }
 
 @keyframes animateBackgroundRev {
   from {
-    background: var(--selectmenu-overflow-bg);
+    background: rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -84,7 +84,7 @@ body > .page > .select-overflow .select-menu {
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  background: var(--background);
+  background: #151e27;
 }
 
 body > .page > .select-overflow .select-menu.is-big {
@@ -111,7 +111,7 @@ body > .page > .select-overflow .select-menu::-webkit-scrollbar-thumb {
 }
 
 body > .page > .select-overflow:not(.closing) .select-menu {
-  animation: var(--animations-duration) expandMenu forwards cubic-bezier(0.42, 0, 0, 1.03);
+  animation: 0.5s expandMenu forwards cubic-bezier(0.42, 0, 0, 1.03);
 }
 
 @keyframes expandMenu {
@@ -121,7 +121,7 @@ body > .page > .select-overflow:not(.closing) .select-menu {
 }
 
 body > .page > .select-overflow.closing .select-menu {
-  animation: var(--animations-duration) expandMenuRev forwards cubic-bezier(0.42, 0, 0, 1.03);
+  animation: 0.5s expandMenuRev forwards cubic-bezier(0.42, 0, 0, 1.03);
 }
 
 @keyframes expandMenuRev {
@@ -137,7 +137,7 @@ body > .page > .select-overflow .select-menu .animation {
 }
 
 body > .page > .select-overflow .select-menu .general-description {
-  color: var(--selectmenu-description-color);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 body > .page > .select-overflow .select-menu .general-description:last-child {
@@ -152,8 +152,8 @@ body > .page > .select-overflow .select-menu .general-description:not(:last-chil
 
 body > .page > .select-overflow .select-menu .letter-separator {
   width: 100%;
-  background: var(--selectmenu-separator-bg);
-  color: var(--selectmenu-separator-text);
+  background: #4a6092;
+  color: #FFFFFF;
   margin-bottom: 10px;
   padding-left: 20px;
   border-radius: 12px;
@@ -163,9 +163,9 @@ body > .page > .select-overflow .select-menu .letter-separator {
 body > .page > .select-overflow .select-menu .option {
   width: 100%;
   padding: 10px;
-  background: var(--selectmenu-option-background);
+  background: #6a7ed63d;
   border-radius: 5px;
-  color: var(--selectmenu-option-text);
+  color: #FFFFFF;
   gap: 9px;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -174,7 +174,7 @@ body > .page > .select-overflow .select-menu .option {
   cursor: pointer;
   font-size: 1.2em;
   transform: translateX(100%);
-  animation: var(--animations-duration) appearOption calc(var(--id) * 0.05s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+  animation: 0.5s appearOption calc(var(--id) * 0.05s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
 }
 
 @keyframes appearOption {
@@ -192,11 +192,11 @@ body > .page > .select-overflow .select-menu .option .radio {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 2px solid var(--selectmenu-option-radio-color);
+  border: 2px solid #FFFFFF;
   position: relative;
   overflow: hidden;
   transform: scale(0);
-  animation: var(--animations-duration) upgradeRadio calc(var(--id) * 0.15s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
+  animation: 0.5s upgradeRadio calc(var(--id) * 0.15s) cubic-bezier(0.42, 0, 0, 1.03) forwards;
 }
 
 @keyframes upgradeRadio {
@@ -213,7 +213,7 @@ body > .page > .select-overflow .select-menu.is-big .option .radio {
 body > .page > .select-overflow .select-menu .option .radio::after {
   content: "";
   position: absolute;
-  background: var(--selectmenu-option-radio-color);
+  background: #FFFFFF;
   border-radius: 50%;
   transform: scale(0.6);
   opacity: 0;
@@ -221,7 +221,7 @@ body > .page > .select-overflow .select-menu .option .radio::after {
   left: 2px;
   width: calc(100% - 2px * 2);
   height: calc(100% - 2px * 2);
-  transition: var(--animations-duration) opacity, var(--animations-duration) transform;
+  transition: 0.5s opacity, 0.5s transform;
 }
 
 body > .page > .select-overflow .select-menu .option .radio.selected::after {

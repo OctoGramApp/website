@@ -1,6 +1,6 @@
 body > .page > .introduction {
   height: 75vh;
-  background: var(--introduction-bg);
+  background: #1d2733;
   padding-bottom: 150px;
   margin-bottom: 40px;
   min-height: 800px;
@@ -21,8 +21,8 @@ body > .page > .introduction::after {
   width: 100%;
   height: 150px;
   background: linear-gradient(
-    var(--introduction-bg),
-    var(--background)
+    #1d2733,
+    #151e27
   );
 }
 
@@ -56,9 +56,9 @@ body > .page > .introduction .content .placeholder {
   width: 70%;
   height: 70%;
   background: radial-gradient(
-    var(--appnamecolor),
-    var(--introduction-bg),
-    var(--introduction-bg)
+    #6a7ed6,
+    #1d2733,
+    #1d2733
   );
   opacity: 0.5;
 }
@@ -68,7 +68,7 @@ body > .page > .introduction .content .message {
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
-  animation: var(--animations-duration) showMessage 0.1s forwards;
+  animation: 0.5s showMessage 0.1s forwards;
 }
 
 @media screen and (max-width: 700px) {
@@ -85,17 +85,17 @@ body > .page > .introduction .content .message {
 }
 
 body > .page > .introduction .content .message .title {
-  color: var(--introduction-message-title);
+  color: #FFFFFF;
   font-size: 4em;
   font-weight: 800;
 }
 
 body > .page > .introduction .content .message .title .appname {
-  color: var(--appnamecolor);
+  color: #6a7ed6;
 }
 
 body > .page > .introduction .content .message .description {
-  color: var(--introduction-message-description);
+  color: #FFFFFF;
   font-size: 2em;
 }
 
@@ -118,8 +118,8 @@ body > .page > .introduction .illustration {
   gap: 5px;
   height: 600px;
   opacity: 0;
-  animation: var(--animations-duration) showIllustration 0.3s forwards;
-  transition: var(--animations-duration) transform;
+  animation: 0.5s showIllustration 0.3s forwards;
+  transition: 0.5s transform;
 }
 
 @keyframes showIllustration {
@@ -155,7 +155,7 @@ body > .page > .introduction .illustration .image {
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: var(--animations-duration) box-shadow;
+  transition: 0.5s box-shadow;
 }
 
 body > .page > .introduction .illustration .image.active {
@@ -165,7 +165,7 @@ body > .page > .introduction .illustration .image.active {
 body > .page > .introduction .illustration .image > img {
   max-height: 600px;
   max-width: 1000px;
-  transition: var(--animations-duration) max-height, var(--animations-duration) max-width;
+  transition: 0.5s max-height, 0.5s max-width;
 }
 
 body > .page > .introduction .illustration .image:not(.active) > img {
@@ -206,13 +206,13 @@ body > .page > .introduction .illustration .image .full-placeholder {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: var(--introduction-imageplaceholder-full-bg);
+  background: rgba(21, 30, 39, 0.8);
   gap: 10px;
-  transition: var(--animations-duration) opacity;
+  transition: 0.5s opacity;
 }
 
 body > .page > .introduction .illustration .image .full-placeholder .text {
-  color: var(--introduction-imageplaceholder-full-text);
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 1400px) {
@@ -228,7 +228,7 @@ body > .page > .introduction .illustration .image.active .full-placeholder {
 body > .page > .introduction .illustration .image .full-placeholder .icon img {
   height: 40px;
   width: 40px;
-  filter: var(--icons-transform);
+  filter: invert(1);
 }
 
 body > .page > .introduction .illustration .image .bottom-placeholder {
@@ -242,10 +242,10 @@ body > .page > .introduction .illustration .image .bottom-placeholder {
   justify-content: center;
   overflow: hidden;
   background: linear-gradient(
-    var(--introduction-imageplaceholder-bottom-gradient-start),
-    var(--introduction-imageplaceholder-bottom-gradient-end)
+    transparent,
+    #000000
   );
-  transition: var(--animations-duration) bottom;
+  transition: 0.5s bottom;
 }
 
 body > .page > .introduction .illustration .image.active .bottom-placeholder {
@@ -253,7 +253,7 @@ body > .page > .introduction .illustration .image.active .bottom-placeholder {
 }
 
 body > .page > .introduction .illustration .image .bottom-placeholder .text {
-  color: var(--introduction-imageplaceholder-bottom-text);
+  color: #FFFFFF;
   padding-inline: 15px;
   text-align: center;
 }
@@ -270,12 +270,12 @@ body > .page > .introduction .illustration .image .pause {
   padding: 1em;
   box-sizing: border-box;
   border-radius: 50%;
-  background: var(--introduction-image-pause);
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s transform, 0.5s opacity;
 }
 
 body > .page > .introduction .illustration .image .pause img {
-  filter: var(--icons-transform);
+  filter: invert(1);
   width: 20px;
   height: 20px;
 }

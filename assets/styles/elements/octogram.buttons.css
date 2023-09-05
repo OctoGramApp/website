@@ -1,13 +1,13 @@
 body > .page .button {
   position: relative;
-  color: var(--buttons-textcolor);
+  color: #FFFFFF;
   font-size: 1.3em;
   border-radius: 5px;
   padding: 8px;
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
-  transition: var(--animations-duration) opacity;
+  transition: 0.5s opacity;
 }
 
 body > .page .button.disabled {
@@ -22,8 +22,8 @@ body > .page .button.big {
 }
 
 body > .page .button.accent {
-  background: var(--buttons-accent-bg);
-  color: var(--buttons-accent-text);
+  background: #6a7ed6;
+  color: #FFFFFF;
 }
 
 body div.button,
@@ -42,10 +42,10 @@ body > .page .button::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--buttons-hoverbg);
+  background-color: rgba(255, 255, 255, 0.1);
   z-index: 0;
   opacity: 0;
-  transition: var(--animations-duration) opacity;
+  transition: 0.5s opacity;
 }
 
 body > .page .button:hover::before {
@@ -60,12 +60,12 @@ body > .page .button::after {
   transform: translateX(-50%) translateY(-50%);
   width: 100%;
   height: 100%;
-  background: var(--buttons-activebg);
+  background: rgba(255, 255, 255, 0.05);
   clip-path: circle(0%);
 }
 
 body > .page .button:active::after {
-  animation: var(--animations-duration) applyRipple forwards;
+  animation: 0.5s applyRipple forwards;
 }
 
 @keyframes applyRipple {

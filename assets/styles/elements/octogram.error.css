@@ -14,14 +14,14 @@ body > .page > .error .message {
 }
 
 body > .page > .error .message .title {
-  color: var(--error-message-title);
+  color: #FFFFFF;
   font-size: 2.5em;
   font-weight: 800;
   text-align: center;
 }
 
 body > .page > .error .message .description {
-  color: var(--error-message-description);
+  color: #FFFFFF;
   font-size: 1.5em;
   text-align: center;
 }
@@ -34,5 +34,5 @@ body > .page > .error .message .button img {
   margin-left: 7.5px;
   height: 25px;
   width: 25px;
-  filter: var(--icons-transform);
+  filter: invert(1);
 }

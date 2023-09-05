@@ -20,7 +20,7 @@
 }
 
 body {
-  background: var(--background);
+  background: #151e27;
   box-sizing: border-box;
   margin: 0;
   width: 100vw;
