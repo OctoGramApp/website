@@ -6,6 +6,8 @@ class HomePage {
   #downloadFiles;
   #currentInterval;
 
+  #alreadySignedAnimation = false;
+
   init() {
     utils.clearPage(this.id, () => this.#destroy());
     window.scrollTo(0, 0);
@@ -47,12 +49,6 @@ class HomePage {
 
     const temporaryPlaceholder = document.createElement('div');
     temporaryPlaceholder.classList.add('temporary-placeholder');
-    temporaryPlaceholder.appendChild(this.#generateIntroductionMessage(() => {
-      temporaryPlaceholder.remove();
-      background.classList.add('enhance');
-      stackBg.classList.add('visible');
-      introduction.appendChild(content);
-    }));
 
     const messageTitleClient = document.createElement('span');
     messageTitleClient.classList.add('appname');
@@ -76,6 +72,20 @@ class HomePage {
     introduction.appendChild(background);
     introduction.appendChild(stackBg);
     introduction.appendChild(temporaryPlaceholder);
+
+    const updateAfterOnEndAnimation = () => {
+      temporaryPlaceholder.remove();
+      background.classList.add('enhance');
+      stackBg.classList.add('visible');
+      introduction.appendChild(content);
+    };
+
+    if (this.#alreadySignedAnimation) {
+      updateAfterOnEndAnimation();
+    } else {
+      this.#alreadySignedAnimation = true;
+      temporaryPlaceholder.appendChild(this.#generateIntroductionMessage(updateAfterOnEndAnimation));
+    }
 
     return introduction;
   }
@@ -160,55 +170,6 @@ class HomePage {
     });
 
     return message;
-  }
-
-  #generateImage({
-    imageUrl,
-    iconUrl,
-    mainText,
-    bottomText,
-    isActive = false
-  }) {
-    const imageElement = document.createElement('img');
-    imageElement.src = imageUrl;
-
-    const iconElement = document.createElement('img');
-    iconElement.src = iconUrl;
-    const iconContainer = document.createElement('div');
-    iconContainer.classList.add('icon');
-    iconContainer.appendChild(iconElement);
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('text');
-    textContainer.textContent = mainText;
-    const fullPlaceholder = document.createElement('div');
-    fullPlaceholder.classList.add('full-placeholder');
-    fullPlaceholder.appendChild(iconContainer);
-    fullPlaceholder.appendChild(textContainer);
-    
-    const pauseIcon = document.createElement('img');
-    pauseIcon.src = 'assets/icons/pause.svg';
-    const pauseContainer = document.createElement('div');
-    pauseContainer.classList.add('pause');
-    pauseContainer.appendChild(pauseIcon);
-
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('image');
-    imageContainer.classList.toggle('active', isActive);
-    imageContainer.appendChild(imageElement);
-    imageContainer.appendChild(fullPlaceholder);
-    imageContainer.appendChild(pauseContainer);
-
-    if (bottomText) {
-      const bottomPlaceholderText = document.createElement('div');
-      bottomPlaceholderText.classList.add('text');
-      bottomPlaceholderText.textContent = bottomText ?? '';
-      const bottomPlaceholder = document.createElement('div');
-      bottomPlaceholder.classList.add('bottom-placeholder');
-      bottomPlaceholder.appendChild(bottomPlaceholderText);
-      imageContainer.insertBefore(bottomPlaceholder, pauseContainer);
-    }
-
-    return imageContainer;
   }
 
   #generateFeatures() {
