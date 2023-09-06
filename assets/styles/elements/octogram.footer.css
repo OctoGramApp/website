@@ -1,6 +1,6 @@
 body > .page > .footer {
   width: 100%;
-  padding-top: 20px;
+  padding-top: 40px;
   background: #252d3a;
   display: flex;
   align-items: center;
@@ -21,6 +21,44 @@ body > .page > .footer::before {
     #151e27,
     #252d3a
   );
+}
+
+body > .page > .footer .go-to-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > .page > .footer .go-to-top .go-to-top-button {
+  height: 51px;
+  width: 51px;
+  background: #252d3a;
+  transform: translateY(-16px) rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 3px solid #151e27;
+  cursor: pointer;
+}
+
+body > .page > .footer .go-to-top .go-to-top-button img {
+  width: 25px;
+  transform: rotate(225deg);
+  filter: invert(1);
+  transition: 0.4s transform;
+}
+
+body > .page > .footer .go-to-top .go-to-top-button:hover img {
+  transform: rotate(225deg) scale(0.98);
+}
+
+body > .page > .footer .go-to-top .go-to-top-button:active img {
+  transform: rotate(225deg) scale(0.9);
 }
 
 body > .page > .footer > .text {

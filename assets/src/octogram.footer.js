@@ -4,6 +4,16 @@ class Footer {
   createElement() {
     this.#currentExpandedCategory = undefined;
 
+    const footerGoTopIcon = document.createElement('img');
+    footerGoTopIcon.src = 'assets/icons/arrowright.svg';
+    const footerGoTopButton = document.createElement('div');
+    footerGoTopButton.classList.add('go-to-top-button');
+    footerGoTopButton.addEventListener('click', () => window.scrollTo(0, 0));
+    footerGoTopButton.appendChild(footerGoTopIcon);
+    const footerGoTopContainer = document.createElement('div');
+    footerGoTopContainer.classList.add('go-to-top');
+    footerGoTopContainer.appendChild(footerGoTopButton);
+
     const linksContainer = document.createElement('div');
     linksContainer.classList.add('links');
     this.#appendLinkContainer(linksContainer, 'site');
@@ -23,6 +33,7 @@ class Footer {
 
     const footerContainer = document.createElement('div');
     footerContainer.classList.add('footer', 'big');
+    footerContainer.appendChild(footerGoTopContainer);
     footerContainer.appendChild(linksContainer);
     footerContainer.appendChild(footerText);
 
