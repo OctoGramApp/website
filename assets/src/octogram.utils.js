@@ -301,6 +301,14 @@ class Utils {
     }
   }
 
+  composeUrlBeta(appName) {
+    let myUrl = 'https://install.appcenter.ms';
+    myUrl += '/orgs/octogramapp/apps/';
+    myUrl += appName;
+    myUrl += '/distribution_groups/app';
+    return myUrl;
+  }
+
   clearPage(pageId, onDestroyCallback) {
     if (typeof this.#currentPageOnDestroyCallback != 'undefined') {
       try {

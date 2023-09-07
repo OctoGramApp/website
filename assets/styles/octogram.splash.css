@@ -12,6 +12,21 @@ body > .splash.disappear {
   opacity: 0;
 }
 
+body > .splash .bottom-text {
+  position: absolute;
+  bottom: 30px;
+  font-size: 28px;
+  color: white;
+  animation: 0.4s appearBottomText;
+}
+
+@keyframes appearBottomText {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
 body > .splash .shape {
   position: absolute;
   top: 50%;

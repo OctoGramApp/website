@@ -6,6 +6,8 @@ class Translations {
   ];
 
   #TRANSLATIONS_REF = {
+    LOADING: 'Loading...',
+    
     HEADER_FEATURES: 'Features',
     HEADER_DOWNLOAD: 'Download',
     HEADER_DC_STATUS: 'DC Status',
