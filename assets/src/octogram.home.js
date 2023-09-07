@@ -202,6 +202,11 @@ class HomePage {
         translations.getStringRef('FEATURES_APPEARANCE'),
         [
           [
+            'dcid',
+            translations.getStringRef('FEATURES_APPEARANCE_DATACENTER_ID'),
+            translations.getStringRef('FEATURES_APPEARANCE_DATACENTER_ID_DESCRIPTION')
+          ],
+          [
             'buttons',
             translations.getStringRef('FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS'),
             translations.getStringRef('FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS_DESCRIPTION')
@@ -402,15 +407,15 @@ class HomePage {
 
   #appendDecoration(imageContainer, imageElement, id, enhanceAnimationInstance) {
     switch (id) {
-      /*case 'buttons':
-        imageElement.src = 'assets/images/features.buttons.jpg';
+      case 'dcid':
+        imageElement.src = 'assets/images/features.dcid.octogram.jpg';
 
         const secondaryImageItem = document.createElement('img');
-        secondaryImageItem.src = 'assets/images/features.dcstatus.jpg';
+        secondaryImageItem.src = 'assets/images/features.dcid.telegram.jpg';
         imageContainer.appendChild(secondaryImageItem);
         
         const switchableRowText = document.createElement('span');
-        switchableRowText.textContent = 'Minimal';
+        switchableRowText.textContent = 'Telegram style';
         const switchableRowCheckbox = document.createElement('div');
         switchableRowCheckbox.classList.add('checkbox');
         const switchableRowContent = document.createElement('div');
@@ -430,7 +435,7 @@ class HomePage {
         switchableRow.appendChild(switchableRowContent);
 
         imageContainer.appendChild(switchableRow);
-      break;*/
+      break;
       case 'unavailable.feature':
       case 'buttons':
       case 'details':
@@ -467,6 +472,14 @@ class HomePage {
   #getAnimationDataForDecoration(id) {
     let iconNames = [];
     switch(id) {
+      case 'dcid':
+        iconNames.push('assets/icons/server.svg');
+        iconNames.push('assets/icons/comments.svg');
+        iconNames.push('assets/icons/explosion.svg');
+        iconNames.push('assets/icons/microphone.svg');
+        iconNames.push('assets/icons/star.svg');
+        iconNames.push('assets/icons/datacenters/dc1.svg');
+      break;
       case 'buttons':
         for(let i = 0; i < 8; i++) {
           iconNames.push('assets/icons/star.svg');

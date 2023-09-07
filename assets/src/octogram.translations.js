@@ -17,6 +17,8 @@ class Translations {
     FEATURES_TITLE: '{0}\'s features',
     FEATURES_UNAVAILABLE: 'We\'re working on it. It will be available soon.',
     FEATURES_APPEARANCE: 'Appearance',
+    FEATURES_APPEARANCE_DATACENTER_ID: 'More user details',
+    FEATURES_APPEARANCE_DATACENTER_ID_DESCRIPTION: 'Get at a glance the datacenter to which a user belongs and his user ID.',
     FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS: 'Alternative buttons',
     FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS_DESCRIPTION: 'You choose the appearance of the buttons to keep up with your tastes and have an interface that is always modern.',
     FEATURES_APPEARANCE_EMOJI_SET: 'Emoji set',
