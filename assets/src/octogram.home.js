@@ -433,6 +433,7 @@ class HomePage {
       break;*/
       case 'unavailable.feature':
       case 'buttons':
+      case 'details':
         imageElement.src = 'assets/images/unavailable.feature.jpg';
 
         const unavailableFeatureImage = document.createElement('img');
@@ -449,16 +450,13 @@ class HomePage {
         imageContainer.appendChild(unavailableFeature);
       break;
       case 'emojiset':
-        imageElement.src = 'assets/images/features.dcstatus.jpg';
+        imageElement.src = 'assets/images/features.emojiset.jpg';
       break;
       case 'dcstatus':
         imageElement.src = 'assets/images/features.dcstatus.jpg';
       break;
       case 'creationdate':
         imageElement.src = 'assets/images/features.creationdate.jpg';
-      break;
-      case 'details':
-        imageElement.src = 'assets/images/features.details.jpg';
       break;
       case 'experimental':
         imageElement.src = 'assets/images/features.experimental.jpg';
