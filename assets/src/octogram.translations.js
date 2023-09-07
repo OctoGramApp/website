@@ -15,6 +15,7 @@ class Translations {
     INTRODUCTION_DISCOVER: 'Discover {0}',
     INTRODUCTION_DISCOVER_DESCRIPTION: 'The open-source alternative Telegram client with all the features you\'ve always wanted.',
     FEATURES_TITLE: '{0}\'s features',
+    FEATURES_UNAVAILABLE: 'We\'re working on it. It will be available soon.',
     FEATURES_APPEARANCE: 'Appearance',
     FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS: 'Alternative buttons',
     FEATURES_APPEARANCE_ALTERNATIVE_BUTTONS_DESCRIPTION: 'You choose the appearance of the buttons to keep up with your tastes and have an interface that is always modern.',

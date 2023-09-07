@@ -213,10 +213,13 @@ class Utils {
         return name;
     }
   }
+
+  isAndroid() {
+    return navigator.userAgent.toLowerCase().includes("android");
+  }
   
   tryToGetValidVersion(assetNames) {
-    const isAndroid = navigator.userAgent.toLowerCase().includes("android");
-    if (isAndroid) {
+    if (this.isAndroid()) {
       // TRY TO DETECT ABI FROM USERAGENT
       // maybe it works on some cringe browsers
       

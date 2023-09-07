@@ -402,7 +402,7 @@ class HomePage {
 
   #appendDecoration(imageContainer, imageElement, id, enhanceAnimationInstance) {
     switch (id) {
-      case 'buttons':
+      /*case 'buttons':
         imageElement.src = 'assets/images/features.buttons.jpg';
 
         const secondaryImageItem = document.createElement('img');
@@ -430,6 +430,23 @@ class HomePage {
         switchableRow.appendChild(switchableRowContent);
 
         imageContainer.appendChild(switchableRow);
+      break;*/
+      case 'unavailable.feature':
+      case 'buttons':
+        imageElement.src = 'assets/images/unavailable.feature.jpg';
+
+        const unavailableFeatureImage = document.createElement('img');
+        unavailableFeatureImage.classList.add('icon');
+        unavailableFeatureImage.src = 'assets/icons/personrunning.svg';
+        const unavailableFeatureText = document.createElement('div');
+        unavailableFeatureText.classList.add('text');
+        unavailableFeatureText.textContent = translations.getStringRef('FEATURES_UNAVAILABLE');
+        const unavailableFeature = document.createElement('div');
+        unavailableFeature.classList.add('unavailable');
+        unavailableFeature.appendChild(unavailableFeatureImage);
+        unavailableFeature.appendChild(unavailableFeatureText);
+
+        imageContainer.appendChild(unavailableFeature);
       break;
       case 'emojiset':
         imageElement.src = 'assets/images/features.dcstatus.jpg';

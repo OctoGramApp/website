@@ -144,13 +144,20 @@ body > .page > .introduction .content .message {
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   padding: 37px;
   border-radius: 10px;
   border: 1px solid #ffffff1f;
   box-sizing: border-box;
   animation: 0.5s showMessage 0.1s forwards;
+}
+
+body:not(.disable-blur) > .page > .introduction .content .message {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+body.disable-blur > .page > .introduction .content .message {
+  background: rgba(0, 0, 0, 0.9);
 }
 
 @media screen and (max-width: 700px) {

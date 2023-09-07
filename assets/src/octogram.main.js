@@ -1,4 +1,6 @@
 window.addEventListener('load', () => {
+  document.body.classList.toggle('disable-blur', utils.isAndroid());
+
   const translationsLoadPromise = translations.load();
 
   const splashScreen = document.querySelector('body > .splash');
