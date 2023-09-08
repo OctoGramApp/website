@@ -1,51 +1,103 @@
-body > .page:not(.js-error) {
-  --splash-delay: calc(0.5s + var(--animations-duration));
-  opacity: 0;
-  animation: var(--animations-duration) animateFromSplash var(--splash-delay) forwards;
-}
-
 body > .splash {
-  position: fixed;
-  top: calc(50% - 4em);
-  left: calc(50% - 4em);
-  animation: calc(var(--animations-duration) + 0.15s) moveSplash 0.5s forwards;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: 0.4s transform, 0.4s opacity;
 }
 
-body > .splash img {
-  filter: var(--icons-transform);
-  height: 8em;
-  width: 8em;
-  animation: var(--animations-duration) showSplash, var(--animations-duration) editSize 0.5s forwards;
+body > .splash.disappear {
+  transform: scale(1.1);
+  opacity: 0;
 }
 
-@keyframes showSplash {
+body > .splash .bottom-text {
+  position: absolute;
+  bottom: 30px;
+  font-size: 28px;
+  color: white;
+  animation: 0.4s appearBottomText;
+}
+
+@keyframes appearBottomText {
   from {
-    transform: scale(0.8);
-    opacity: 0%;
-  }
-}
-
-@keyframes moveSplash {
-  99% {
-    top: calc(calc(var(--header-height) - var(--header-appicon-size)) / 2);
-    left: calc(calc(100vw - min(100vw, var(--header-width-limit))) / 2);
-    opacity: 1;
-  }
-  to {
+    transform: translateY(15px);
     opacity: 0;
   }
 }
 
-@keyframes editSize {
+body > .splash .shape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #3d348b;
+}
+
+body > .splash .shape::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #151e27;
+  animation: 0.4s removeClipPath 0.6s forwards;
+}
+
+@keyframes removeClipPath {
+  from {
+    clip-path: circle(100%);
+  }
   to {
-    width: var(--header-appicon-size);
-    height: var(--header-appicon-size);
+    clip-path: circle(0%);
   }
 }
 
-@keyframes animateFromSplash {
+body > .splash .applogo {
+  width: 130px;
+  height: 130px;
+  filter: invert(1);
+  opacity: 0.6;
+  animation: 0.4s zoomIcon 0.6s forwards;
+}
+
+@keyframes zoomIcon {
   to {
     opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+body > .splash svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 300px;
+  height: 300px;
+}
+
+body > .splash svg circle {
+  stroke: #3d348b;
+  fill: transparent;
+  stroke-dasharray: 910;
+  stroke-dashoffset: 910;
+  stroke-width: 12px;
+  animation: 1s updateCircleStroke forwards;
+}
+
+@keyframes updateCircleStroke {
+  from {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 910;
+  }
+  to {
+    stroke-dashoffset: 1820;
   }
 }

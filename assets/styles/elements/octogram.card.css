@@ -3,16 +3,16 @@ body > .page > .card {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--dcstatus-bottommargin);
+  margin-bottom: 50px;
 }
 
 body > .page > .card .content {
   position: relative;
   overflow: hidden;
-  background: var(--dcstatus-bg);
-  max-width: var(--dcstatus-width-limit);
-  padding: var(--dcstatus-padding);
-  border-radius: var(--dcstatus-radius);
+  background: #1d2733;
+  max-width: min(95vw, 1400px);
+  padding: 20px;
+  border-radius: 15px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -27,12 +27,12 @@ body > .page > .card .content .descriptor {
   body > .page > .card .content .descriptor {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--dcstatus-descriptorgap-mobile);
+    gap: 5px;
   }
 }
 
 body > .page > .card .content .descriptor .title {
-  color: var(--dcstatus-title);
+  color: #FFFFFF;
   font-size: 1.3em;
   font-weight: 500;
   display: flex;
@@ -42,20 +42,20 @@ body > .page > .card .content .descriptor .title {
 }
 
 body > .page > .card .content .descriptor .title .badge {
-  padding-inline: var(--dcstatus-title-badge-paddinginline);
-  padding-block: var(--dcstatus-title-badge-paddingblock);
-  background: var(--dcstatus-title-badge-bg);
-  color: var(--dcstatus-title-badge-text);
-  border-radius: var(--dcstatus-title-badge-radius);
+  padding-inline: 3px;
+  padding-block: 3px;
+  background: #FFFFFF;
+  color: #000000;
+  border-radius: 4px;
   font-size: 0.6em;
 }
 
 body > .page > .card .content .descriptor .description {
-  color: var(--dcstatus-description);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--dcstatus-description-gap);
+  gap: 5px;
   --percent: 0;
 }
 
@@ -71,8 +71,8 @@ body > .page > .card .content .descriptor .description {
 }
 
 body > .page > .card .content .descriptor .description svg {
-  width: var(--dcstatus-description-progress-size);
-  height: var(--dcstatus-description-progress-size);
+  width: 20px;
+  height: 20px;
 }
 
 body > .page > .card .content .descriptor .description:not(.definite) svg {
@@ -90,11 +90,11 @@ body > .page > .card .content .descriptor .description:not(.definite) svg {
 
 body > .page > .card .content .descriptor .description svg circle {
   fill: none;
-  stroke: var(--dcstatus-description-progress-color);
-  stroke-width: var(--dcstatus-description-progress-width);
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 3px;
   stroke-dasharray: 48;
   stroke-dashoffset: 15;
-  transition: var(--animations-duration) stroke-dashoffset;
+  transition: 0.4s stroke-dashoffset;
 }
 
 body > .page > .card .content .descriptor .description.definite svg circle {
@@ -106,7 +106,7 @@ body > .page > .card .content .descriptor .description:not(.definite) svg circle
 }
 
 body > .page > .card .content .descriptor .description .pending {
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
+  transition: 0.4s transform, 0.4s opacity;
 }
 
 body > .page > .card .content .descriptor .description:not(.definite) .pending {
@@ -116,7 +116,7 @@ body > .page > .card .content .descriptor .description:not(.definite) .pending {
 
 body > .page > .card .content .body {
   position: relative;
-  margin-top: var(--dcstatus-body-topmargin);
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -129,8 +129,8 @@ body > .page > .card .content .body {
 
 body > .page > .card .content .body .message {
   position: relative;
-  color: var(--dcstatus-body-text);
-  padding-left: var(--dcstatus-body-paddingleft);
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 20px;
   flex: 1;
 }
 
@@ -140,9 +140,14 @@ body > .page > .card .content .body .message:before {
   top: 0;
   left: 0;
   height: 100%;
-  width: var(--dcstatus-body-text-border-width);
-  background: var(--dcstatus-body-text-border-color);
-  border-radius: var(--dcstatus-body-text-border-radius);
+  width: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+body > .page > .card .content .body .message a {
+  text-decoration: none;
+  color: #547ed6;
 }
 
 body > .page > .card .content .body .message .bold {
@@ -150,9 +155,9 @@ body > .page > .card .content .body .message .bold {
 }
 
 body > .page > .card .content .body .message .code {
-  background: var(--dcstatus-body-text-code-bg);
-  padding: var(--dcstatus-body-text-code-padding);
-  border-radius: var(--dcstatus-body-text-code-radius);
+  background: #151e27;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 body > .page > .card .content .body .download {
@@ -168,7 +173,7 @@ body > .page > .card .content .body .download {
 }
 
 body > .page > .card .content .datacenters {
-  padding-top: var(--dcstatus-padding);
+  padding-top: 20px;
 }
 
 body > .page > .card .content .datacenters .error {
@@ -184,14 +189,14 @@ body > .page > .card .content .datacenters .error img {
 }
 
 body > .page > .card .content .datacenters .error .title {
-  color: var(--error-message-title);
+  color: #FFFFFF;
   font-size: 1.8em;
   font-weight: 500;
   text-align: center;
 }
 
 body > .page > .card .content .datacenters .error .description {
-  color: var(--error-message-description);
+  color: #FFFFFF;
   font-size: 1.3em;
   text-align: center;
 }
@@ -200,24 +205,24 @@ body > .page > .card .content .datacenters .datacenter {
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: var(--dcstatus-row-gap);
+  gap: 15px;
   position: relative;
   cursor: pointer;
   box-sizing: border-box;
   overflow: hidden;
-  padding: var(--dcstatus-row-padding);
-  transition: var(--animations-duration) padding, var(--animations-duration) background, var(--animations-duration) border-radius;
+  padding: 5px;
+  transition: 0.4s padding, 0.4s background, 0.4s border-radius;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded {
-  padding: var(--dcstatus-row-expanded-padding);
-  padding-bottom: calc(var(--dcstatus-row-expanded-padding) + var(--dcstatus-row-expanded-expandable-height));
-  background: var(--dcstatus-row-expanded-bg);
-  border-radius: var(--dcstatus-row-expanded-radius);
+  padding: 20px;
+  padding-bottom: calc(20px + 55px);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
 body > .page > .card .content .datacenters .datacenter:not(:last-child) {
-  margin-bottom: var(--dcstatus-row-gap-lines);
+  margin-bottom: 7px;
 }
 
 body > .page > .card .content .datacenters .datacenter .icon {
@@ -325,34 +330,34 @@ body > .page > .card .content .datacenters .datacenter .description {
 }
 
 body > .page > .card .content .datacenters .datacenter .description .name {
-  font-size: var(--dcstatus-row-name-size);
-  color: var(--dcstatus-row-name-color);
+  font-size: 17px;
+  color: #FFFFFF;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status {
-  font-size: var(--dcstatus-row-status-size);
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.online {
-  color: var(--dcstatus-row-status-color-online);
+  color: #69b972;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.slow {
-  color: var(--dcstatus-row-status-color-slow);
+  color: #e0bd25;
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.offline {
-  color: var(--dcstatus-row-status-color-offline);
+  color: #c26266;
 }
 
 body > .page > .card .content .datacenters .datacenter .expand {
-  filter: var(--icons-transform);
+  filter: invert(1);
   opacity: 0.8;
-  transition: var(--animations-duration) transform;
+  transition: 0.4s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expand {
@@ -361,17 +366,17 @@ body > .page > .card .content .datacenters .datacenter.expanded .expand {
 
 body > .page > .card .content .datacenters .datacenter .expandable {
   position: absolute;
-  width: calc(100% - var(--dcstatus-row-expanded-padding) * 2);
-  bottom: calc(var(--dcstatus-row-expanded-padding) / 2);
-  height: var(--dcstatus-row-expanded-expandable-height);
-  gap: var(--dcstatus-row-expanded-expandable-gap);
+  width: calc(100% - 20px * 2);
+  bottom: calc(20px / 2);
+  height: 55px;
+  gap: 15px;
   left: 50%;
   transform: translateY(120%) translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: default;
-  transition: var(--animations-duration) opacity, var(--animations-duration) transform;
+  transition: 0.4s opacity, 0.4s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expandable {
@@ -380,14 +385,14 @@ body > .page > .card .content .datacenters .datacenter.expanded .expandable {
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator {
   height: 100%;
-  background: var(--dcstatus-row-expanded-indicator-bg);
-  color: var(--dcstatus-row-expanded-indicator-text);
+  background: #1d2733;
+  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--dcstatus-row-expanded-indicator-gap);
-  padding-inline: var(--dcstatus-row-expanded-indicator-padding);
-  border-radius: var(--dcstatus-row-expanded-indicator-radius);
+  gap: 25px;
+  padding-inline: 15px;
+  border-radius: 30px;
   overflow: hidden;
   position: relative;
 }
@@ -397,36 +402,36 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .t
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator {
-  background: var(--dcstatus-row-expanded-indicator-separator);
-  width: var(--dcstatus-row-expanded-indicator-separator-width);
+  background: rgba(255, 255, 255, 0.1);
+  width: 2px;
   height: 150%;
-  transform: rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
+  transform: rotate(35deg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator img {
-  filter: var(--icons-transform);
-  transform: rotate(calc(-1 * var(--dcstatus-row-expanded-indicator-separator-rotate)));
-  height: var(--dcstatus-row-expanded-indicator-separator-icon);
-  width: var(--dcstatus-row-expanded-indicator-separator-icon);
+  filter: invert(1);
+  transform: rotate(calc(-1 * 35deg));
+  height: 22px;
+  width: 22px;
 }
 
 @media screen and (max-width: 1100px) {
   body > .page > .card .content .datacenters .datacenter.expanded {
-    padding: var(--dcstatus-row-padding);
-    padding-bottom: calc(var(--dcstatus-row-padding) + 15px + var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
+    padding: 5px;
+    padding-bottom: calc(5px + 15px + 55px * var(--items, 3));
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable {
     flex-direction: column;
-    height: calc(var(--dcstatus-row-expanded-expandable-height) * var(--items, 3));
-    gap: var(--dcstatus-row-expanded-expandable-gap-mobile);
+    height: calc(55px * var(--items, 3));
+    gap: 7px;
   }
 
   body > .page > .card .content .datacenters .datacenter .expandable .indicator {
-    width: calc(100% - var(--dcstatus-row-padding) * 2);
+    width: calc(100% - 5px * 2);
     flex-direction: column;
     gap: 0;
     align-items: flex-start;
@@ -434,19 +439,19 @@ body > .page > .card .content .datacenters .datacenter .expandable .indicator .s
 
   body > .page > .card .content .datacenters .datacenter .expandable .indicator .separator {
     position: absolute;
-    right: var(--dcstatus-row-expanded-indicator-separator-rightpos);
+    right: 35px;
     top: 50%;
-    transform: translateY(-50%) rotate(var(--dcstatus-row-expanded-indicator-separator-rotate));
+    transform: translateY(-50%) rotate(35deg);
   }
 }
 
 body > .page > .card .content .suggestions {
   display: flex;
   align-items: center;
-  gap: var(--dcstatus-suggestions-gap);
-  margin-top: var(--dcstatus-suggestions-topmargin);
+  gap: 30px;
+  margin-top: 10px;
   overflow-x: auto;
-  transition: var(--animations-duration) margin-top, var(--animations-duration) opacity;
+  transition: 0.4s margin-top, 0.4s opacity;
 }
 
 body > .page > .card .content .suggestions.disabled,
@@ -459,13 +464,13 @@ body > .page > .card .content .suggestions.disabled .select:not(.selected) {
 }
 
 body > .page > .card .content .suggestions.hidden {
-  margin-top: var(--dcstatus-suggestions-topmargin-hidden);
+  margin-top: -39px;
   opacity: 0;
 }
 
 body > .page > .card .content .suggestions .suggestions-title {
   white-space: nowrap;
-  color: var(--dcstatus-suggestions-title);
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 500px) {
@@ -478,7 +483,7 @@ body > .page > .card .content .identifydc {
   width: 100%;
   height: 0;
   margin-top: 0;
-  border-radius: var(--dcstatus-identifydc-radius);
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -492,8 +497,8 @@ body > .page > .card .content .identifydc {
 }
 
 body > .page > .card .content .identifydc.animate:not(.available) {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.4s animateIdentifyDc cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDc {
@@ -501,19 +506,19 @@ body > .page > .card .content .identifydc.animate:not(.available) {
     height: var(--start-height);
     width: var(--start-width);
     transform: translateX(calc(var(--start-right) - 25px));
-    margin-top: var(--dcstatus-identifydc-topmargin-hidden);
+    margin-top: -40px;
   }
   to {
     width: 100%;
     transform: none;
-    height: var(--dcstatus-identifydc-height);
-    margin-top: var(--dcstatus-identifydc-topmargin);
+    height: 245px;
+    margin-top: 20px;
   }
 }
 
 body > .page > .card .content .identifydc.animate.available {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.4s animateIdentifyDcAvailable cubic-bezier(0.42, 0, 0, 1) forwards;
 }
 
 @keyframes animateIdentifyDcAvailable {
@@ -523,24 +528,24 @@ body > .page > .card .content .identifydc.animate.available {
 }
 
 body > .page > .card .content .identifydc.closing {
-  background: var(--selectmenu-select-bg);
-  animation: var(--animations-duration) animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
+  background: rgba(0, 0, 0, 0.6);
+  animation: 0.4s animateIdentifyDc cubic-bezier(0.11, 0.8, 0, 0.99) reverse forwards;
 }
 
 body > .page > .card .content .identifydc.visible {
-  height: var(--dcstatus-identifydc-height);
+  height: 245px;
   width: 100%;
   transform: none;
-  background: var(--selectmenu-select-bg);
-  margin-top: var(--dcstatus-identifydc-topmargin);
+  background: rgba(0, 0, 0, 0.6);
+  margin-top: 20px;
 }
 
 body > .page > .card .content .identifydc .number-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--dcstatus-identifydc-number);
-  transition: var(--animations-duration) opacity;
+  color: #FFFFFF;
+  transition: 0.4s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .number-container {
@@ -548,7 +553,7 @@ body > .page > .card .content .identifydc.closing .number-container {
 }
 
 body > .page > .card .content .identifydc.animate .number-container {
-  animation: var(--animations-duration) updateOpacity forwards;
+  animation: 0.4s updateOpacity forwards;
 }
 
 @keyframes updateOpacity {
@@ -564,7 +569,7 @@ body > .page > .card .content .identifydc.animate .number-container {
 
 body > .page > .card .content .identifydc .number-container .placeholder {
   position: absolute;
-  font-size: var(--dcstatus-identifydc-number-placeholder-size);
+  font-size: 72px;
   font-weight: 500;
   opacity: 0.2;
   z-index: 0;
@@ -578,31 +583,31 @@ body > .page > .card .content .identifydc .number-container .placeholder {
 }
 
 body > .page > .card .content .identifydc .number-container .prefix {
-  font-size: var(--dcstatus-identifydc-number-prefix-size);
+  font-size: 26px;
 }
 
 body > .page > .card .content .identifydc .number-container .param-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--dcstatus-identifydc-number-param-height);
+  height: 28.3px;
 }
 
 body > .page > .card .content .identifydc .number-container .param-container .spacer {
-  width: var(--dcstatus-identifydc-number-param-spacer);
+  width: 22px;
 }
 
 @media screen and (max-width: 840px) {
   body > .page > .card .content .identifydc .number-container .param-container .spacer {
-    width: var(--dcstatus-identifydc-number-param-spacer-mobile);
+    width: 13px;
   }
 }
 
 body > .page > .card .content .identifydc .number-container .param-container .spoiler {
   height: 100%;
-  width: var(--dcstatus-identifydc-number-param-spoiler-height);
-  color: var(--dcstatus-identifydc-number-param-spoiler-text-color);
-  font-size: var(--dcstatus-identifydc-number-param-spoiler-text-size);
+  width: 29px;
+  color: #FFFFFF;
+  font-size: 26px;
   position: relative;
   display: flex;
   align-items: center;
@@ -611,7 +616,7 @@ body > .page > .card .content .identifydc .number-container .param-container .sp
 
 @media screen and (max-width: 840px) {
   body > .page > .card .content .identifydc .number-container .param-container .spoiler {
-    width: var(--dcstatus-identifydc-number-param-spoiler-text-size-mobile);
+    width: 16px;
   }
 }
 
@@ -623,7 +628,7 @@ body > .page > .card .content .identifydc .number-container .param-container .sp
   width: 100%;
   height: 100%;
   opacity: 0.5;
-  filter: var(--icons-transform);
+  filter: invert(1);
   background: url("/assets/images/spoiler-dots.png");
   animation: 10s moveSpoiler infinite forwards calc(var(--id) * 0.2s) linear;
 }
@@ -642,7 +647,7 @@ body > .page > .card .content .identifydc .dc-recap {
   align-items: center;
   justify-content: center;
   gap: 60px;
-  transition: var(--animations-duration) opacity;
+  transition: 0.4s opacity;
 }
 
 body > .page > .card .content .identifydc.closing .dc-recap {
@@ -650,7 +655,7 @@ body > .page > .card .content .identifydc.closing .dc-recap {
 }
 
 body > .page > .card .content .identifydc.animate .dc-recap {
-  animation: var(--animations-duration) updateOpacity forwards;
+  animation: 0.4s updateOpacity forwards;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter {
@@ -754,13 +759,13 @@ body > .page > .card .content .identifydc .dc-recap .datacenter .icon img {
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .name {
   overflow: hidden;
   text-overflow: ellipsis;
-  color: white;
+  color: #FFFFFF;
   font-size: 35px;
   text-align: center;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status {
-  font-size: var(--dcstatus-row-status-size);
+  font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -782,13 +787,13 @@ body > .page > .card .content .identifydc .dc-recap .datacenter .description .st
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.online {
-  color: var(--dcstatus-row-status-color-online);
+  color: #69b972;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.slow {
-  color: var(--dcstatus-row-status-color-slow);
+  color: #e0bd25;
 }
 
 body > .page > .card .content .identifydc .dc-recap .datacenter .description .status.offline {
-  color: var(--dcstatus-row-status-color-offline);
+  color: #c26266;
 }

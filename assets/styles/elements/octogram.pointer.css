@@ -1,8 +1,8 @@
 body > .page > .pointer {
-  background: var(--pointer-bg);
-  padding-block: var(--pointer-padding);
-  padding-bottom: calc(var(--pointer-padding) + var(--pointer-shadow-height));
-  margin-bottom: var(--pointer-bottommargin);
+  background: #1d2733;
+  padding-block: 20px;
+  padding-bottom: calc(20px + 50px);
+  margin-bottom: 40px;
   box-sizing: border-box;
   overflow: hidden;
   width: 100%;
@@ -18,10 +18,10 @@ body > .page > .pointer::after {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: var(--pointer-shadow-height);
+  height: 50px;
   background: linear-gradient(
-    var(--introduction-bg),
-    var(--background)
+    #1d2733,
+    #151e27
   );
 }
 
@@ -36,17 +36,17 @@ body > .page > .pointer .message {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--pointer-gap);
-  max-width: var(--pointer-width-limit);
+  gap: 10px;
+  max-width: min(500px, 87vw);
 }
 
 body > .page > .pointer .message .sticker img {
-  height: var(--pointer-sticker-size);
-  width: var(--pointer-sticker-size);
+  height: 200px;
+  width: 200px;
 }
 
 body > .page > .pointer .message .title {
-  color: var(--pointer-title);
+  color: #FFFFFF;
 }
 
 body > .page > .pointer .message .button {

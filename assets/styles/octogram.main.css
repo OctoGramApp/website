@@ -1,4 +1,3 @@
-@import url('octogram.config.css');
 @import url('octogram.splash.css');
 @import url('elements/octogram.advantages.css');
 @import url('elements/octogram.buttons.css');
@@ -15,12 +14,12 @@
 
 :root {
   scroll-behavior: smooth;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
   overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
+  background: #151e27;
   box-sizing: border-box;
   margin: 0;
   width: 100vw;
@@ -52,7 +51,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
 	background: transparent;
-	transition: var(--animations-timing) background;
+	transition: 0.4s background;
 }
 
 :root:hover body::-webkit-scrollbar-thumb {
