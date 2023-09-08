@@ -121,9 +121,14 @@ body > .page > .card .content .body {
   justify-content: center;
 }
 
+body > .page > .card.changelog .content .body {
+  gap: 120px;
+}
+
 @media screen and (max-width: 950px) {
   body > .page > .card .content .body  {
     flex-direction: column;
+    gap: 0 !important;
   }
 }
 

@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
 
   const splashScreen = document.querySelector('body > .splash');
   const isRedirect = REDIRECT_URIS.some((x) => x.paths.includes(window.location.pathname));
+  const translationsLoadPromise = translations.load();
 
   let bottomText;
   if (isRedirect) {
@@ -33,9 +34,12 @@ window.addEventListener('load', () => {
     bottomText.classList.add('bottom-text');
     bottomText.textContent = translations.getStringRef('LOADING');
     splashScreen.appendChild(bottomText);
+
+    translationsLoadPromise.then(() => {
+      bottomText.textContent = translations.getStringRef('LOADING');
+    });
   }
 
-  const translationsLoadPromise = translations.load();
   const splashScreenPromise = new Promise((resolve) => {
     splashScreen.addEventListener('animationend', (e) => {
       if (typeof bottomText != 'undefined' && bottomText == e.target) {
