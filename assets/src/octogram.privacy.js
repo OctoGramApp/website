@@ -76,7 +76,7 @@ class PrivacyPolicy {
     content.classList.add('content');
     content.appendChild(descriptor);
     const card = document.createElement('div');
-    card.classList.add('card', 'changelog');
+    card.classList.add('card', 'privacy');
     card.appendChild(content);
 
     return card;
