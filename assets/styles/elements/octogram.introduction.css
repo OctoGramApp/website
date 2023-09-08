@@ -1,9 +1,8 @@
 body > .page > .introduction {
-  height: var(--introduction-height);
-  background: var(--introduction-bg);
-  padding-bottom: var(--introduction-shadow-height);
-  margin-bottom: var(--introduction-bottommargin);
-  min-height: var(--introduction-height-min);
+  height: 100vh;
+  background: #1d2733;
+  margin-bottom: 40px;
+  min-height: 800px;
   box-sizing: border-box;
   overflow: hidden;
   width: 100%;
@@ -11,69 +10,159 @@ body > .page > .introduction {
   align-items: center;
   justify-content: center;
   position: relative;
+  transform: translateY(-60px);
+  z-index: -1;
 }
 
 body > .page > .introduction::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
-  height: var(--introduction-shadow-height);
+  height: 50px;
   background: linear-gradient(
-    var(--introduction-bg),
-    var(--background)
+    transparent,
+    #151e27
   );
+}
+
+body > .page > .introduction .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+}
+
+body > .page > .introduction .background .animator {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #dbddbb, #6ba587, #d5d88d, #88b88a);
+  mask-image: url("/assets/images/pattern.svg");
+  -webkit-mask-image: url("/assets/images/pattern.svg");
+  opacity: 0.05;
+  transition: 0.4s opacity;
+}
+
+body > .page > .introduction .background.enhance .animator {
+  opacity: 0.3;
+}
+
+body > .page > .introduction .stack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/images/stackbg.png");
+  background-position: 70%;
+  background-size: cover;
+  opacity: 0.3;
+  filter: hue-rotate(36deg);
+  transform: translateX(100%);
+  transition: 0.4s transform;
+}
+
+body > .page > .introduction .stack.visible {
+  transform: translateX(0);
+}
+
+body > .page > .introduction .temporary-placeholder .message {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+body > .page > .introduction .temporary-placeholder .message.animate {
+  animation: var(--duration) animateMessage forwards;
+}
+
+@keyframes animateMessage {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(var(--multiplier));
+  }
+}
+
+body > .page > .introduction .temporary-placeholder .message.disappear {
+  animation: 0.4s disappearMessage forwards;
+}
+
+@keyframes disappearMessage {
+  from {
+    transform: scale(var(--multiplier));
+  }
+  to {
+    transform: scale(var(--multiplier)) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+body > .page > .introduction .temporary-placeholder .message .image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: translateY(-4px);
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble .shrin img {
+  transform: translateY(3px);
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) {
+  background: white;
+  padding: 13px;
+  padding-inline-end: 46px;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+}
+
+body > .page > .introduction .temporary-placeholder .message .message-bubble > div:not(.shrin) .user-name {
+  font-weight: 500;
+  color: #e75a60;
 }
 
 body > .page > .introduction .content {
-  max-width: var(--introduction-width-limit);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--introduction-gap);
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .content {
-    max-width: none;
-    gap: 0;
-  }
-}
-
-@media screen and (max-width: 1400px) {
-  body > .page > .introduction .content {
-    flex-direction: column;
-    gap: var(--introduction-gap-mobile);
-  }
-}
-
-body > .page > .introduction .content .placeholder {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: 70%;
-  height: 70%;
-  background: radial-gradient(
-    var(--appnamecolor),
-    var(--introduction-bg),
-    var(--introduction-bg)
-  );
-  opacity: 0.5;
+  flex-direction: column;
 }
 
 body > .page > .introduction .content .message {
-  max-width: var(--introduction-message-width-limit);
+  max-width: 700px;
   z-index: 1;
   transform: translateY(2em);
   opacity: 0;
-  animation: var(--animations-duration) showMessage var(--splash-delay) forwards;
+  padding: 37px;
+  border-radius: 10px;
+  border: 1px solid #ffffff1f;
+  box-sizing: border-box;
+  animation: 0.5s showMessage 0.1s forwards;
+}
+
+body:not(.disable-blur) > .page > .introduction .content .message {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+body.disable-blur > .page > .introduction .content .message {
+  background: rgba(0, 0, 0, 0.9);
 }
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message {
-    max-width: min(88vw, var(--introduction-message-width-limit));
+    max-width: min(93vw, 700px);
   }
 }
 
@@ -85,202 +174,31 @@ body > .page > .introduction .content .message {
 }
 
 body > .page > .introduction .content .message .title {
-  color: var(--introduction-message-title);
+  color: #FFFFFF;
   font-size: 4em;
   font-weight: 800;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 body > .page > .introduction .content .message .title .appname {
-  color: var(--appnamecolor);
+  color: #6a7ed6;
 }
 
 body > .page > .introduction .content .message .description {
-  color: var(--introduction-message-description);
+  color: #FFFFFF;
   font-size: 2em;
+  text-align: center;
 }
 
 @media screen and (max-width: 700px) {
   body > .page > .introduction .content .message .title {
-    font-size: 3em;
+    font-size: 3.5em;
     text-align: center;
   }
 
   body > .page > .introduction .content .message .description {
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-align: center;
   }
-}
-
-body > .page > .introduction .content .illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--introduction-image-gap);
-  height: var(--introduction-image-active-maxheight);
-  opacity: 0;
-  animation: var(--animations-duration) showIllustration calc(var(--splash-delay) + 0.2s) forwards;
-  transition: var(--animations-duration) transform;
-}
-
-@keyframes showIllustration {
-  to {
-    opacity: 1;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction {
-    margin-bottom: calc(var(--introduction-image-active-maxheight) / 3);
-  }
-
-  body > .page > .introduction .content .illustration {
-    --introduction-image-active-maxheight: 300px;
-    --introduction-image-maxheight: 200px;
-    height: calc(var(--introduction-image-active-mobile-maxheight) + 15px);
-    margin-bottom: calc(-0.2 * var(--introduction-image-active-mobile-maxheight) - 15px);
-    z-index: 1;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 1400px) {
-  body > .page > .introduction .content .illustration {
-    --introduction-image-active-maxheight: 350px;
-    --introduction-image-maxheight: 250px;
-    height: var(--introduction-image-active-maxheight);
-  }
-}
-
-body > .page > .introduction .content .illustration .image {
-  position: relative;
-  border-radius: var(--introduction-image-radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: var(--animations-duration) box-shadow;
-}
-
-body > .page > .introduction .content .illustration .image.active {
-  box-shadow: 0 0 15px -1px #000000;
-}
-
-body > .page > .introduction .content .illustration .image > img {
-  max-height: var(--introduction-image-active-maxheight);
-  max-width: var(--introduction-image-active-maxwidth);
-  transition: var(--animations-duration) max-height, var(--animations-duration) max-width;
-}
-
-body > .page > .introduction .content .illustration .image:not(.active) > img {
-  max-height: var(--introduction-image-maxheight);
-  max-width: var(--introduction-image-maxwidth);
-}
-
-@media screen and (max-width: 700px) {
-  body > .page > .introduction .content .illustration {
-    transform: translateX(35%);
-  }
-
-  body > .page > .introduction .content .illustration .image > img {
-    max-height: var(--introduction-image-active-mobile-maxheight) !important;
-    max-width: var(--introduction-image-active-maxwidth) !important;
-  }
-
-  body > .page > .introduction .content .illustration[data-state="1"] {
-    transform: translateX(35%);
-  }
-
-  body > .page > .introduction .content .illustration[data-state="2"] {
-    transform: translateX(0);
-  }
-
-  body > .page > .introduction .content .illustration[data-state="3"] {
-    transform: translateX(-35%);
-  }
-}
-
-body > .page > .introduction .content .illustration .image .full-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: var(--introduction-imageplaceholder-full-bg);
-  gap: var(--introduction-imageplaceholder-full-gap);
-  transition: var(--animations-duration) opacity;
-}
-
-body > .page > .introduction .content .illustration .image .full-placeholder .text {
-  color: var(--introduction-imageplaceholder-full-text);
-}
-
-@media screen and (max-width: 1400px) {
-  body > .page > .introduction .content .illustration .image .full-placeholder .text {
-    display: none;
-  }
-}
-
-body > .page > .introduction .content .illustration .image.active .full-placeholder {
-  opacity: 0;
-}
-
-body > .page > .introduction .content .illustration .image .full-placeholder .icon img {
-  height: var(--introduction-imageplaceholder-full-icon);
-  width: var(--introduction-imageplaceholder-full-icon);
-  filter: var(--icons-transform);
-}
-
-body > .page > .introduction .content .illustration .image .bottom-placeholder {
-  position: absolute;
-  left: 0;
-  bottom: calc(var(--introduction-imageplaceholder-bottom-height) * -1);
-  width: 100%;
-  height: var(--introduction-imageplaceholder-bottom-height);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(
-    var(--introduction-imageplaceholder-bottom-gradient-start),
-    var(--introduction-imageplaceholder-bottom-gradient-end)
-  );
-  transition: var(--animations-duration) bottom;
-}
-
-body > .page > .introduction .content .illustration .image.active .bottom-placeholder {
-  bottom: 0;
-}
-
-body > .page > .introduction .content .illustration .image .bottom-placeholder .text {
-  color: var(--introduction-imageplaceholder-bottom-text);
-  padding-inline: var(--introduction-imageplaceholder-bottom-text-padding);
-  text-align: center;
-}
-
-body > .page > .introduction .content .illustration .image .pause {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%) scale(0.7);
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1em;
-  box-sizing: border-box;
-  border-radius: 50%;
-  background: var(--introduction-image-pause);
-  transition: var(--animations-duration) transform, var(--animations-duration) opacity;
-}
-
-body > .page > .introduction .content .illustration .image .pause img {
-  filter: var(--icons-transform);
-  width: var(--introduction-image-pause-size);
-  height: var(--introduction-image-pause-size);
-}
-
-body > .page > .introduction .content .illustration.is-paused .image.active .pause {
-  transform: translateX(-50%) translateY(-50%) scale(1.0);
-  opacity: 1;
 }

@@ -1,14 +1,14 @@
 body > .page > #advantages > .advantages {
   width: 100%;
-  padding-block: calc(var(--advantages-shadow-height) + var(--advantages-paddingblock));
-  background: var(--advantages-bg);
-  margin-bottom: var(--advantages-bottommargin);
+  padding-block: calc(20px + 40px);
+  background: #252d3a;
+  margin-bottom: 50px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--advantages-message-gap);
+  gap: 30px;
 }
 
 body > .page > #advantages > .advantages::before {
@@ -17,10 +17,10 @@ body > .page > #advantages > .advantages::before {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--advantages-shadow-height);
+  height: 20px;
   background: linear-gradient(
-    var(--background),
-    var(--advantages-bg)
+    #151e27,
+    #252d3a
   );
 }
 
@@ -30,10 +30,10 @@ body > .page > #advantages > .advantages::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: var(--advantages-shadow-height);
+  height: 20px;
   background: linear-gradient(
-    var(--advantages-bg),
-    var(--background)
+    #252d3a,
+    #151e27
   );
 }
 
@@ -42,7 +42,7 @@ body > .page > #advantages > .advantages .message {
 }
 
 body > .page > #advantages > .advantages .message .title {
-  color: var(--advantages-message-title);
+  color: #FFFFFF;
   font-size: 3em;
   font-weight: 800;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
@@ -50,7 +50,7 @@ body > .page > #advantages > .advantages .message .title {
 }
 
 body > .page > #advantages > .advantages .message .description {
-  color: var(--advantages-message-description);
+  color: #FFFFFF;
   font-size: 1.5em;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
   opacity: var(--parallax-state);
@@ -62,8 +62,8 @@ body > .page > #advantages > .advantages .items {
   justify-content: space-evenly;
   position: relative;
   width: 100%;
-  gap: var(--advantages-list-gap);
-  max-width: var(--advantages-list-width-limit);
+  gap: 20px;
+  max-width: 1400px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -74,9 +74,9 @@ body > .page > #advantages > .advantages .items {
 }
 
 body > .page > #advantages > .advantages .items .separator {
-  height: calc(var(--parallax-state) * var(--advantages-list-separator-height));
+  height: calc(var(--parallax-state) * 270px);
   transform: rotate(15deg);
-  border-left: 2px dashed var(--advantages-list-separator-color);
+  border-left: 2px dashed rgba(255, 255, 255, 0.5);
 }
 
 @media screen and (max-width: 1000px) {
@@ -84,17 +84,17 @@ body > .page > #advantages > .advantages .items .separator {
     height: 0px;
     width: 90vw;
     transform: rotate(0);
-    border-top: 2px dashed var(--advantages-list-separator-color);
+    border-top: 2px dashed rgba(255, 255, 255, 0.5);
   }
 }
 
 body > .page > #advantages > .advantages .items .item {
-  max-width: var(--advantages-list-item-width-limit);
+  max-width: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: var(--advantages-list-item-gap);
+  gap: 30px;
   transform: scale(max(0.3, var(--parallax-state)));
   opacity: var(--parallax-state);
 }
@@ -103,18 +103,24 @@ body > .page > #advantages > .advantages .items .item {
   body > .page > #advantages > .advantages .items .item {
     flex-direction: row;
     max-width: 95vw;
-    gap: var(--advantages-list-item-gap-mobile);
-    --advantages-list-item-image-size: 40px;
+    gap: 20px;
   }
 }
 
 body > .page > #advantages > .advantages .items .item img {
-  height: var(--advantages-list-item-image-size);
-  width: var(--advantages-list-item-image-size);
+  height: 230px;
+  width: 230px;
+}
+
+@media screen and (max-width: 800px) {
+  body > .page > #advantages > .advantages .items .item img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 body > .page > #advantages > .advantages .items .item .title {
-  color: var(--advantages-list-item-title-color);
+  color: #FFFFFF;
   font-size: 1.5em;
   text-align: center;
 }

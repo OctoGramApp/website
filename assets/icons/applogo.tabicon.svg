@@ -2,7 +2,7 @@
   <style>
     @media (prefers-color-scheme: dark) {
       #octopus {
-        fill: white;
+        fill: #FFFFFF;
       }
     }
   </style>
