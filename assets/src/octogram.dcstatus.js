@@ -382,15 +382,15 @@ class DCStatus {
     switch(datacenter.dc_status) {
       case 0:
         datacenterStatus.classList.add('offline');
-        datacenterStatus.textContent = 'Offline';
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_OFFLINE');
       break;
       case 1:
         datacenterStatus.classList.add('online');
-        datacenterStatus.textContent = 'Available';
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_ONLINE');
       break;
       case 2:
         datacenterStatus.classList.add('slow');
-        datacenterStatus.textContent = 'Slow';
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_SLOW');
       break;
     }
   
