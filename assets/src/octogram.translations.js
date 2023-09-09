@@ -2,7 +2,7 @@ class Translations {
   #cachedTranslations = {};
 
   #AVAILABLE_LANGUAGES = [
-    'en', 'it', 'id'
+    'en', 'it', 'id', 'es'
   ];
 
   #TRANSLATIONS_REF = {
