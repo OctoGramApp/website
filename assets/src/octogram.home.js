@@ -415,7 +415,7 @@ class HomePage {
         imageContainer.appendChild(secondaryImageItem);
         
         const switchableRowText = document.createElement('span');
-        switchableRowText.textContent = 'Telegram style';
+        switchableRowText.textContent = translations.getStringRef('FEATURES_APPEARANCE_DATACENTER_ID_SWITCH');
         const switchableRowCheckbox = document.createElement('div');
         switchableRowCheckbox.classList.add('checkbox');
         const switchableRowContent = document.createElement('div');
