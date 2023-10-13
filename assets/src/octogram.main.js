@@ -19,6 +19,10 @@ window.addEventListener('load', () => {
     {
       paths: ['/github', '/gh'],
       url: 'https://github.com/octogramapp'
+    },
+    {
+      paths: ["/ghi", "/ghissue", "/gh_i", "/gh_issue"],
+      url: 'https://github.com/OctoGramApp/OctoGram/issues/new/choose'
     }
   ];
 
