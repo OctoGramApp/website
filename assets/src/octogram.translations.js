@@ -189,7 +189,11 @@ class Translations {
     if (typeof window.navigator.language != 'undefined') {
       for(const lang of window.navigator.language.split('-')) {
         if (this.#AVAILABLE_LANGUAGES.includes(lang.toLowerCase())) {
-          return lang.toLowerCase();
+          if (lang.toLowerCase() == 'es') {
+			 return 'es-ES';
+		  } else {
+		  	return lang.toLowerCase();
+		  }
         }
       }
     }
