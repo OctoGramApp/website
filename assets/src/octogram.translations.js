@@ -78,6 +78,9 @@ class Translations {
     DCSTATUS_IDENTIFY_TITLE: 'Discover your datacenter',
     DCSTATUS_IDENTIFY_SELECT: 'Select your prefix',
     DCSTATUS_IDENTIFY_RAPID: 'Rapid suggestions',
+    DCSTATUS_EXPORT: 'Export this status',
+    DCSTATUS_EXPORT_BUTTON: 'Download file',
+    DCSTATUS_EXPORT_ERROR: 'An internal error occurred. Try reloading the page.',
     
     CHANGELOG_TITLE: 'All latest beta and stable client versions.',
     CHANGELOG_TITLE_PAGE: 'Changelog',
