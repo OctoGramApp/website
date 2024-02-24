@@ -35,6 +35,8 @@ class Translations {
     FEATURES_FUNCTIONS_EXPERIMENTAL_FEATURES_DESCRIPTION: 'If you are very curious or you like risks, use our lab functions. Warning: these functions may make your app unstable or may cause it to crash.',
     FEATURES_DC_STATUS: 'Datacenter status',
     FEATURES_DC_STATUS_DESCRIPTION: 'Stay updated on any lag or internal issues from Telegram. This option is also available online.',
+    FEATURES_DOUBLEBOTTOM: 'Double bottom',
+    FEATURES_DOUBLEBOTTOM_DESCRIPTION: 'Hide your lover\'s account. Only you can access it by entering your magic code. Peculiar, isn\'t it?',
     ADVANTAGES_TITLE: 'Always in step',
     ADVANTAGES_DESCRIPTION: 'A continuously updated client',
     ADVANTAGES_ROWS_1: 'Always up-to-date with official client functions',
