@@ -323,6 +323,25 @@ class Utils {
     parallaxHelper.clearParallaxState();
   }
 
+  formatDate(unix, format = 'dd/mm/YY HH:ii:ss'){
+		const originalDate = unix instanceof Date ? unix : new Date(unix * 1000);
+		const year    = originalDate.getFullYear();
+		const date    = ('0' + String(originalDate.getDate())).slice(-2);
+		const month   = ('0' + String(originalDate.getMonth()+1)).slice(-2);
+		const hours   = ('0' + String(originalDate.getHours())).slice(-2);
+		const minutes = ('0' + String(originalDate.getMinutes())).slice(-2);
+		const seconds = ('0' + String(originalDate.getSeconds())).slice(-2);
+
+		format = format.replaceAll('dd', date);
+		format = format.replaceAll('mm', month);
+		format = format.replaceAll('YY', year);
+		format = format.replaceAll('HH', hours);
+		format = format.replaceAll('ii', minutes);
+		format = format.replaceAll('ss', seconds);
+
+		return format;
+	}
+
   get pageId() {
     return this.#currentPageId;
   }

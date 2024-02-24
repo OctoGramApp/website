@@ -17,6 +17,18 @@ class DCStatus {
     '91.108.56.100'
   ];
 
+  #CANVAS_DRAWDCSTATE = [
+    { x: 36.6 },
+    { x: 412.4 },
+    { x: 784.8 },
+    { x: 1157.3 },
+    { x: 1529.9 },
+  ];
+  #CANVAS_CONTAINERWIDTH = 356.8;
+  #CANVAS_BADGEWIDTH = 270;
+  #CANVAS_BADGEHEIGHT = 60;
+  #CANVAS_BADGEY = 605.3;
+
   #DATACENTER_COUNT = 5;
   #currentTimeout;
   #currentInterval;
@@ -46,6 +58,7 @@ class DCStatus {
     pageContainer.appendChild(this.#generatePointer());
     pageContainer.appendChild(this.#generateIdentifyDcContainer());
     pageContainer.appendChild(this.#generateServerContainer());
+    pageContainer.appendChild(this.#generateExportContainer());
     pageContainer.appendChild(footer.createElement());
 
     document.body.appendChild(pageContainer);
@@ -283,6 +296,44 @@ class DCStatus {
     return separator;
   }
 
+  #generateExportContainer() {
+    const title = document.createElement('div');
+    title.classList.add('title');
+    title.textContent = translations.getStringRef('DCSTATUS_EXPORT');
+
+    const selectValue = document.createElement('span');
+    selectValue.classList.add('value');
+    selectValue.textContent = translations.getStringRef('DCSTATUS_EXPORT_BUTTON');
+    const selectIcon = document.createElement('img');
+    selectIcon.classList.add('icon');
+    selectIcon.src = '/assets/icons/arrowright.svg';
+    const select = document.createElement('div');
+    select.classList.add('select', 'mini', 'nomargin');
+    select.appendChild(selectValue);
+    select.appendChild(selectIcon);
+    const description = document.createElement('div');
+    description.classList.add('description');
+    description.appendChild(select);
+
+    const descriptor = document.createElement('div');
+    descriptor.classList.add('descriptor');
+    descriptor.appendChild(title);
+    descriptor.appendChild(description);
+
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.appendChild(descriptor);
+    const card = document.createElement('div');
+    card.classList.add('card', 'export');
+    card.appendChild(content);
+
+    select.addEventListener('click', () => {
+      this.#generateExportImage();
+    });
+
+    return card;
+  }
+
   #initProgressLoading() {
     if (!this.#cardDescription.classList.contains('definite')) {
       this.#cardDescription.addEventListener('animationiteration', () => {
@@ -330,46 +381,44 @@ class DCStatus {
   #initLoading() {
     this.#isLoading = true;
 
-    const XML = new XMLHttpRequest();
-    XML.open('GET', 'https://api.github.com/repos/OctoGramApp/assets/contents/DCStatus/dc_status.json?cache='+Math.random().toString(), true);
-    XML.send();
-    XML.addEventListener('readystatechange', (e) => {
-      if (e.target.readyState == 4 && e.target.status == 200) {
-        const response = JSON.parse(e.target.responseText);
+    requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
+      const parsedContent = JSON.parse(response);
 
-        if (response['content'].length > 0) {
-          const parsedContent = JSON.parse(atob(response['content']));
+      if (typeof parsedContent.status != 'undefined') {
+        this.#isLoading = false;
 
-          if (typeof parsedContent.status != 'undefined') {
-            this.#isLoading = false;
-  
-            for(const datacenter of parsedContent.status) {
-              for(const [i, slot] of this.#availableSlots.entries()) {
-                if (slot.dc_id == datacenter.dc_id) {
-                  if (slot.slots.status) {
-                    const newStatus = this.#composeStatus(datacenter, slot.smallStatusState);
-                    slot.slots.status.replaceWith(newStatus);
-                    this.#availableSlots[i].slots.status = newStatus;
-                  }
-  
-                  if (slot.slots.expandableContainer) {
-                    const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
-                      datacenter,
-                      datacenterId: datacenter.dc_id
-                    });
-                    slot.slots.expandableContainer.replaceWith(expandableContainer);
-                    this.#availableSlots[i].slots.expandableContainer = expandableContainer;
-  
-                    if (slot.row) {
-                      slot.row.style.setProperty('--items', visibleItems);
-                    }
-                  }
+        // handle slots with callback
+        for(const slot of this.#availableSlots) {
+          if (!slot.dc_id && slot.callback) {
+            slot.callback(parsedContent.status);
+          }
+        }
+
+        for(const datacenter of parsedContent.status) {
+          for(const [i, slot] of this.#availableSlots.entries()) {
+            if (slot.dc_id == datacenter.dc_id) {
+              if (slot.slots.status) {
+                const newStatus = this.#composeStatus(datacenter, slot.smallStatusState);
+                slot.slots.status.replaceWith(newStatus);
+                this.#availableSlots[i].slots.status = newStatus;
+              }
+
+              if (slot.slots.expandableContainer) {
+                const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
+                  datacenter,
+                  datacenterId: datacenter.dc_id
+                });
+                slot.slots.expandableContainer.replaceWith(expandableContainer);
+                this.#availableSlots[i].slots.expandableContainer = expandableContainer;
+
+                if (slot.row) {
+                  slot.row.style.setProperty('--items', visibleItems);
                 }
               }
             }
-  
-            this.#initProgressLoading();
           }
+
+          this.#initProgressLoading();
         }
       }
     });
@@ -513,18 +562,21 @@ class DCStatus {
       findCorrectRes(33),
       findCorrectRes(974),
       findCorrectRes(1876)
-    ].filter((x) => !!x);
+    ].filter(Boolean);
   }
 
   #initIdentifySelector() {
     let newPrefixSelector = [];
 
     for(const dc of DC_DESC) {
-      newPrefixSelector.push({
-        id: dc[0],
-        title: dc[1],
-        description: '+' + dc[0] + ' ' + utils.getEmojiByIso2(dc[2])
-      });
+      const isValidSugg = DC_ASSOC.some((x) => x.includes(dc[0]));
+      if (isValidSugg) {
+        newPrefixSelector.push({
+          id: dc[0],
+          title: dc[1],
+          description: '+' + dc[0] + ' ' + utils.getEmojiByIso2(dc[2])
+        });
+      }
     }
 
     utils.parseCustomSelectMenu({
@@ -703,7 +755,9 @@ class DCStatus {
     for(const [id, slot] of this.#availableSlots.entries()) {
       let availableInDom = true;
 
-      if (slot.slots.status && !document.body.contains(slot.slots.status)) {
+      if (!slot.dc_id && slot.callback) {
+        availableInDom = false;
+      } else if (slot.slots.status && !document.body.contains(slot.slots.status)) {
         availableInDom = false;
       } else if(slot.slots.expandableContainer && !document.body.contains(slot.slots.expandableContainer)) {
         availableInDom = false;
@@ -716,6 +770,136 @@ class DCStatus {
 
     this.#availableSlots = this.#availableSlots.filter((x) => typeof x != 'undefined');
     // workaround
+  }
+
+  #generateExportImage() {
+    const bgImage = new Image();
+    bgImage.src = '/assets/images/dcexpbase.png';
+    bgImage.addEventListener('load', () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1920;
+      canvas.height = 1080;
+
+      const context = canvas.getContext('2d');
+      context.drawImage(bgImage, 0, 0);
+
+      this.#availableSlots.push({
+        callback: (data) => {
+          this.#clearUnavailableSlots();
+
+          for(const datacenter of data) {
+            this.#drawDcStateOnCanvas(context, datacenter);
+          }
+          console.log(data);
+          const mostRecentDowntime = data.sort((a, b) => b.last_down - a.last_down)[0].last_down;
+          const mostRecentLagtime = data.sort((a, b) => b.last_lag - a.last_lag)[0].last_lag;
+          console.log(mostRecentDowntime, mostRecentLagtime);
+
+          context.textAlign = 'left';
+          context.textBaseline = 'top';
+          context.fillStyle = "rgb(255, 255, 255)";
+          
+          if (mostRecentDowntime && mostRecentDowntime > 0) {
+            context.font = '60px Rubik';
+            context.fillText(utils.formatDate(mostRecentDowntime, 'dd/mm'), 1082, 901.2);
+            context.font = '40px Rubik';
+            context.fillText(utils.formatDate(mostRecentDowntime, 'HH:ii'), 1082, 965.2);
+          } else {
+            context.fillText("Unknown", 1082, 901.2);
+          }
+          
+          if (mostRecentLagtime && mostRecentLagtime > 0) {
+            context.font = '60px Rubik';
+            context.fillText(utils.formatDate(mostRecentLagtime, 'dd/mm'), 1508.5, 901.2);
+            context.font = '40px Rubik';
+            context.fillText(utils.formatDate(mostRecentLagtime, 'HH:ii'), 1508.5, 965.2);
+          } else {
+            context.fillText("Unknown", 1508.5, 901.2);
+          }
+
+          const fakeLink = document.createElement('a');
+          fakeLink.setAttribute('download', 'export.png');
+          fakeLink.setAttribute('href', canvas.toDataURL());
+          document.body.appendChild(fakeLink);
+          fakeLink.click();
+          fakeLink.remove();
+        }
+      });
+
+      this.#executeForceReload();
+    });
+  }
+
+  #drawDcStateOnCanvas(context, datacenter) {
+    const drawState = this.#CANVAS_DRAWDCSTATE[datacenter.dc_id - 1];
+    if (!drawState) {
+      return;
+    }
+
+    context.beginPath();
+
+    this.#drawPathOnContext(
+      context,
+      drawState.x + this.#CANVAS_CONTAINERWIDTH / 2 - this.#CANVAS_BADGEWIDTH / 2,
+      this.#CANVAS_BADGEY,
+      this.#CANVAS_BADGEWIDTH,// width
+      this.#CANVAS_BADGEHEIGHT, // height
+      30, // borderRadius
+    );
+
+    let statusText, accentColor;
+    switch(datacenter.dc_status) {
+      case 0:
+        accentColor = [194, 98, 102];
+        statusText = 'Offline';
+      break;
+      case 1:
+        accentColor = [105, 184, 114];
+        statusText = 'Online';
+      break;
+      case 2:
+        accentColor = [224, 189, 37];
+        statusText = 'Slow';
+      break;
+      default:
+        return;
+    }
+
+    context.fillStyle = "rgba(" + accentColor.join(', ') + ", 0.2)";
+    context.fill();
+
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.font = '35px Rubik';
+    context.fillStyle = "rgb(" + accentColor.join(', ') + ")";
+    context.fillText(
+      statusText,
+      drawState.x + this.#CANVAS_CONTAINERWIDTH / 2,
+      this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT / 2,
+    );
+
+    context.textAlign = 'right';
+    context.textBaseline = 'middle';
+    context.font = '20px Rubik';
+    context.fillStyle = "rgb(255, 255, 255)";
+    context.fillText(
+      datacenter.ping+'ms',
+      drawState.x + this.#CANVAS_CONTAINERWIDTH - 60,
+      this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT,
+    );
+  }
+
+  #drawPathOnContext(context, x, y, width, height, borderRadius) {
+    context.moveTo(x + borderRadius, y);
+    context.lineTo(x + width - borderRadius, y);
+    context.arc(x + width - borderRadius, y + borderRadius, borderRadius, -Math.PI / 2, 0);
+    context.lineTo(x + width, y + height - borderRadius);
+    context.arc(x + width - borderRadius, y + height - borderRadius, borderRadius, 0, Math.PI / 2);
+    context.lineTo(x + borderRadius, y + height);
+    context.arc(x + borderRadius, y + height - borderRadius, borderRadius, Math.PI / 2, Math.PI);
+    context.lineTo(x, y + borderRadius);
+    context.arc(x + borderRadius, y + borderRadius, borderRadius, Math.PI, -Math.PI / 2);
+    context.closePath();
   }
 }
 
