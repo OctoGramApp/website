@@ -773,27 +773,33 @@ class DCStatus {
   }
 
   #generateExportImage() {
-    const bgImage = new Image();
-    bgImage.src = '/assets/images/dcexpbase.png';
-    bgImage.addEventListener('load', () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1920;
-      canvas.height = 1080;
+    this.#availableSlots.push({
+      callback: (data) => {
+        this.#clearUnavailableSlots();
+        
+        let finalFile = '/assets/images/dcexpbase.png';
+        if (data.some((x) => x.dc_status == 1)) {
+          finalFile = '/assets/images/dcexpbase_downtime.png';
+        } else if (data.some((x) => x.dc_status == 2)) {
+          finalFile = '/assets/images/dcexpbase_slow.png';
+        }
 
-      const context = canvas.getContext('2d');
-      context.drawImage(bgImage, 0, 0);
+        const bgImage = new Image();
+        bgImage.src = finalFile;
+        bgImage.addEventListener('load', () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = 1920;
+          canvas.height = 1080;
 
-      this.#availableSlots.push({
-        callback: (data) => {
-          this.#clearUnavailableSlots();
+          const context = canvas.getContext('2d');
+          context.drawImage(bgImage, 0, 0);
 
           for(const datacenter of data) {
             this.#drawDcStateOnCanvas(context, datacenter);
           }
-          console.log(data);
+
           const mostRecentDowntime = data.sort((a, b) => b.last_down - a.last_down)[0].last_down;
           const mostRecentLagtime = data.sort((a, b) => b.last_lag - a.last_lag)[0].last_lag;
-          console.log(mostRecentDowntime, mostRecentLagtime);
 
           context.textAlign = 'left';
           context.textBaseline = 'top';
@@ -823,11 +829,14 @@ class DCStatus {
           document.body.appendChild(fakeLink);
           fakeLink.click();
           fakeLink.remove();
-        }
-      });
-
-      this.#executeForceReload();
+        });
+        bgImage.addEventListener('error', () => {
+          alert(translations.getStringRef('DCSTATUS_EXPORT_ERROR'));
+        });
+      }
     });
+
+    this.#executeForceReload();
   }
 
   #drawDcStateOnCanvas(context, datacenter) {
@@ -851,15 +860,15 @@ class DCStatus {
     switch(datacenter.dc_status) {
       case 0:
         accentColor = [194, 98, 102];
-        statusText = 'Offline';
+        statusText = 'OFFLINE';
       break;
       case 1:
         accentColor = [105, 184, 114];
-        statusText = 'Online';
+        statusText = 'ONLINE';
       break;
       case 2:
         accentColor = [224, 189, 37];
-        statusText = 'Slow';
+        statusText = 'SLOW';
       break;
       default:
         return;
@@ -870,7 +879,7 @@ class DCStatus {
 
     context.textAlign = 'center';
     context.textBaseline = 'middle';
-    context.font = '35px Rubik';
+    context.font = ' bold 30px Rubik';
     context.fillStyle = "rgb(" + accentColor.join(', ') + ")";
     context.fillText(
       statusText,
