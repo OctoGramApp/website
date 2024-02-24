@@ -778,7 +778,7 @@ class DCStatus {
         this.#clearUnavailableSlots();
         
         let finalFile = '/assets/images/dcexpbase.png';
-        if (data.some((x) => x.dc_status == 1)) {
+        if (data.some((x) => x.dc_status == 0)) {
           finalFile = '/assets/images/dcexpbase_downtime.png';
         } else if (data.some((x) => x.dc_status == 2)) {
           finalFile = '/assets/images/dcexpbase_slow.png';
