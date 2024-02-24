@@ -1,5 +1,5 @@
 body > .page > .pointer {
-  background: #1d2733;
+  background: #13171e;
   padding-block: 20px;
   padding-bottom: calc(20px + 50px);
   margin-bottom: 40px;
@@ -20,8 +20,8 @@ body > .page > .pointer::after {
   width: 100%;
   height: 50px;
   background: linear-gradient(
-    #1d2733,
-    #151e27
+    #13171e,
+    #0b1015
   );
 }
 

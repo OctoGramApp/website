@@ -9,10 +9,10 @@ body > .page > .card {
 body > .page > .card .content {
   position: relative;
   overflow: hidden;
-  background: #1d2733;
+  background: #13171e;
   max-width: min(95vw, 1400px);
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 25px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -373,7 +373,7 @@ body > .page > .card .content .datacenters .datacenter .expandable {
   position: absolute;
   width: calc(100% - 20px * 2);
   bottom: calc(20px / 2);
-  height: 55px;
+  height: 45px;
   gap: 15px;
   left: 50%;
   transform: translateY(120%) translateX(-50%);
@@ -381,11 +381,13 @@ body > .page > .card .content .datacenters .datacenter .expandable {
   align-items: center;
   justify-content: center;
   cursor: default;
+  opacity: 0;
   transition: 0.4s opacity, 0.4s transform;
 }
 
 body > .page > .card .content .datacenters .datacenter.expanded .expandable {
   transform: translateY(0) translateX(-50%);
+  opacity: 1;
 }
 
 body > .page > .card .content .datacenters .datacenter .expandable .indicator {

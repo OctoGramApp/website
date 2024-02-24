@@ -4,14 +4,14 @@ body > .page .select {
   color: #FFFFFF;
   padding-inline: 17px;
   padding-block: 15px;
-  border-radius: 8px;
+  border-radius: 18px;
   margin-bottom: 12px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: 0.4s padding-inline, 0.4s opacity;
+  transition: 0.4s transform, 0.4s opacity;
 }
 
 body > .page .select.mini {
@@ -29,11 +29,11 @@ body > .page .select .icon {
 
 @media screen and (min-width: 500px) {
   body > .page .select:hover {
-    padding-inline: 11px;
+    transform: scale(0.95);
   }
   
   body > .page .select:active {
-    padding-inline: 0;
+    transform: scale(0.9);
   }
 }
 
@@ -84,7 +84,7 @@ body > .page > .select-overflow .select-menu {
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  background: #151e27;
+  background: #0b1015;
 }
 
 body > .page > .select-overflow .select-menu.is-big {
@@ -152,18 +152,22 @@ body > .page > .select-overflow .select-menu .general-description:not(:last-chil
 
 body > .page > .select-overflow .select-menu .letter-separator {
   width: 100%;
-  background: #4a6092;
+  background: #2d3b4c;
   color: #FFFFFF;
   margin-bottom: 10px;
   padding-left: 20px;
   border-radius: 12px;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 body > .page > .select-overflow .select-menu .option {
   width: 100%;
   padding: 10px;
-  background: #6a7ed63d;
+  background: #13171e;
   border-radius: 5px;
   color: #FFFFFF;
   gap: 9px;

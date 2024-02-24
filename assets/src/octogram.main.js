@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
     {
       paths: ["/ghi", "/ghissue", "/gh_i", "/gh_issue"],
       url: 'https://github.com/OctoGramApp/OctoGram/issues/new/choose'
-    }
+    },
   ];
 
   document.body.classList.toggle('disable-blur', utils.isAndroid());
@@ -74,6 +74,7 @@ window.addEventListener('load', () => {
         break;
         case '/dcstatus.html':
         case '/dcstatus':
+        case '/dc':
           dcStatus.init();
         break;
         case '/privacy.html':
