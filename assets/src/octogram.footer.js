@@ -92,6 +92,14 @@ class Footer {
           }
         }));
         singleLinkContainer.appendChild(this.#generateSingleLink({
+          text: translations.getStringRef('FOOTER_SITE_MONET'),
+          onClick: () => {
+            if (utils.pageId != monet.id) {
+              monet.init();
+            }
+          }
+        }));
+        singleLinkContainer.appendChild(this.#generateSingleLink({
           text: translations.getStringRef('FOOTER_SITE_PRIVACYPOLICY'),
           onClick: () => {
             if (utils.pageId != privacyPolicy.id) {
