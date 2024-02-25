@@ -243,6 +243,11 @@ class HomePage {
         translations.getStringRef('FEATURES_DC_STATUS'),
         translations.getStringRef('FEATURES_DC_STATUS_DESCRIPTION')
       ],
+      [
+        'doublebottom',
+        translations.getStringRef('FEATURES_DOUBLEBOTTOM'),
+        translations.getStringRef('FEATURES_DOUBLEBOTTOM_DESCRIPTION')
+      ],
     ];
 
     for(const item of featuresItems) {
@@ -388,18 +393,64 @@ class HomePage {
     const { startAnimation, stopAnimation, enhanceAnimation } = this.#initDecorationAnimation(item, imageContainer, id);
     this.#appendDecoration(imageContainer, imageElement, id, enhanceAnimation);
 
+    let videoItem;
+    if (id == 'doublebottom') {
+      videoItem = document.createElement('video');
+      videoItem.classList.toggle('prep-animation');
+      videoItem.toggleAttribute('disablepictureinpicture');
+      videoItem.toggleAttribute('disableremoteplayback');
+      videoItem.toggleAttribute('playsinline');
+      videoItem.setAttribute('muted', 'true');
+      videoItem.setAttribute('x-webkit-airplay', 'deny');
+      videoItem.src = '/assets/animations/touchclickdb.mp4';
+      item.appendChild(videoItem);
+      
+      item.classList.add('has-custom-video');
+      videoItem.addEventListener('play', () => {
+        item.classList.remove('animation-completed');
+        videoItem.classList.remove('hidden');
+      });
+      videoItem.addEventListener('ended', () => {
+        item.classList.add('animation-completed');
+        videoItem.classList.add('hidden');
+        startAnimation();
+        enhanceAnimation();
+        
+        descriptionContainer.innerHTML = utils.generateRandomEncrScript(description.length, true);
+        for(let i = 0; i <= description.length; i++) {
+          setTimeout(() => {
+            descriptionContainer.textContent = description.slice(0, i);
+            descriptionContainer.innerHTML += ' ' + utils.generateRandomEncrScript(description.length - i, true);
+          }, 10 * i);
+        }
+      });
+    }
+
     return {
       element: item,
       onVisible: () => {
         if (!isVisible) {
           isVisible = true;
-          startAnimation();
+          
+          if (typeof videoItem == 'undefined') {
+            startAnimation();
+          } else {
+            videoItem.pause();
+            videoItem.currentTime = 1;
+            videoItem.play();
+          }
         }
       },
       onHidden: () => {
         if (isVisible) {
           isVisible = false;
           stopAnimation();
+
+          descriptionContainer.textContent = description;
+          
+          if (typeof videoItem != 'undefined') {
+            videoItem.pause();
+          }
         }
       }
     };
@@ -466,6 +517,9 @@ class HomePage {
       case 'experimental':
         imageElement.src = 'assets/images/features.experimental.jpg';
       break;
+      case 'doublebottom':
+        imageElement.src = 'assets/images/features.doublebottom.jpg';
+      break;
     }
   }
 
@@ -522,6 +576,14 @@ class HomePage {
         iconNames.push('assets/icons/settings.svg');
         iconNames.push('assets/icons/usersecret.svg');
         iconNames.push('assets/icons/server.svg');
+      break;
+      case 'doublebottom':
+        iconNames.push('assets/icons/explosion.svg');
+        iconNames.push('assets/icons/star.svg');
+        iconNames.push('assets/icons/clock.svg');
+        iconNames.push('assets/icons/terminal.svg');
+        iconNames.push('assets/icons/settings.svg');
+        iconNames.push('assets/icons/usersecret.svg');
       break;
     }
 

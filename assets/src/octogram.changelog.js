@@ -156,9 +156,11 @@ class Changelog {
       descriptor.appendChild(title);
       descriptor.appendChild(description);
 
+      let finalMessage = utils.fixInjectionTags(release['body']);
+      finalMessage = finalMessage.replace('🐙', '<img src="/assets/animations/octoAnimation.gif">')
       const message = document.createElement('div');
       message.classList.add('message');
-      message.innerHTML = utils.fixInjectionTags(release['body']);
+      message.innerHTML = finalMessage;
       
       const selectValue = document.createElement('span');
       selectValue.classList.add('value');

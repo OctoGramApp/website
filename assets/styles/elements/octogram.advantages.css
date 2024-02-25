@@ -1,7 +1,7 @@
 body > .page > #advantages > .advantages {
   width: 100%;
   padding-block: calc(20px + 40px);
-  background: #252d3a;
+  background: #13171e;
   margin-bottom: 50px;
   position: relative;
   display: flex;
@@ -19,8 +19,8 @@ body > .page > #advantages > .advantages::before {
   width: 100%;
   height: 20px;
   background: linear-gradient(
-    #151e27,
-    #252d3a
+    #0b1015,
+    #13171e
   );
 }
 
@@ -32,8 +32,8 @@ body > .page > #advantages > .advantages::after {
   width: 100%;
   height: 20px;
   background: linear-gradient(
-    #252d3a,
-    #151e27
+    #13171e,
+    #0b1015
   );
 }
 

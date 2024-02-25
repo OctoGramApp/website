@@ -342,6 +342,19 @@ class Utils {
 		return format;
 	}
 
+  generateRandomEncrScript(length, addTag = false) {
+    const dictionary = [...'0123456789qwertyuiopasdfghjklzxcvbnm!?/\a`~+*=@#$%'];
+    let finalString = '';
+    for(let i = 0; i < length; i++) {
+      finalString += dictionary[Math.floor(Math.random() * dictionary.length)];
+    }
+    if (addTag) {
+      return '<span class="encry">' + finalString + '</span>';
+    } else {
+      return finalString;
+    }
+  }
+
   get pageId() {
     return this.#currentPageId;
   }
