@@ -41,6 +41,7 @@ body > .page > .header .content {
 
 body > .page > .header.scrolled .content {
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding-inline: 15px;
   transform: translateY(10px);
   background: rgba(11, 16, 21, 0.8);

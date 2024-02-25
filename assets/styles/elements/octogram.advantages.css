@@ -49,11 +49,23 @@ body > .page > #advantages > .advantages .message .title {
   opacity: var(--parallax-state);
 }
 
+@media screen and (max-width: 700px) {
+  body > .page > #advantages > .advantages .message .title {
+    font-size: 2em;
+  }
+}
+
 body > .page > #advantages > .advantages .message .description {
   color: #FFFFFF;
   font-size: 1.5em;
   transform: translateY(calc(40px * calc(1 - var(--parallax-state))));
   opacity: var(--parallax-state);
+}
+
+@media screen and (max-width: 700px) {
+  body > .page > #advantages > .advantages .message .description {
+    font-size: 1.2em;
+  }
 }
 
 body > .page > #advantages > .advantages .items {
@@ -101,7 +113,7 @@ body > .page > #advantages > .advantages .items .item {
 @media screen and (max-width: 1000px) {
   body > .page > #advantages > .advantages .items .item {
     flex-direction: row;
-    max-width: 95vw;
+    max-width: 86vw;
     gap: 20px;
   }
 }
@@ -131,7 +143,7 @@ body > .page > #advantages > .advantages .items .item .title {
 
 @media screen and (max-width: 1000px) {
   body > .page > #advantages > .advantages .items .item .title {
-    font-size: 1.3em;
+    font-size: 1.2em;
     text-align: left;
   }
 }
@@ -140,4 +152,11 @@ body > .page > #advantages > .advantages .items .item .description {
   color: #FFFFFF;
   font-size: 1.3em;
   text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  body > .page > #advantages > .advantages .items .item .description {
+    text-align: left;
+    font-size: 1.1em;
+  }
 }
