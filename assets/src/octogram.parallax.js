@@ -2,6 +2,13 @@ class ParallaxHelper {
   #parallaxListeners = [];
   #registeredEvent = false;
 
+  init() {
+    if (!this.#registeredEvent) {
+      window.addEventListener('scroll', (e) => this.#handle(e));
+      this.#registeredEvent = true;
+    }
+  }
+
   registerForParallax({
     element,
     basedOnContainer = element,
@@ -11,6 +18,7 @@ class ParallaxHelper {
     onVisible,
     onHidden
   }) {
+    this.init();
     this.#parallaxListeners.push({
       element,
       basedOnContainer,
@@ -20,11 +28,6 @@ class ParallaxHelper {
       onVisible,
       onHidden
     });
-
-    if (!this.#registeredEvent) {
-      window.addEventListener('scroll', (e) => this.#handle(e));
-      this.#registeredEvent = true;
-    }
   }
 
   clearParallaxState() {
@@ -41,6 +44,8 @@ class ParallaxHelper {
         }
       } catch(e) {}
     }
+
+    header.reloadBlurState();
   }
   
   #reloadItems({

@@ -1,4 +1,6 @@
 class Header {
+  #lastHeaderElement;
+
   createElement({
     onBackCallback,
     isHomePage = false,
@@ -30,6 +32,8 @@ class Header {
     header.classList.toggle('as-homepage', isHomePage && !isError);
     header.classList.toggle('as-error', isError && !isHomePage);
     header.appendChild(content);
+
+    this.#lastHeaderElement = header;
 
     return header;
   }
@@ -94,6 +98,12 @@ class Header {
     }
 
     return button;
+  }
+  
+  reloadBlurState() {
+    if (this.#lastHeaderElement) {
+      this.#lastHeaderElement.classList.toggle('scrolled', window.scrollY > 40);
+    }
   }
 }
 

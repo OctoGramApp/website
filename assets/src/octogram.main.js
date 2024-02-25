@@ -66,6 +66,7 @@ window.addEventListener('load', () => {
       }
     } else {
       splashScreen.remove();
+      parallaxHelper.init();
 
       switch(window.location.pathname) {
         case '/changelog.html':
