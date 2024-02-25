@@ -82,6 +82,10 @@ window.addEventListener('load', () => {
         case '/privacy':
           privacyPolicy.init();
         break;
+        case '/monet.html':
+        case '/monet':
+          monet.init();
+        break;
         case '/':
           homePage.init();
         break;

@@ -4,7 +4,7 @@ class ParallaxHelper {
 
   init() {
     if (!this.#registeredEvent) {
-      window.addEventListener('scroll', (e) => this.#handle(e));
+      window.addEventListener('scroll', (e) => this.handle(e));
       this.#registeredEvent = true;
     }
   }
@@ -34,7 +34,7 @@ class ParallaxHelper {
     this.#parallaxListeners = [];
   }
 
-  #handle() {
+  handle() {
     for (const listener of this.#parallaxListeners) {
       try {
         if (listener.isMonetMainCheck) {
