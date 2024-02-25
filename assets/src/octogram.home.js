@@ -750,18 +750,21 @@ class HomePage {
 
   #appendAdvantagesItems(list) {
     list.appendChild(this.#generateAdvantagesItem(
-      'assets/animations/wallpaperAnimation.gif',
-      translations.getStringRef('ADVANTAGES_ROWS_1')
+      'assets/animations/updatedAnimation.gif',
+      translations.getStringRef('ADVANTAGES_ROWS_1_TITLE'),
+      translations.getStringRef('ADVANTAGES_ROWS_1_DESCRIPTION')
     ));
     list.appendChild(this.#generateAdvantagesSeparator());
     list.appendChild(this.#generateAdvantagesItem(
       'assets/animations/tosCompliantAnimation.gif',
-      translations.getStringRef('ADVANTAGES_ROWS_2')
+      translations.getStringRef('ADVANTAGES_ROWS_2_TITLE'),
+      translations.getStringRef('ADVANTAGES_ROWS_2_DESCRIPTION')
     ));
     list.appendChild(this.#generateAdvantagesSeparator());
     list.appendChild(this.#generateAdvantagesItem(
-      'assets/animations/premiumAnimation.gif',
-      translations.getStringRef('ADVANTAGES_ROWS_3')
+      'assets/animations/themeAnimation.gif',
+      translations.getStringRef('ADVANTAGES_ROWS_3_TITLE'),
+      translations.getStringRef('ADVANTAGES_ROWS_3_DESCRIPTION')
     ));
   }
 
@@ -771,16 +774,20 @@ class HomePage {
     return separator;
   }
 
-  #generateAdvantagesItem(imageUrl, text) {
+  #generateAdvantagesItem(imageUrl, title, description) {
     const imageElement = document.createElement('img');
     imageElement.src = imageUrl;
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('title');
-    textContainer.textContent = text;
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('title');
+    titleContainer.textContent = title;
+    const descriptionContainer = document.createElement('div');
+    descriptionContainer.classList.add('description');
+    descriptionContainer.textContent = description;
     const item = document.createElement('div');
     item.classList.add('item');
     item.appendChild(imageElement);
-    item.appendChild(textContainer);
+    item.appendChild(titleContainer);
+    item.appendChild(descriptionContainer);
     return item;
   }
 

@@ -76,7 +76,7 @@ body > .page > #advantages > .advantages .items {
 body > .page > #advantages > .advantages .items .separator {
   height: calc(var(--parallax-state) * 270px);
   transform: rotate(15deg);
-  border-left: 2px dashed rgba(255, 255, 255, 0.5);
+  border-left: 1px dashed rgba(255, 255, 255, 0.5);
 }
 
 @media screen and (max-width: 1000px) {
@@ -94,7 +94,6 @@ body > .page > #advantages > .advantages .items .item {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 30px;
   transform: scale(max(0.3, var(--parallax-state)));
   opacity: var(--parallax-state);
 }
@@ -108,8 +107,9 @@ body > .page > #advantages > .advantages .items .item {
 }
 
 body > .page > #advantages > .advantages .items .item img {
-  height: 230px;
-  width: 230px;
+  height: 210px;
+  width: 210px;
+  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 800px) {
@@ -120,8 +120,12 @@ body > .page > #advantages > .advantages .items .item img {
 }
 
 body > .page > #advantages > .advantages .items .item .title {
-  color: #FFFFFF;
-  font-size: 1.5em;
+  font-size: 2.3em;
+  background: linear-gradient(45deg, #ffd527, #8ec35f);
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+  margin-bottom: 5px;
   text-align: center;
 }
 
@@ -130,4 +134,10 @@ body > .page > #advantages > .advantages .items .item .title {
     font-size: 1.3em;
     text-align: left;
   }
+}
+
+body > .page > #advantages > .advantages .items .item .description {
+  color: #FFFFFF;
+  font-size: 1.3em;
+  text-align: center;
 }
