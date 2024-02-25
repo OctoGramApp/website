@@ -783,11 +783,14 @@ class HomePage {
     const descriptionContainer = document.createElement('div');
     descriptionContainer.classList.add('description');
     descriptionContainer.textContent = description;
+    const textContainer = document.createElement('div');
+    textContainer.classList.add('text-container');
+    textContainer.appendChild(titleContainer);
+    textContainer.appendChild(descriptionContainer);
     const item = document.createElement('div');
     item.classList.add('item');
     item.appendChild(imageElement);
-    item.appendChild(titleContainer);
-    item.appendChild(descriptionContainer);
+    item.appendChild(textContainer);
     return item;
   }
 

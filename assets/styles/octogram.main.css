@@ -16,6 +16,7 @@
   scroll-behavior: smooth;
   font-family: 'Rubik', sans-serif;
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
 body {
