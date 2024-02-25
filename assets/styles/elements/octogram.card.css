@@ -150,6 +150,12 @@ body > .page > .card .content .body .message:before {
   border-radius: 10px;
 }
 
+body > .page > .card .content .body .message img {
+  height: 17px;
+  width: 17px;
+  vertical-align: middle;
+}
+
 body > .page > .card .content .body .message a {
   text-decoration: none;
   color: #547ed6;
@@ -160,7 +166,7 @@ body > .page > .card .content .body .message .bold {
 }
 
 body > .page > .card .content .body .message .code {
-  background: #151e27;
+  background: #202c38;
   padding: 3px;
   border-radius: 5px;
 }

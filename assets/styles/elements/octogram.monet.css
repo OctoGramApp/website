@@ -1,6 +1,6 @@
 body > .page > #monet > .monet-theme-reference {
   background: rgba(0, 0, 0, var(--parallax-pending));
-  border: calc(50px * calc(1 - var(--parallax-pending))) solid #151e27;
+  border: calc(50px * calc(1 - var(--parallax-pending))) solid #0b1015;
   border-radius: calc(90px * calc(1 - var(--parallax-pending)));
   margin-bottom: 50px;
   position: relative;

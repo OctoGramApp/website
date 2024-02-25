@@ -11,7 +11,7 @@ body > .page > #download > .download .content {
   overflow: hidden;
   max-width: min(95vw, 1400px);
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 30px;
   gap: 20px;
   width: 100%;
   display: flex;
@@ -81,7 +81,7 @@ body > .page > #download > .download .content .from-apk .files {
   justify-content: center;
   border: 2px solid rgba(106, 124, 214, 0.2);
   background: rgba(106, 124, 214, 0.2);
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -193,7 +193,7 @@ body > .page > #download > .download .stores .store {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border-radius: 10px;
+  border-radius: 25px;
   position: relative;
   cursor: pointer;
   overflow: hidden;

@@ -24,7 +24,7 @@ body > .page > #features > .features .list {
   width: 100vw;
   max-width: calc(300px * 4 + 40px * 4 + 40px);
   padding: 40px;
-  gap: 40px;
+  gap: 80px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -155,9 +155,9 @@ body > .page > #features > .features .list .item {
   align-items: center;
   justify-content: center;
   gap: 150px;
-  background: rgba(13, 15, 19, var(--parallax-state));
+  background: rgba(6, 8, 10, var(--parallax-state));
   padding-block: 59px;
-  border-radius: 20px;
+  border-radius: 40px;
   overflow: hidden;
   position: relative;
   transition: 0.4s transform;
@@ -246,7 +246,7 @@ body > .page > #features > .features .list .item .image .switchable-row {
   width: 218px;
   height: 47px;
   background: #00000061;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -328,6 +328,11 @@ body > .page > #features > .features .list .item > .item-message .title {
 body > .page > #features > .features .list .item > .item-message .description {
   color: #FFFFFF;
   font-size: 27px;
+  overflow-wrap: anywhere;
+}
+
+body > .page > #features > .features .list .item > .item-message .description .encry {
+  opacity: 0.4;
 }
 
 @media screen and (max-width: 860px) {
@@ -382,4 +387,34 @@ body > .page > #features > .features .list .item .placeholder .animated-icon.ani
   to {
     transform: scale(0);
   }
+}
+
+body > .page > #features > .features .list .item.has-custom-video .prep-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 230px;
+  border-radius: 50%;
+  transition: 0.4s transform, 0.4s opacity;
+}
+
+body > .page > #features > .features .list .item.has-custom-video .prep-animation.hidden {
+  transform: translateX(-50%) translateY(-50%) scale(1.5);
+  opacity: 0;
+}
+
+body > .page > #features > .features .list .item.has-custom-video > .item-message,
+body > .page > #features > .features .list .item.has-custom-video > .image {
+  transition: 0.4s transform, 0.4s opacity;
+}
+
+body > .page > #features > .features .list .item.has-custom-video:not(.animation-completed) > .item-message {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+body > .page > #features > .features .list .item.has-custom-video:not(.animation-completed) > .image {
+  transform: translateX(100%);
+  opacity: 0;
 }
