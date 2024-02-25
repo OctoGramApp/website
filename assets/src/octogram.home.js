@@ -66,11 +66,16 @@ class HomePage {
     content.classList.add('content');
     content.appendChild(message);
 
+    const pageScrolling = document.createElement('img');
+    pageScrolling.classList.add('scrolling');
+    pageScrolling.src = '/assets/icons/arrowright.svg';
+
     const introduction = document.createElement('div');
     introduction.classList.add('introduction');
     introduction.appendChild(background);
     introduction.appendChild(stackBg);
     introduction.appendChild(temporaryPlaceholder);
+    introduction.appendChild(pageScrolling);
 
     const updateAfterOnEndAnimation = () => {
       temporaryPlaceholder.remove();

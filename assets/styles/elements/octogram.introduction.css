@@ -34,12 +34,13 @@ body > .page > .introduction .background {
   width: 100%;
   height: 100%;
   background: #000000;
+  filter: blur(5px);
 }
 
 body > .page > .introduction .background .animator {
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #dbddbb, #6ba587, #d5d88d, #88b88a);
+  background: #6a7ed5;
   mask-image: url("/assets/images/pattern.svg");
   -webkit-mask-image: url("/assets/images/pattern.svg");
   opacity: 0.05;
@@ -60,7 +61,7 @@ body > .page > .introduction .stack {
   background-position: 70%;
   background-size: cover;
   opacity: 0.3;
-  filter: hue-rotate(36deg);
+  filter: hue-rotate(36deg) blur(12px);
   transform: translateX(100%);
   transition: 0.4s transform;
 }
@@ -146,14 +147,8 @@ body > .page > .introduction .content .message {
   opacity: 0;
   padding: 37px;
   border-radius: 10px;
-  border: 1px solid #ffffff1f;
   box-sizing: border-box;
   animation: 0.5s showMessage 0.1s forwards;
-}
-
-body:not(.disable-blur) > .page > .introduction .content .message {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
 body.disable-blur > .page > .introduction .content .message {
@@ -187,7 +182,7 @@ body > .page > .introduction .content .message .title .appname {
 
 body > .page > .introduction .content .message .description {
   color: #FFFFFF;
-  font-size: 2em;
+  font-size: 1.8em;
   text-align: center;
 }
 
@@ -200,5 +195,25 @@ body > .page > .introduction .content .message .description {
   body > .page > .introduction .content .message .description {
     font-size: 1.3em;
     text-align: center;
+  }
+}
+
+body > .page > .introduction .scrolling {
+  filter: invert(1);
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  height: 30px;
+  width: 30px;
+  animation: 1.6s moveBottom infinite;
+}
+
+@keyframes moveBottom {
+  from, to {
+    transform: translateX(-50%) rotate(90deg) translateX(0px);
+  }
+  50% {
+    transform: translateX(-50%) rotate(90deg) translateX(50px);
   }
 }
