@@ -489,7 +489,6 @@ class HomePage {
       break;
       case 'unavailable.feature':
       case 'buttons':
-      case 'details':
         imageElement.src = 'assets/images/unavailable.feature.jpg';
 
         const unavailableFeatureImage = document.createElement('img');
@@ -504,6 +503,9 @@ class HomePage {
         unavailableFeature.appendChild(unavailableFeatureText);
 
         imageContainer.appendChild(unavailableFeature);
+      break;
+      case 'details':
+        imageElement.src = 'assets/images/features.details.jpg';
       break;
       case 'emojiset':
         imageElement.src = 'assets/images/features.emojiset.jpg';
