@@ -8,7 +8,7 @@ class DCStatus {
     'DC4 - AMS, Amsterdam, NL',
     'DC5 - SIN, Singapore, SG'
   ];
-  
+
   #DATACENTER_IPS = [
     '149.154.175.50',
     '149.154.167.50',
@@ -47,7 +47,7 @@ class DCStatus {
     window.scrollTo(0, 0);
     document.title = 'OctoGram - ' + translations.getStringRef('DCSTATUS_TITLE_PAGE');
     history.pushState(null, document.title, '/dcstatus');
-    
+
     this.#availableSlots = [];
 
     const pageContainer = document.createElement('div');
@@ -62,7 +62,7 @@ class DCStatus {
     pageContainer.appendChild(footer.createElement());
 
     document.body.appendChild(pageContainer);
-    
+
     this.#initLoading();
   }
 
@@ -159,7 +159,7 @@ class DCStatus {
 
     const datacentersFragment = document.createDocumentFragment();
 
-    for(let i = 1; i <= this.#DATACENTER_COUNT; i++) {
+    for (let i = 1; i <= this.#DATACENTER_COUNT; i++) {
       const datacenterBackground = document.createElement('div');
       datacenterBackground.classList.add('background');
       const datacenterIcon = document.createElement('img');
@@ -219,7 +219,7 @@ class DCStatus {
         }
       });
     }
-    
+
     datacenters.appendChild(datacentersFragment);
   }
 
@@ -377,11 +377,28 @@ class DCStatus {
       this.#initLoading();
     }, 300);
   }
-  
+
   #initLoading() {
     this.#isLoading = true;
 
-    requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
+    mtProtoHelper.initialize().then(() => {
+      for(let i = 1; i <= this.#DATACENTER_IPS.length; i++) {
+        mtProtoHelper.registerDatacenterPing(String(i), (state) => {
+          console.log(state);
+          for (const [j, slot] of this.#availableSlots.entries()) {
+            if (slot.dc_id == i) {
+              if (slot.slots.status) {
+                const newStatus = this.#composeStatus(state, slot.smallStatusState);
+                slot.slots.status.replaceWith(newStatus);
+                this.#availableSlots[j].slots.status = newStatus;
+              }
+            }
+          }
+        });
+      }
+    });
+
+    /*requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
       const parsedContent = JSON.parse(response);
 
       if (typeof parsedContent.status != 'undefined') {
@@ -421,38 +438,39 @@ class DCStatus {
           this.#initProgressLoading();
         }
       }
-    });
+    });*/
   }
 
-  #composeStatus(datacenter, smallState = 0) {
+  #composeStatus(status, smallState = 0) {
     const datacenterStatus = document.createElement('div');
     datacenterStatus.classList.add('status');
-  
-    switch(datacenter.dc_status) {
-      case 0:
-        datacenterStatus.classList.add('offline');
-        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_OFFLINE');
-      break;
-      case 1:
-        datacenterStatus.classList.add('online');
+    datacenterStatus.classList.toggle('loading', status.status != 'pong');
+    datacenterStatus.classList.toggle('online', status.status == 'pong');
+
+    switch (status.status) {
+      case 'creating_keys':
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_CREATINGKEYS');
+        break;
+      case 'exchanging_encryption_keys':
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_EXCHANGINGKEYS');
+        break;
+      case 'connecting':
+        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_CONNECTING');
+        break;
+      case 'pong':
         datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_ONLINE');
-      break;
-      case 2:
-        datacenterStatus.classList.add('slow');
-        datacenterStatus.textContent = translations.getStringRef('DCSTATUS_SERVER_STATUS_SLOW');
-      break;
+
+        if (smallState == 1) {
+          datacenterStatus.textContent += ' (' + status.ping + 'ms)';
+        } else if (smallState == 2) {
+          datacenterStatus.textContent = status.ping + 'ms';
+        } else {
+          datacenterStatus.textContent += ', Ping: ' + status.ping + 'ms';
+        }
+
+        break;
     }
-  
-    if (smallState == 1) {
-      datacenterStatus.textContent += ' ('+datacenter.ping+'ms)';
-    } else if(smallState == 2) {
-      if (datacenter.dc_status == 1) {
-        datacenterStatus.textContent = datacenter.ping+'ms';
-      }
-    } else if (datacenter.dc_status != 0) {
-      datacenterStatus.textContent += ', Ping: '+datacenter.ping+'ms';
-    }
-  
+
     return datacenterStatus;
   }
 
@@ -512,7 +530,7 @@ class DCStatus {
       suggestionsTitle.textContent = translations.getStringRef('DCSTATUS_IDENTIFY_RAPID');
       suggestions.appendChild(suggestionsTitle);
 
-      for(const result of prefixesSuggestions) {
+      for (const result of prefixesSuggestions) {
         const suggestionPrefix = document.createElement('span');
         suggestionPrefix.textContent = '+' + result[0];
         const suggestionContainer = document.createElement('div');
@@ -540,13 +558,13 @@ class DCStatus {
   #getPrefixesSuggestions() {
     const findCorrectRes = (prefix) => DC_DESC.some((x) => x[0] == prefix) && DC_DESC.filter((x) => x[0] == prefix)[0];
     let mainLanguageSuggestion;
-  
+
     if (typeof window.navigator.languages != 'undefined') {
       firstLanguageFor:
-      for(let language of window.navigator.languages) {
+      for (let language of window.navigator.languages) {
         language = language.toLowerCase();
-        
-        for(const desc of DC_DESC) {
+
+        for (const desc of DC_DESC) {
           if (desc[2].toLowerCase() == language) {
             mainLanguageSuggestion = desc;
             break firstLanguageFor;
@@ -554,7 +572,7 @@ class DCStatus {
         }
       }
     }
-  
+
     return [
       mainLanguageSuggestion,
       findCorrectRes(1),
@@ -568,7 +586,7 @@ class DCStatus {
   #initIdentifySelector() {
     let newPrefixSelector = [];
 
-    for(const dc of DC_DESC) {
+    for (const dc of DC_DESC) {
       const isValidSugg = DC_ASSOC.some((x) => x.includes(dc[0]));
       if (isValidSugg) {
         newPrefixSelector.push({
@@ -618,7 +636,7 @@ class DCStatus {
 
       this.#identifyCardContainer.textContent = '';
       const container = this.#identifyCardContainer;
-      
+
       const prefixContainer = document.createElement('div');
       prefixContainer.classList.add('prefix');
       prefixContainer.textContent = '+' + prefix;
@@ -638,7 +656,7 @@ class DCStatus {
       datacentersContainer.classList.add('dc-recap');
       container.appendChild(datacentersContainer);
 
-      for(const datacenter of datacenters) {
+      for (const datacenter of datacenters) {
         const datacenterBackground = document.createElement('div');
         datacenterBackground.classList.add('background');
         const datacenterIcon = document.createElement('img');
@@ -685,7 +703,7 @@ class DCStatus {
       }
 
       let spoilerId = 0;
-      for(const value of ' ' + datacenterDataFormat[3]) {
+      for (const value of ' ' + datacenterDataFormat[3]) {
         if (value == ' ') {
           const spacer = document.createElement('div');
           spacer.classList.add('spacer');
@@ -752,17 +770,17 @@ class DCStatus {
   }
 
   #clearUnavailableSlots() {
-    for(const [id, slot] of this.#availableSlots.entries()) {
+    for (const [id, slot] of this.#availableSlots.entries()) {
       let availableInDom = true;
 
       if (!slot.dc_id && slot.callback) {
         availableInDom = false;
       } else if (slot.slots.status && !document.body.contains(slot.slots.status)) {
         availableInDom = false;
-      } else if(slot.slots.expandableContainer && !document.body.contains(slot.slots.expandableContainer)) {
+      } else if (slot.slots.expandableContainer && !document.body.contains(slot.slots.expandableContainer)) {
         availableInDom = false;
       }
-      
+
       if (!availableInDom) {
         this.#availableSlots[id] = undefined;
       }
@@ -776,7 +794,7 @@ class DCStatus {
     this.#availableSlots.push({
       callback: (data) => {
         this.#clearUnavailableSlots();
-        
+
         let finalFile = '/assets/images/dcexpbase.png';
         if (data.some((x) => x.dc_status == 0)) {
           finalFile = '/assets/images/dcexpbase_downtime.png';
@@ -794,7 +812,7 @@ class DCStatus {
           const context = canvas.getContext('2d');
           context.drawImage(bgImage, 0, 0);
 
-          for(const datacenter of data) {
+          for (const datacenter of data) {
             this.#drawDcStateOnCanvas(context, datacenter);
           }
 
@@ -804,7 +822,7 @@ class DCStatus {
           context.textAlign = 'left';
           context.textBaseline = 'top';
           context.fillStyle = "rgb(255, 255, 255)";
-          
+
           if (mostRecentDowntime && mostRecentDowntime > 0) {
             context.font = '60px Rubik';
             context.fillText(utils.formatDate(mostRecentDowntime, 'dd/mm'), 1082, 901.2);
@@ -813,7 +831,7 @@ class DCStatus {
           } else {
             context.fillText("Unknown", 1082, 901.2);
           }
-          
+
           if (mostRecentLagtime && mostRecentLagtime > 0) {
             context.font = '60px Rubik';
             context.fillText(utils.formatDate(mostRecentLagtime, 'dd/mm'), 1508.5, 901.2);
@@ -857,19 +875,19 @@ class DCStatus {
     );
 
     let statusText, accentColor;
-    switch(datacenter.dc_status) {
+    switch (datacenter.dc_status) {
       case 0:
         accentColor = [194, 98, 102];
         statusText = 'OFFLINE';
-      break;
+        break;
       case 1:
         accentColor = [105, 184, 114];
         statusText = 'ONLINE';
-      break;
+        break;
       case 2:
         accentColor = [224, 189, 37];
         statusText = 'SLOW';
-      break;
+        break;
       default:
         return;
     }
@@ -892,7 +910,7 @@ class DCStatus {
     context.font = '20px Rubik';
     context.fillStyle = "rgb(255, 255, 255)";
     context.fillText(
-      datacenter.ping+'ms',
+      datacenter.ping + 'ms',
       drawState.x + this.#CANVAS_CONTAINERWIDTH - 60,
       this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT,
     );
