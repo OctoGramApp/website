@@ -25,7 +25,25 @@ class MTProtoHelper {
     }
   }
 
-  registerDatacenterConnection(dcId, callbackState) {
+  registerDatacenterPing(dcId, callbackState) {
+    dcId = String(dcId);
+    this.initialize().then(() => {
+      this.#registerDatacenterConnection(dcId, callbackState).then(() => {
+        const startTime = performance.now();
+        this.#cachedClients[dcId].api.ping({
+          ping_id: window.MTKruto.getRandomId(),
+        }).then(() => {
+          const endTime = performance.now();
+          callbackState({
+            status: 'pong',
+            ping: endTime - startTime,
+          });
+        });
+      });
+    });
+  }
+
+  #registerDatacenterConnection(dcId, callbackState) {
     return new Promise((resolve) => {
       this.initialize().then(() => {
         if (typeof this.#cachedClients[dcId] != 'undefined') {
@@ -42,7 +60,7 @@ class MTProtoHelper {
           } else {
             authKeyPromise = new Promise((resolve) => {
               callbackState({ status: 'creating_keys' });
-              const clientPlain = new window.MTKruto.ClientPlain({ initialDc: String(dcId) });
+              const clientPlain = new window.MTKruto.ClientPlain({ initialDc: dcId });
               clientPlain.connect().then(() => {
                 callbackState({ status: 'exchanging_encryption_keys' });
                 clientPlain.createAuthKey().then((currentClientAuthKey) => {
@@ -56,7 +74,7 @@ class MTProtoHelper {
 
           authKeyPromise.then(() => {
             const writer = new window.MTKruto.TLWriter();
-            writer.writeString(String(dcId));
+            writer.writeString(dcId);
             writer.writeBytes(authKey);
             writer.writeInt32(0);
             writer.write(new Uint8Array([0]));
@@ -64,8 +82,11 @@ class MTProtoHelper {
 
             callbackState({ status: 'connecting' });
             const authString = window.MTKruto.base64EncodeUrlSafe(window.MTKruto.rleEncode(writer.buffer));
-            this.#cachedClients[dcId] = new window.MTKruto.Client(new window.MTKruto.StorageMemory(authString));
+            this.#cachedClients[dcId] = new window.MTKruto.Client({
+              storage: new window.MTKruto.StorageMemory(authString)
+            });
             this.#clientConnectionsPromises[dcId] = new Promise((resolveDict) => {
+              this.#cachedClients[dcId].setDc(dcId);
               this.#cachedClients[dcId].connect().then(() => {
                 resolveDict();
                 resolve();
@@ -79,23 +100,6 @@ class MTProtoHelper {
 
   #composeAuthKeyStorage(dcId) {
     return `octogram.mtproto.authKey.${dcId}`;
-  }
-
-  registerDatacenterPing(dcId, callbackState) {
-    this.initialize().then(() => {
-      this.registerDatacenterConnection(dcId, callbackState).then(() => {
-        const startTime = Date.now();
-        this.#cachedClients[dcId].api.ping({
-          ping_id: window.MTKruto.getRandomId(),
-        }).then(() => {
-          const endTime = Date.now();
-          callbackState({
-            status: 'pong',
-            ping: endTime - startTime,
-          });
-        });
-      });
-    });
   }
 }
 
