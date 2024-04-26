@@ -29,11 +29,11 @@ class MTProtoHelper {
     dcId = String(dcId);
     this.initialize().then(() => {
       this.#registerDatacenterConnection(dcId, callbackState).then(() => {
-        const startTime = performance.now();
+        const startTime = Date.now();
         this.#cachedClients[dcId].api.ping({
           ping_id: window.MTKruto.getRandomId(),
         }).then(() => {
-          const endTime = performance.now();
+          const endTime = Date.now();
           callbackState({
             status: 'pong',
             ping: endTime - startTime,
