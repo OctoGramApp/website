@@ -32,6 +32,7 @@ class DCStatus {
   #DATACENTER_COUNT = 5;
   #currentTimeout;
   #currentInterval;
+  #lastBackendLoadTime;
   #isLoading = false;
   #availableSlots = [];
 
@@ -415,41 +416,46 @@ class DCStatus {
       }
     });
 
-    requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
-      const parsedContent = JSON.parse(response);
+    if (typeof this.#lastBackendLoadTime == 'undefined' || (Date.now() - this.#lastBackendLoadTime) > 30000) {
+      this.#lastBackendLoadTime = Date.now();
+      requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
+        const parsedContent = JSON.parse(response);
 
-      if (typeof parsedContent.status != 'undefined') {
-        this.#isLoading = false;
+        if (typeof parsedContent.status != 'undefined') {
+          this.#isLoading = false;
 
-        // handle slots with callback
-        for(const slot of this.#availableSlots) {
-          if (!slot.dc_id && slot.callback) {
-            slot.callback(parsedContent.status);
-          }
-        }
-
-        for(const datacenter of parsedContent.status) {
-          for(const [i, slot] of this.#availableSlots.entries()) {
-            if (slot.dc_id == datacenter.dc_id) {
-              if (slot.slots.expandableContainer) {
-                const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
-                  datacenter,
-                  datacenterId: datacenter.dc_id
-                });
-                slot.slots.expandableContainer.replaceWith(expandableContainer);
-                this.#availableSlots[i].slots.expandableContainer = expandableContainer;
-
-                if (slot.row) {
-                  slot.row.style.setProperty('--items', visibleItems);
-                }
-              }
+          // handle slots with callback
+          for(const slot of this.#availableSlots) {
+            if (!slot.dc_id && slot.callback) {
+              slot.callback(parsedContent.status);
             }
           }
 
-          this.#initProgressLoading();
+          for(const datacenter of parsedContent.status) {
+            for(const [i, slot] of this.#availableSlots.entries()) {
+              if (slot.dc_id == datacenter.dc_id) {
+                if (slot.slots.expandableContainer) {
+                  const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
+                    datacenter,
+                    datacenterId: datacenter.dc_id
+                  });
+                  slot.slots.expandableContainer.replaceWith(expandableContainer);
+                  this.#availableSlots[i].slots.expandableContainer = expandableContainer;
+
+                  if (slot.row) {
+                    slot.row.style.setProperty('--items', visibleItems);
+                  }
+                }
+              }
+            }
+
+            this.#initProgressLoading();
+          }
         }
-      }
-    });
+      });
+    } else {
+      this.#initProgressLoading();
+    }
   }
 
   #composeStatus(status, smallState = 0) {
