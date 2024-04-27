@@ -319,6 +319,12 @@ body > .page > .card .content .datacenters .datacenter .icon .background {
   background: var(--primary);
   position: absolute;
   z-index: 1;
+  clip-path: circle(0%);
+  transition: 0.4s clip-path;
+}
+
+body > .page > .card .content .datacenters .datacenter .icon:not(.is-loading) .background {
+  clip-path: circle(100%);
 }
 
 body > .page > .card .content .datacenters .datacenter .icon img {
@@ -328,6 +334,50 @@ body > .page > .card .content .datacenters .datacenter .icon img {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 1;
+  transition: 0.4s filter, 0.4s transform;
+}
+
+body > .page > .card .content .datacenters .datacenter .icon.is-loading img {
+  filter: invert(1);
+  transform: translateX(-50%) translateY(-50%) scale(0.7);
+  animation: 1s showImgAnimationState infinite forwards;
+}
+
+@keyframes showImgAnimationState {
+  from {
+    opacity: 30%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  to {
+    opacity: 30%;
+  }
+}
+
+body > .page > .card .content .datacenters .datacenter .icon svg {
+  animation: 1s rotateSvg infinite linear;
+}
+
+body > .page > .card .content .datacenters .datacenter .icon:not(.is-loading) svg {
+  animation-play-state: paused;
+}
+
+@keyframes rotateSvg {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body > .page > .card .content .datacenters .datacenter .icon svg circle {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3px;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 49;
 }
 
 body > .page > .card .content .datacenters .datacenter .description {

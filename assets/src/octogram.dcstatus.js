@@ -164,10 +164,22 @@ class DCStatus {
       datacenterBackground.classList.add('background');
       const datacenterIcon = document.createElement('img');
       datacenterIcon.src = 'assets/icons/datacenters/dc' + String(i) + '.svg';
+      
+      const circleItem = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circleItem.setAttributeNS(null, 'cx', '50%');
+      circleItem.setAttributeNS(null, 'cy', '50%');
+      circleItem.setAttributeNS(null, 'r', '22');
+      circleItem.setAttributeNS(null, 'fill', 'none');
+      const loaderSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      loaderSvg.setAttributeNS(null, 'width', '50');
+      loaderSvg.setAttributeNS(null, 'height', '50');
+      loaderSvg.appendChild(circleItem);
+
       const datacenterIconContainer = document.createElement('div');
-      datacenterIconContainer.classList.add('icon');
+      datacenterIconContainer.classList.add('icon', 'is-loading');
       datacenterIconContainer.appendChild(datacenterBackground);
       datacenterIconContainer.appendChild(datacenterIcon);
+      datacenterIconContainer.appendChild(loaderSvg);
 
       const datacenterName = document.createElement('div');
       datacenterName.classList.add('name');
@@ -216,6 +228,7 @@ class DCStatus {
         slots: {
           status: datacenterStatus,
           expandableContainer,
+          iconContainer: datacenterIconContainer,
         }
       });
     }
@@ -392,13 +405,17 @@ class DCStatus {
                 slot.slots.status.replaceWith(newStatus);
                 this.#availableSlots[j].slots.status = newStatus;
               }
+
+              if (slot.slots.iconContainer) {
+                slot.slots.iconContainer.classList.toggle('is-loading', state.status != 'pong');
+              }
             }
           }
         });
       }
     });
 
-    /*requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
+    requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
       const parsedContent = JSON.parse(response);
 
       if (typeof parsedContent.status != 'undefined') {
@@ -414,12 +431,6 @@ class DCStatus {
         for(const datacenter of parsedContent.status) {
           for(const [i, slot] of this.#availableSlots.entries()) {
             if (slot.dc_id == datacenter.dc_id) {
-              if (slot.slots.status) {
-                const newStatus = this.#composeStatus(datacenter, slot.smallStatusState);
-                slot.slots.status.replaceWith(newStatus);
-                this.#availableSlots[i].slots.status = newStatus;
-              }
-
               if (slot.slots.expandableContainer) {
                 const { expandableContainer, visibleItems } = this.#generateExpandableContainer({
                   datacenter,
@@ -438,7 +449,7 @@ class DCStatus {
           this.#initProgressLoading();
         }
       }
-    });*/
+    });
   }
 
   #composeStatus(status, smallState = 0) {
