@@ -396,8 +396,6 @@ class DCStatus {
   }
 
   #initLoading(forceReloadBackend = false) {
-    this.#isLoading = true;
-
     mtProtoHelper.initialize().then(() => {
       for(let i = 1; i <= this.#DATACENTER_IPS.length; i++) {
         mtProtoHelper.registerDatacenterPing(String(i), (state) => {
@@ -419,6 +417,7 @@ class DCStatus {
     });
 
     if (forceReloadBackend || typeof this.#lastBackendLoadTime == 'undefined' || (Date.now() - this.#lastBackendLoadTime) > 30000) {
+      this.#isLoading = true;
       this.#lastBackendLoadTime = Date.now();
       requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
         const parsedContent = JSON.parse(response);
