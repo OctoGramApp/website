@@ -379,7 +379,7 @@ class DCStatus {
     this.#secondsIndicator.textContent = '5';
   }
 
-  #executeForceReload() {
+  #executeForceReload(forceReloadBackend = false) {
     this.#cardDescription.classList.remove('definite');
     this.#cardDescription.style.setProperty('--percent', 100);
 
@@ -389,11 +389,11 @@ class DCStatus {
 
     this.#currentTimeout = setTimeout(() => {
       clearTimeout(this.#currentTimeout);
-      this.#initLoading();
+      this.#initLoading(forceReloadBackend);
     }, 300);
   }
 
-  #initLoading() {
+  #initLoading(forceReloadBackend = false) {
     this.#isLoading = true;
 
     mtProtoHelper.initialize().then(() => {
@@ -416,7 +416,7 @@ class DCStatus {
       }
     });
 
-    if (typeof this.#lastBackendLoadTime == 'undefined' || (Date.now() - this.#lastBackendLoadTime) > 30000) {
+    if (forceReloadBackend || typeof this.#lastBackendLoadTime == 'undefined' || (Date.now() - this.#lastBackendLoadTime) > 30000) {
       this.#lastBackendLoadTime = Date.now();
       requestsManager.initRequest('DCStatus/dc_status.json').then((response) => {
         const parsedContent = JSON.parse(response);
@@ -461,7 +461,8 @@ class DCStatus {
   #composeStatus(status, smallState = 0) {
     const datacenterStatus = document.createElement('div');
     datacenterStatus.classList.add('status');
-    datacenterStatus.classList.toggle('loading', status.status != 'pong');
+    datacenterStatus.classList.toggle('loading', status.status != 'pong' && status.status != 'offline');
+    datacenterStatus.classList.toggle('offline', status.status == 'offline');
     datacenterStatus.classList.toggle('online', status.status == 'pong');
 
     switch (status.status) {
@@ -485,6 +486,9 @@ class DCStatus {
           datacenterStatus.textContent += ', Ping: ' + status.ping + 'ms';
         }
 
+        break;
+      case 'offline':
+        datacenterStatus.textContent = 'Offline';
         break;
     }
 
@@ -808,6 +812,8 @@ class DCStatus {
   }
 
   #generateExportImage() {
+    alert(translations.getStringRef('DCSTATUS_EXPORT_ALERT'));
+
     this.#availableSlots.push({
       callback: (data) => {
         this.#clearUnavailableSlots();
@@ -871,7 +877,7 @@ class DCStatus {
       }
     });
 
-    this.#executeForceReload();
+    this.#executeForceReload(true);
   }
 
   #drawDcStateOnCanvas(context, datacenter) {
@@ -922,15 +928,17 @@ class DCStatus {
       this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT / 2,
     );
 
-    context.textAlign = 'right';
-    context.textBaseline = 'middle';
-    context.font = '20px Rubik';
-    context.fillStyle = "rgb(255, 255, 255)";
-    context.fillText(
-      datacenter.ping + 'ms',
-      drawState.x + this.#CANVAS_CONTAINERWIDTH - 60,
-      this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT,
-    );
+    if (datacenter.dc_status == 1) {
+      context.textAlign = 'right';
+      context.textBaseline = 'middle';
+      context.font = '20px Rubik';
+      context.fillStyle = "rgb(255, 255, 255)";
+      context.fillText(
+        datacenter.ping + 'ms',
+        drawState.x + this.#CANVAS_CONTAINERWIDTH - 60,
+        this.#CANVAS_BADGEY + this.#CANVAS_BADGEHEIGHT,
+      );
+    }
   }
 
   #drawPathOnContext(context, x, y, width, height, borderRadius) {

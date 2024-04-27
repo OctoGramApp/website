@@ -411,6 +411,10 @@ body > .page > .card .content .datacenters .datacenter .description .status.load
   color: rgba(255, 255, 255, 0.5);
 }
 
+body > .page > .card .content .datacenters .datacenter .description .status.offline {
+  color: #c26266;
+}
+
 body > .page > .card .content .datacenters .datacenter .expand {
   filter: invert(1);
   opacity: 0.8;

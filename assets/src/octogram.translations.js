@@ -82,6 +82,7 @@ class Translations {
     DCSTATUS_IDENTIFY_RAPID: 'Rapid suggestions',
     DCSTATUS_EXPORT: 'Export this status',
     DCSTATUS_EXPORT_BUTTON: 'Download file',
+    DCSTATUS_EXPORT_ALERT: 'Data that are part of the export are subject to caching. The downloaded image may have different values than what is shown here.',
     DCSTATUS_EXPORT_ERROR: 'An internal error occurred. Try reloading the page.',
     
     CHANGELOG_TITLE: 'All latest beta and stable client versions.',

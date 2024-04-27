@@ -3,6 +3,7 @@ class MTProtoHelper {
   #initializingPromise;
   #cachedClients = {};
   #clientConnectionsPromises = {};
+  #offlineClientTiming = {};
 
   initialize() {
     if (this.#initialized) {
@@ -25,25 +26,49 @@ class MTProtoHelper {
     }
   }
 
-  registerDatacenterPing(dcId, callbackState) {
+  registerDatacenterPing(dcId, callbackState, forceReloadAuthKeyTries = 0) {
     dcId = String(dcId);
     this.initialize().then(() => {
-      this.#registerDatacenterConnection(dcId, callbackState).then(() => {
+      if (this.#offlineClientTiming[dcId] && Date.now() - this.#offlineClientTiming[dcId] < 30000) {
+        callbackState({
+          status: 'offline'
+        });
+        // re-check offline datacenters every 30s
+        return;
+      }
+      
+      this.#registerDatacenterConnection(dcId, callbackState, forceReloadAuthKeyTries > 0).then(() => {
         const startTime = Date.now();
         this.#cachedClients[dcId].api.ping({
           ping_id: window.MTKruto.getRandomId(),
         }).then(() => {
           const endTime = Date.now();
+          return;
           callbackState({
             status: 'pong',
             ping: endTime - startTime,
           });
+        }).catch((e) => {
+          console.log(e);
+
+          if (e instanceof window.MTKruto.ConnectionError) {
+            forceReloadAuthKeyTries++;
+            
+            if (forceReloadAuthKeyTries > 5) {
+              this.#offlineClientTiming[dcId] = Date.now();
+              callbackState({
+                status: 'offline'
+              });
+            } else {
+              this.registerDatacenterPing(dcId, callbackState, forceReloadAuthKeyTries);
+            }
+          }
         });
       });
     });
   }
 
-  #registerDatacenterConnection(dcId, callbackState) {
+  #registerDatacenterConnection(dcId, callbackState, forceReloadAuthKey = false) {
     return new Promise((resolve) => {
       this.initialize().then(() => {
         if (typeof this.#cachedClients[dcId] != 'undefined') {
@@ -55,7 +80,7 @@ class MTProtoHelper {
         } else {
           let authKey = localStorage.getItem(this.#composeAuthKeyStorage(dcId));
           let authKeyPromise = Promise.resolve();
-          if (authKey) {
+          if (authKey && !forceReloadAuthKey) {
             authKey = new TextEncoder().encode(authKey);
           } else {
             authKeyPromise = new Promise((resolve) => {
