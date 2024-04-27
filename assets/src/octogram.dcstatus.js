@@ -75,6 +75,8 @@ class DCStatus {
     if (typeof this.#currentInterval != 'undefined') {
       clearInterval(this.#currentInterval);
     }
+
+    mtProtoHelper.killDatacenterConnection();
   }
 
   #generatePointer() {

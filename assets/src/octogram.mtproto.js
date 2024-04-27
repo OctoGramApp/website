@@ -43,13 +43,12 @@ class MTProtoHelper {
           ping_id: window.MTKruto.getRandomId(),
         }).then(() => {
           const endTime = Date.now();
-          return;
           callbackState({
             status: 'pong',
             ping: endTime - startTime,
           });
         }).catch((e) => {
-          console.log(e);
+          console.error(e);
 
           if (e instanceof window.MTKruto.ConnectionError) {
             forceReloadAuthKeyTries++;
@@ -66,6 +65,19 @@ class MTProtoHelper {
         });
       });
     });
+  }
+
+  killDatacenterConnection() {
+    for (const [id, connection] of Object.entries(this.#cachedClients)) {
+      connection.disconnect().then(() => {
+        console.log('Disconnected from', id);
+      }).catch((e) => {
+        console.error('While disconnecting from', id, e);
+      });
+    }
+
+    this.#cachedClients = {};
+    this.#clientConnectionsPromises = {};
   }
 
   #registerDatacenterConnection(dcId, callbackState, forceReloadAuthKey = false) {
