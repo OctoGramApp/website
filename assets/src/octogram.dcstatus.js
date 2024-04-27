@@ -184,8 +184,9 @@ class DCStatus {
       const datacenterName = document.createElement('div');
       datacenterName.classList.add('name');
       datacenterName.textContent = this.#DATACENTER_NAMES[i - 1];
-      const datacenterStatus = document.createElement('span');
-      datacenterStatus.textContent = 'Loading';
+      const datacenterStatus = this.#composeStatus({
+        status: 'connecting',
+      }, false);
       const datacenterDescription = document.createElement('div');
       datacenterDescription.classList.add('description');
       datacenterDescription.appendChild(datacenterName);
@@ -354,13 +355,13 @@ class DCStatus {
       }, { once: true });
     }
 
-    let currentLeftSeconds = 31;
+    let currentLeftSeconds = 6;
 
     const updateState = () => {
       currentLeftSeconds--;
 
       if (currentLeftSeconds > 0) {
-        const percent = (100 * currentLeftSeconds) / 30;
+        const percent = (100 * currentLeftSeconds) / 5;
         this.#cardDescription.style.setProperty('--percent', percent);
         this.#secondsIndicator.textContent = currentLeftSeconds.toString();
       } else {
@@ -374,7 +375,7 @@ class DCStatus {
     }
 
     this.#currentInterval = setInterval(updateState, 1000);
-    this.#secondsIndicator.textContent = '30';
+    this.#secondsIndicator.textContent = '5';
   }
 
   #executeForceReload() {
@@ -397,7 +398,6 @@ class DCStatus {
     mtProtoHelper.initialize().then(() => {
       for(let i = 1; i <= this.#DATACENTER_IPS.length; i++) {
         mtProtoHelper.registerDatacenterPing(String(i), (state) => {
-          console.log(state);
           for (const [j, slot] of this.#availableSlots.entries()) {
             if (slot.dc_id == i) {
               if (slot.slots.status) {

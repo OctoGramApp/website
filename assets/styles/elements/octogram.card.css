@@ -408,12 +408,8 @@ body > .page > .card .content .datacenters .datacenter .description .status.onli
 }
 
 body > .page > .card .content .datacenters .datacenter .description .status.loading {
-  color: #e0bd25;
+  color: rgba(255, 255, 255, 0.5);
 }
-
-/*body > .page > .card .content .datacenters .datacenter .description .status.offline {
-  color: #c26266;
-}*/
 
 body > .page > .card .content .datacenters .datacenter .expand {
   filter: invert(1);
