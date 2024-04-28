@@ -1,12 +1,24 @@
+import {
+  composeUrlBeta, isAndroid
+} from "./octogram.utils.js";
+import * as translations from "./octogram.translations.js";
+import * as parallaxHelper from "./octogram.parallax.js";
+import * as changelog from "./octogram.changelog.js";
+import * as dcStatus from "./octogram.dcstatus.js";
+import * as privacyPolicy from "./octogram.privacy.js";
+import * as monet from "./octogram.monet.js";
+import * as homePage from "./octogram.home.js";
+import * as errorPage from "./octogram.errorpage.js";
+
 window.addEventListener('load', () => {
   const REDIRECT_URIS = [
     {
       paths: ['/appcenter_beta', '/appcenter-beta', '/acbeta', '/beta'],
-      url: utils.composeUrlBeta('octogram-beta')
+      url: composeUrlBeta('octogram-beta')
     },
     {
       paths: ['/appcenter_stable', '/appcenter-stable', '/ac', '/acstable', '/stable'],
-      url: utils.composeUrlBeta('octogram')
+      url: composeUrlBeta('octogram')
     },
     {
       paths: ['/apkpure'],
@@ -26,7 +38,7 @@ window.addEventListener('load', () => {
     },
   ];
 
-  document.body.classList.toggle('disable-blur', utils.isAndroid());
+  document.body.classList.toggle('disable-blur', isAndroid());
 
   const splashScreen = document.querySelector('body > .splash');
   const isRedirect = REDIRECT_URIS.some((x) => x.paths.includes(window.location.pathname));
@@ -46,7 +58,7 @@ window.addEventListener('load', () => {
 
   const splashScreenPromise = new Promise((resolve) => {
     splashScreen.addEventListener('animationend', (e) => {
-      if (typeof bottomText != 'undefined' && bottomText == e.target) {
+      if (typeof bottomText != 'undefined' && bottomText === e.target) {
         return;
       }
       

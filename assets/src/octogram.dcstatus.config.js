@@ -1422,3 +1422,26 @@ const DC_DESC = [
     "XX XXX XXXX"
   ]
 ];
+
+const DATACENTER_NAMES = [
+  'DC1 - MIA, Miami FL, USA',
+  'DC2 - AMS, Amsterdam, NL',
+  'DC3 - MIA, Miami FL, USA',
+  'DC4 - AMS, Amsterdam, NL',
+  'DC5 - SIN, Singapore, SG'
+];
+
+const DATACENTER_IPS = [
+  '149.154.175.50',
+  '149.154.167.50',
+  '149.154.175.100',
+  '149.154.167.91',
+  '91.108.56.100'
+];
+
+export {
+  DC_ASSOC,
+  DC_DESC,
+  DATACENTER_NAMES,
+  DATACENTER_IPS
+};
