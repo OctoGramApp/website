@@ -115,20 +115,20 @@ function registerDatacenterConnection(forceReloadAuthKey = false, currentAuthKey
 
 addEventListener('message', (e) => {
     if (typeof e.data == 'object') {
-        if (typeof e.data["intent"] != 'string' || e.data['intent'] !== 'ping') {
+        if (typeof e.data['intent'] != 'string' || e.data['intent'] !== 'ping') {
             return;
         }
 
-        if (typeof e.data["dcId"] != 'string') {
+        if (typeof e.data['dcId'] != 'string') {
             return;
         }
 
-        if (typeof e.data["authKey"] != 'undefined' && !(e.data["authKey"] instanceof Uint8Array)) {
+        if (typeof e.data['authKey'] != 'undefined' && !(e.data['authKey'] instanceof Uint8Array)) {
             return;
         }
 
-        dcId = e.data["dcId"];
-        registerDatacenterPing(0, e.data["authKey"]);
+        dcId = e.data['dcId'];
+        registerDatacenterPing(0, e.data['authKey']);
     } else if (typeof e.data == 'string' && e.data === 'kill') {
         killDatacenterConnection();
         postMessage({
