@@ -82,7 +82,6 @@ function registerDatacenterConnection(forceReloadAuthKey = false, currentAuthKey
                                 intent: 'save_auth_key',
                                 authKey: authKey
                             });
-                            //localStorage.setItem(composeAuthKeyStorage(dcId), new TextDecoder().decode(authKey));
                             clientPlain.disconnect().then(() => resolve());
                         });
                     });
@@ -128,7 +127,7 @@ addEventListener('message', (e) => {
             return;
         }
 
-        dcId = e.data["dcid"];
+        dcId = e.data["dcId"];
         registerDatacenterPing(0, e.data["authKey"]);
     } else if (typeof e.data == 'string' && e.data === 'kill') {
         killDatacenterConnection();
