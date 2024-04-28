@@ -388,25 +388,23 @@ function executeForceReload(forceReloadBackend = false) {
 }
 
 function initLoading(forceReloadBackend = false) {
-  mtProtoHelper.initialize().then(() => {
-    for(let i = 1; i <= config.DATACENTER_IPS.length; i++) {
-      mtProtoHelper.registerDatacenterPing(String(i), (state) => {
-        for (const [j, slot] of availableSlots.entries()) {
-          if (slot.dc_id === i) {
-            if (slot.slots.status) {
-              const newStatus = composeStatus(state, slot.smallStatusState);
-              slot.slots.status.replaceWith(newStatus);
-              availableSlots[j].slots.status = newStatus;
-            }
+  for(let i = 1; i <= config.DATACENTER_IPS.length; i++) {
+    mtProtoHelper.registerDatacenterPing(String(i), (state) => {
+      for (const [j, slot] of availableSlots.entries()) {
+        if (slot.dc_id === i) {
+          if (slot.slots.status) {
+            const newStatus = composeStatus(state, slot.smallStatusState);
+            slot.slots.status.replaceWith(newStatus);
+            availableSlots[j].slots.status = newStatus;
+          }
 
-            if (slot.slots.iconContainer) {
-              slot.slots.iconContainer.classList.toggle('is-loading', state.status !== 'pong');
-            }
+          if (slot.slots.iconContainer) {
+            slot.slots.iconContainer.classList.toggle('is-loading', state.status !== 'pong');
           }
         }
-      });
-    }
-  });
+      }
+    });
+  }
 
   if (forceReloadBackend || typeof lastBackendLoadTime == 'undefined' || (Date.now() - lastBackendLoadTime) > 30000) {
     isLoading = true;
