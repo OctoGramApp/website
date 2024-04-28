@@ -1,5 +1,6 @@
 import {
-  composeUrlBeta, isAndroid
+  composeUrlBeta,
+  isAndroid
 } from "./octogram.utils.js";
 import * as translations from "./octogram.translations.js";
 import * as parallaxHelper from "./octogram.parallax.js";

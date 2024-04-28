@@ -1,4 +1,11 @@
-import * as utils from "./octogram.utils.js";
+import {
+  calculateSize,
+  clearPage,
+  fixInjectionTags,
+  parseApkName,
+  parseCustomSelectMenu,
+  tryToGetValidVersion
+} from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
@@ -9,7 +16,7 @@ const id = 'changelog';
 let precachedResponse;
 
 function init() {
-  utils.clearPage(id);
+  clearPage(id);
   window.scrollTo(0, 0);
   document.title = 'OctoGram - ' + getStringRef('CHANGELOG_TITLE_PAGE');
   history.pushState(null, document.title, '/changelog');
@@ -123,13 +130,13 @@ function loadWithResponse(replaceTo, response) {
       downloadsCount += asset['download_count'];
       availableOptions.push({
         id: asset['id'],
-        title: utils.parseApkName(asset['name']),
-        description: utils.calculateSize(asset['size'], false)
+        title: parseApkName(asset['name']),
+        description: calculateSize(asset['size'], false)
       });
       assetsNames.push(asset['name']);
     }
 
-    const validVersion = utils.tryToGetValidVersion(assetsNames);
+    const validVersion = tryToGetValidVersion(assetsNames);
     let selectMenuDescription = '';
     if (typeof validVersion == 'string') {
       selectMenuDescription = getStringRef('CHANGELOG_DOWNLOAD_SUBTITLE_SUGGESTION', validVersion);
@@ -161,7 +168,7 @@ function loadWithResponse(replaceTo, response) {
     descriptor.appendChild(title);
     descriptor.appendChild(description);
 
-    let finalMessage = utils.fixInjectionTags(release['body']);
+    let finalMessage = fixInjectionTags(release['body']);
     finalMessage = finalMessage.replace('🐙', '<img alt="octoAnimation" src="/assets/animations/octoAnimation.gif">')
     const message = document.createElement('div');
     message.classList.add('message');
@@ -199,7 +206,7 @@ function loadWithResponse(replaceTo, response) {
     card.classList.add('card', 'changelog');
     card.appendChild(content);
 
-    utils.parseCustomSelectMenu({
+    parseCustomSelectMenu({
       element: select,
       availableOptions: availableOptions,
       description: selectMenuDescription,

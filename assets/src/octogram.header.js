@@ -1,8 +1,8 @@
 import * as homePage from "./octogram.home.js";
-import * as utils from "./octogram.utils.js";
 import * as dcStatus from "./octogram.dcstatus.js";
 import * as changelog from "./octogram.changelog.js";
 import {getStringRef} from "./octogram.translations.js";
+import {currentPageId} from "./octogram.utils";
 
 let lastHeaderElement;
 
@@ -48,7 +48,7 @@ function appendActions(actions) {
     text: getStringRef('HEADER_FEATURES'),
     isSecondary: true,
     onClick: () => {
-      if (utils.currentPageId !== homePage.id) {
+      if (currentPageId !== homePage.id) {
         homePage.init();
       }
       window.location.href = '#features';
@@ -58,7 +58,7 @@ function appendActions(actions) {
   actions.appendChild(createButton({
     text: getStringRef('HEADER_DOWNLOAD'),
     onClick: () => {
-      if (utils.currentPageId !== changelog.id) {
+      if (currentPageId !== changelog.id) {
         changelog.init();
       }
     }
@@ -68,7 +68,7 @@ function appendActions(actions) {
     text: getStringRef('HEADER_DC_STATUS'),
     isSecondary: true,
     onClick: () => {
-      if (utils.currentPageId !== dcStatus.id) {
+      if (currentPageId !== dcStatus.id) {
         dcStatus.init();
       }
     }

@@ -1,11 +1,11 @@
-import * as utils from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
 import {getStringRef, getTextNodeByStringRef} from "./octogram.translations.js";
+import {clearPage} from "./octogram.utils";
 
 function init() {
-  utils.clearPage('error');
+  clearPage('error');
   window.scrollTo(0, 0);
   document.title = 'OctoGram - 404';
 

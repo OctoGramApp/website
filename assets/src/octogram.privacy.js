@@ -1,4 +1,4 @@
-import * as utils from "./octogram.utils.js";
+import {clearPage, fixInjectionTags} from "./octogram.utils.js";
 import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
@@ -9,7 +9,7 @@ const id = 'privacyPolicy';
 let precachedResponse;
 
 function init() {
-  utils.clearPage(id);
+  clearPage(id);
   window.scrollTo(0, 0);
   document.title = 'OctoGram - ' + getStringRef('PRIVACYPOLICY_TITLE_PAGE');
   history.pushState(null, document.title, '/privacy');
@@ -124,7 +124,7 @@ function loadWithResponse(replaceTo, response) {
 
     const message = document.createElement('div');
     message.classList.add('message');
-    message.innerHTML = utils.fixInjectionTags(release.getElementsByTagName('body')[0].innerHTML);
+    message.innerHTML = fixInjectionTags(release.getElementsByTagName('body')[0].innerHTML);
     const body = document.createElement('div');
     body.classList.add('body');
     body.appendChild(message);

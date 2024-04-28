@@ -1,4 +1,3 @@
-import * as utils from "./octogram.utils.js";
 import * as footer from "./octogram.footer.js";
 import * as homePage from "./octogram.home.js";
 import * as header from "./octogram.header.js";
@@ -6,6 +5,7 @@ import * as mtProtoHelper from "./octogram.mtproto.js";
 import * as requestsManager from "./octogram.requests.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as config from "./octogram.dcstatus.config.js";
+import {clearPage, formatDate, getEmojiByIso2, parseCustomSelectMenu} from "./octogram.utils";
 
 const id = 'dcStatus';
 
@@ -36,7 +36,7 @@ let identifyCardContent;
 let identifyCardContainer;
 
 function init() {
-  utils.clearPage(id, () => destroy());
+  clearPage(id, () => destroy());
   window.scrollTo(0, 0);
   document.title = 'OctoGram - ' + getStringRef('DCSTATUS_TITLE_PAGE');
   history.pushState(null, document.title, '/dcstatus');
@@ -254,7 +254,7 @@ function generateExpandableContainer({
   lastLagContainerTitle.textContent = getStringRef('DCSTATUS_SERVER_LAST_LAG');
   const lastLagContainerContent = document.createElement('div');
   lastLagContainerContent.classList.add('text');
-  lastLagContainerContent.textContent = utils.formatDate(isFakeExpandable ? 0 : datacenter.last_lag);
+  lastLagContainerContent.textContent = formatDate(isFakeExpandable ? 0 : datacenter.last_lag);
   const lastLagContainer = document.createElement('div');
   lastLagContainer.classList.add('indicator');
   lastLagContainer.appendChild(lastLagContainerTitle);
@@ -266,7 +266,7 @@ function generateExpandableContainer({
   lastDownContainerTitle.textContent = getStringRef('DCSTATUS_SERVER_LAST_DOWNTIME');
   const lastDownContainerContent = document.createElement('div');
   lastDownContainerContent.classList.add('text');
-  lastDownContainerContent.textContent = utils.formatDate(isFakeExpandable ? 0 : datacenter.last_down);
+  lastDownContainerContent.textContent = formatDate(isFakeExpandable ? 0 : datacenter.last_down);
   const lastDownContainer = document.createElement('div');
   lastDownContainer.classList.add('indicator');
   lastDownContainer.appendChild(lastDownContainerTitle);
@@ -606,12 +606,12 @@ function initIdentifySelector() {
       newPrefixSelector.push({
         id: dc[0],
         title: dc[1],
-        description: '+' + dc[0] + ' ' + utils.getEmojiByIso2(dc[2])
+        description: '+' + dc[0] + ' ' + getEmojiByIso2(dc[2])
       });
     }
   }
 
-  utils.parseCustomSelectMenu({
+  parseCustomSelectMenu({
     element: identifyCardSelector,
     availableOptions: newPrefixSelector,
     replyWithoutWaiting: true,
@@ -841,18 +841,18 @@ function generateExportImage() {
 
         if (mostRecentDowntime && mostRecentDowntime > 0) {
           context.font = '60px Rubik';
-          context.fillText(utils.formatDate(mostRecentDowntime, 'dd/mm'), 1082, 901.2);
+          context.fillText(formatDate(mostRecentDowntime, 'dd/mm'), 1082, 901.2);
           context.font = '40px Rubik';
-          context.fillText(utils.formatDate(mostRecentDowntime, 'HH:ii'), 1082, 965.2);
+          context.fillText(formatDate(mostRecentDowntime, 'HH:ii'), 1082, 965.2);
         } else {
           context.fillText("Unknown", 1082, 901.2);
         }
 
         if (mostRecentLagtime && mostRecentLagtime > 0) {
           context.font = '60px Rubik';
-          context.fillText(utils.formatDate(mostRecentLagtime, 'dd/mm'), 1508.5, 901.2);
+          context.fillText(formatDate(mostRecentLagtime, 'dd/mm'), 1508.5, 901.2);
           context.font = '40px Rubik';
-          context.fillText(utils.formatDate(mostRecentLagtime, 'HH:ii'), 1508.5, 965.2);
+          context.fillText(formatDate(mostRecentLagtime, 'HH:ii'), 1508.5, 965.2);
         } else {
           context.fillText("Unknown", 1508.5, 901.2);
         }

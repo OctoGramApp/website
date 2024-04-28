@@ -1,4 +1,4 @@
-import * as header from "./octogram.header.js";
+import {reloadBlurState} from "./octogram.header.js";
 
 let parallaxListeners = [];
 let registeredEvent = false;
@@ -46,7 +46,7 @@ function handle() {
     } catch(e) {}
   }
 
-  header.reloadBlurState();
+  reloadBlurState();
 }
 
 function reloadItems({

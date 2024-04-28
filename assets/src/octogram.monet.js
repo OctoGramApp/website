@@ -1,14 +1,14 @@
-import * as utils from "./octogram.utils.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
 import * as parallaxHelper from "./octogram.parallax.js";
+import {clearPage} from "./octogram.utils";
 
 const id = 'monet';
 
 function init() {
-  utils.clearPage(id);
+  clearPage(id);
   window.scrollTo(0, 0);
   document.title = 'OctoGram - ' + getStringRef('MONET_TITLE_PAGE');
   history.pushState(null, document.title, '/monet');
