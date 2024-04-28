@@ -1,125 +1,73 @@
-import {
-  Client,
-  ClientPlain,
-  ConnectionError,
-  getRandomId,
-  StorageMemory,
-  TLWriter,
-  base64EncodeUrlSafe,
-  rleEncode,
-} from "../lib/mtkruto.esmc.js";
+let dcIdCallbackStates = {};
+let connectedWorkers = {};
 
-let cachedClients = {};
-let clientConnectionsPromises = {};
-let offlineClientTiming = {};
-
-function registerDatacenterPing(dcId, callbackState, forceReloadAuthKeyTries = 0) {
+function registerDatacenterPing(dcId, callbackState) {
   dcId = String(dcId);
-  if (offlineClientTiming[dcId] && Date.now() - offlineClientTiming[dcId] < 30000) {
-    callbackState({
-      status: 'offline'
-    });
-    // re-check offline datacenters every 30s
-    return;
+
+  if (typeof dcIdCallbackStates[dcId] == 'undefined') {
+    dcIdCallbackStates[dcId] = [];
   }
 
-  registerDatacenterConnection(dcId, callbackState, forceReloadAuthKeyTries > 0).then(() => {
-    const startTime = Date.now();
-    cachedClients[dcId].api.ping({
-      ping_id: getRandomId(),
-    }).then(() => {
-      const endTime = Date.now();
-      callbackState({
-        status: 'pong',
-        ping: endTime - startTime,
-      });
-    }).catch((e) => {
-      console.error(e);
+  dcIdCallbackStates[dcId].push(callbackState);
 
-      if (e instanceof ConnectionError) {
-        forceReloadAuthKeyTries++;
+  if (typeof connectedWorkers[dcId] == 'undefined') {
+    connectedWorkers[dcId] = 0;
+    initWorkerForDcId(dcId);
+  }
 
-        if (forceReloadAuthKeyTries > 5) {
-          offlineClientTiming[dcId] = Date.now();
-          callbackState({
-            status: 'offline'
-          });
-        } else {
-          registerDatacenterPing(dcId, callbackState, forceReloadAuthKeyTries);
-        }
-      }
-    });
+  connectedWorkers[dcId].postMessage({
+    intent: 'ping',
+    dcId: dcId,
+    authKey: getCurrentAuthKey(dcId),
   });
 }
 
-function killDatacenterConnection() {
-  for (const [id, connection] of Object.entries(cachedClients)) {
-    connection.disconnect().then(() => {
-      console.log('Disconnected from', id);
-    }).catch((e) => {
-      console.error('While disconnecting from', id, e);
-    });
-  }
+function initWorkerForDcId(dcId) {
+  const worker = new Worker("/assets/lib/connectivity-worker.js", { type: "module" });
+  connectedWorkers[dcId] = worker;
 
-  cachedClients = {};
-  clientConnectionsPromises = {};
-}
+  worker.addEventListener('message', (e) => {
+    if (typeof e.data == 'object') {
+      if (typeof e.data["status"] == 'string') {
+        for (const callback of dcIdCallbackStates[dcId]) {
+          callback(e.data);
+        }
+      } else if (typeof e.data["intent"] == 'string') {
+        if (e.data["intent"] === 'save_auth_key') {
+          if (!(e.data["authKey"] instanceof Uint8Array)) {
+            return;
+          }
 
-function registerDatacenterConnection(dcId, callbackState, forceReloadAuthKey = false) {
-  return new Promise((resolve) => {
-    if (typeof cachedClients[dcId] != 'undefined') {
-      if (typeof clientConnectionsPromises[dcId] != 'undefined') {
-        clientConnectionsPromises[dcId].then(() => resolve());
-      } else {
-        return Promise.resolve(cachedClients[dcId]);
+          localStorage.setItem(composeAuthKeyStorage(dcId), new TextDecoder().decode(e.data["authKey"]));
+        } else if (e.data["intent"] === 'kill_done') {
+          worker.terminate();
+        }
       }
-    } else {
-      let authKey = localStorage.getItem(composeAuthKeyStorage(dcId));
-      let authKeyPromise = Promise.resolve();
-      if (authKey && !forceReloadAuthKey) {
-        authKey = new TextEncoder().encode(authKey);
-      } else {
-        authKeyPromise = new Promise((resolve) => {
-          callbackState({ status: 'creating_keys' });
-          const clientPlain = new ClientPlain({ initialDc: dcId });
-          clientPlain.connect().then(() => {
-            callbackState({ status: 'exchanging_encryption_keys' });
-            clientPlain.createAuthKey().then((currentClientAuthKey) => {
-              authKey = currentClientAuthKey[0];
-              localStorage.setItem(composeAuthKeyStorage(dcId), new TextDecoder().decode(authKey));
-              clientPlain.disconnect().then(() => resolve());
-            });
-          });
-        });
-      }
-
-      authKeyPromise.then(() => {
-        const writer = new TLWriter();
-        writer.writeString(dcId);
-        writer.writeBytes(authKey);
-        writer.writeInt32(0);
-        writer.write(new Uint8Array([0]));
-        writer.writeInt64(0n);
-
-        callbackState({ status: 'connecting' });
-        const authString = base64EncodeUrlSafe(rleEncode(writer.buffer));
-        cachedClients[dcId] = new Client({
-          storage: new StorageMemory(authString)
-        });
-        clientConnectionsPromises[dcId] = new Promise((resolveDict) => {
-          cachedClients[dcId].setDc(dcId);
-          cachedClients[dcId].connect().then(() => {
-            resolveDict();
-            resolve();
-          });
-        });
-      });
     }
   });
 }
 
+function killDatacenterConnection() {
+  for (const worker of Object.values(connectedWorkers)) {
+    worker.postMessage('kill');
+  }
+
+  dcIdCallbackStates = {};
+  connectedWorkers = {};
+}
+
 function composeAuthKeyStorage(dcId) {
   return `octogram.mtproto.authKey.${dcId}`;
+}
+
+function getCurrentAuthKey(dcId) {
+  let authKey;
+  const currentAvailableAuthKey = localStorage.getItem(composeAuthKeyStorage(dcId));
+  if (currentAvailableAuthKey) {
+    authKey = new TextEncoder().encode(currentAvailableAuthKey);
+  }
+
+  return authKey;
 }
 
 export {
