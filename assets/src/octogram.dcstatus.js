@@ -5,7 +5,7 @@ import * as mtProtoHelper from "./octogram.mtproto.js";
 import * as requestsManager from "./octogram.requests.js";
 import {getStringRef} from "./octogram.translations.js";
 import * as config from "./octogram.dcstatus.config.js";
-import {clearPage, formatDate, getEmojiByIso2, parseCustomSelectMenu} from "./octogram.utils";
+import {clearPage, formatDate, getEmojiByIso2, parseCustomSelectMenu} from "./octogram.utils.js";
 
 const id = 'dcStatus';
 

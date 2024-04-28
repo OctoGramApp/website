@@ -2,7 +2,7 @@ import * as homePage from "./octogram.home.js";
 import * as dcStatus from "./octogram.dcstatus.js";
 import * as changelog from "./octogram.changelog.js";
 import {getStringRef} from "./octogram.translations.js";
-import {currentPageId} from "./octogram.utils";
+import {currentPageId} from "./octogram.utils.js";
 
 let lastHeaderElement;
 

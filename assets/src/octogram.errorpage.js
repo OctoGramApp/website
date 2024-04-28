@@ -2,7 +2,7 @@ import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
 import {getStringRef, getTextNodeByStringRef} from "./octogram.translations.js";
-import {clearPage} from "./octogram.utils";
+import {clearPage} from "./octogram.utils.js";
 
 function init() {
   clearPage('error');

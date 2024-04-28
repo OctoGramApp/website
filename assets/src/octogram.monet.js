@@ -3,7 +3,7 @@ import * as header from "./octogram.header.js";
 import * as homePage from "./octogram.home.js";
 import * as footer from "./octogram.footer.js";
 import * as parallaxHelper from "./octogram.parallax.js";
-import {clearPage} from "./octogram.utils";
+import {clearPage} from "./octogram.utils.js";
 
 const id = 'monet';
 

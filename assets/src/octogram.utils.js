@@ -221,7 +221,7 @@ function isAndroid() {
 }
 
 function tryToGetValidVersion(assetNames) {
-  if (this.isAndroid()) {
+  if (isAndroid()) {
     // TRY TO DETECT ABI FROM USERAGENT
     // maybe it works on some cringe browsers
     
