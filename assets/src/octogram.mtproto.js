@@ -2,6 +2,7 @@ import {decodeBase64, encodeBase64} from "./octogram.utils.base64.js";
 
 let dcIdCallbackStates = {};
 let connectedWorkers = {};
+let forceCloseTimeouts = {};
 
 function registerDatacenterPing(dcId, callbackState) {
   dcId = String(dcId);
@@ -43,6 +44,11 @@ function initWorkerForDcId(dcId) {
           localStorage.setItem(composeAuthKeyStorage(dcId), encodeBase64(e.data['authKey']));
         } else if (e.data['intent'] === 'kill_done') {
           worker.terminate();
+
+          if (typeof forceCloseTimeouts[dcId] != 'undefined') {
+            clearTimeout(forceCloseTimeouts[dcId]);
+            forceCloseTimeouts[dcId] = undefined;
+          }
         }
       }
     }
@@ -50,8 +56,10 @@ function initWorkerForDcId(dcId) {
 }
 
 function killDatacenterConnection() {
-  for (const worker of Object.values(connectedWorkers)) {
+  for (const [dcId, worker] of Object.entries(connectedWorkers)) {
     worker.postMessage('kill');
+
+    forceCloseTimeouts[dcId] = setTimeout(() => worker.terminate(), 4000);
   }
 
   dcIdCallbackStates = {};
