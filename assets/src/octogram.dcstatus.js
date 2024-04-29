@@ -49,8 +49,8 @@ function init() {
     onBackCallback: () => homePage.init()
   }));
   pageContainer.appendChild(generatePointer());
-  pageContainer.appendChild(generateIdentifyDcContainer());
   pageContainer.appendChild(generateServerContainer());
+  pageContainer.appendChild(generateIdentifyDcContainer());
   pageContainer.appendChild(generateExportContainer());
   pageContainer.appendChild(footer.createElement());
 
