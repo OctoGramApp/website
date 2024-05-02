@@ -269,12 +269,14 @@ function getEmojiByIso2(isoString) {
   return String.fromCodePoint(...codePoint);
 }
 
-function formatDate(timestamp) {
+function formatDate(timestamp, format) {
   const date = new Date(timestamp * 1000);
 
-  let format = 'YY-mm-dd HH:ii:ss';
-  if (canUseItalianFormat()) {
-    format = 'dd/mm/YY HH:ii:ss';
+  if (!format) {
+    format = 'YY-mm-dd HH:ii:ss';
+    if (canUseItalianFormat()) {
+      format = 'dd/mm/YY HH:ii:ss';
+    }
   }
 
   let finalString = format;
@@ -348,8 +350,6 @@ export {
   calculateSize,
   getEmojiByIso2,
   formatDate,
-  canUseItalianFormat,
-  formatDateUnit,
   composeUrlBeta,
   clearPage,
   generateRandomEncrScript
